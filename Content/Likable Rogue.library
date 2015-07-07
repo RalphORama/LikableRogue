@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "Likable Rogue",
+	uint64 LibraryId = 55232c0df6fec6c1,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},
