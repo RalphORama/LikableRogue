@@ -10,11 +10,16 @@ class LevelController : ZilchComponent
     [Property]
     var PlayerCharacter : Archetype = null;
     
+    // Create an empty object to initialize the camera into
+    var LevelCamera : Cog = null;
+    
     // Create a random number generator for generating random numbers
     var RandomGenerator : Random = Random();
     
     function Initialize(init : CogInitializer)
     {
+        // initialize the camera object
+        this.LevelCamera = this.Space.FindObjectByName("Camera");
         // Don't need physics update just yet
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -29,6 +34,10 @@ class LevelController : ZilchComponent
     {
     }
     */
+    /*function Camera()
+    {
+        this.Space.FindObjectByName("Camera").Transform.Translation = Real3(,,40);
+    }*/
     
     function BoardSetup () {
         for (var x = -1; x < this.RoomWidth + 1; ++x) {      // Loop through every column of the room
@@ -42,6 +51,9 @@ class LevelController : ZilchComponent
                 }
             }
         }
+        var cameraXAvg : Integer = ( (-1 + (this.RoomWidth +1))/2 );
+        var cameraYAvg : Integer = ( (-1 + (this.RoomHeight +1))/2 );
+        this.LevelCamera.Transform.Translation = Real3(cameraXAvg, cameraYAvg, 40);
     }
     
     function SpawnPlayer () {
