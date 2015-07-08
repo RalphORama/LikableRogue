@@ -42,17 +42,14 @@ class LevelController : ZilchComponent
     }*/
     
     function BoardSetup () {
-        for (var x = -1; x < this.RoomWidth + 1; ++x) {      // Loop through every column of the room
-            for (var y = -1; y < this.RoomHeight + 1; ++y) { // loop through every row of the room
-                // check to see if we're on the outside edge of the room
-                if (x == -1 || x == this.RoomWidth || y == -1 || y == this.RoomHeight) { 
-                    // create a real3 with the exact outer coordinates to pass to CreateAtPosition
-                    var outerWallPosition = Real3(x, y, 0); 
-                    // create a wall tile at the edge of the room
-                    var newOuterWall = this.Space.CreateAtPosition(this.OuterWallTile, outerWallPosition);
-                }
-            }
-        }
+        /* 
+        In order to generate multiple rooms:
+        - create "origin" room
+        - create rooms around it 
+        - make sure all rooms touch at least one other room 
+        */
+        
+        this.GenerateRoom(0, 0);
         
         // move camera to center on current level
         var cameraXAvg : Integer = ( (-1 + (this.RoomWidth +1))/2 );
@@ -64,6 +61,26 @@ class LevelController : ZilchComponent
         var bgImg = this.Space.CreateAtPosition(this.BackgroundImage, roomCenter);
         var roomSize = Real3(this.RoomWidth + 2, this.RoomHeight + 2, 0);
         bgImg.Transform.Scale = roomSize;
+    }
+    
+    function GenerateRoom ( originX : Integer,  // x coordinate of first inhabitable square
+                            originY : Integer) {//,  // Y coordinate of the first inhabitable square
+                            //exits : Integer,    // how many exits (1-4) the room has
+                            //nExit : Boolean,    // north exit?
+                            //sExit : Boolean,    // south exit?
+                            //eExit : Boolean,    // east exit?
+                            //wExit : Boolean) {  // west exit?
+        for (var x = (originX - 1); x < (originX + this.RoomWidth + 1); ++x) {      // Loop through every column of the room
+            for (var y = (originY - 1); y < (originY + this.RoomHeight + 1); ++y) { // loop through every row of the room
+                // check to see if we're on the outside edge of the room
+                if (x == (originX - 1) || x == (originX + this.RoomWidth) || y == (originY - 1) || y == (originY + this.RoomHeight)) { 
+                    // create a real3 with the exact outer coordinates to pass to CreateAtPosition
+                    var outerWallPosition = Real3(x, y, 0); 
+                    // create a wall tile at the edge of the room
+                    var newOuterWall = this.Space.CreateAtPosition(this.OuterWallTile, outerWallPosition);
+                }
+            }
+        }
     }
     
     function SpawnPlayer () {
