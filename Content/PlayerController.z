@@ -27,6 +27,7 @@ class PlayerController : ZilchComponent
     }
     function UpdateFacingInput()
         {
+        //Controler
         //Right Stick N
         if(this.Gamepad.RightStick.Y>0 && this.Gamepad.RightStick.X<0.25 && this.Gamepad.RightStick.X>-0.25)
             {
@@ -73,6 +74,14 @@ class PlayerController : ZilchComponent
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");
             this.Owner.Sprite.FlipX=true;//miror x
             }
+            //Console.WriteLine(event.ToWorldZPlane(0));
+            //Console.WriteLine(Zero.Mouse.ScreenPosition.X)
+            //Console.WriteLine(ViewportMouseEvent.ToWorldZPlane(0));
+            //Console.WriteLine(Zero.Mouse.ScreenPosition);
+            //var event = ViewportMouseEvent();
+            //Console.WriteLine(event.ToWorldZPlane(0));
+        //Mouse
+        //if (this.
         }
     function UpdateMoveInput()
     {
