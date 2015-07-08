@@ -15,7 +15,7 @@ class LevelController : ZilchComponent
         
         // Procedurally create level
         // level is 15 blocks high by 21 blocks wide, defined as a property
-        
+        this.BoardSetup();
     }
 
     /*
@@ -27,9 +27,11 @@ class LevelController : ZilchComponent
     function BoardSetup () {
         for (var x = -1; x < this.RoomWidth + 1; ++x) {      // Loop through every column of the room
             for (var y = -1; y < this.RoomHeight + 1; ++y) { // loop through every row of the room
-                var toInstantiate : Archetype = this.OuterWallTile;
+                // var toInstantiate : Archetype = this.OuterWallTile;
                 if (x == -1 || x == this.RoomWidth || y == -1 || y == this.RoomHeight) { // if we're at the very edge of the room
-                    
+                    var outerWallPosition = Real3(x, y, 0); // create a real3 with x, y, 0 to make createAtPosition happy
+                    var newOuterWall = this.Space.CreateAtPosition(this.OuterWallTile, outerWallPosition);
+                    // ^ create a new wall tile at the previously created real3 with the wall archetype
                 }
             }
         }
