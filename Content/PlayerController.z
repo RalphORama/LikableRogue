@@ -1,6 +1,8 @@
 class PlayerController : ZilchComponent
 {
     [Property]
+    var SpriteToChange : SpriteSource = null;
+    [Property]
     //MUST BE 1 - 4
     var PlayerNumber : Integer = 1;
     
@@ -21,8 +23,16 @@ class PlayerController : ZilchComponent
     {
         this.UpdateMoveInput();
         this.UpdateOtherInput();
+        this.UpdateFacingInput();
     }
-    
+    function UpdateFacingInput()
+        {
+        if(this.Gamepad.RightStick.X>0)
+            {
+                Console.WriteLine("Left");
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_player");
+            }
+        }
     function UpdateMoveInput()
     {
         this.Owner.RigidBody.Velocity = Real3(0,0,0);

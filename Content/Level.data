@@ -103,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [0, 0, 48.999],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -123,7 +123,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [0, 0, -1.001],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -161,7 +161,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
+			string SpriteSource = "55ef0fc9ae57d34e:basic_playerS",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
@@ -193,6 +193,7 @@ Level =
 		},
 		PlayerController = 
 		{
+			string SpriteToChange = "552237a125d85c41:basic_player",
 			int PlayerNumber = 1,
 			float MoveSpeed = 10,
 		},
