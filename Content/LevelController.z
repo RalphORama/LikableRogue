@@ -9,6 +9,8 @@ class LevelController : ZilchComponent
     var OuterWallTile : Archetype = null;
     [Property]
     var PlayerCharacter : Archetype = null;
+    [Property]
+    var BackgroundImage : Archetype = null;
     
     // Create an empty object to initialize the camera into
     var LevelCamera : Cog = null;
@@ -51,9 +53,17 @@ class LevelController : ZilchComponent
                 }
             }
         }
+        
+        // move camera to center on current level
         var cameraXAvg : Integer = ( (-1 + (this.RoomWidth +1))/2 );
         var cameraYAvg : Integer = ( (-1 + (this.RoomHeight +1))/2 );
         this.LevelCamera.Transform.Translation = Real3(cameraXAvg, cameraYAvg, 40);
+        
+        // create background, size it to fit level
+        var roomCenter = Real3 (cameraXAvg, cameraYAvg, 0);
+        var bgImg = this.Space.CreateAtPosition(this.BackgroundImage, roomCenter);
+        var roomSize = Real3(this.RoomWidth + 2, this.RoomHeight + 2, 0);
+        bgImg.Transform.Scale = roomSize;
     }
     
     function SpawnPlayer () {
