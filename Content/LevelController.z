@@ -6,10 +6,11 @@ class LevelController : ZilchComponent
     [Property]
     var RoomWidth : Integer     = 21;
     [Property]
-    var OuterWallTiles : Archetype = null;
+    var OuterWallTile : Archetype = null;
     
     function Initialize(init : CogInitializer)
     {
+        // Don't need physics update just yet
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
         // Procedurally create level
@@ -17,7 +18,20 @@ class LevelController : ZilchComponent
         
     }
 
+    /*
     function OnLogicUpdate(event : UpdateEvent)
     {
+    }
+    */
+    
+    function BoardSetup () {
+        for (var x = -1; x < this.RoomWidth + 1; ++x) {      // Loop through every column of the room
+            for (var y = -1; y < this.RoomHeight + 1; ++y) { // loop through every row of the room
+                var toInstantiate : Archetype = this.OuterWallTile;
+                if (x == -1 || x == this.RoomWidth || y == -1 || y == this.RoomHeight) { // if we're at the very edge of the room
+                    
+                }
+            }
+        }
     }
 }
