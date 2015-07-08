@@ -11,14 +11,19 @@ class PlayerController : ZilchComponent
     
     var StickThreshold : Real = 0.3;
     var Gamepad : Gamepad = null;
+    var MousePosition : Real3 = Real3(0,0,0);
     
     function Initialize(init : CogInitializer)
     {
         //getting the right gamepad is what enables us to have different gamepads per instance of this script due to the playernumber var
         this.Gamepad = Zero.Gamepads.GetGamePad(this.PlayerNumber - 1);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
     }
-
+    function OnMouseMove(event : MouseEvent)
+        {
+        this.MousePosition = Real3(event.Position.X,event.Position.Y,0);
+        }
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateMoveInput();
@@ -74,14 +79,13 @@ class PlayerController : ZilchComponent
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");
             this.Owner.Sprite.FlipX=true;//miror x
             }
+        //mouse
             //Console.WriteLine(event.ToWorldZPlane(0));
             //Console.WriteLine(Zero.Mouse.ScreenPosition.X)
             //Console.WriteLine(ViewportMouseEvent.ToWorldZPlane(0));
             //Console.WriteLine(Zero.Mouse.ScreenPosition);
             //var event = ViewportMouseEvent();
-            //Console.WriteLine(event.ToWorldZPlane(0));
-        //Mouse
-        //if (this.
+            Console.WriteLine(this.MousePosition);
         }
     function UpdateMoveInput()
     {
