@@ -1,0 +1,13 @@
+# set default behavior
+* text=auto
+
+# explicitly declare text files to be normalized and converted
+*.zeroproj text
+*.z text
+*.meta text
+*.library text
+*.data text
+
+# filetypes that are binary
+*.png binary
+*.jpg binary
