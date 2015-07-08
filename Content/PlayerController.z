@@ -28,14 +28,16 @@ class PlayerController : ZilchComponent
     function UpdateFacingInput()
         {
         //Right Stick N
-        if(this.Gamepad.RightStick.Y>0 && this.Gamepad.RightStick.X<0.25)
+        if(this.Gamepad.RightStick.Y>0 && this.Gamepad.RightStick.X<0.25 && this.Gamepad.RightStick.X>-0.25)
             {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");
+            this.Owner.Sprite.FlipX=false;
             }
         //Right Stick East
         else if(this.Gamepad.RightStick.X>0 && this.Gamepad.RightStick.Y<0.25 && this.Gamepad.RightStick.Y>0)
             {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
+            this.Owner.Sprite.FlipX=false;
             }
         //Right Stick NE
         else if(this.Gamepad.RightStick.Y>0 && this.Gamepad.RightStick.X>0)
@@ -43,19 +45,26 @@ class PlayerController : ZilchComponent
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");
             }
         //Right Stick S
-        else if(this.Gamepad.RightStick.Y<0 && this.Gamepad.RightStick.X<0.25)
+        else if(this.Gamepad.RightStick.Y<0 && this.Gamepad.RightStick.X<0.25 && this.Gamepad.RightStick.X>-0.25)
             {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");
             }
         //Right Stick SE
-        else if(this.Gamepad.RightStick.Y<0)
+        else if(this.Gamepad.RightStick.Y<0 && this.Gamepad.RightStick.X>0)
             {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");
+            this.Owner.Sprite.FlipX=false;
             }
         //Right Stick W
         else if(this.Gamepad.RightStick.X<0)
             {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
+            this.Owner.Sprite.FlipX=true;//miror x
+            }
+        //Right Stick NW
+        else if(this.Gamepad.RightStick.X<0 && this.Gamepad.RightStick.Y>0.25 && this.Gamepad.RightStick.Y<0.75)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");
             this.Owner.Sprite.FlipX=true;//miror x
             }
         }
