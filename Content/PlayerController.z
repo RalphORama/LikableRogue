@@ -62,7 +62,7 @@ class PlayerController : ZilchComponent
             this.Owner.Sprite.FlipX=true;//miror x
             }
         //Right Stick W
-        else if(this.Gamepad.RightStick.X<0 && this.Gamepad.RightStick.Y < 0.25)
+        else if(this.Gamepad.RightStick.X<0 && this.Gamepad.RightStick.Y < 0.25 && this.Gamepad.RightStick.Y > -0.25)
             {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
             this.Owner.Sprite.FlipX=true;//miror x
