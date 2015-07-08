@@ -21,7 +21,7 @@ class PlayerController : ZilchComponent
         Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
     }
     function OnMouseMove(event : MouseEvent)
-        {        
+        {
         this.MousePosition = Real3(event.Position.X,event.Position.Y,0);
         }
     function OnLogicUpdate(event : UpdateEvent)
@@ -85,6 +85,7 @@ class PlayerController : ZilchComponent
             //Console.WriteLine(ViewportMouseEvent.ToWorldZPlane(0));
             //Console.WriteLine(Zero.Mouse.ScreenPosition);
             //var event = ViewportMouseEvent();
+            Console.WriteLine(this.Owner.Transform.Translation.X);
             Console.WriteLine(this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0));
         }
     function UpdateMoveInput()
