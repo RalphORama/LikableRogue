@@ -143,83 +143,6 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Player",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, -3, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = true,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "5522c1021f9ffff0:NoBounceMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		PlayerController = 
-		{
-			int PlayerNumber = 1,
-			float MoveSpeed = 10,
-		},
-		Health = 
-		{
-			float MaxHealth = 50,
-			bool DestroyAtZeroHealth = true,
-			float DamageScalar = 1,
-		},
-		DamageOnCollide = 
-		{
-			float Damage = 15,
-			bool SendsDeathEvent = true,
-			bool DieOnCollide = false,
-		},
-		Hierarchy = 
-		{
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Named = 
-		{
 			string Name = "Background",
 		},
 		Transform = 
@@ -251,7 +174,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 6,
+			uint Id = 5,
 		},
 		Named = 
 		{
@@ -285,7 +208,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 7,
+			uint Id = 6,
 		},
 		Named = 
 		{
@@ -302,13 +225,14 @@ Level =
 			int RoomHeight = 15,
 			int RoomWidth = 21,
 			string OuterWallTile = "5522c439f4af813c:BasicWall",
+			string PlayerCharacter = "5522de378f164585:Player",
 		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 8,
+			uint Id = 7,
 		},
 		Named = 
 		{
@@ -316,7 +240,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4, -4, 0],
+			Vec3 Translation = [6, 4, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
