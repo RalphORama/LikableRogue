@@ -2,14 +2,14 @@ TextContent =
 {
 	ZilchScriptBuilder = 
 	{
-		string Name = "PlayerController",
-		uint64 ResourceId = 55232df4fe967ef8,
+		string Name = "HudCreator",
+		uint64 ResourceId = 532e2ab87b295e08,
 	},
 	ContentTags = 
 	{
 		Array Tags = 
 		[
-			"Controller",
+			"BasicGameplay",
 		],
 	},
 },

@@ -1,0 +1,23 @@
+class LevelController : ZilchComponent
+{
+    // Initialize properties
+    [Property]
+    var RoomHeight : Integer    = 15;
+    [Property]
+    var RoomWidth : Integer     = 21;
+    [Property]
+    var OuterWallTiles : Archetype = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+        // Procedurally create level
+        // level is 15 blocks high by 21 blocks wide, defined as a property
+        
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

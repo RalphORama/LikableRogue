@@ -18,7 +18,7 @@ class PlayerController : ZilchComponent
         this.Gamepad = Zero.Gamepads.GetGamePad(this.PlayerNumber - 1);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
-// 
+
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateMoveInput();

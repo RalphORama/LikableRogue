@@ -2,14 +2,14 @@ TextContent =
 {
 	ZilchScriptBuilder = 
 	{
-		string Name = "PlayerController",
-		uint64 ResourceId = 55232df4fe967ef8,
+		string Name = "CreateOnDeath",
+		uint64 ResourceId = 53e79429fa3e6654,
 	},
 	ContentTags = 
 	{
 		Array Tags = 
 		[
-			"Controller",
+			"BasicGameplay",
 		],
 	},
 },
