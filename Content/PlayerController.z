@@ -3,6 +3,7 @@ class PlayerController : ZilchComponent
     [Property]
     //MUST BE 1 - 4
     var PlayerNumber : Integer = 1;
+    
     [Property]
     var MoveSpeed : Real = 1;
     
@@ -15,7 +16,7 @@ class PlayerController : ZilchComponent
         this.Gamepad = Zero.Gamepads.GetGamePad(this.PlayerNumber - 1);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
-
+// 
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateMoveInput();
@@ -27,7 +28,9 @@ class PlayerController : ZilchComponent
         this.Owner.RigidBody.Velocity = Real3(0,0,0);
         //start with the lstick input
         var moveVec = Real3(this.Gamepad.LeftStick.X,this.Gamepad.LeftStick.Y,0);
+        
         //add keyboard input
+        
         if(Zero.Keyboard.KeyIsDown(Keys.A))
         {
             moveVec += Real3(-1,0,0);
@@ -54,6 +57,7 @@ class PlayerController : ZilchComponent
         //call move function using the variables we made
         this.Move(moveVec);
     }
+    
     function UpdateOtherInput()
     {
         //###################################################################################################
@@ -62,72 +66,51 @@ class PlayerController : ZilchComponent
         {
             Console.WriteLine("Space: KeyIsPressed Example");
         }
+        
         //###################################################################################################
         //GAMEPAD INPUTS
-        if(this.Gamepad.IsButtonPressed(0))
-        {
-            Console.WriteLine("A");
-        }
-        if(this.Gamepad.IsButtonPressed(1))
-        {
-            Console.WriteLine("B");
-        }
-        if(this.Gamepad.IsButtonPressed(2))
-        {
-            Console.WriteLine("X");
-        }
-        if(this.Gamepad.IsButtonPressed(3))
-        {
-            Console.WriteLine("Y");
-        }
-        if(this.Gamepad.IsButtonPressed(4))
-        {
-            Console.WriteLine("Start");
-        }
-        if(this.Gamepad.IsButtonPressed(5))
-        {
-            Console.WriteLine("Back");
-        }
-        if(this.Gamepad.IsButtonPressed(6))
-        {
-            Console.WriteLine("L Stick Press");
-        }
-        if(this.Gamepad.IsButtonPressed(7))
-        {
-            Console.WriteLine("R Stick Press");
-        }
-        if(this.Gamepad.IsButtonPressed(8))
-        {
-            Console.WriteLine("L Bumper");
-        }
-        if(this.Gamepad.IsButtonPressed(9))
-        {
-            Console.WriteLine("R Bumper");
-        }
-        if(this.Gamepad.RightTrigger.X >= 1)
-        {
-            Console.WriteLine("R Trigger");
-        }
-        if(this.Gamepad.LeftTrigger.X >= 1)
-        {
-            Console.WriteLine("L Trigger");
-        }
-        if(this.Gamepad.IsButtonPressed(10))
-        {
-            Console.WriteLine("DPAD UP");
-        }
-        if(this.Gamepad.IsButtonPressed(11))
-        {
-            Console.WriteLine("DPAD DOWN");
-        }
-        if(this.Gamepad.IsButtonPressed(12))
-        {
-            Console.WriteLine("DPAD LEFT");
-        }
-        if(this.Gamepad.IsButtonPressed(13))
-        {
-            Console.WriteLine("DPAD RIGHT");
-        }
+        
+        // Letter buttons
+        if(this.Gamepad.IsButtonPressed(0)) // A
+        { Console.WriteLine("A"); }
+        if(this.Gamepad.IsButtonPressed(1)) // B
+        { Console.WriteLine("B"); }
+        if(this.Gamepad.IsButtonPressed(2)) // X
+        { Console.WriteLine("X"); }
+        if(this.Gamepad.IsButtonPressed(3)) // Y
+        { Console.WriteLine("Y"); }
+        
+        // Start & Select
+        if(this.Gamepad.IsButtonPressed(4)) // Start
+        { Console.WriteLine("Start"); }
+        if(this.Gamepad.IsButtonPressed(5)) // Select
+        { Console.WriteLine("Back"); }
+        
+        // Left and Right stick buttons
+        if(this.Gamepad.IsButtonPressed(6)) // Left sitck pressed
+        { Console.WriteLine("L Stick Press"); }
+        if(this.Gamepad.IsButtonPressed(7)) // Right stick pressed
+        { Console.WriteLine("R Stick Press"); }
+        
+        // Triggers and Bumpers
+        if(this.Gamepad.IsButtonPressed(8)) // Left Bumper
+        { Console.WriteLine("L Bumper"); }
+        if(this.Gamepad.IsButtonPressed(9)) // Right Bumper
+        { Console.WriteLine("R Bumper"); }
+        if(this.Gamepad.RightTrigger.X >= 1) // Right trigger
+        { Console.WriteLine("R Trigger"); }
+        if(this.Gamepad.LeftTrigger.X >= 1) // Left Trigger
+        { Console.WriteLine("L Trigger"); }
+        
+        // Digital Pad
+        if(this.Gamepad.IsButtonPressed(10)) // Dpad up
+        {  Console.WriteLine("DPAD UP"); }
+        if(this.Gamepad.IsButtonPressed(11)) // Dpad down
+        { Console.WriteLine("DPAD DOWN"); }
+        if(this.Gamepad.IsButtonPressed(12)) // Dpad left
+        { Console.WriteLine("DPAD LEFT"); }
+        if(this.Gamepad.IsButtonPressed(13)) // Dpad right
+        { Console.WriteLine("DPAD RIGHT"); }
     }
     function Move(moveR3 : Real3)
     {
