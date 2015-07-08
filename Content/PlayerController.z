@@ -33,7 +33,7 @@ class PlayerController : ZilchComponent
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");
             }
         //Right Stick East
-        else if(this.Gamepad.RightStick.X>0 && this.Gamepad.RightStick.Y<0.25)
+        else if(this.Gamepad.RightStick.X>0 && this.Gamepad.RightStick.Y<0.25 && this.Gamepad.RightStick.Y>0)
             {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
             }
@@ -55,12 +55,8 @@ class PlayerController : ZilchComponent
         //Right Stick W
         else if(this.Gamepad.RightStick.X<0)
             {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");//find how to miror this
-            }
-
-        else if(this.Gamepad.RightStick.Y<0)
-            {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
+            this.Owner.Sprite.FlipX=true;//miror x
             }
         }
     function UpdateMoveInput()
