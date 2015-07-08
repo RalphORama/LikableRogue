@@ -194,7 +194,7 @@ Level =
 		PlayerController = 
 		{
 			int PlayerNumber = 1,
-			float MoveSpeed = 20,
+			float MoveSpeed = 10,
 		},
 		Hierarchy = 
 		{
