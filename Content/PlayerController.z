@@ -1,6 +1,9 @@
 class PlayerController : ZilchComponent
 {
     [Property]
+    var SpriteToChange : SpriteSource = null;
+    
+    [Property]
     //MUST BE 1 - 4
     var PlayerNumber : Integer = 1;
     
@@ -16,10 +19,8 @@ class PlayerController : ZilchComponent
     var MousePosition : Real3 = Real3(0,0,0);
     var Ang : Real = 0;
     var CamSize : Integer = 17;
-    var ChilSword : Cog = null; 
     function Initialize(init : CogInitializer)
         {
-        this.ChilSword = this.Owner.FindChildByName("Sword");
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         // this changes camera size. larger == you can see more
@@ -76,8 +77,6 @@ class PlayerController : ZilchComponent
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-                this.ChilSword.Transform.Translation=Real3(0.5,0,-0.5);
-                //Console.WriteLine(this.ChilSword.Transform.Translation.Z);
                 }
             //Nort East
             if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
