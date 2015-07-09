@@ -90,6 +90,24 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		DeferredRenderer = 
+		{
+			Vec4 ClearColor = [0.81, 0.08505, 0.08505, 1],
+			bool DrawNonVisible = false,
+			bool DrawDebugObjects = true,
+			bool DrawEditorIcons = true,
+			bool EditorIconDepth = true,
+			bool Hdr = true,
+			bool Shadows = true,
+			bool AntiAliasing = false,
+			bool Refraction = true,
+			bool Reflections = true,
+			string ReflectionEnvironmentName = "4fab71e8bcb7a8ce:DefaultTexture",
+			bool GodRays = true,
+			bool RenderMasks = false,
+			bool Glow = false,
+			float GlowThreshold = 1,
+		},
 	},
 	Cog = 
 	{
@@ -103,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.00785579, -0.13352, 50],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -115,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 3.64424,
+			float Size = 10.0259,
 		},
 		EditorCameraController = 
 		{
@@ -123,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0.00785579, -0.13352, -3.01833e-007],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -226,37 +244,6 @@ Level =
 		},
 		Hierarchy = 
 		{
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 6,
-		},
-		Named = 
-		{
-			string Name = "Light",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-0.140915, 0.0315001, 10],
-			Vec3 Scale = [1.47767, 0.253677, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Light = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			LightType LightType = Point,
-			Vec4 Color = [1, 1, 1, 1],
-			float Intensity = 1,
-			float Range = 50,
-			float Falloff = 1,
-			float Angle = 10,
-			float Size = 20,
 		},
 	},
 },
