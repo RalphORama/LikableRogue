@@ -1,4 +1,4 @@
-// TODO: - Give each room definite "exit points"
+// TODO: 
 //       - random generation for rooms around secondary rooms (tertriary room generation)
 //       - create door archetype, write collision handling.
 //       - create interior objects, write generation code ]V
@@ -72,12 +72,6 @@ class LevelController : ZilchComponent
     */
     
     function BoardSetup () {
-        /* 
-        In order to generate multiple rooms:
-        - create "origin" room
-        - create rooms around it 
-        - make sure all rooms touch at least one other room 
-        */
         
         // generate the initial room
         this.GenerateRoom(0, 0);
