@@ -2,6 +2,7 @@ class PlayerController : ZilchComponent
 {
     [Property]
     var SpriteToChange : SpriteSource = null;
+    
     [Property]
     //MUST BE 1 - 4
     var PlayerNumber : Integer = 1;
@@ -9,17 +10,27 @@ class PlayerController : ZilchComponent
     [Property]
     var MoveSpeed : Real = 1;
     
+    // Create an empty object to initialize the camera into
+    var LevelCamera : Cog = null;
+    
+    // gamepad and mouse settings
     var StickThreshold : Real = 0.3;
     var Gamepad : Gamepad = null;
     var MousePosition : Real3 = Real3(0,0,0);
     var Ang : Real = 0;
     function Initialize(init : CogInitializer)
         {
+        // initialize the camera object
+        this.LevelCamera = this.Space.FindObjectByName("Camera");
+        // this changes camera size. larger == you can see more
+        //this.LevelCamera.Camera.Size = 50;
+        
         //getting the right gamepad is what enables us to have different gamepads per instance of this script due to the playernumber var
         this.Gamepad = Zero.Gamepads.GetGamePad(this.PlayerNumber - 1);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
         }
+        
     function OnMouseMove(event : MouseEvent)//Updates Ang when mouse moves
         {
         this.UpdateMouseMovement();
