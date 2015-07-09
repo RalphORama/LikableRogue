@@ -56,32 +56,41 @@ class LevelController : ZilchComponent
         // generate the initial room
         this.GenerateRoom(0, 0);
         
+        // debugging
+        /*
+        this.GenerateRoom(22, 0);
+        this.GenerateRoom(-22, 0);
+        this.GenerateRoom(0, 16);
+        this.GenerateRoom(0, -16);
+        */
+        
         // generate rooms with for loop
         // this loop starts at 2, since we already generated the first room
         var roomsToGenerate : Integer = this.RandomGenerator.Range(2, this.MaxRooms) as Integer;
+
         for (var x = 2; x <= roomsToGenerate; ++x) {
             var northGenerated : Boolean = false; // cardinal == 1
             var southGenerated : Boolean = false; // cardinal == 2
             var eastGenerated  : Boolean = false; // cardinal == 3
             var westGenerated  : Boolean = false; // cardinal == 4
-            var cardinal : Integer = this.RandomGenerator.Range(1, 4) as Integer;
+            var cardinal : Integer = this.RandomGenerator.Range(1, 5) as Integer;
+            // Console.WriteLine(cardinal);
             
             if (cardinal == 1 && northGenerated != true) {
-                // GenerateRoom(X, Y);
-                // to generate a room north of our current room
-                // X should equal 0, Y should equal this.RoomHeight
-                // to generate a room west
-                // x should equal -this.RoomWidth, y should equal 0
-                this.GenerateRoom(0, this.RoomWidth);
+                northGenerated = false;
+                this.GenerateRoom(0, ( this.RoomHeight + 1 ));
             }
             else if (cardinal == 2 && southGenerated != true) {
-                this.GenerateRoom(0, 0 - (this.RoomWidth + 1));
+                southGenerated = false;
+                this.GenerateRoom(0, ( 0 - (this.RoomHeight + 1) ));
             }
             else if (cardinal == 3 && eastGenerated != true) {
-                this.GenerateRoom(this.RoomHeight, 0);
+                eastGenerated = false;
+                this.GenerateRoom(( this.RoomWidth + 1 ), 0);
             }
             else if (cardinal == 4 && westGenerated != true) {
-                this.GenerateRoom(0 - (this.RoomHeight + 1), 0);
+                westGenerated = false;
+                this.GenerateRoom(( 0 - (this.RoomWidth + 1)) , 0);
             }
             else {
                 Console.WriteLine( "ERROR! \nSomething went wrong generating rooms.\n" );
