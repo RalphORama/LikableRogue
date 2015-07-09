@@ -49,6 +49,7 @@ class PlayerController : ZilchComponent
             this.CamSize-=1;
             }
         this.LevelCamera.Camera.Size = this.CamSize;
+        this.LevelCamera.Camera.FieldOfView = this.CamSize;
         }
     function OnMouseMove(event : MouseEvent)//Updates Ang when mouse moves
         {

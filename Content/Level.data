@@ -103,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [5.01515, 27.4211, 50],
+			Vec3 Translation = [0.00785579, -0.13352, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -115,7 +115,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 67.032,
+			float Size = 3.64424,
 		},
 		EditorCameraController = 
 		{
@@ -123,7 +123,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [5.01515, 27.4211, 4.04349e-009],
+			Vec3 LookTarget = [0.00785579, -0.13352, -3.01833e-007],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -153,10 +153,10 @@ Level =
 		},
 		Camera = 
 		{
-			ProjectionMode ProjectionMode = Orthographic,
+			ProjectionMode ProjectionMode = Perspective,
 			Facing Facing = NegativeZ,
 			CameraTransparentSort TransparentSort = InheritFromSpace,
-			float FieldOfView = 45,
+			float FieldOfView = 23,
 			float NearPlane = 0.5,
 			float FarPlane = 200,
 			float Size = 50,
@@ -194,6 +194,69 @@ Level =
 			string PlayerCharacter = "5522de378f164585:Player",
 			string BackgroundImage = "5522eaa630647362:Background",
 			string RoomArchetype00 = "552191204f7af9d5:Room00",
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 5,
+		},
+		Named = 
+		{
+			string Name = "Room00",
+		},
+		Archetyped = 
+		{
+			string Name = "552191204f7af9d5:Room00",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-6.16931, 2.12895, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		RoomController = 
+		{
+			bool NorthExit = true,
+			bool EastExit = true,
+			bool SouthExit = true,
+			bool WestExit = true,
+			bool EnemiesDead = true,
+		},
+		Hierarchy = 
+		{
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 6,
+		},
+		Named = 
+		{
+			string Name = "Light",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-0.140915, 0.0315001, 10],
+			Vec3 Scale = [1.47767, 0.253677, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Light = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			LightType LightType = Point,
+			Vec4 Color = [1, 1, 1, 1],
+			float Intensity = 1,
+			float Range = 50,
+			float Falloff = 1,
+			float Angle = 10,
+			float Size = 20,
 		},
 	},
 },
