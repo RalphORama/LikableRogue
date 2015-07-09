@@ -103,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.17938, -0.471732, 50],
+			Vec3 Translation = [3.583, 5.51476, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -115,7 +115,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 44.9329,
+			float Size = 33.2871,
 		},
 		EditorCameraController = 
 		{
@@ -123,7 +123,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0.17938, -0.471732, 7.84098e-009],
+			Vec3 LookTarget = [3.583, 5.51476, 1.0921e-008],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -193,6 +193,7 @@ Level =
 			string OuterWallTile = "5522c439f4af813c:BasicWall",
 			string PlayerCharacter = "5522de378f164585:Player",
 			string BackgroundImage = "5522eaa630647362:Background",
+			string RoomArchetype00 = "552191204f7af9d5:Room00",
 		},
 	},
 },
