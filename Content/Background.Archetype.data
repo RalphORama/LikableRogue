@@ -8,10 +8,14 @@ Cog =
 	{
 		string Name = "Background",
 	},
+	Archetyped = 
+	{
+		string Name = "5522eaa630647362:Background",
+	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, -1],
-		Vec3 Scale = [1, 1, 1],
+		Vec3 Translation = [10, 7, -1],
+		Vec3 Scale = [21, 15, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
