@@ -19,10 +19,12 @@ class PlayerController : ZilchComponent
     var MousePosition : Real3 = Real3(0,0,0);
     var Ang : Real = 0;
     var CamSize : Integer = 17;
+    var ChiSword : Cog = null;
     function Initialize(init : CogInitializer)
         {
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
+        this.ChiSword = this.Space.FindObjectByName("Sword");
         // this changes camera size. larger == you can see more
         //this.LevelCamera.Camera.Size = 50;
         
@@ -77,12 +79,14 @@ class PlayerController : ZilchComponent
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                this.ChiSword.Transform.Translation=Real3(0.5,0.5,0);
                 }
             //Nort East
             if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                this.ChiSword.Transform.Translation=Real3(0,0.5,2);
                 }
             //East
             if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
