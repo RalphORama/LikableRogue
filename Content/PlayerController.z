@@ -12,6 +12,7 @@ class PlayerController : ZilchComponent
     var StickThreshold : Real = 0.3;
     var Gamepad : Gamepad = null;
     var MousePosition : Real3 = Real3(0,0,0);
+    var Ang : Real = 0;
     function Initialize(init : CogInitializer)
         {
         //getting the right gamepad is what enables us to have different gamepads per instance of this script due to the playernumber var
@@ -24,7 +25,7 @@ class PlayerController : ZilchComponent
                                    ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
                                    this.LevelSettings.CameraViewport.
                                    ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0);//Get Mouse Y relative to player
-        //Math.Angle2D(this.MousePosition);
+        this.Ang = Math.Angle2D(this.MousePosition);
         }
     function OnLogicUpdate(event : UpdateEvent)
     {
@@ -84,7 +85,9 @@ class PlayerController : ZilchComponent
             }
         //mouse
             Console.WriteLine(Math.Angle2D(this.MousePosition));
-            //if (Math.Angle2D((this.MousePosition)>-0.5&&Math.Angle2D(this.MousePosition)<0.5)||(this.MousePosition)>-0.5&&Math.Angle2D(this.MousePosition)<0.5))
+            if (this.Ang>-0.5&&this.Ang<0.5)
+            {
+            }
             //Console.WriteLine("uhjfdujkfdjfg");
         }
     function UpdateMoveInput()
