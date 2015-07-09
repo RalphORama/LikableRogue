@@ -19,10 +19,12 @@ class PlayerController : ZilchComponent
         this.Gamepad = Zero.Gamepads.GetGamePad(this.PlayerNumber - 1);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
-        //Zero.Connect(this.LevelSettings, Events.GamepadUpdated, this.GamepadMoved);
         }
-    function OnMouseMove(event : MouseEvent)
-    //function UpdateMouseMovement()
+    function OnMouseMove(event : MouseEvent)//Updates Ang when mouse moves
+        {
+        this.UpdateMouseMovement();
+        }
+    function UpdateMouseMovement()//Updates Ang based on mouse location
         {
         this.MousePosition = Real3(this.LevelSettings.CameraViewport.
                                    ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
@@ -31,12 +33,12 @@ class PlayerController : ZilchComponent
         this.Ang = Math.Angle2D(this.MousePosition);
         }
     function OnLogicUpdate(event : UpdateEvent)
-    {
+        {
         this.UpdateMoveInput();
         this.UpdateOtherInput();
         this.UpdateFacingInput();
         //this.UpdateMouseMovement();
-    }
+        }
     function UpdateFacingInput()
         {
         //Controler
@@ -44,52 +46,18 @@ class PlayerController : ZilchComponent
         {
         this.Ang = Math.Angle2D(Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y , 0));
         }
-        //Right Stick N
-        if(this.Gamepad.RightStick.Y>0 && this.Gamepad.RightStick.X<0.25 && this.Gamepad.RightStick.X>-0.25)
-            {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");
-            this.Owner.Sprite.FlipX=false;
-            }
-        //Right Stick NE
-        else if(this.Gamepad.RightStick.Y>0 && this.Gamepad.RightStick.X>0)
-            {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");
-            }
-        //Right Stick S
-        else if(this.Gamepad.RightStick.Y<0 && this.Gamepad.RightStick.X<0.25 && this.Gamepad.RightStick.X>-0.25)
-            {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");
-            }
-        //Right Stick SE
-        else if(this.Gamepad.RightStick.Y<0 && this.Gamepad.RightStick.X>0)
-            {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");
-            this.Owner.Sprite.FlipX=false;
-            }
-        //Right Stick NW
-        else if(this.Gamepad.RightStick.X<0 && this.Gamepad.RightStick.Y>0.25 && this.Gamepad.RightStick.Y<0.75)
-            {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");
-            this.Owner.Sprite.FlipX=true;//miror x
-            }
-        //Right Stick W
-        else if(this.Gamepad.RightStick.X<0 && this.Gamepad.RightStick.Y < 0.25 && this.Gamepad.RightStick.Y > -0.25)
-            {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
-            this.Owner.Sprite.FlipX=true;//miror x
-            }
-        //Right Stick SW
-        else if(this.Gamepad.RightStick.X<0 && this.Gamepad.RightStick.Y<-0.25 && this.Gamepad.RightStick.Y>-0.75)
-            {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");
-            this.Owner.Sprite.FlipX=true;//miror x
-            }
         //mouse
             //North
             if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
-                this.Owner.Sprite.FlipX=false;
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
+            //Nort East
+            if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
+                {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
                 }
             //East
             if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
@@ -97,7 +65,36 @@ class PlayerController : ZilchComponent
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
                 this.Owner.Sprite.FlipX=false;
                 }
-                Console.WriteLine(this.Ang);
+            //South East
+            if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
+                {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
+            //South
+            if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
+                {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
+            //South West
+            if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
+                {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");//Sets Sprite
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+                }
+            //West
+            if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
+                {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");//Sets Sprite
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+                }
+            //North West
+            if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
+                {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+                }
             
         }
     function UpdateMoveInput()
@@ -111,18 +108,22 @@ class PlayerController : ZilchComponent
         if(Zero.Keyboard.KeyIsDown(Keys.A))
         {
             moveVec += Real3(-1,0,0);
+            this.UpdateMouseMovement();//Updates Ang when key moves
         }
         if(Zero.Keyboard.KeyIsDown(Keys.D))
         {
             moveVec += Real3(1,0,0);
+            this.UpdateMouseMovement();//Updates Ang when key moves
         }
         if(Zero.Keyboard.KeyIsDown(Keys.W))
         {
             moveVec += Real3(0,1,0);
+            this.UpdateMouseMovement();//Updates Ang when key moves
         }
         if(Zero.Keyboard.KeyIsDown(Keys.S))
         {
             moveVec += Real3(0,-1,0);
+            this.UpdateMouseMovement();//Updates Ang when key moves
         }
         
         //clamp variables so that keyboard + gamepad input doesn't mess with our intended values of -1 to 1
