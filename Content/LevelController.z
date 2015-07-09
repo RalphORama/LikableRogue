@@ -98,15 +98,9 @@ class LevelController : ZilchComponent
         }
         
         // move camera to center on current level
-        var cameraXAvg : Integer = ( (-1 + (this.RoomWidth +1))/2 );
+        var cameraXAvg : Integer = ( (-1 + (this.RoomWidth + 1))/2 );
         var cameraYAvg : Integer = ( (-1 + (this.RoomHeight +1))/2 );
         this.LevelCamera.Transform.Translation = Real3(cameraXAvg, cameraYAvg, 40);
-        
-        // create background, size it to fit level
-        var roomCenter = Real3 (cameraXAvg, cameraYAvg, 0);
-        var bgImg = this.Space.CreateAtPosition(this.BackgroundImage, roomCenter);
-        var roomSize = Real3(this.RoomWidth + 2, this.RoomHeight + 2, 0);
-        bgImg.Transform.Scale = roomSize;
     }
     
     function GenerateRoom ( originX : Integer,  // x coordinate of first inhabitable square
@@ -127,6 +121,19 @@ class LevelController : ZilchComponent
                 }
             }
         }
+        
+        // get the center of the room we just created 
+        var bgXAvg : Integer = ( (originX - 1) + (originX + this.RoomWidth + 1) ) / 2;
+        var bgYAvg : Integer = ( (originY - 1) + (originY + this.RoomHeight + 1) ) / 2;
+        var roomCenter = Real3 ( bgXAvg, bgYAvg, 0);
+        
+        // create the background image
+        var bgImg = this.Space.CreateAtPosition(this.BackgroundImage, roomCenter);
+        
+        // store the size of the room as a Real3
+        var roomSize = Real3(this.RoomWidth + 2, this.RoomHeight + 2, 0);
+        // scale the background image to the size of the room
+        bgImg.Transform.Scale = roomSize;
     }
     
     function SpawnPlayer () {
