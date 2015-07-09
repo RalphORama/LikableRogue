@@ -26,6 +26,7 @@ class LevelController : ZilchComponent
     {
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
+        
         // Don't need physics update just yet
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         
@@ -40,10 +41,6 @@ class LevelController : ZilchComponent
     {
     }
     */
-    /*function Camera()
-    {
-        this.Space.FindObjectByName("Camera").Transform.Translation = Real3(,,40);
-    }*/
     
     function BoardSetup () {
         /* 
@@ -55,14 +52,6 @@ class LevelController : ZilchComponent
         
         // generate the initial room
         this.GenerateRoom(0, 0);
-        
-        // debugging
-        /*
-        this.GenerateRoom(22, 0);
-        this.GenerateRoom(-22, 0);
-        this.GenerateRoom(0, 16);
-        this.GenerateRoom(0, -16);
-        */
         
         // generate rooms with for loop
         // this loop starts at 2, since we already generated the first room
