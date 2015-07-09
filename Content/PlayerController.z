@@ -20,10 +20,20 @@ class PlayerController : ZilchComponent
         }
     function UpdateMouseMovement()
         {
+<<<<<<< HEAD
+=======
+        //var vector1 = Real3(4,7,0)
+        //var vectorAngleZ =Math.Angle2D()
+>>>>>>> origin/master
         this.MousePosition = Real3(this.LevelSettings.CameraViewport.
                                    ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
                                    this.LevelSettings.CameraViewport.
                                    ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0);//Get Mouse Y relative to player
+<<<<<<< HEAD
+=======
+        //Math.Angle2D(this.MousePosition);
+        this.MousePosition = Real3(event.Position.X,event.Position.Y,0);
+>>>>>>> origin/master
         }
     function OnLogicUpdate(event : UpdateEvent)
     {
@@ -83,10 +93,19 @@ class PlayerController : ZilchComponent
             }
         //mouse
             Console.WriteLine(Math.Angle2D(this.MousePosition));
+<<<<<<< HEAD
             if (Math.Angle2D((this.MousePosition)>-0.5&&Math.Angle2D(this.MousePosition)<0.5)|(this.MousePosition)>-0.5&&Math.Angle2D(this.MousePosition)<0.5))
             {
             Console.WriteLine("uhjfdujkfdjfg");
             }
+=======
+            //Console.WriteLine(event.ToWorldZPlane(0));
+            //Console.WriteLine(Zero.Mouse.ScreenPosition.X)
+            //Console.WriteLine(ViewportMouseEvent.ToWorldZPlane(0));
+            //Console.WriteLine(Zero.Mouse.ScreenPosition);
+            //var event = ViewportMouseEvent();
+            //Console.WriteLine(this.MousePosition);
+>>>>>>> origin/master
         }
     function UpdateMoveInput()
     {
