@@ -1,3 +1,10 @@
+// TODO: - Give each room definite "exit points"
+//       - random generation for rooms around secondary rooms (tertriary room generation)
+//       - create door archetype, write collision handling.
+//       - create interior objects, write generation code ]V
+//       - work on background randomization ]-> create arrays, implement 
+//       - work on wall randomization       ]
+
 class LevelController : ZilchComponent
 {
     // Initialize properties
