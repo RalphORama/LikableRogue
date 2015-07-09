@@ -18,17 +18,21 @@ class PlayerController : ZilchComponent
         //getting the right gamepad is what enables us to have different gamepads per instance of this script due to the playernumber var
         this.Gamepad = Zero.Gamepads.GetGamePad(this.PlayerNumber - 1);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
+        //Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
     }
-    function OnMouseMove(event : MouseEvent)
+    function UpdateMouseMoveCheck()
         {
-        this.MousePosition = Real3(event.Position.X,event.Position.Y,0);
+        this.MousePosition = Real3(this.LevelSettings.CameraViewport.
+                                   ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
+                                   this.LevelSettings.CameraViewport.
+                                   ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0);//Get Mouse Y relative to player
         }
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateMoveInput();
         this.UpdateOtherInput();
         this.UpdateFacingInput();
+        this.UpdateMouseMoveCheck();
     }
     function UpdateFacingInput()
         {
@@ -80,13 +84,8 @@ class PlayerController : ZilchComponent
             this.Owner.Sprite.FlipX=true;//miror x
             }
         //mouse
-            //Console.WriteLine(event.ToWorldZPlane(0));
-            //Console.WriteLine(Zero.Mouse.ScreenPosition.X)
-            //Console.WriteLine(ViewportMouseEvent.ToWorldZPlane(0));
-            //Console.WriteLine(Zero.Mouse.ScreenPosition);
-            //var event = ViewportMouseEvent();
-            Console.WriteLine(this.Owner.Transform.Translation.X);
-            Console.WriteLine(this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0));
+        //if (
+            //Console.WriteLine(this.MousePosition.X);
         }
     function UpdateMoveInput()
     {
