@@ -14,7 +14,16 @@ class DoorController : ZilchComponent
     function OnCollisionStarted(event : CollisionEvent)
     {
         if (event.OtherObject.Name == "Player") {
+            // get the location of the player in order to calculate where he is
+            // in relation to us.
             var playerLoc : Real3 = event.OtherObject.Transform.Translation;
+            var xDifference : Real = Math.Round( Math.Abs( playerLoc.X - this.MyLocation.X ), 0 );
+            var yDifference : Real = Math.Round( Math.Abs( playerLoc.Y - this.MyLocation.Y ), 0 );
+            
+            Console.WriteLine(xDifference);
+            Console.WriteLine(yDifference);
+            Console.WriteLine();
+            
             //Console.WriteLine("Touched player!");
         }
     }
