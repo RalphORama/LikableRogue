@@ -37,8 +37,9 @@ class PlayerController : ZilchComponent
         Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
         Zero.Connect(this.LevelCamera, Events.MouseScroll, this.OnMouseScroll);
         this.LevelCamera.Camera.Size = this.CamSize;
+        this.LevelCamera.Camera.FieldOfView = this.CamSize;
         }
-    function OnMouseScroll(event : MouseEvent)//camera zoom based on scroll
+    function OnMouseScroll(event : MouseEvent)//camera zoom/fov based on scroll
         {
         if(event.Scroll.Y<0)
             {
