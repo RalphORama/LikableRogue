@@ -18,6 +18,7 @@ class PlayerController : ZilchComponent
     var Gamepad : Gamepad = null;
     var MousePosition : Real3 = Real3(0,0,0);
     var Ang : Real = 0;
+    var Temp : Integer = 1;
     function Initialize(init : CogInitializer)
         {
         // initialize the camera object
@@ -29,8 +30,21 @@ class PlayerController : ZilchComponent
         this.Gamepad = Zero.Gamepads.GetGamePad(this.PlayerNumber - 1);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
+        Zero.Connect(this.LevelCamera, Events.MouseScroll, this.OnMouseScroll);
+        this.LevelCamera.Camera.Size = this.Temp;
         }
-        
+    function OnMouseScroll(event : MouseEvent)
+        {
+        if(event.Scroll.Y<0)
+            {
+            this.Temp+=1;
+            }
+        else
+            {
+            this.Temp-=1;
+            }
+        this.LevelCamera.Camera.Size = this.Temp;
+        }
     function OnMouseMove(event : MouseEvent)//Updates Ang when mouse moves
         {
         this.UpdateMouseMovement();
