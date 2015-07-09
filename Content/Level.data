@@ -15,14 +15,14 @@ Level =
 			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
-			float Strength = 10,
+			float Strength = 0,
 			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
 		{
 			bool Active = true,
 			bool WakeUpOnChange = false,
-			float Drag = 0.7,
+			float Drag = 0.99,
 		},
 		CameraViewport = 
 		{
@@ -49,7 +49,7 @@ Level =
 			},
 			CogPath Camera = 
 			{
-				string Path = "",
+				string Path = ":/Camera",
 				bool ErrorOnResolveToNull = false,
 				bool ErrorOnPathCantCompute = false,
 				bool ErrorOnDirectLinkFail = false,
@@ -57,7 +57,7 @@ Level =
 				bool UpdatePathOnCogChange = true,
 				bool UpdateCogOnInitialize = true,
 				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 4294967293,
+				uint ResolvedCog = 2,
 				CogPathPreference PathPreference0 = CogRelative,
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
@@ -80,7 +80,7 @@ Level =
 			bool Active = true,
 			bool HalfCellOffset = false,
 			float CellSize = 1,
-			GridAxis Axis = YAxis,
+			GridAxis Axis = ZAxis,
 			int Lines = 100,
 			bool DrawAxisOrigins = true,
 			bool AlwaysDrawInEditor = true,
@@ -95,51 +95,35 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 2,
+			uint Id = 3,
 		},
 		Named = 
 		{
 			string Name = "EditorCamera",
 		},
-		Archetyped = 
-		{
-			string Name = "4de020863e840530:EditorCamera",
-		},
 		Transform = 
 		{
-<<<<<<< HEAD
-			Vec3 Translation = [0.755605, -0.983945, 50],
-=======
-			Vec3 Translation = [-2.18347, 21.3553, 119.432],
->>>>>>> origin/master
+			Vec3 Translation = [3.583, 5.51476, 50],
 			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [-0.0871558, -1.09696e-008, -1.90485e-009, 0.996195],
+			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
 		Camera = 
 		{
-			ProjectionMode ProjectionMode = Perspective,
+			ProjectionMode ProjectionMode = Orthographic,
 			Facing Facing = NegativeZ,
-			CameraTransparentSort TransparentSort = InheritFromSpace,
-			float FieldOfView = 45,
+			CameraTransparentSort TransparentSort = ZDepth,
+			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-<<<<<<< HEAD
-			float Size = 24.6597,
-=======
-			float Size = 20,
->>>>>>> origin/master
+			float Size = 33.2871,
 		},
 		EditorCameraController = 
 		{
-			ControlMode ControlMode = Orbit,
-			float LookDistance = 122.98,
-			float VerticalAngle = 0.174533,
+			ControlMode ControlMode = ZPlane,
+			float LookDistance = 50,
+			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-<<<<<<< HEAD
-			Vec3 LookTarget = [0.755605, -0.983945, 1.0921e-008],
-=======
-			Vec3 LookTarget = [-2.18347, 0, -1.67947],
->>>>>>> origin/master
+			Vec3 LookTarget = [3.583, 5.51476, 1.0921e-008],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -151,7 +135,6 @@ Level =
 			bool Wireframe = false,
 		},
 	},
-<<<<<<< HEAD
 	Cog = 
 	{
 		LinkId = 
@@ -213,24 +196,4 @@ Level =
 			string RoomArchetype00 = "552191204f7af9d5:Room00",
 		},
 	},
-	ArchetypeInstance = 
-	{
-		string Name = "552191db521f4718:Door",
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 0, 0],
-			Vec3 Scale = [1.1, 1.1, 1.1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Door",
-		},
-	},
-=======
->>>>>>> origin/master
 },

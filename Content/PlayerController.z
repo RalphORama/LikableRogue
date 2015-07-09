@@ -49,7 +49,7 @@ class PlayerController : ZilchComponent
         {
         this.UpdateMouseMovement();
         }
-    function UpdateMouseMovement()//Updates Angle based on mouse location
+    function UpdateMouseMovement()//Updates Ang based on mouse location
         {
         this.MousePosition = Real3(this.LevelSettings.CameraViewport.
                                    ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
