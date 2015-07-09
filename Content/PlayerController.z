@@ -82,7 +82,7 @@ class PlayerController : ZilchComponent
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-                this.ChiSword.Transform.Translation=Real3(0.5,0.5,0);
+                this.ChiSword.Transform.Translation=Real3(-0.5,0.5,0);
                 }
             //Nort East
             if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
