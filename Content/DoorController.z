@@ -17,14 +17,35 @@ class DoorController : ZilchComponent
             // get the location of the player in order to calculate where he is
             // in relation to us.
             var playerLoc : Real3 = event.OtherObject.Transform.Translation;
-            var xDifference : Real = Math.Round( playerLoc.X - this.MyLocation.X, 0 );
-            var yDifference : Real = Math.Round( playerLoc.Y - this.MyLocation.Y, 0 );
+            // get the value (-1, 1, or 0) depending on where the player is
+            // in relation to us. 
+            // (-1, -1) is south of us
+            // (-1, 1)  is north
+            // (-1, 0)  is west
+            // (1, 0)   is east
+            var xDifference : Integer = Math.Round( playerLoc.X - this.MyLocation.X, 0 ) as Integer;
+            var yDifference : Integer = Math.Round( playerLoc.Y - this.MyLocation.Y, 0 ) as Integer;
             
+            // now some logic
+            if ( xDifference == 0 && yDifference == -1 ) {
+                Console.WriteLine("Player is going north");
+            }
+            else if ( xDifference == 0 && yDifference == 1 ) {
+                Console.WriteLine("Player is going south");
+            }
+            else if ( xDifference == -1 && yDifference == 0 ) {
+                Console.WriteLine("Player is going east");
+            }
+            else if ( xDifference == 1 && yDifference == 0 ) {
+                Console.WriteLine("Player is going west");
+            }
+            else { Console.WriteLine("I don't know where the player is going"); } // error case
+            
+            // Debugging
             Console.WriteLine(xDifference);
             Console.WriteLine(yDifference);
             Console.WriteLine();
             
-            //Console.WriteLine("Touched player!");
         }
     }
 }
