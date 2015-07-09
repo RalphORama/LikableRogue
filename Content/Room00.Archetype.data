@@ -8,11 +8,23 @@ Cog =
 	{
 		string Name = "Room00",
 	},
+	Archetyped = 
+	{
+		string Name = "552191204f7af9d5:Room00",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
+	},
+	RoomController = 
+	{
+		bool NorthExit = true,
+		bool EastExit = true,
+		bool SouthExit = true,
+		bool WestExit = true,
+		bool EnemiesDead = true,
 	},
 	Hierarchy = 
 	{
