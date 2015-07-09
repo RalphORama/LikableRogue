@@ -159,7 +159,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 200,
-			float Size = 20,
+			float Size = 50,
 		},
 		Microphone = 
 		{
@@ -189,6 +189,7 @@ Level =
 		{
 			int RoomHeight = 15,
 			int RoomWidth = 21,
+			int MaxRooms = 5,
 			string OuterWallTile = "5522c439f4af813c:BasicWall",
 			string PlayerCharacter = "5522de378f164585:Player",
 			string BackgroundImage = "5522eaa630647362:Background",
