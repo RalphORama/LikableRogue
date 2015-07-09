@@ -23,6 +23,7 @@ class PlayerController : ZilchComponent
     var Ang : Real = 0;
     var CamSize : Integer = 17;
     var ChiSword : Cog = null;
+    var SwordAttcackZone : Real3 = Real3(0,0,0);
     function Initialize(init : CogInitializer)
         {
         // initialize the camera object
@@ -84,49 +85,57 @@ class PlayerController : ZilchComponent
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-                this.ChiSword.Transform.Translation=Real3(-0.5,0.5,-1);//This is an example of moving the sword when the player turns
+                //this.ChiSword.Transform.Translation=Real3(-0.5,0.5,-1);//This is an example of moving the sword when the player turns
+                this.SwordAttcackZone = Real3(0,1,0);//Sets Sword AttackBox
                 }
             //Nort East
             if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                this.SwordAttcackZone = Real3(1,1,0);
                 }
             //East
             if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
                 this.Owner.Sprite.FlipX=false;
+                this.SwordAttcackZone = Real3(1,0,0);
                 }
             //South East
             if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                this.SwordAttcackZone = Real3(1,-1,0);
                 }
             //South
             if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                this.SwordAttcackZone = Real3(0,-1,0);
                 }
             //South West
             if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");//Sets Sprite
                 this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+                this.SwordAttcackZone = Real3(-1,-1,0);
                 }
             //West
             if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");//Sets Sprite
                 this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+                this.SwordAttcackZone = Real3(-1,0,0);
                 }
             //North West
             if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
                 this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+                this.SwordAttcackZone = Real3(-1,1,0);
                 }
             
         }
@@ -205,7 +214,15 @@ class PlayerController : ZilchComponent
         
         // Triggers and Bumpers
         if(this.Gamepad.IsButtonPressed(8)) // Left Bumper
-        { Console.WriteLine("L Bumper"); }
+            {
+            Console.WriteLine("L Bumper");
+            this.ChiSword.Transform.Translation=this.SwordAttcackZone;
+            this.ChiSword.Sprite.Visible=true;
+            }
+        if(this.Gamepad.IsButtonReleased(8))
+            {
+            this.ChiSword.Sprite.Visible=false;
+            }
         if(this.Gamepad.IsButtonPressed(9)) // Right Bumper
         { Console.WriteLine("R Bumper"); }
         if(this.Gamepad.RightTrigger.X >= 1) // Right trigger

@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0.420712, 1.0427, 0],
+		Vec3 Translation = [2.77165, 0.711638, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -63,6 +63,7 @@ Cog =
 		string SpriteToChange = "",
 		int PlayerNumber = 1,
 		float MoveSpeed = 10,
+		Vec3 Location = [0, 0, 0],
 	},
 	Health = 
 	{
@@ -87,8 +88,8 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [0.5, 0.5, 0],
-				Vec3 Scale = [0.5, 1, 1],
+				Vec3 Translation = [0, -1, 0],
+				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Named = 
