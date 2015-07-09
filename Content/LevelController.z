@@ -23,6 +23,24 @@ class LevelController : ZilchComponent
     [Property]
     var BackgroundImage : Archetype = null;
     
+    // Create several archetypes for rooms
+    [Property]
+    var RoomArchetype00 : Archetype = null;
+    /*
+    [Property]
+    var RoomArchetype01 : Archetype = null;
+    [Property]
+    var RoomArchetype02 : Archetype = null;
+    [Property]
+    var RoomArchetype03 : Archetype = null;
+    [Property]
+    var RoomArchetype04 : Archetype = null;
+    */
+    
+    // create an array to put all the room archetypes in
+    var TestArray : Array[Integer] = Array[Integer]();
+    
+    
     // Create an empty object to initialize the camera into
     var LevelCamera : Cog = null;
     
