@@ -103,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [3.583, 5.51476, 50],
+			Vec3 Translation = [0.755605, -0.983945, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -115,7 +115,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 33.2871,
+			float Size = 24.6597,
 		},
 		EditorCameraController = 
 		{
@@ -123,7 +123,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [3.583, 5.51476, 1.0921e-008],
+			Vec3 LookTarget = [0.755605, -0.983945, 1.0921e-008],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -194,6 +194,24 @@ Level =
 			string PlayerCharacter = "5522de378f164585:Player",
 			string BackgroundImage = "5522eaa630647362:Background",
 			string RoomArchetype00 = "552191204f7af9d5:Room00",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "552191db521f4718:Door",
+		LinkId = 
+		{
+			uint Id = 5,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1.1, 1.1, 1.1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Door",
 		},
 	},
 },
