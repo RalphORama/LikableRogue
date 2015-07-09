@@ -38,7 +38,7 @@ class LevelController : ZilchComponent
     */
     
     // create an array to put all the room archetypes in
-    var TestArray : Array[Integer] = Array[Integer]();
+    var RoomArchetypeArray : Array[Archetype] = Array[Archetype]();
     
     
     // Create an empty object to initialize the camera into
@@ -52,13 +52,17 @@ class LevelController : ZilchComponent
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         
-        // Don't need physics update just yet
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        // put the room archetypes into the array
+        // I'll change this into a for loop later
+        this.RoomArchetypeArray.Add(this.RoomArchetype00);
         
         // create the tiles in the board
         this.BoardSetup();
         // spawn the player 
-        this.SpawnPlayer();
+        this.SpawnPlayer(10, 7);
+        
+        // Don't need physics update just yet
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     /*
@@ -117,44 +121,29 @@ class LevelController : ZilchComponent
         this.LevelCamera.Transform.Translation = Real3(cameraXAvg, cameraYAvg, 40);
     }
     
-    function GenerateRoom ( originX : Integer,  // x coordinate of first inhabitable square
-                            originY : Integer) {//,  // Y coordinate of the first inhabitable square
+    function GenerateRoom ( originX : Integer,    // x coordinate of first inhabitable square
+                            originY : Integer)    // Y coordinate of the first inhabitable square
                             //exits : Integer,    // how many exits (1-4) the room has
                             //nExit : Boolean,    // north exit?
                             //sExit : Boolean,    // south exit?
                             //eExit : Boolean,    // east exit?
                             //wExit : Boolean) {  // west exit?
-        for (var x = (originX - 1); x < (originX + this.RoomWidth + 1); ++x) {      // Loop through every column of the room
-            for (var y = (originY - 1); y < (originY + this.RoomHeight + 1); ++y) { // loop through every row of the room
-                // check to see if we're on the outside edge of the room
-                if (x == (originX - 1) || x == (originX + this.RoomWidth) || y == (originY - 1) || y == (originY + this.RoomHeight)) { 
-                    // create a real3 with the exact outer coordinates to pass to CreateAtPosition
-                    var outerWallPosition = Real3(x, y, 0); 
-                    // create a wall tile at the edge of the room
-                    var newOuterWall = this.Space.CreateAtPosition(this.OuterWallTile, outerWallPosition);
-                }
-            }
-        }
-        
-        // get the center of the room we just created 
-        var bgXAvg : Integer = ( (originX - 1) + (originX + this.RoomWidth + 1) ) / 2;
-        var bgYAvg : Integer = ( (originY - 1) + (originY + this.RoomHeight + 1) ) / 2;
-        var roomCenter = Real3 ( bgXAvg, bgYAvg, 0);
-        
-        // create the background image
-        var bgImg = this.Space.CreateAtPosition(this.BackgroundImage, roomCenter);
-        
-        // store the size of the room as a Real3
-        var roomSize = Real3(this.RoomWidth + 2, this.RoomHeight + 2, 0);
-        // scale the background image to the size of the room
-        bgImg.Transform.Scale = roomSize;
+    {
+        // get a random index from the array of room archetypes
+        var randomRoomID : Integer = this.RandomGenerator.Range(0, this.RoomArchetypeArray.Count) as Integer;
+        // create a real3 to be the origin of the room
+        var newRoomPosition = Real3(originX, originY, 0);
+        // instantiate a room 
+        var newlyCreatedRoom = this.Space.CreateAtPosition(this.RoomArchetypeArray.Get(randomRoomID), newRoomPosition);
     }
     
-    function SpawnPlayer () {
+    function SpawnPlayer (spawnX : Integer, spawnY : Integer) {
+        /*
         // create values spawnX and spawnY
         // these values are randomly generated based on room height/width and cast to integers
         var spawnX : Integer = (this.RandomGenerator.Range(0, this.RoomWidth)) as Integer;
         var spawnY : Integer = (this.RandomGenerator.Range(0, this.RoomHeight)) as Integer;
+        */
         // use these random points to create a real3 that we'll spawn the player at
         var spawnPoint : Real3 = Real3(spawnX, spawnY, 0);
         
