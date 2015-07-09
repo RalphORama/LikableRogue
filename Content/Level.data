@@ -15,14 +15,14 @@ Level =
 			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
-			float Strength = 0,
+			float Strength = 10,
 			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
 		{
 			bool Active = true,
 			bool WakeUpOnChange = false,
-			float Drag = 0.99,
+			float Drag = 0.7,
 		},
 		CameraViewport = 
 		{
@@ -49,7 +49,7 @@ Level =
 			},
 			CogPath Camera = 
 			{
-				string Path = ":/Camera",
+				string Path = "",
 				bool ErrorOnResolveToNull = false,
 				bool ErrorOnPathCantCompute = false,
 				bool ErrorOnDirectLinkFail = false,
@@ -57,7 +57,7 @@ Level =
 				bool UpdatePathOnCogChange = true,
 				bool UpdateCogOnInitialize = true,
 				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 2,
+				uint ResolvedCog = 4294967293,
 				CogPathPreference PathPreference0 = CogRelative,
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
@@ -80,7 +80,7 @@ Level =
 			bool Active = true,
 			bool HalfCellOffset = false,
 			float CellSize = 1,
-			GridAxis Axis = ZAxis,
+			GridAxis Axis = YAxis,
 			int Lines = 100,
 			bool DrawAxisOrigins = true,
 			bool AlwaysDrawInEditor = true,
@@ -95,47 +95,39 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 3,
+			uint Id = 2,
 		},
 		Named = 
 		{
 			string Name = "EditorCamera",
 		},
+		Archetyped = 
+		{
+			string Name = "4de020863e840530:EditorCamera",
+		},
 		Transform = 
 		{
-<<<<<<< HEAD
-			Vec3 Translation = [4.87555, 0.558802, 50],
-=======
-			Vec3 Translation = [3.583, 5.51476, 50],
->>>>>>> origin/master
+			Vec3 Translation = [-2.18347, 21.3553, 119.432],
 			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [-0, -1.09278e-008, 0, 1],
+			Quat Rotation = [-0.0871558, -1.09696e-008, -1.90485e-009, 0.996195],
 		},
 		Camera = 
 		{
-			ProjectionMode ProjectionMode = Orthographic,
+			ProjectionMode ProjectionMode = Perspective,
 			Facing Facing = NegativeZ,
-			CameraTransparentSort TransparentSort = ZDepth,
-			float FieldOfView = 89,
+			CameraTransparentSort TransparentSort = InheritFromSpace,
+			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-<<<<<<< HEAD
-			float Size = 11.0803,
-=======
-			float Size = 33.2871,
->>>>>>> origin/master
+			float Size = 20,
 		},
 		EditorCameraController = 
 		{
-			ControlMode ControlMode = ZPlane,
-			float LookDistance = 50,
-			float VerticalAngle = 0,
+			ControlMode ControlMode = Orbit,
+			float LookDistance = 122.98,
+			float VerticalAngle = 0.174533,
 			float HorizontalAngle = 0,
-<<<<<<< HEAD
-			Vec3 LookTarget = [4.87555, 0.558802, 7.84098e-009],
-=======
-			Vec3 LookTarget = [3.583, 5.51476, 1.0921e-008],
->>>>>>> origin/master
+			Vec3 LookTarget = [-2.18347, 0, -1.67947],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -145,188 +137,6 @@ Level =
 			bool DrawDebugObjects = true,
 			bool DrawEditorIcons = true,
 			bool Wireframe = false,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 2,
-		},
-		Named = 
-		{
-			string Name = "Camera",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 0, 40],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Camera = 
-		{
-			ProjectionMode ProjectionMode = Orthographic,
-			Facing Facing = NegativeZ,
-			CameraTransparentSort TransparentSort = InheritFromSpace,
-			float FieldOfView = 45,
-			float NearPlane = 0.5,
-			float FarPlane = 200,
-			float Size = 50,
-		},
-		Microphone = 
-		{
-			bool Active = true,
-		},
-		Hierarchy = 
-		{
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 4,
-		},
-		Named = 
-		{
-			string Name = "LevelManager",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 0, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		LevelController = 
-		{
-			int RoomHeight = 15,
-			int RoomWidth = 21,
-			int MaxRooms = 5,
-			string OuterWallTile = "5522c439f4af813c:BasicWall",
-			string PlayerCharacter = "5522de378f164585:Player",
-			string BackgroundImage = "5522eaa630647362:Background",
-<<<<<<< HEAD
-			string RoomArchetype00 = "",
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Named = 
-		{
-			string Name = "Player",
-		},
-		Archetyped = 
-		{
-			string Name = "5522de378f164585:Player",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [5.10281, 1.14506, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-=======
-			string RoomArchetype00 = "552191204f7af9d5:Room00",
->>>>>>> origin/master
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = true,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "5522c1021f9ffff0:NoBounceMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		PlayerController = 
-		{
-			string SpriteToChange = "",
-			int PlayerNumber = 1,
-			float MoveSpeed = 10,
-		},
-		Health = 
-		{
-			float MaxHealth = 50,
-			bool DestroyAtZeroHealth = true,
-			float DamageScalar = 1,
-		},
-		DamageOnCollide = 
-		{
-			float Damage = 15,
-			bool SendsDeathEvent = true,
-			bool DieOnCollide = false,
-		},
-		Hierarchy = 
-		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 6,
-				},
-				Named = 
-				{
-					string Name = "Sword",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, 0],
-					Vec3 Scale = [4, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 0, 0, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5275aa4d802dd6dc:Square",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-			},
 		},
 	},
 },
