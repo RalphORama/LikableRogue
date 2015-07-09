@@ -122,12 +122,7 @@ class LevelController : ZilchComponent
     }
     
     function GenerateRoom ( originX : Integer,    // x coordinate of first inhabitable square
-                            originY : Integer)    // Y coordinate of the first inhabitable square
-                            //exits : Integer,    // how many exits (1-4) the room has
-                            //nExit : Boolean,    // north exit?
-                            //sExit : Boolean,    // south exit?
-                            //eExit : Boolean,    // east exit?
-                            //wExit : Boolean) {  // west exit?
+                            originY : Integer  )  // Y coordinate of the first inhabitable square
     {
         // get a random index from the array of room archetypes
         var randomRoomID : Integer = this.RandomGenerator.Range(0, this.RoomArchetypeArray.Count) as Integer;
@@ -138,12 +133,6 @@ class LevelController : ZilchComponent
     }
     
     function SpawnPlayer (spawnX : Integer, spawnY : Integer) {
-        /*
-        // create values spawnX and spawnY
-        // these values are randomly generated based on room height/width and cast to integers
-        var spawnX : Integer = (this.RandomGenerator.Range(0, this.RoomWidth)) as Integer;
-        var spawnY : Integer = (this.RandomGenerator.Range(0, this.RoomHeight)) as Integer;
-        */
         // use these random points to create a real3 that we'll spawn the player at
         var spawnPoint : Real3 = Real3(spawnX, spawnY, 0);
         

@@ -14,9 +14,21 @@ Cog =
 	},
 	Transform = 
 	{
+<<<<<<< HEAD
 		Vec3 Translation = [0, 0, -1],
+=======
+		Vec3 Translation = [23.2561, 13.7018, 0],
+>>>>>>> 240977c42a05d207570768b5f644781fb6776650
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
+	},
+	RoomProperties = 
+	{
+		bool NorthExit = true,
+		bool EastExit = true,
+		bool SouthExit = true,
+		bool WestExit = true,
+		bool IsCurrentLevel = true,
 	},
 	Hierarchy = 
 	{
