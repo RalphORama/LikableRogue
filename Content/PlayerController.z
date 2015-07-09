@@ -18,8 +18,11 @@ class PlayerController : ZilchComponent
         //getting the right gamepad is what enables us to have different gamepads per instance of this script due to the playernumber var
         this.Gamepad = Zero.Gamepads.GetGamePad(this.PlayerNumber - 1);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
+        //Zero.Connect(this.LevelSettings, Events.GamepadUpdated, this.GamepadMoved);
         }
-    function UpdateMouseMovement()
+    function OnMouseMove(event : MouseEvent)
+    //function UpdateMouseMovement()
         {
         this.MousePosition = Real3(this.LevelSettings.CameraViewport.
                                    ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
@@ -32,21 +35,19 @@ class PlayerController : ZilchComponent
         this.UpdateMoveInput();
         this.UpdateOtherInput();
         this.UpdateFacingInput();
-        this.UpdateMouseMovement();
+        //this.UpdateMouseMovement();
     }
     function UpdateFacingInput()
         {
         //Controler
+        if (this.Gamepad.RightStick!=Real2(0,0))
+        {
+        this.Ang = Math.Angle2D(Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y , 0));
+        }
         //Right Stick N
         if(this.Gamepad.RightStick.Y>0 && this.Gamepad.RightStick.X<0.25 && this.Gamepad.RightStick.X>-0.25)
             {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");
-            this.Owner.Sprite.FlipX=false;
-            }
-        //Right Stick East
-        else if(this.Gamepad.RightStick.X>0 && this.Gamepad.RightStick.Y<0.25 && this.Gamepad.RightStick.Y>0)
-            {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
             this.Owner.Sprite.FlipX=false;
             }
         //Right Stick NE
@@ -84,11 +85,20 @@ class PlayerController : ZilchComponent
             this.Owner.Sprite.FlipX=true;//miror x
             }
         //mouse
-            Console.WriteLine(Math.Angle2D(this.MousePosition));
-            if (this.Ang>-0.5&&this.Ang<0.5)
-            {
-            }
-            //Console.WriteLine("uhjfdujkfdjfg");
+            //North
+            if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
+                {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
+                this.Owner.Sprite.FlipX=false;
+                }
+            //East
+            if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
+                {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
+                this.Owner.Sprite.FlipX=false;
+                }
+                Console.WriteLine(this.Ang);
+            
         }
     function UpdateMoveInput()
     {
