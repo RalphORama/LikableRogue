@@ -85,8 +85,7 @@ class PlayerController : ZilchComponent
             //Console.WriteLine(ViewportMouseEvent.ToWorldZPlane(0));
             //Console.WriteLine(Zero.Mouse.ScreenPosition);
             //var event = ViewportMouseEvent();
-            Console.WriteLine(this.Owner.Transform.Translation.X);
-            Console.WriteLine(this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0));
+            //Console.WriteLine(this.MousePosition);
         }
     function UpdateMoveInput()
     {
