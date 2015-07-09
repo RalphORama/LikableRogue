@@ -7,6 +7,9 @@ class PlayerController : ZilchComponent
     [Property]
     var MoveSpeed : Real = 1;
     
+    [Property]
+    var Location : Real3 = Real3(0, 0, 0);
+    
     // Create an empty object to initialize the camera into
     var LevelCamera : Cog = null;
     

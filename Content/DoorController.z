@@ -3,15 +3,19 @@ class DoorController : ZilchComponent
     [Property]
     var IsLocked : Boolean = false;
     
+    var MyLocation : Real3 = Real3(0, 0, 0);
+    
     function Initialize(init : CogInitializer)
     {
+        this.MyLocation = this.Owner.Transform.Translation;
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
 
     function OnCollisionStarted(event : CollisionEvent)
     {
         if (event.OtherObject.Name == "Player") {
-            Console.WriteLine("Touched player!");
+            var playerLoc : Real3 = event.OtherObject.Transform.Translation;
+            //Console.WriteLine("Touched player!");
         }
     }
 }
