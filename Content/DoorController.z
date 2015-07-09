@@ -5,9 +5,16 @@ class DoorController : ZilchComponent
     
     var MyLocation : Real3 = Real3(0, 0, 0);
     
+    var ContainingRoom : Cog = null;
+    
     function Initialize(init : CogInitializer)
     {
+        // initialize location for collision
         this.MyLocation = this.Owner.Transform.Translation;
+        
+        // initialize containing room
+        this.ContainingRoom = this.Owner.Parent;
+        
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
 
@@ -17,14 +24,59 @@ class DoorController : ZilchComponent
             // get the location of the player in order to calculate where he is
             // in relation to us.
             var playerLoc : Real3 = event.OtherObject.Transform.Translation;
-            var xDifference : Real = Math.Round( playerLoc.X - this.MyLocation.X, 0 );
-            var yDifference : Real = Math.Round( playerLoc.Y - this.MyLocation.Y, 0 );
+            // get the value (-1, 1, or 0) depending on where the player is
+            // in relation to us. 
+            // (0, -1) is south of us
+            // (0, 1)  is north
+            // (-1, 0)  is west
+            // (1, 0)   is east
+            var xDifference : Integer = Math.Round( playerLoc.X - this.MyLocation.X, 0 ) as Integer;
+            var yDifference : Integer = Math.Round( playerLoc.Y - this.MyLocation.Y, 0 ) as Integer;
             
+            // now some logic
+            // if the player is going in a direction
+            // and the player is _allowed_ to go in that direction
+            // and the door _isn't_ locked
+            // then translate the player to where he should go
+            if ( xDifference == 0 && yDifference == -1          // going north
+                 && this.ContainingRoom.RoomController.NorthExit == true
+                 && this.IsLocked == false) {
+                
+                // generate a real3 based off of the difference of our Y values
+                // then, add that real3 to the player's Y location
+                // then set the player's location to the new real3
+                var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2), 0 );
+                event.OtherObject.Transform.Translation = toPutPlayer;
+            }
+            else if ( xDifference == 0 && yDifference == 1      // going south
+                      && this.ContainingRoom.RoomController.SouthExit == true
+                      && this.IsLocked == false) {
+                
+                var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2), 0 );
+                event.OtherObject.Transform.Translation = toPutPlayer;
+                
+            }
+            else if ( xDifference == -1 && yDifference == 0     // going east
+                      && this.ContainingRoom.RoomController.EastExit == true
+                      && this.IsLocked == false) { 
+                
+                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2), playerLoc.Y, 0 );
+                event.OtherObject.Transform.Translation = toPutPlayer;
+            }
+            else if ( xDifference == 1 && yDifference == 0      // going west
+                      && this.ContainingRoom.RoomController.WestExit == true
+                      && this.IsLocked == false) {
+                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2), playerLoc.Y, 0 );
+                event.OtherObject.Transform.Translation = toPutPlayer;
+            }
+            else { Console.WriteLine("I don't know where the player is going"); } // error case
+            
+            /*
+            // Debugging
             Console.WriteLine(xDifference);
             Console.WriteLine(yDifference);
             Console.WriteLine();
-            
-            //Console.WriteLine("Touched player!");
+            */
         }
     }
 }
