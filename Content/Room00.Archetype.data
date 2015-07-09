@@ -1527,7 +1527,7 @@ Cog =
 		},
 		ArchetypeInstance = 
 		{
-			string Name = "552191db521f4718:Door",
+			string Name = "5521b4976d662d25:NorthDoor",
 			LinkId = 
 			{
 				uint Id = 84,
@@ -1540,12 +1540,12 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "Door",
+				string Name = "NorthDoor",
 			},
 		},
 		ArchetypeInstance = 
 		{
-			string Name = "552191db521f4718:Door",
+			string Name = "5521b42e5fb51784:WestDoor",
 			LinkId = 
 			{
 				uint Id = 85,
@@ -1558,12 +1558,12 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "Door",
+				string Name = "WestDoor",
 			},
 		},
 		ArchetypeInstance = 
 		{
-			string Name = "552191db521f4718:Door",
+			string Name = "5521b40542d13184:EastDoor",
 			LinkId = 
 			{
 				uint Id = 86,
@@ -1576,12 +1576,12 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "Door",
+				string Name = "EastDoor",
 			},
 		},
 		ArchetypeInstance = 
 		{
-			string Name = "552191db521f4718:Door",
+			string Name = "5521b5d5b28c9d96:SouthDoor",
 			LinkId = 
 			{
 				uint Id = 87,
@@ -1594,7 +1594,7 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "Door",
+				string Name = "SouthDoor",
 			},
 		},
 	},
