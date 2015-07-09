@@ -1,0 +1,15 @@
+class RoomController : ZilchComponent
+{
+    // possible exits
+    [Property]
+    var NorthExit : Boolean = false;
+    [Property]
+    var EastExit : Boolean  = false;
+    [Property]
+    var SouthExit : Boolean = false;
+    [Property]
+    var WestExit : Boolean  = false;
+    
+    [Property]
+    var EnemiesDead : Boolean = false;
+}

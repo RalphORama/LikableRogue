@@ -2,8 +2,8 @@ TextContent =
 {
 	ZilchScriptBuilder = 
 	{
-		string Name = "DoorController",
-		uint64 ResourceId = 55219615b711e2e5,
+		string Name = "RoomController",
+		uint64 ResourceId = 5521ba2d45b42c7b,
 	},
 	ContentTags = 
 	{
