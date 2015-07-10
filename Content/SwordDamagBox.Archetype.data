@@ -6,17 +6,13 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Sword",
-	},
-	Archetyped = 
-	{
-		string Name = "55ec7b67907a1a77:Sword",
+		string Name = "SwordDamagBox",
 	},
 	Transform = 
 	{
 		Vec3 Translation = [0, -1, 0],
-		Vec3 Scale = [0.5, 1, 1],
-		Quat Rotation = [-0, 0, 1, -4.37114e-008],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
 	{
@@ -24,11 +20,11 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.502468, 0.35235, 0.87, 1],
+		Vec4 Color = [1, 0.46, 0.460324, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "55ef0fc9ae51872b:basic_playerN",
+		string SpriteSource = "5275aa4d802dd6dc:Square",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,

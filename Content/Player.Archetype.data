@@ -84,7 +84,7 @@ Cog =
 	{
 		ArchetypeInstance = 
 		{
-			string Name = "55ec7b67907a1a77:Sword",
+			string Name = "55d2c0910ed66a96:SwordDamagBox",
 			LinkId = 
 			{
 				uint Id = 2,
@@ -92,12 +92,12 @@ Cog =
 			Transform = 
 			{
 				Vec3 Translation = [0, -1, 0],
-				Vec3 Scale = [0.5, 1, 1],
-				Quat Rotation = [-0, 0, 1, -4.37114e-008],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
 			},
 			Named = 
 			{
-				string Name = "Sword",
+				string Name = "SwordDamagBox",
 			},
 		},
 	},
