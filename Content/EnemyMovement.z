@@ -40,13 +40,12 @@ class EnemyMovement : ZilchComponent
     {
         this.Owner.RigidBody.Velocity = Real3(0,0,0);
         var moveVec = Real3(0, 0, 0);
-        moveVec += Real3(0, 0, 0);
+        moveVec =  Real3(this.PlayerPosition.Transform.Translation.X, this.PlayerPosition.Transform.Translation.Y, 0);
     }
     
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateFacingInput();
-        this.Owner.Transform.Translation.X;
     }
     
 }
