@@ -12,9 +12,9 @@
 class DoorController : ZilchComponent
 {
     [Property]
-    var IsLocked : Boolean = false;
+    var IsLocked : Boolean   = false;
     
-    var MyLocation : Real3 = Real3(0, 0, 0);
+    var MyLocation : Real3   = Real3(0, 0, 0);
     
     var ContainingRoom : Cog = null;
     
@@ -45,12 +45,14 @@ class DoorController : ZilchComponent
             var yDifference : Integer = Math.Round( playerLoc.Y - this.MyLocation.Y, 0 ) as Integer;
             
             // Debugging //
+            /*
             Console.WriteLine( "pLoc:\t `event.OtherObject.Transform.Translation`" );
             Console.WriteLine( "mLoc:\t `this.Owner.Transform.Translation`" );
             Console.WriteLine( "xDif:\t `xDifference`" );
             Console.WriteLine( "yDif:\t `yDifference`" );
             
             Console.WriteLine();
+            */
             // End debugging //
             
             // now some logic
