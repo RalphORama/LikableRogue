@@ -213,8 +213,8 @@ class PlayerController : ZilchComponent
         { Console.WriteLine("R Stick Press"); }
         
         // Triggers and Bumpers
-        if(this.Gamepad.IsButtonPressed(8)) // Left Bumper
-            {
+        if(this.Gamepad.IsButtonHeld(8)) // Left Bumper
+            {                
             Console.WriteLine("L Bumper");
             this.ChiSword.Transform.Translation=this.SwordAttcackZone;
             this.ChiSword.Sprite.Visible=true;
