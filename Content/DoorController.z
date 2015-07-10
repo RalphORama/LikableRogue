@@ -1,3 +1,11 @@
+/* 
+ * TODO:
+ * - playerLoc returns funky results for rooms
+ *   that are not the origin room. gotta figure 
+ *   out how to fix that.
+ * 
+*/
+
 class DoorController : ZilchComponent
 {
     [Property]
@@ -70,13 +78,6 @@ class DoorController : ZilchComponent
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
             else { Console.WriteLine("I don't know where the player is going"); } // error case
-            
-            /*
-            // Debugging
-            Console.WriteLine(xDifference);
-            Console.WriteLine(yDifference);
-            Console.WriteLine();
-            */
         }
     }
 }
