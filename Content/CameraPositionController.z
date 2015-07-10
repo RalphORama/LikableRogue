@@ -8,13 +8,13 @@ class CameraPositionController : ZilchComponent
     // we'll want to manipulate the camera using this
     var LevelCamera : Cog = null;
     
-    // we'll want our location in the world
-    var OurPosition : Real3 = Real3(0, 0, 0);
+    // we'll want the background location in the world
+    //var BGPosition : Real3 = Real3(0, 0, 0);
     
     function Initialize(init : CogInitializer)
     {
         // set our position to the position relative to the world
-        this.OurPosition = this.Owner.Transform.WorldTranslation;
+        //this.OurPosition = this.Owner.Transform.WorldTranslation;
         
         // find the camera, put it into the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
@@ -23,12 +23,17 @@ class CameraPositionController : ZilchComponent
     }
 
     function OnCollisionStarted(event : CollisionEvent) {
-        Console.WriteLine( "something touched me at:\t `this.OurPosition`" );
-        Console.WriteLine( "My position is:         \t `this.Owner.Transform.Translation`" );
+        //Console.WriteLine( "`event.OtherObject.Name` touched me" );
+        //Console.WriteLine( "Its position is:\t `event.OtherObject.Transform.WorldTranslation`" );
         
-        if ( event.Object.Name == "Player" ) {
-            Console.WriteLine( "player touch" );
-            this.LevelCamera.Transform.Translation = this.OurPosition;
+        if ( event.OtherObject.Name == "Background" ) {
+            //Console.WriteLine( "bg touch" );
+            Console.WriteLine( "Other obj X:\t`event.OtherObject.Transform.WorldTranslation.X`" );
+            Console.WriteLine( "Other obj Y:\t`event.OtherObject.Transform.WorldTranslation.Y`\n" );
+            var toMoveCameraX : Integer = event.OtherObject.Transform.WorldTranslation.X as Integer;
+            var toMoveCameraY : Integer = event.OtherObject.Transform.WorldTranslation.Y as Integer;
+            var toMoveCameraZ : Integer = this.LevelCamera.Transform.Translation.Z as Integer;
+            this.LevelCamera.Transform.Translation = Real3( toMoveCameraX, toMoveCameraY, toMoveCameraZ );
         }
     }
 }
