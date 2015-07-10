@@ -21,7 +21,7 @@ class DoorController : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         // initialize location for collision
-        this.MyLocation = this.Owner.Transform.Translation;
+        this.MyLocation = this.Owner.Transform.WorldTranslation;
         
         // initialize containing room
         this.ContainingRoom = this.Owner.Parent;
@@ -65,14 +65,14 @@ class DoorController : ZilchComponent
                 // generate a real3 based off of the difference of our Y values
                 // then, add that real3 to the player's Y location
                 // then set the player's location to the new real3
-                var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.2), 0 );
+                var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.75), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
             else if ( xDifference == 0 && yDifference == 1      // going south
                       && this.ContainingRoom.RoomController.SouthExit == true
                       && this.IsLocked == false) {
                 
-                var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.2), 0 );
+                var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.75), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
                 
             }
@@ -80,13 +80,13 @@ class DoorController : ZilchComponent
                       && this.ContainingRoom.RoomController.EastExit == true
                       && this.IsLocked == false) { 
                 
-                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2.2), playerLoc.Y, 0 );
+                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2.75), playerLoc.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
             else if ( xDifference == 1 && yDifference == 0      // going west
                       && this.ContainingRoom.RoomController.WestExit == true
                       && this.IsLocked == false) {
-                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2.2), playerLoc.Y, 0 );
+                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2.75), playerLoc.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
             else {                                              // error case

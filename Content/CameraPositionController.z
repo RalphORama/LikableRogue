@@ -13,8 +13,10 @@ class CameraPositionController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
-        this.OurPosition = this.Owner.Transform.Translation;
+        // set our position to the position relative to the world
+        this.OurPosition = this.Owner.Transform.WorldTranslation;
         
+        // find the camera, put it into the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
