@@ -1,8 +1,9 @@
 /* 
  * TODO:
- * - playerLoc returns funky results for rooms
- *   that are not the origin room. gotta figure 
- *   out how to fix that.
+ *   - playerLoc returns funky results for rooms
+ *     that are not the origin room. gotta figure 
+ *     out how to fix that.
+ *
  * NB: the door Real3() is based off of the Centering
  *     of the archetype, rather than the center of the world
  * 
