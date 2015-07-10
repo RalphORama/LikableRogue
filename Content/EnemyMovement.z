@@ -2,6 +2,8 @@ class EnemyMovement : ZilchComponent
 {
     var Ang : Real = 0;
     var PlayerPosition : Cog = null;
+    [Property]
+    var MoveSpeed : Real = 1;
     
     function Initialize(init : CogInitializer)
     {
@@ -38,9 +40,21 @@ class EnemyMovement : ZilchComponent
     }
      function UpdateMoveInput()
     {
-        this.Owner.RigidBody.Velocity = Real3(0,0,0);
-        var moveVec = Real3(0, 0, 0);
-        moveVec =  Real3(this.PlayerPosition.Transform.Translation.X, this.PlayerPosition.Transform.Translation.Y, 0);
+        var moveVec =  Real3(this.PlayerPosition.Transform.Translation.X, this.PlayerPosition.Transform.Translation.Y, 0);
+        Console.WriteLine(moveVec);
+        //clamp variables so that keyboard + gamepad input doesn't mess with our intended values of -1 to 1
+        var x = Math.Clamp(moveVec.X,-1,1);
+        var y = Math.Clamp(moveVec.Y,-1,1);
+        moveVec = Real3(x,y,0);
+        //call move function using the variables we made
+        this.Move(moveVec);
+    }
+    
+        function Move(moveR3 : Real3)
+    {
+        //Applies linear impulse based on movespeed and the given vector
+        this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
+        this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
     }
     
     function OnLogicUpdate(event : UpdateEvent)
