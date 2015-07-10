@@ -1,11 +1,52 @@
 class EnemyMovement : ZilchComponent
 {
+    var Ang : Real = 0;
+    var PlayerPosition : Cog = null;
+    
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.PlayerPosition = this.Space.FindObjectByName("Player");
     }
-
+    
+    function UpdateFacingInput()
+    {
+        //North
+        if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyN");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;
+            }
+        //East
+        if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyE");
+                this.Owner.Sprite.FlipX=false;
+            }
+        //South
+        if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyS");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;
+            }
+        //West
+        if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyE");//Sets Sprite
+                this.Owner.Sprite.FlipX=true;
+            }            
+    }
+     function UpdateMoveInput()
+    {
+        this.Owner.RigidBody.Velocity = Real3(0,0,0);
+        var moveVec = Real3(0, 0, 0);
+        moveVec += Real3(0, 0, 0);
+    }
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.UpdateFacingInput();
+        this.Owner.Transform.Translation.X;
     }
+    
 }
