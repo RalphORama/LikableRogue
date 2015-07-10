@@ -1,8 +1,6 @@
 /*
-   TODO:    - shit's broken, yo 
-            - figure out why touch evenet isn't being passed 
-            - fix that shit 
-            - I'm out 
+   TODO:    - got touch event working 
+            - but camera isn't moving?
 */
 
 class CameraPositionController : ZilchComponent
@@ -23,7 +21,9 @@ class CameraPositionController : ZilchComponent
     }
 
     function OnCollisionStarted(event : CollisionEvent) {
-        Console.WriteLine( "something touched me" );
+        Console.WriteLine( "something touched me at:\t `this.OurPosition`" );
+        Console.WriteLine( "My position is:         \t `this.Owner.Transform.Translation`" );
+        
         if ( event.Object.Name == "Player" ) {
             Console.WriteLine( "player touch" );
             this.LevelCamera.Transform.Translation = this.OurPosition;
