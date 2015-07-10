@@ -46,6 +46,7 @@ class EnemyMovement : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateFacingInput();
+        this.UpdateMoveInput();
     }
     
 }
