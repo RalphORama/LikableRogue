@@ -86,9 +86,9 @@ class PlayerController : ZilchComponent
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-                //this.ChiSword.Transform.Translation=Real3(-0.5,0.5,-1);//This is an example of moving the sword when the player turns
-                //this.ChiSword.Orientation.Rotation.Set( 1, Real(1), 1);
-                //this.SwordRotation = Math.ToQuaternion(Real3(Real3(0,0,0)), 90);
+                this.ChiSword.Transform.Translation=Real3(-0.5,0.5,-1);//This is an example of moving the sword when the player turns
+                this.ChiSword.Orientation.Rotation;
+                //this.SwordRotation = Math.ToQuaternion((Real3(0,0,0)), 0);
                 //Console.WriteLine(this.SwordRotation);
                 //this.SwordAttcackZone = Math.Angle2D(0,0,0);//Sets Sword AttackBox
                 }
