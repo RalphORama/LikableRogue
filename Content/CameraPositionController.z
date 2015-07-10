@@ -14,14 +14,23 @@ class CameraPositionController : ZilchComponent
     function OnCollisionStarted(event : CollisionEvent) {
         
         if ( event.OtherObject.Name == "Background" ) {
+            // create an action set to smooth the camera movement.
+            var cameraMoveSeq : ActionSet = Action.Sequence( this.Owner.Actions as ActionSet );
+            
             // fetch the X and Y coordinates of the background we just collided with
             var toMoveCameraX : Integer = event.OtherObject.Transform.WorldTranslation.X as Integer;
             var toMoveCameraY : Integer = event.OtherObject.Transform.WorldTranslation.Y as Integer;
+            
             // use the current camera Z in case this ever changes
             var toMoveCameraZ : Integer = this.LevelCamera.Transform.Translation.Z as Integer;
+            
             // plop the new X, Y, and Z into a Real3, set the camera's position
             // (I do it this way because setting it through transform.X didn't work for some reason)
-            this.LevelCamera.Transform.Translation = Real3( toMoveCameraX, toMoveCameraY, toMoveCameraZ );
+            var newCameraPos : Real3 = Real3( toMoveCameraX, toMoveCameraY, toMoveCameraZ );
+            //this.LevelCamera.Transform.Translation = newCameraPos;
+            
+            // action test
+            Action.Property( cameraMoveSeq, @this.LevelCamera.Transform.Translation, newCameraPos, 0.5, Ease.QuadIn );
         }
     }
 }
