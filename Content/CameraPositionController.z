@@ -30,7 +30,7 @@ class CameraPositionController : ZilchComponent
             //this.LevelCamera.Transform.Translation = newCameraPos;
             
             // action test
-            Action.Property( cameraMoveSeq, @this.LevelCamera.Transform.Translation, newCameraPos, 0.5, Ease.QuadIn );
+            Action.Property( cameraMoveSeq, @this.LevelCamera.Transform.Translation, newCameraPos, 0.3, Ease.Linear );
         }
     }
 }
