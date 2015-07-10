@@ -22,15 +22,14 @@ class PlayerController : ZilchComponent
     var MousePosition : Real3 = Real3(0,0,0);
     var Ang : Real = 0;
     var CamSize : Integer = 17;
-    var SwordDamageBox : Cog = null;
+    var ChiSword : Cog = null;
     var SwordAttcackZone : Real3 = Real3(0,0,0);
     var SwordRotation : Quaternion = Quaternion();
     function Initialize(init : CogInitializer)
         {
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
-        //Initalizes sword damage box
-        this.SwordDamageBox = this.Space.FindObjectByName("SwordDamagBox");
+        this.ChiSword = this.Space.FindObjectByName("Sword");
         // this changes camera size. larger == you can see more
         //this.LevelCamera.Camera.Size = 50;
         
@@ -87,8 +86,11 @@ class PlayerController : ZilchComponent
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-                this.SwordDamageBox.Transform.Translation=Real3(0,1,-1);//This is an example of moving the sword when the player turns
-                //this.SwordDamageBox.Orientation.Rotation;
+                //this.ChiSword.Transform.Translation=Real3(-0.5,0.5,-1);//This is an example of moving the sword when the player turns
+                //this.ChiSword.Orientation.Rotation.Set( 1, Real(1), 1);
+                //this.SwordRotation = Math.ToQuaternion(Real3(Real3(0,0,0)), 90);
+                //Console.WriteLine(this.SwordRotation);
+                //this.SwordAttcackZone = Math.Angle2D(0,0,0);//Sets Sword AttackBox
                 }
             //Nort East
             if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
@@ -220,14 +222,15 @@ class PlayerController : ZilchComponent
         if(this.Gamepad.IsButtonHeld(8)) // Left Bumper
             { 
             Console.WriteLine("L Bumper");
-            this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
-            this.SwordDamageBox.Sprite.Visible=true;
-            this.SwordDamageBox.BoxCollider.SendsEvents=true;
+            this.ChiSword.Transform.Translation=this.SwordAttcackZone;
+            //this.ChiSword.Transform.Rotation = Real2(0,0);
+            this.ChiSword.Sprite.Visible=true;
+            this.ChiSword.BoxCollider.SendsEvents=true;
             }
         if(this.Gamepad.IsButtonReleased(8))
             {
-            this.SwordDamageBox.Sprite.Visible=false;
-            this.SwordDamageBox.BoxCollider.SendsEvents=false;
+            this.ChiSword.Sprite.Visible = false;
+            this.ChiSword.BoxCollider.SendsEvents=false;
             }
         if(this.Gamepad.IsButtonPressed(9)) // Right Bumper
         { Console.WriteLine("R Bumper"); }
