@@ -1,0 +1,32 @@
+/*
+   TODO:    - shit's broken, yo 
+            - figure out why touch evenet isn't being passed 
+            - fix that shit 
+            - I'm out 
+*/
+
+class CameraPositionController : ZilchComponent
+{
+    // we'll want to manipulate the camera using this
+    var LevelCamera : Cog = null;
+    
+    // we'll want our location in the world
+    var OurPosition : Real3 = Real3(0, 0, 0);
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.OurPosition = this.Owner.Transform.Translation;
+        
+        this.LevelCamera = this.Space.FindObjectByName("Camera");
+        
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent) {
+        Console.WriteLine( "something touched me" );
+        if ( event.Object.Name == "Player" ) {
+            Console.WriteLine( "player touch" );
+            this.LevelCamera.Transform.Translation = this.OurPosition;
+        }
+    }
+}
