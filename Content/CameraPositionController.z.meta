@@ -1,0 +1,15 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "CameraPositionController",
+		uint64 ResourceId = 55205b2fcac6184c,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Controller",
+		],
+	},
+},
