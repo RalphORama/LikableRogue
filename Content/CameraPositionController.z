@@ -1,21 +1,10 @@
-/*
-   TODO:    - got touch event working 
-            - but camera isn't moving?
-*/
-
 class CameraPositionController : ZilchComponent
 {
     // we'll want to manipulate the camera using this
     var LevelCamera : Cog = null;
     
-    // we'll want our location in the world
-    var OurPosition : Real3 = Real3(0, 0, 0);
-    
     function Initialize(init : CogInitializer)
     {
-        // set our position to the position relative to the world
-        this.OurPosition = this.Owner.Transform.WorldTranslation;
-        
         // find the camera, put it into the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         
@@ -23,12 +12,16 @@ class CameraPositionController : ZilchComponent
     }
 
     function OnCollisionStarted(event : CollisionEvent) {
-        Console.WriteLine( "something touched me at:\t `this.OurPosition`" );
-        Console.WriteLine( "My position is:         \t `this.Owner.Transform.Translation`" );
         
-        if ( event.Object.Name == "Player" ) {
-            Console.WriteLine( "player touch" );
-            this.LevelCamera.Transform.Translation = this.OurPosition;
+        if ( event.OtherObject.Name == "Background" ) {
+            // fetch the X and Y coordinates of the background we just collided with
+            var toMoveCameraX : Integer = event.OtherObject.Transform.WorldTranslation.X as Integer;
+            var toMoveCameraY : Integer = event.OtherObject.Transform.WorldTranslation.Y as Integer;
+            // use the current camera Z in case this ever changes
+            var toMoveCameraZ : Integer = this.LevelCamera.Transform.Translation.Z as Integer;
+            // plop the new X, Y, and Z into a Real3, set the camera's position
+            // (I do it this way because setting it through transform.X didn't work for some reason)
+            this.LevelCamera.Transform.Translation = Real3( toMoveCameraX, toMoveCameraY, toMoveCameraZ );
         }
     }
 }
