@@ -108,8 +108,8 @@ class LevelController : ZilchComponent
         //this.GenerateManyRooms ();
         
         // move camera to center on current level
-        var cameraXAvg : Integer = ( (-1 + (this.RoomWidth + 1))/2 );
-        var cameraYAvg : Integer = ( (-1 + (this.RoomHeight +1))/2 );
+        var cameraXAvg : Integer = ( ( -1 + (this.RoomWidth + 1) ) / 2 );
+        var cameraYAvg : Integer = ( ( -1 + (this.RoomHeight +1) ) / 2 );
         this.LevelCamera.Transform.Translation = Real3(cameraXAvg, cameraYAvg, 40);
     }
     
@@ -133,6 +133,10 @@ class LevelController : ZilchComponent
         // this.RoomsWithTwoExits(n)
         // this.RoomsWithOneExit(n)
         // this.SpecialRooms(n);
+        //
+        // this.NumRoomsWithFourExitsToGenerate
+        // this.NumRoomsWithThreeExitsToGenerate
+        // this.NumRoomsWithThreeExitsToGenerate
         
         /// Generate some placeholder variables that we'll fill out later
         // Whether we should generate rooms in given directions
@@ -142,6 +146,7 @@ class LevelController : ZilchComponent
         var shouldGenerateWest  = false;
         // how many exits the room we generate should have
         var shouldGenerateNumExits : Integer = 0;
+        // 
         
         // select the last room we generated 
         var generatedRoom : Cog = this.LastRoomGenerated;
@@ -171,8 +176,24 @@ class LevelController : ZilchComponent
         
         // now that we know where we _can_ generate rooms,
         // we should determine what type of room _to_ generate.
-        
-        
+        // if ( this.NumRoomsWithFourExitsToGenerate )
+        // generate a random number between two and four to determine what room we place
+        var numExitsToUse : Integer = 1;
+        if ( this.NumRoomsWithFourExitsToGenerate >= 1 ) {
+            numExitsToUse = Math.Round( this.RandomGenerator.Range(2, 4), 0 ) as Integer;
+        } 
+        else if ( this.NumRoomsWithThreeExitsToGenerate >= 1 ) {
+            numExitsToUse = Math.Round( this.RandomGenerator.Range(2, 3), 0 ) as Integer;
+        }
+        else if ( this.NumRoomsWithTwoExitsToGenerate >= 1 ) {
+            numExitsToUse = 2;
+        }
+        else { numExitsToUse = 1; }
+        /*
+        if ( this.NumRoomsWithTwoExitsToGenerate >= 1 )     { maxExitsToUse == 2; }
+        if ( this.NumRoomsWithThreeExitsToGenerate >= 1 )   { maxExitsToUse == 3; }
+        if ( this.NumRoomsWithFourExitsToGenerate >= 1 )    { maxExitsToUse == 4; }
+        */
         
         
         
