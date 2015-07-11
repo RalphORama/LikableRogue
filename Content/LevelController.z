@@ -14,6 +14,14 @@ class LevelController : ZilchComponent
     [Property]
     var MaxRooms : Integer   = 5;
     
+    // archetype initialization
+    [Property]
+    var OuterWallTile : Archetype   = null;
+    [Property]
+    var PlayerCharacter : Archetype = null;
+    [Property]
+    var BackgroundImage : Archetype = null;
+    
     // random amounts of rooms to generate
     [Property]
     var MaxRoomsWithFourExits : Integer  = 2;
@@ -23,33 +31,43 @@ class LevelController : ZilchComponent
     var MaxRoomsWithTwoExits : Integer   = 5;
     // rooms with 1 exit are used to cap off all un-closed exit
     
-    // archetype initialization
-    [Property]
-    var OuterWallTile : Archetype   = null;
-    [Property]
-    var PlayerCharacter : Archetype = null;
-    [Property]
-    var BackgroundImage : Archetype = null;
+    // here are some variables to modify instead of our properties
+    var NumRoomsWithFourExitsToGenerate : Integer  = 0;
+    var NumRoomsWithThreeExitsToGenerate : Integer = 0;
+    var NumRoomsWithTwoExitsToGenerate : Integer   = 0;
     
     // Create several archetypes for rooms
+    /// ROOMS WITH  FOUR EXITS ///
     [Property]
     var RoomArchetype00 : Archetype = null;
     /*
+    /// ROOMS WITH THREE EXITS ///
     [Property]
     var RoomArchetype01 : Archetype = null;
+    ///  ROOMS WITH TWO EXITS  ///
     [Property]
     var RoomArchetype02 : Archetype = null;
+    ///  ROOMS WITH  ONE EXIT  ///
     [Property]
     var RoomArchetype03 : Archetype = null;
+    ///      SPECIAL ROOMS     ///
     [Property]
     var RoomArchetype04 : Archetype = null;
     */
     
-    // create an array to put all the room archetypes in
-    var RoomsWithFourExits : Array[Archetype] = Array[Archetype]();
+    /// ARRAY FOR ROOMS WITH FOUR EXITS ///
+    var RoomsWithFourExits : Array[Archetype]   = Array[Archetype]();
+    /// ARRAY FOR ROOMS WITH THREE EXITS ///
+    var RoomsWithThreeExits : Array[Archetype]  = Array[Archetype]();
+    /// ARRAY FOR ROOMS WITH TWO EXITS ///
+    var RoomsWithTwoExits : Array[Archetype]    = Array[Archetype]();
+    /// ARRAY FOR ROOMS WITH ONE EXIT ///
+    var RoomsWithOneExit : Array[Archetype]     = Array[Archetype]();
+    /// ARRAY FOR SPECIAL ROOMS ///
+    var SpecialRooms : Array[Archetype]         = Array[Archetype]();
     
     // create an archetype for our origin room
-    var OriginRoom : Archetype = null;
+    var OriginRoom : Cog = null;
     
     // this is the last room we generated 
     var LastRoomGenerated : Cog = null;
@@ -62,6 +80,11 @@ class LevelController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
+        // here are some variables we decrement instead of properties
+        this.NumRoomsWithFourExitsToGenerate    = this.MaxRoomsWithFourExits;
+        this.NumRoomsWithThreeExitsToGenerate   = this.MaxRoomsWithFourExits;
+        this.NumRoomsWithTwoExitsToGenerate     = this.MaxRoomsWithFourExits;
+    
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         
@@ -78,7 +101,11 @@ class LevelController : ZilchComponent
     function BoardSetup () {
         
         // generate the initial room
-        this.LastRoomGenerated = this.GenerateRoom( 0, 0, this.RoomsWithFourExits[0] );
+        this.OriginRoom = this.GenerateRoom( 0, 0, this.RoomsWithFourExits[0] );
+        this.LastRoomGenerated = this.OriginRoom;
+        
+        // generate the following rooms
+        //this.GenerateManyRooms ();
         
         // move camera to center on current level
         var cameraXAvg : Integer = ( (-1 + (this.RoomWidth + 1))/2 );
@@ -86,27 +113,68 @@ class LevelController : ZilchComponent
         this.LevelCamera.Transform.Translation = Real3(cameraXAvg, cameraYAvg, 40);
     }
     
-    function GenerageManyRooms ( ieterationsToGenerate : Integer ) : Cog {
+    function GenerateManyRooms () : Cog {
         // after initial room is generated, generate rooms fractally around it
         // could we do this logarithmically in order to rapidly decrease amount
         // of rooms generated?
         
         // I know I can have this code here
         
-        // create an empty variable to store the room we generate in 
-        var generatedRoom : Cog = this.LastRoomGenerated;
-        
         // we can create some random logic here, using the following variables:
         //
-        // - this.LastRoomGenerated.RoomController.( NorthRoomGenerated | SouthRoomGenerated | EastRoomGenerated | WestRoomGenerated )
+        // this.LastRoomGenerated.RoomController.( NorthRoomGenerated | SouthRoomGenerated | EastRoomGenerated | WestRoomGenerated )
         //
         // this.MaxRoomsWithFourExits
         // this.MaxRoomsWithThreeExits
         // this.MaxRoomsWIthTwoExits
         //
+        // this.RoomsWithFourExits(n)
+        // this.RoomsWithThreeExits(n)
+        // this.RoomsWithTwoExits(n)
+        // this.RoomsWithOneExit(n)
+        // this.SpecialRooms(n);
         
+        /// Generate some placeholder variables that we'll fill out later
+        // Whether we should generate rooms in given directions
+        var shouldGenerateNorth = false;
+        var shouldGenerateEast  = false;
+        var shouldGenerateSouth = false;
+        var shouldGenerateWest  = false;
+        // how many exits the room we generate should have
+        var shouldGenerateNumExits : Integer = 0;
         
         // select the last room we generated 
+        var generatedRoom : Cog = this.LastRoomGenerated;
+        
+        // fill out some of our earlier variables based on the 
+        // properties of the last room generated
+        if ( this.LastRoomGenerated.RoomController.NorthExit == true
+             && this.LastRoomGenerated.RoomController.NorthRoomGenerated == false ) 
+        {
+            shouldGenerateNorth = true;
+        }
+        if ( this.LastRoomGenerated.RoomController.EastExit == true
+             && this.LastRoomGenerated.RoomController.EastRoomGenerated == false ) 
+        {
+            shouldGenerateEast = true;
+        }
+        if ( this.LastRoomGenerated.RoomController.SouthExit == true
+             && this.LastRoomGenerated.RoomController.SouthRoomGenerated == false ) 
+        {
+            shouldGenerateSouth = true;
+        }
+        if ( this.LastRoomGenerated.RoomController.WestExit == true
+             && this.LastRoomGenerated.RoomController.WestRoomGenerated == false ) 
+        {
+            shouldGenerateWest = true;
+        }
+        
+        // now that we know where we _can_ generate rooms,
+        // we should determine what type of room _to_ generate.
+        
+        
+        
+        
         
         // generate rooms with for loop
         // this loop starts at 2, since we already generated the first room

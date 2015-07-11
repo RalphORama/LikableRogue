@@ -24,6 +24,11 @@ Cog =
 		bool EastExit = true,
 		bool SouthExit = true,
 		bool WestExit = true,
+		int NumberOfExits = 4,
+		bool NorthRoomGenerated = false,
+		bool EastRoomGenerated = false,
+		bool SouthRoomGenerated = false,
+		bool WestRoomGenerated = false,
 		bool EnemiesDead = true,
 	},
 	Hierarchy = 

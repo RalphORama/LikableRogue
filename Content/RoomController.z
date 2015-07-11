@@ -10,6 +10,10 @@ class RoomController : ZilchComponent
     [Property]
     var WestExit  : Boolean = false;
     
+    // Number of exits
+    [Property]
+    var NumberOfExits : Integer = 0;
+    
     // have rooms been created around our exits?
     [Property]
     var NorthRoomGenerated : Boolean = false;
