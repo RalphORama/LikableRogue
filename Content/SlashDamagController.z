@@ -12,10 +12,9 @@ class SwordDamagController : ZilchComponent
         }
     function OnCollisionStarted(event : CollisionEvent)
         {
-        Console.WriteLine("hutr nothing");
         if (event.OtherObject.Name == "Enemy")
             {
-            Console.WriteLine("HAYHAYHAY");
+            Console.WriteLine("Enemy Took Damag");
             }
         }
 }

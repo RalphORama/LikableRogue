@@ -52,12 +52,12 @@ class PlayerController : ZilchComponent
             {
             this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
             this.SwordDamageBox.Sprite.Visible=true;
-            this.SwordDamageBox.BoxCollider.Ghost=true;
+            this.SwordDamageBox.BoxCollider.Ghost=false;
             }
         else //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
             {
             this.SwordDamageBox.Sprite.Visible=false;
-            this.SwordDamageBox.BoxCollider.Ghost=false;
+            this.SwordDamageBox.BoxCollider.Ghost=true;
             }
         }
     function OnMouseScroll(event : MouseEvent)//camera zoom/fov based on scroll
@@ -260,4 +260,3 @@ class PlayerController : ZilchComponent
         this.Owner.RigidBody.Velocity *= this.MoveSpeed;
     }
 }
-
