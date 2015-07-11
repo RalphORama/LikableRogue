@@ -2,8 +2,8 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "LevelArchetype00",
-		uint64 ResourceId = 551e378ab8f90d3e,
+		string Name = "LevelArchetype01",
+		uint64 ResourceId = 551eefc556b12616,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,

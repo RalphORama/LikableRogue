@@ -1,0 +1,11 @@
+class LevelArchetypeProperties : ZilchComponent
+{
+    [Property]
+    // difficulty levels as follows:
+    // 0 - introductory (no enemies)
+    // 1 - easy
+    // 2 - medium
+    // 3 - hard
+    // TODO: have 4 - bossrush?
+    var Difficulty : Integer = 0;
+}
