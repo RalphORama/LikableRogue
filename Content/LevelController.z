@@ -1,8 +1,7 @@
 // TODO: 
-//       - random generation for rooms around secondary rooms (tertriary room generation)
-//       - create interior objects, write generation code ]V
-//       - work on background randomization ]-> create arrays, implement 
-//       - work on wall randomization       ]
+//       - random generation for rooms around secondary rooms 
+//         (tertriary room generation)
+//       - create interior objects, write generation code 
 
 class LevelController : ZilchComponent
 {
@@ -48,6 +47,8 @@ class LevelController : ZilchComponent
     /// ROOMS WITH THREE EXITS ///
     [Property] // so we can tell in the editor
     var FourAndThreeDivider : String = "Rooms with three exits";
+    [Property] // this makes adding the new rooms to an array easier
+    var NumRoomsWithThreeExits : Integer = 4;
     
     [Property]
     var ThRoomArchetype00 : Archetype = null;
@@ -62,6 +63,8 @@ class LevelController : ZilchComponent
     ///  ROOMS WITH TWO EXITS  ///
     [Property] // so we can tell in the editor
     var ThreeAndTwoDivider : String = "Rooms with two exits";
+    [Property] // this makes adding the new rooms to an array easier
+    var NumRoomsWithTwoExits : Integer = 6;
     
     [Property]
     var TwRoomArchetype00 : Archetype = null;
@@ -80,6 +83,8 @@ class LevelController : ZilchComponent
     ///  ROOMS WITH  ONE EXIT  ///
     [Property] // so we can tell in the editor
     var TwoAndOneDivider : String = "Rooms with one exit";
+    [Property] // this makes adding the new rooms to an array easier
+    var NumRoomsWithOneExit : Integer = 4;
     
     [Property]
     var ORoomArchetype00 : Archetype = null;
@@ -109,6 +114,7 @@ class LevelController : ZilchComponent
     /// ARRAY FOR SPECIAL ROOMS ///
     var SpecialRooms : Array[Archetype]         = Array[Archetype]();
     
+    
     // create an archetype for our origin room
     var OriginRoom : Cog = null;
     
@@ -131,9 +137,45 @@ class LevelController : ZilchComponent
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         
-        // put the room archetypes into the array
-        // I'll change this into a for loop later
+        /* Here we put all the different types of rooms 
+         * into their designated arrays. This makes it 
+         * easy to pull a certain type of room that we 
+         * want to use later on in the project.
+        */
+        
+        // we only have one room with four exits.
         this.RoomsWithFourExits.Add(this.FRoomArchetype00);
+        
+        // we have (this.NumRoomsWithThreeExits) rooms with three exits
+        // TODO: Get this for loop working
+        /*for ( var room : Integer = 0; room < this.NumRoomsWithThreeExits; ++room ) {
+            var nameOfRoom : String = "this.ThRoomArchetype0`room`";
+            this.RoomsWithThreeExits.Add( nameOfRoom as Archetype );
+        }*/
+        // I'll use the above for loop when I can figure out how
+        // to concatenate two strings into a valid variable name.
+        this.RoomsWithThreeExits.Add(this.ThRoomArchetype00);
+        this.RoomsWithThreeExits.Add(this.ThRoomArchetype01);
+        this.RoomsWithThreeExits.Add(this.ThRoomArchetype02);
+        this.RoomsWithThreeExits.Add(this.ThRoomArchetype03);
+        
+        // we have (this.NumRoomsWithTwoeExits) rooms with two exits
+        // for loop will soon be implemented here as well
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype00);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype01);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype02);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype03);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype04);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype05);
+        
+        // we have (this.NumRoomsWithOneExit) rooms with one exit
+        // for loop will soon be implemented here as well
+        this.RoomsWithThreeExits.Add(this.ORoomArchetype00);
+        this.RoomsWithThreeExits.Add(this.ORoomArchetype01);
+        this.RoomsWithThreeExits.Add(this.ORoomArchetype02);
+        this.RoomsWithThreeExits.Add(this.ORoomArchetype03);
+        
+        // TODO: add special case rooms 
         
         // create the tiles in the board
         this.BoardSetup();
@@ -235,13 +277,41 @@ class LevelController : ZilchComponent
         }
         else { numExitsToUse = 1; }
         
-        
+        // now to actually create some rooms
+        /* the logic going on here: 
+         * first, check what direction to generate a room
+         * (if none are true, do something. I'll write logic for that later)
+         * if we're generating a room in that direction,
+         * check how many exits we should use, then pull
+         * a room from the array of rooms with that many 
+         * exits. I have to handle logging those rooms as well.
+        */
+        if ( shouldGenerateNorth == true ) {
+            var roomToGenerate : Archetype = this.DecideWhatRoomToGenerate( numExitsToUse );
+            generatedRoom = this.GenerateRoom( this.LastRoomGenerated.Transform.Translation.X as Integer,
+                                               this.LastRoomGenerated.Transform.Translation.Y as Integer, 
+                                                roomToGenerate );
+            this.LastRoomGenerated = generatedRoom;
+            return generatedRoom;
+        }
+        else if ( shouldGenerateEast == true ) {
+            return this.LastRoomGenerated;
+        }
+        else if ( shouldGenerateSouth == true ) {
+            return this.LastRoomGenerated;
+        }
+        else if ( shouldGenerateWest == true ) {
+            return this.LastRoomGenerated;
+        }
+        else {
+            return this.LastRoomGenerated;
+        }
         
         
         
         // generate rooms with for loop
         // this loop starts at 2, since we already generated the first room
-        var roomsToGenerate : Integer = this.RandomGenerator.Range(2, this.MaxRooms) as Integer;
+        //var roomsToGenerate : Integer = this.RandomGenerator.Range(2, this.MaxRooms) as Integer;
         /*
         for ( var x = 2; x <= roomsToGenerate; ++x ) {
             var northGenerated : Boolean = false; // cardinal == 1
@@ -275,7 +345,7 @@ class LevelController : ZilchComponent
         
         // make this function return the room it generated so we can assign it a value
         // and read its properties, and whatever other properties we need to
-        return this.LastRoomGenerated; // change to generatedRoom once room generation is, well, working
+        //return this.LastRoomGenerated; // change to generatedRoom once room generation is, well, working
     }
     
     function GenerateRoom ( originX : Integer,    // x coordinate of first inhabitable square
@@ -299,4 +369,44 @@ class LevelController : ZilchComponent
         var player = this.Space.CreateAtPosition(this.PlayerCharacter, spawnPoint);
         player.Transform.Translation = spawnPoint;
     }
+    
+    function DecideWhatRoomToGenerate ( numberOfExitsNeeded : Integer ) : Archetype {
+        // in this function, we want to take the numberOfExitsNeeded and return
+        // a random room archetype from the array of rooms with that number of exits.
+        
+        // each room has between one and four exits
+        if ( numberOfExitsNeeded > 0 && numberOfExitsNeeded < 5 ) {
+            if ( numberOfExitsNeeded == 4 ) {
+                var randomIndex : Integer = 
+                        Math.Round( this.RandomGenerator.Range(0, this.RoomsWithFourExits.Count), 0 ) as Integer;
+                var newRoom = this.RoomsWithFourExits.Get( randomIndex );
+                return newRoom;
+            }
+            else if ( numberOfExitsNeeded == 3 ) {
+                var randomIndex : Integer = 
+                        Math.Round( this.RandomGenerator.Range(0, this.RoomsWithThreeExits.Count), 0 ) as Integer;
+                var newRoom = this.RoomsWithThreeExits.Get( randomIndex );
+                return newRoom;
+            }
+            else if ( numberOfExitsNeeded == 2 ) {
+                var randomIndex : Integer = 
+                        Math.Round( this.RandomGenerator.Range(0, this.RoomsWithTwoExits.Count), 0 ) as Integer;
+                var newRoom = this.RoomsWithTwoExits.Get( randomIndex );
+                return newRoom;
+            }
+            else if ( numberOfExitsNeeded == 1 ) {
+                var randomIndex : Integer = 
+                    Math.Round( this.RandomGenerator.Range(0, this.RoomsWithOneExit.Count), 0 ) as Integer;
+                var newRoom = this.RoomsWithOneExit.Get( randomIndex );
+                return newRoom;
+            }
+            else {
+                return this.RoomsWithFourExits.Get(0);
+            }
+        }
+        else {
+            return this.RoomsWithFourExits.Get(0);
+        }
+    }
 }
+
