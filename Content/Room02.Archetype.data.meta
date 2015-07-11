@@ -1,0 +1,21 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "Room02",
+		uint64 ResourceId = 551e3de340a9b18d,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Archetype",
+			"Cog",
+			"Room",
+			"RoomWithThreeExits",
+		],
+	},
+},

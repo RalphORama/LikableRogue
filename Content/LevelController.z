@@ -15,12 +15,12 @@ class LevelController : ZilchComponent
     var MaxRooms : Integer   = 5;
     
     // archetype initialization
-    [Property]
-    var OuterWallTile : Archetype   = null;
+    //[Property]
+    //var OuterWallTile : Archetype   = null;
     [Property]
     var PlayerCharacter : Archetype = null;
-    [Property]
-    var BackgroundImage : Archetype = null;
+    //[Property]
+    //var BackgroundImage : Archetype = null;
     
     // random amounts of rooms to generate
     [Property]
@@ -38,22 +38,65 @@ class LevelController : ZilchComponent
     
     // Create several archetypes for rooms
     /// ROOMS WITH  FOUR EXITS ///
+    [Property] // so we can tell in the editor
+    var FourDivider : String = "Rooms with four exits";
+    
     [Property]
-    var RoomArchetype00 : Archetype = null;
-    /*
+    var FRoomArchetype00 : Archetype = null;
+
+
     /// ROOMS WITH THREE EXITS ///
+    [Property] // so we can tell in the editor
+    var FourAndThreeDivider : String = "Rooms with three exits";
+    
     [Property]
-    var RoomArchetype01 : Archetype = null;
+    var ThRoomArchetype00 : Archetype = null;
+    [Property]
+    var ThRoomArchetype01 : Archetype = null;
+    [Property]
+    var ThRoomArchetype02 : Archetype = null;
+    [Property]
+    var ThRoomArchetype03 : Archetype = null;
+    
+    
     ///  ROOMS WITH TWO EXITS  ///
+    [Property] // so we can tell in the editor
+    var ThreeAndTwoDivider : String = "Rooms with two exits";
+    
     [Property]
-    var RoomArchetype02 : Archetype = null;
+    var TwRoomArchetype00 : Archetype = null;
+    [Property]
+    var TwRoomArchetype01 : Archetype = null;
+    [Property]
+    var TwRoomArchetype02 : Archetype = null;
+    [Property]
+    var TwRoomArchetype03 : Archetype = null;
+    [Property]
+    var TwRoomArchetype04 : Archetype = null;
+    [Property]
+    var TwRoomArchetype05 : Archetype = null;
+    
+    
     ///  ROOMS WITH  ONE EXIT  ///
+    [Property] // so we can tell in the editor
+    var TwoAndOneDivider : String = "Rooms with one exit";
+    
     [Property]
-    var RoomArchetype03 : Archetype = null;
+    var ORoomArchetype00 : Archetype = null;
+    [Property]
+    var ORoomArchetype01 : Archetype = null;
+    [Property]
+    var ORoomArchetype02 : Archetype = null;
+    [Property]
+    var ORoomArchetype03 : Archetype = null;
+    
+    
     ///      SPECIAL ROOMS     ///
+    [Property] // so we can tell in the editor
+    var OneAndSpecialDivider : String = "Special Rooms";
     [Property]
-    var RoomArchetype04 : Archetype = null;
-    */
+    var SRoomArchetype00 : Archetype = null;
+    
     
     /// ARRAY FOR ROOMS WITH FOUR EXITS ///
     var RoomsWithFourExits : Array[Archetype]   = Array[Archetype]();
@@ -90,7 +133,7 @@ class LevelController : ZilchComponent
         
         // put the room archetypes into the array
         // I'll change this into a for loop later
-        this.RoomsWithFourExits.Add(this.RoomArchetype00);
+        this.RoomsWithFourExits.Add(this.FRoomArchetype00);
         
         // create the tiles in the board
         this.BoardSetup();
@@ -146,10 +189,12 @@ class LevelController : ZilchComponent
         var shouldGenerateWest  = false;
         // how many exits the room we generate should have
         var shouldGenerateNumExits : Integer = 0;
-        // 
         
         // select the last room we generated 
         var generatedRoom : Cog = this.LastRoomGenerated;
+        
+        // how many rooms we still need to create around the current room
+        var roomsToGenerateRemaining : Integer = generatedRoom.RoomController.NumberOfExits;
         
         // fill out some of our earlier variables based on the 
         // properties of the last room generated
@@ -189,11 +234,8 @@ class LevelController : ZilchComponent
             numExitsToUse = 2;
         }
         else { numExitsToUse = 1; }
-        /*
-        if ( this.NumRoomsWithTwoExitsToGenerate >= 1 )     { maxExitsToUse == 2; }
-        if ( this.NumRoomsWithThreeExitsToGenerate >= 1 )   { maxExitsToUse == 3; }
-        if ( this.NumRoomsWithFourExitsToGenerate >= 1 )    { maxExitsToUse == 4; }
-        */
+        
+        
         
         
         
