@@ -48,9 +48,8 @@ class PlayerController : ZilchComponent
             {
             this.UpdateMouseMovement();
             }
-        if(this.Gamepad.IsButtonHeld(8)||Zero.Mouse.IsButtonDown(MouseButtons.Left)) // Left Bumper
+        if(this.Gamepad.IsButtonHeld(8)||Zero.Mouse.IsButtonDown(MouseButtons.Left))// Left Bumper
             {
-            Console.WriteLine("L Bumper");
             this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
             this.SwordDamageBox.Sprite.Visible=true;
             this.SwordDamageBox.BoxCollider.SendsEvents=true;
