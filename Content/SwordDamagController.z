@@ -2,17 +2,20 @@ class SwordDamagController : ZilchComponent
 {
     function Initialize(init : CogInitializer)
         {
+            Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
             //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+            //Zero.Connect(this.Owner, Events.CollisionStarted);
         }
 
     function OnLogicUpdate(event : UpdateEvent)
-        {
+        { 
         }
     function OnCollisionStarted(event : CollisionEvent)
-    {
+        {
+        Console.WriteLine("hutr nothing");
         if (event.OtherObject.Name == "Enemy")
             {
             Console.WriteLine("HAYHAYHAY");
             }
-    }
+        }
 }

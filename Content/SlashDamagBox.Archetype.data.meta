@@ -2,7 +2,7 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "SwordDamagBox",
+		string Name = "SlashDamagBox",
 		uint64 ResourceId = 55d2c0910ed66a96,
 		string LoaderType = "Cog",
 		uint Version = 0,
