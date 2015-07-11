@@ -6,11 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Room00",
-	},
-	Archetyped = 
-	{
-		string Name = "552191204f7af9d5:Room00",
+		string Name = "Room13",
 	},
 	Transform = 
 	{
@@ -20,11 +16,11 @@ Cog =
 	},
 	RoomController = 
 	{
-		bool NorthExit = true,
-		bool EastExit = true,
+		bool NorthExit = false,
+		bool EastExit = false,
 		bool SouthExit = true,
-		bool WestExit = true,
-		int NumberOfExits = 4,
+		bool WestExit = false,
+		int NumberOfExits = 1,
 		bool NorthRoomGenerated = false,
 		bool EastRoomGenerated = false,
 		bool SouthRoomGenerated = false,
@@ -53,64 +49,10 @@ Cog =
 		},
 		ArchetypeInstance = 
 		{
-			string Name = "5521b4976d662d25:NorthDoor",
-			LinkId = 
-			{
-				uint Id = 3,
-			},
-			Transform = 
-			{
-				Vec3 Translation = [10, 15, 1],
-				Vec3 Scale = [1.1, 1.1, 1.1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			Named = 
-			{
-				string Name = "NorthDoor",
-			},
-		},
-		ArchetypeInstance = 
-		{
-			string Name = "5521b42e5fb51784:WestDoor",
-			LinkId = 
-			{
-				uint Id = 4,
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-1, 7, 1],
-				Vec3 Scale = [1.1, 1.1, 1.1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			Named = 
-			{
-				string Name = "WestDoor",
-			},
-		},
-		ArchetypeInstance = 
-		{
-			string Name = "5521b40542d13184:EastDoor",
-			LinkId = 
-			{
-				uint Id = 5,
-			},
-			Transform = 
-			{
-				Vec3 Translation = [21, 7, 1],
-				Vec3 Scale = [1.1, 1.1, 1.1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			Named = 
-			{
-				string Name = "EastDoor",
-			},
-		},
-		ArchetypeInstance = 
-		{
 			string Name = "5521b5d5b28c9d96:SouthDoor",
 			LinkId = 
 			{
-				uint Id = 6,
+				uint Id = 3,
 			},
 			Transform = 
 			{
@@ -127,7 +69,7 @@ Cog =
 		{
 			LinkId = 
 			{
-				uint Id = 7,
+				uint Id = 4,
 			},
 			Named = 
 			{
@@ -146,7 +88,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 8,
+						uint Id = 5,
 					},
 					Transform = 
 					{
@@ -164,7 +106,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 9,
+						uint Id = 6,
 					},
 					Transform = 
 					{
@@ -182,7 +124,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 10,
+						uint Id = 7,
 					},
 					Transform = 
 					{
@@ -200,7 +142,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 11,
+						uint Id = 8,
 					},
 					Transform = 
 					{
@@ -218,7 +160,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 12,
+						uint Id = 9,
 					},
 					Transform = 
 					{
@@ -236,7 +178,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 13,
+						uint Id = 10,
 					},
 					Transform = 
 					{
@@ -254,7 +196,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 14,
+						uint Id = 11,
 					},
 					Transform = 
 					{
@@ -272,7 +214,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 15,
+						uint Id = 12,
 					},
 					Transform = 
 					{
@@ -290,7 +232,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 16,
+						uint Id = 13,
 					},
 					Transform = 
 					{
@@ -308,7 +250,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 17,
+						uint Id = 14,
 					},
 					Transform = 
 					{
@@ -326,7 +268,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 18,
+						uint Id = 15,
 					},
 					Transform = 
 					{
@@ -344,7 +286,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 19,
+						uint Id = 16,
 					},
 					Transform = 
 					{
@@ -362,7 +304,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 20,
+						uint Id = 17,
 					},
 					Transform = 
 					{
@@ -380,7 +322,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 21,
+						uint Id = 18,
 					},
 					Transform = 
 					{
@@ -398,7 +340,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 22,
+						uint Id = 19,
 					},
 					Transform = 
 					{
@@ -416,7 +358,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 23,
+						uint Id = 20,
 					},
 					Transform = 
 					{
@@ -434,7 +376,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 24,
+						uint Id = 21,
 					},
 					Transform = 
 					{
@@ -452,7 +394,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 25,
+						uint Id = 22,
 					},
 					Transform = 
 					{
@@ -470,7 +412,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 26,
+						uint Id = 23,
 					},
 					Transform = 
 					{
@@ -488,7 +430,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 27,
+						uint Id = 24,
 					},
 					Transform = 
 					{
@@ -506,7 +448,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 28,
+						uint Id = 25,
 					},
 					Transform = 
 					{
@@ -524,7 +466,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 29,
+						uint Id = 26,
 					},
 					Transform = 
 					{
@@ -542,7 +484,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 30,
+						uint Id = 27,
 					},
 					Transform = 
 					{
@@ -560,7 +502,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 31,
+						uint Id = 28,
 					},
 					Transform = 
 					{
@@ -578,7 +520,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 32,
+						uint Id = 29,
 					},
 					Transform = 
 					{
@@ -596,7 +538,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 33,
+						uint Id = 30,
 					},
 					Transform = 
 					{
@@ -614,7 +556,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 34,
+						uint Id = 31,
 					},
 					Transform = 
 					{
@@ -632,7 +574,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 35,
+						uint Id = 32,
 					},
 					Transform = 
 					{
@@ -650,7 +592,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 36,
+						uint Id = 33,
 					},
 					Transform = 
 					{
@@ -668,7 +610,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 37,
+						uint Id = 34,
 					},
 					Transform = 
 					{
@@ -686,7 +628,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 38,
+						uint Id = 35,
 					},
 					Transform = 
 					{
@@ -704,11 +646,65 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 39,
+						uint Id = 36,
 					},
 					Transform = 
 					{
 						Vec3 Translation = [0, 15, 0],
+						Vec3 Scale = [1, 1, 1],
+						Quat Rotation = [0, 0, 0, 1],
+					},
+					Named = 
+					{
+						string Name = "Wall",
+					},
+				},
+				ArchetypeInstance = 
+				{
+					string Name = "5522c439f4af813c:BasicWall",
+					LinkId = 
+					{
+						uint Id = 37,
+					},
+					Transform = 
+					{
+						Vec3 Translation = [-1, 14, 0],
+						Vec3 Scale = [1, 1, 1],
+						Quat Rotation = [0, 0, 0, 1],
+					},
+					Named = 
+					{
+						string Name = "Wall",
+					},
+				},
+				ArchetypeInstance = 
+				{
+					string Name = "5522c439f4af813c:BasicWall",
+					LinkId = 
+					{
+						uint Id = 38,
+					},
+					Transform = 
+					{
+						Vec3 Translation = [5, 15, 0],
+						Vec3 Scale = [1, 1, 1],
+						Quat Rotation = [0, 0, 0, 1],
+					},
+					Named = 
+					{
+						string Name = "Wall",
+					},
+				},
+				ArchetypeInstance = 
+				{
+					string Name = "5522c439f4af813c:BasicWall",
+					LinkId = 
+					{
+						uint Id = 39,
+					},
+					Transform = 
+					{
+						Vec3 Translation = [21, 6, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -744,7 +740,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [5, 15, 0],
+						Vec3 Translation = [10, -1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -762,7 +758,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 6, 0],
+						Vec3 Translation = [19, -1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -780,7 +776,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 14, 0],
+						Vec3 Translation = [-1, 10, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -798,7 +794,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [10, -1, 0],
+						Vec3 Translation = [-1, 8, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -816,7 +812,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [19, -1, 0],
+						Vec3 Translation = [21, 2, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -834,7 +830,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 10, 0],
+						Vec3 Translation = [-1, 11, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -852,7 +848,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 8, 0],
+						Vec3 Translation = [-1, 9, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -870,7 +866,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 2, 0],
+						Vec3 Translation = [-1, 12, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -888,7 +884,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 11, 0],
+						Vec3 Translation = [10, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -906,7 +902,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 9, 0],
+						Vec3 Translation = [7, -1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -924,7 +920,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 12, 0],
+						Vec3 Translation = [-1, 4, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -942,7 +938,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [10, 15, 0],
+						Vec3 Translation = [19, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -960,7 +956,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [7, -1, 0],
+						Vec3 Translation = [15, -1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -978,7 +974,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 4, 0],
+						Vec3 Translation = [21, 13, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -996,7 +992,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [19, 15, 0],
+						Vec3 Translation = [-1, 5, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1014,7 +1010,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [15, -1, 0],
+						Vec3 Translation = [8, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1032,7 +1028,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 13, 0],
+						Vec3 Translation = [-1, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1050,7 +1046,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 5, 0],
+						Vec3 Translation = [4, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1068,7 +1064,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [8, 15, 0],
+						Vec3 Translation = [-1, 1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1086,7 +1082,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 15, 0],
+						Vec3 Translation = [21, 4, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1104,7 +1100,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [4, 15, 0],
+						Vec3 Translation = [21, 9, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1122,7 +1118,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 1, 0],
+						Vec3 Translation = [21, 5, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1140,7 +1136,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 4, 0],
+						Vec3 Translation = [13, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1158,7 +1154,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 9, 0],
+						Vec3 Translation = [12, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1176,7 +1172,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 5, 0],
+						Vec3 Translation = [21, 14, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1194,7 +1190,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [13, 15, 0],
+						Vec3 Translation = [21, 11, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1212,7 +1208,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [12, 15, 0],
+						Vec3 Translation = [-1, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1230,7 +1226,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 14, 0],
+						Vec3 Translation = [-1, 2, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1248,7 +1244,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 11, 0],
+						Vec3 Translation = [3, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1266,7 +1262,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 15, 0],
+						Vec3 Translation = [11, -1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1284,7 +1280,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 2, 0],
+						Vec3 Translation = [18, -1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1302,7 +1298,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [3, 15, 0],
+						Vec3 Translation = [17, -1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1320,7 +1316,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [11, -1, 0],
+						Vec3 Translation = [21, 8, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1338,7 +1334,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [18, -1, 0],
+						Vec3 Translation = [20, -1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1356,7 +1352,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [17, -1, 0],
+						Vec3 Translation = [21, 1, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1374,7 +1370,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 8, 0],
+						Vec3 Translation = [11, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1392,7 +1388,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [20, -1, 0],
+						Vec3 Translation = [20, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1410,7 +1406,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 1, 0],
+						Vec3 Translation = [-1, 3, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1428,7 +1424,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [11, 15, 0],
+						Vec3 Translation = [21, 3, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1446,7 +1442,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [20, 15, 0],
+						Vec3 Translation = [-1, 13, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1464,7 +1460,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 3, 0],
+						Vec3 Translation = [2, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1482,7 +1478,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21, 3, 0],
+						Vec3 Translation = [6, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1500,7 +1496,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-1, 13, 0],
+						Vec3 Translation = [15, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -1518,60 +1514,6 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [2, 15, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "Wall",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5522c439f4af813c:BasicWall",
-					LinkId = 
-					{
-						uint Id = 85,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [6, 15, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "Wall",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5522c439f4af813c:BasicWall",
-					LinkId = 
-					{
-						uint Id = 86,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [15, 15, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "Wall",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5522c439f4af813c:BasicWall",
-					LinkId = 
-					{
-						uint Id = 87,
-					},
-					Transform = 
-					{
 						Vec3 Translation = [17, 15, 0],
 						Vec3 Scale = [1, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
@@ -1586,7 +1528,7 @@ Cog =
 					string Name = "5522c439f4af813c:BasicWall",
 					LinkId = 
 					{
-						uint Id = 88,
+						uint Id = 85,
 					},
 					Transform = 
 					{
