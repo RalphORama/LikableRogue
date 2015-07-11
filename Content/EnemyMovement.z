@@ -41,7 +41,7 @@ class EnemyMovement : ZilchComponent
      function UpdateMoveInput()
     {
         var moveVec =  Real3(this.PlayerPosition.Transform.Translation.X, this.PlayerPosition.Transform.Translation.Y, 0);
-        Console.WriteLine(moveVec);
+        //Console.WriteLine(moveVec);
         //clamp variables so that keyboard + gamepad input doesn't mess with our intended values of -1 to 1
         var x = Math.Clamp(moveVec.X,-1,1);
         var y = Math.Clamp(moveVec.Y,-1,1);

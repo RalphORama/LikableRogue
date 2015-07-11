@@ -2,8 +2,8 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "SwordDamagBox",
-		uint64 ResourceId = 55d2c0910ed66a96,
+		string Name = "SlingShotProject",
+		uint64 ResourceId = 55d2e120dac3a62b,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,
