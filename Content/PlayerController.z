@@ -15,8 +15,9 @@ class PlayerController : ZilchComponent
     
     //Initialize empty objects Object Variables
     var LevelCamera : Cog = null;
-    var SlingShotProjectCog :Cog = null;
-
+    
+    [Property]
+    var SlingShotProjectArch : Archetype = null;
     
     
     // gamepad and mouse settings
@@ -28,16 +29,27 @@ class PlayerController : ZilchComponent
     var SwordDamageBox : Cog = null;
     var SwordAttcackZone : Real3 = Real3(0,0,0);
     var SwordRotation : Quaternion = Quaternion();
-    var SlingshotSpeed : Real =0;
+    //slingshot vars
+    var ProjMoveVec : Array[Real3] =  Array[Real3]();
+    var SlingShotFired : Array[Boolean] = Array[Boolean]();
+    var SlingShotProjectArchArr :Array[Archetype] = Array[Archetype]();
+    var SlingShotProjectCog : Array[Cog] = Array[Cog]();
     function Initialize(init : CogInitializer)
         {
-        this.SlingshotSpeed=0;
+        //this.SlingShotProjectArch = (
+        this.ProjMoveVec.Add(Real3(1,0,0));
+        this.SlingShotProjectArchArr.Add(this.SlingShotProjectArch);
+        var stuff = this.Space.CreateAtPosition(this.SlingShotProjectArchArr.Get(0), Real3(0,0,0));
+        this.SlingShotProjectCog.Add(stuff);
+        //this.ProjMoveVec.Add(Real3(0,0,0));
+        //this.SlingshotSpeed=0;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         //Initalizes sword damage box
         this.SwordDamageBox = this.Space.FindObjectByName("SwordDamagBox");
-        this.SlingShotProjectCog = this.Space.FindObjectByName("SlingShotProject");
-        // this changes camera size. larger == you can see more
+        //this.SlingShotProjectCogTemp = this.Space.FindObjectByName("SlingShotProject");
+
+        //this changes camera size. larger == you can see more
         //this.LevelCamera.Camera.Size = 50;
         
         //getting the right gamepad is what enables us to have different gamepads per instance of this script due to the playernumber var
@@ -47,6 +59,7 @@ class PlayerController : ZilchComponent
         Zero.Connect(this.LevelCamera, Events.MouseScroll, this.OnMouseScroll);
         this.LevelCamera.Camera.Size = this.CamSize;
         this.LevelCamera.Camera.FieldOfView = this.CamSize;
+        //this.Space.CreateAtPosition(this.SlingShotProjectArchArr(0), Real3(0,0,0))
         }
     function SwordSlash()
         {
@@ -64,6 +77,33 @@ class PlayerController : ZilchComponent
             {
             this.SwordDamageBox.Sprite.Visible=false;
             this.SwordDamageBox.BoxCollider.Ghost=true;
+            }
+        }
+    function ProjectileLaunch()
+        {
+        if (Zero.Mouse.IsButtonDown(MouseButtons.Right))
+            {
+            this.SlingShotProjectCog.Get(0).BoxCollider.Ghost=false;
+            this.ProjMoveVec.Set(0,Real3(this.LevelSettings.CameraViewport.
+                                   ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
+                                   this.LevelSettings.CameraViewport.
+                                   ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0));//Get Mouse Y relative to player
+            this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
+            this.SlingShotProjectCog.Get(0).BoxCollider.Ghost=false;
+            }
+        if(this.Gamepad.LeftTrigger.X >= 1)// Left Bumper
+            {
+            //this.ProjMoveVec=Real3(0,0,0);
+            //this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
+            //this.SlingShotProjectCog.Sprite.Visible=true;
+            //this.ProjMoveVec=Real3(this.Gamepad.RightStick.X,this.Gamepad.RightStick.Y,0);
+            this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
+            this.SlingShotProjectCog.Get(0).BoxCollider.Ghost=false;
+            }
+        else //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
+            {
+            //this.SlingShotProjectCog.SpriteParticleSystem.Visible=false;
+            //this.SlingShotProjectCog.BoxCollider.Ghost=true;
             }
         }
     function OnMouseScroll(event : MouseEvent)//camera zoom/fov based on scroll
@@ -97,17 +137,19 @@ class PlayerController : ZilchComponent
         this.UpdateOtherInput();
         this.UpdateFacingInput();
         this.SwordSlash();
-        this.SlingshotSpeed+=0.12;
-        this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);
+        this.ProjectileLaunch();
+        this.MoveProjectile(this.ProjMoveVec.Get(0));
+        //this.SlingshotSpeed+=0.12;
+        //this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);
         //this.UpdateMouseMovement();
         }
     function UpdateFacingInput()
         {
         //Controler
         if (this.Gamepad.RightStick!=Real2(0,0))
-        {
-        this.Ang = Math.Angle2D(Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y , 0));
-        }
+            {
+            this.Ang = Math.Angle2D(Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y , 0));
+            }
         //mouse
             //North
             if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
@@ -266,5 +308,13 @@ class PlayerController : ZilchComponent
         this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
         this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
         this.Owner.RigidBody.Velocity *= this.MoveSpeed;
+
     }
+    function MoveProjectile(moveR3: Real3)
+        {
+                //slingshot move
+        this.SlingShotProjectCog.Get(0).RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
+        this.SlingShotProjectCog.Get(0).RigidBody.Velocity = Math.Normalize(this.SlingShotProjectCog.Get(0).RigidBody.Velocity);
+        this.SlingShotProjectCog.Get(0).RigidBody.Velocity *= this.MoveSpeed;
+        }
 }

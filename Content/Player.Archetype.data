@@ -64,6 +64,7 @@ Cog =
 		int PlayerNumber = 1,
 		float MoveSpeed = 10,
 		Vec3 Location = [0, 0, 0],
+		string SlingShotProjectArch = "55d2e120dac3a62b:SlingShotProject",
 	},
 	Health = 
 	{
@@ -98,24 +99,6 @@ Cog =
 			Named = 
 			{
 				string Name = "SwordDamagBox",
-			},
-		},
-		ArchetypeInstance = 
-		{
-			string Name = "55d2e120dac3a62b:SlingShotProject",
-			LinkId = 
-			{
-				uint Id = 3,
-			},
-			Transform = 
-			{
-				Vec3 Translation = [0, 0, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			Named = 
-			{
-				string Name = "SlingShotProject",
 			},
 		},
 	},
