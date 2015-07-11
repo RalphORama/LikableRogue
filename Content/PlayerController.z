@@ -42,6 +42,24 @@ class PlayerController : ZilchComponent
         this.LevelCamera.Camera.Size = this.CamSize;
         this.LevelCamera.Camera.FieldOfView = this.CamSize;
         }
+    function SwordSlash()
+        {
+        if (Zero.Mouse.IsButtonDown(MouseButtons.Left))
+            {
+            this.UpdateMouseMovement();
+            }
+        if(this.Gamepad.IsButtonHeld(8)||Zero.Mouse.IsButtonDown(MouseButtons.Left))// Left Bumper
+            {
+            this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
+            this.SwordDamageBox.Sprite.Visible=true;
+            this.SwordDamageBox.BoxCollider.SendsEvents=true;
+            }
+        else //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
+            {
+            this.SwordDamageBox.Sprite.Visible=false;
+            this.SwordDamageBox.BoxCollider.SendsEvents=false;
+            }
+        }
     function OnMouseScroll(event : MouseEvent)//camera zoom/fov based on scroll
         {
         if(event.Scroll.Y<0)
@@ -72,6 +90,7 @@ class PlayerController : ZilchComponent
         this.UpdateMoveInput();
         this.UpdateOtherInput();
         this.UpdateFacingInput();
+        this.SwordSlash();
         //this.UpdateMouseMovement();
         }
     function UpdateFacingInput()
@@ -87,7 +106,7 @@ class PlayerController : ZilchComponent
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-                this.SwordDamageBox.Transform.Translation=Real3(0,1,-1);//This is an example of moving the sword when the player turns
+                this.SwordAttcackZone = Real3(0,1,0);//This is an example of moving the sword when the player turns
                 //this.SwordDamageBox.Orientation.Rotation;
                 }
             //Nort East
@@ -95,8 +114,7 @@ class PlayerController : ZilchComponent
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-                this.SwordAttcackZone = Real3(1,1,0);
-                
+                this.SwordAttcackZone = Real3(1,1,0);                
                 }
             //East
             if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
@@ -144,7 +162,7 @@ class PlayerController : ZilchComponent
             
         }
     function UpdateMoveInput()
-    {
+        {
         this.Owner.RigidBody.Velocity = Real3(0,0,0);
         //start with the lstick input
         var moveVec = Real3(this.Gamepad.LeftStick.X,this.Gamepad.LeftStick.Y,0);
@@ -187,9 +205,9 @@ class PlayerController : ZilchComponent
         //###################################################################################################
         //KEYBOARD INPUTS
         if(Zero.Keyboard.KeyIsPressed(Keys.Space))
-        {
+            {
             Console.WriteLine("Space: KeyIsPressed Example");
-        }
+            }
         
         //###################################################################################################
         //GAMEPAD INPUTS
@@ -217,18 +235,6 @@ class PlayerController : ZilchComponent
         { Console.WriteLine("R Stick Press"); }
         
         // Triggers and Bumpers
-        if(this.Gamepad.IsButtonHeld(8)) // Left Bumper
-            { 
-            Console.WriteLine("L Bumper");
-            this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
-            this.SwordDamageBox.Sprite.Visible=true;
-            this.SwordDamageBox.BoxCollider.SendsEvents=true;
-            }
-        if(this.Gamepad.IsButtonReleased(8))
-            {
-            this.SwordDamageBox.Sprite.Visible=false;
-            this.SwordDamageBox.BoxCollider.SendsEvents=false;
-            }
         if(this.Gamepad.IsButtonPressed(9)) // Right Bumper
         { Console.WriteLine("R Bumper"); }
         if(this.Gamepad.RightTrigger.X >= 1) // Right trigger

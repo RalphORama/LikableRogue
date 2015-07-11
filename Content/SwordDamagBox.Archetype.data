@@ -8,6 +8,10 @@ Cog =
 	{
 		string Name = "SwordDamagBox",
 	},
+	Archetyped = 
+	{
+		string Name = "55d2c0910ed66a96:SwordDamagBox",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [0, -1, 0],
@@ -16,7 +20,7 @@ Cog =
 	},
 	Sprite = 
 	{
-		bool Visible = true,
+		bool Visible = false,
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,

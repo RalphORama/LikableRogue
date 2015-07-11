@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "SwordDamagController",
+		uint64 ResourceId = 55d2d28f8a28bd37,
+	},
+},
