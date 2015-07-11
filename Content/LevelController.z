@@ -1,6 +1,5 @@
 // TODO: 
 //       - random generation for rooms around secondary rooms (tertriary room generation)
-//       - create door archetype, write collision handling.
 //       - create interior objects, write generation code ]V
 //       - work on background randomization ]-> create arrays, implement 
 //       - work on wall randomization       ]
@@ -11,13 +10,22 @@ class LevelController : ZilchComponent
     [Property]
     var RoomHeight : Integer = 15;
     [Property]
-    var RoomWidth : Integer = 21;
+    var RoomWidth : Integer  = 21;
     [Property]
-    var MaxRooms : Integer = 5;
+    var MaxRooms : Integer   = 5;
+    
+    // random amounts of rooms to generate
+    [Property]
+    var MaxRoomsWithFourExits : Integer  = 2;
+    [Property]
+    var MaxRoomsWithThreeExits : Integer = 3;
+    [Property]
+    var MaxRoomsWithTwoExits : Integer   = 5;
+    // rooms with 1 exit are used to cap off all un-closed exit
     
     // archetype initialization
     [Property]
-    var OuterWallTile : Archetype = null;
+    var OuterWallTile : Archetype   = null;
     [Property]
     var PlayerCharacter : Archetype = null;
     [Property]
@@ -38,8 +46,13 @@ class LevelController : ZilchComponent
     */
     
     // create an array to put all the room archetypes in
-    var RoomArchetypeArray : Array[Archetype] = Array[Archetype]();
+    var RoomsWithFourExits : Array[Archetype] = Array[Archetype]();
     
+    // create an archetype for our origin room
+    var OriginRoom : Archetype = null;
+    
+    // this is the last room we generated 
+    var LastRoomGenerated : Cog = null;
     
     // Create an empty object to initialize the camera into
     var LevelCamera : Cog = null;
@@ -54,33 +67,52 @@ class LevelController : ZilchComponent
         
         // put the room archetypes into the array
         // I'll change this into a for loop later
-        this.RoomArchetypeArray.Add(this.RoomArchetype00);
+        this.RoomsWithFourExits.Add(this.RoomArchetype00);
         
         // create the tiles in the board
         this.BoardSetup();
         // spawn the player 
         this.SpawnPlayer(10, 7);
-        
-        // Don't need physics update just yet
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
-
-    /*
-    function OnLogicUpdate(event : UpdateEvent)
-    {
-    }
-    */
     
     function BoardSetup () {
         
         // generate the initial room
-        this.GenerateRoom(0, 0);
+        this.LastRoomGenerated = this.GenerateRoom( 0, 0, this.RoomsWithFourExits[0] );
+        
+        // move camera to center on current level
+        var cameraXAvg : Integer = ( (-1 + (this.RoomWidth + 1))/2 );
+        var cameraYAvg : Integer = ( (-1 + (this.RoomHeight +1))/2 );
+        this.LevelCamera.Transform.Translation = Real3(cameraXAvg, cameraYAvg, 40);
+    }
+    
+    function GenerageManyRooms ( ieterationsToGenerate : Integer ) : Cog {
+        // after initial room is generated, generate rooms fractally around it
+        // could we do this logarithmically in order to rapidly decrease amount
+        // of rooms generated?
+        
+        // I know I can have this code here
+        
+        // create an empty variable to store the room we generate in 
+        var generatedRoom : Cog = this.LastRoomGenerated;
+        
+        // we can create some random logic here, using the following variables:
+        //
+        // - this.LastRoomGenerated.RoomController.( NorthRoomGenerated | SouthRoomGenerated | EastRoomGenerated | WestRoomGenerated )
+        //
+        // this.MaxRoomsWithFourExits
+        // this.MaxRoomsWithThreeExits
+        // this.MaxRoomsWIthTwoExits
+        //
+        
+        
+        // select the last room we generated 
         
         // generate rooms with for loop
         // this loop starts at 2, since we already generated the first room
         var roomsToGenerate : Integer = this.RandomGenerator.Range(2, this.MaxRooms) as Integer;
-
-        for (var x = 2; x <= roomsToGenerate; ++x) {
+        /*
+        for ( var x = 2; x <= roomsToGenerate; ++x ) {
             var northGenerated : Boolean = false; // cardinal == 1
             var southGenerated : Boolean = false; // cardinal == 2
             var eastGenerated  : Boolean = false; // cardinal == 3
@@ -108,22 +140,24 @@ class LevelController : ZilchComponent
                 Console.WriteLine( "ERROR! \nSomething went wrong generating rooms.\n" );
             }
         }
+        */
         
-        // move camera to center on current level
-        var cameraXAvg : Integer = ( (-1 + (this.RoomWidth + 1))/2 );
-        var cameraYAvg : Integer = ( (-1 + (this.RoomHeight +1))/2 );
-        this.LevelCamera.Transform.Translation = Real3(cameraXAvg, cameraYAvg, 40);
+        // make this function return the room it generated so we can assign it a value
+        // and read its properties, and whatever other properties we need to
+        return this.LastRoomGenerated; // change to generatedRoom once room generation is, well, working
     }
     
     function GenerateRoom ( originX : Integer,    // x coordinate of first inhabitable square
-                            originY : Integer  )  // Y coordinate of the first inhabitable square
+                            originY : Integer,    // Y coordinate of the first inhabitable square
+                            typeOfRoomToCreate : Archetype  // should we create a room with 4 exits, 3, etc
+                          ) : Cog                 // the type of thing we return  
     {
-        // get a random index from the array of room archetypes
-        var randomRoomID : Integer = this.RandomGenerator.Range(0, this.RoomArchetypeArray.Count) as Integer;
         // create a real3 to be the origin of the room
         var newRoomPosition = Real3(originX, originY, 0);
         // instantiate a room 
-        var newlyCreatedRoom = this.Space.CreateAtPosition(this.RoomArchetypeArray.Get(randomRoomID), newRoomPosition);
+        var newlyCreatedRoom = this.Space.CreateAtPosition(typeOfRoomToCreate, newRoomPosition);
+        
+        return newlyCreatedRoom;
     }
     
     function SpawnPlayer (spawnX : Integer, spawnY : Integer) {
