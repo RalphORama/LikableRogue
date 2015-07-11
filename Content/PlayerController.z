@@ -13,8 +13,11 @@ class PlayerController : ZilchComponent
     [Property]
     var Location : Real3 = Real3(0, 0, 0);
     
-    // Create an empty object to initialize the camera into
+    //Initialize empty objects Object Variables
     var LevelCamera : Cog = null;
+    var SlingShotProjectCog :Cog = null;
+
+    
     
     // gamepad and mouse settings
     var StickThreshold : Real = 0.3;
@@ -25,12 +28,15 @@ class PlayerController : ZilchComponent
     var SwordDamageBox : Cog = null;
     var SwordAttcackZone : Real3 = Real3(0,0,0);
     var SwordRotation : Quaternion = Quaternion();
+    var SlingshotSpeed : Real =0;
     function Initialize(init : CogInitializer)
         {
+        this.SlingshotSpeed=0;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         //Initalizes sword damage box
         this.SwordDamageBox = this.Space.FindObjectByName("SwordDamagBox");
+        this.SlingShotProjectCog = this.Space.FindObjectByName("SlingShotProject");
         // this changes camera size. larger == you can see more
         //this.LevelCamera.Camera.Size = 50;
         
@@ -91,6 +97,8 @@ class PlayerController : ZilchComponent
         this.UpdateOtherInput();
         this.UpdateFacingInput();
         this.SwordSlash();
+        this.SlingshotSpeed+=0.12;
+        this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);
         //this.UpdateMouseMovement();
         }
     function UpdateFacingInput()
