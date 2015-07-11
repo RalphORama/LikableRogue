@@ -25,11 +25,9 @@ class CameraPositionController : ZilchComponent
             var toMoveCameraZ : Integer = this.LevelCamera.Transform.Translation.Z as Integer;
             
             // plop the new X, Y, and Z into a Real3, set the camera's position
-            // (I do it this way because setting it through transform.X didn't work for some reason)
             var newCameraPos : Real3 = Real3( toMoveCameraX, toMoveCameraY, toMoveCameraZ );
-            //this.LevelCamera.Transform.Translation = newCameraPos;
             
-            // action test
+            // animate the camera's movement path so it's not jumpy
             Action.Property( cameraMoveSeq, @this.LevelCamera.Transform.Translation, newCameraPos, 0.3, Ease.Linear );
         }
     }

@@ -4,11 +4,25 @@ class RoomController : ZilchComponent
     [Property]
     var NorthExit : Boolean = false;
     [Property]
-    var EastExit : Boolean  = false;
+    var EastExit  : Boolean = false;
     [Property]
     var SouthExit : Boolean = false;
     [Property]
-    var WestExit : Boolean  = false;
+    var WestExit  : Boolean = false;
+    
+    // Number of exits
+    [Property]
+    var NumberOfExits : Integer = 0;
+    
+    // have rooms been created around our exits?
+    [Property]
+    var NorthRoomGenerated : Boolean = false;
+    [Property]
+    var EastRoomGenerated  : Boolean = false;
+    [Property]
+    var SouthRoomGenerated : Boolean = false;
+    [Property]
+    var WestRoomGenerated  : Boolean = false;
     
     [Property]
     var EnemiesDead : Boolean = false;
