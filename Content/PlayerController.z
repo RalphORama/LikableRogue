@@ -31,16 +31,12 @@ class PlayerController : ZilchComponent
     var SwordRotation : Quaternion = Quaternion();
     //slingshot vars
     var ProjMoveVec : Array[Real3] =  Array[Real3]();
-    var SlingShotFired : Array[Boolean] = Array[Boolean]();
+    var SlingShotFiring : Boolean = false;
     var SlingShotProjectArchArr :Array[Archetype] = Array[Archetype]();
     var SlingShotProjectCog : Array[Cog] = Array[Cog]();
+    var SlinShoAmmCou : Integer =  -1;
     function Initialize(init : CogInitializer)
         {
-        //this.SlingShotProjectArch = (
-        this.ProjMoveVec.Add(Real3(1,0,0));
-        this.SlingShotProjectArchArr.Add(this.SlingShotProjectArch);
-        var stuff = this.Space.CreateAtPosition(this.SlingShotProjectArchArr.Get(0), Real3(0,0,0));
-        this.SlingShotProjectCog.Add(stuff);
         //this.ProjMoveVec.Add(Real3(0,0,0));
         //this.SlingshotSpeed=0;
         // initialize the camera object
@@ -81,27 +77,43 @@ class PlayerController : ZilchComponent
         }
     function ProjectileLaunch()
         {
-        if (Zero.Mouse.IsButtonDown(MouseButtons.Right))
+
+        if((Zero.Mouse.IsButtonDown(MouseButtons.Right)||this.Gamepad.LeftTrigger.X >= 1)&& this.SlingShotFiring==false)
             {
-            this.SlingShotProjectCog.Get(0).BoxCollider.Ghost=false;
-            this.ProjMoveVec.Set(0,Real3(this.LevelSettings.CameraViewport.
-                                   ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
-                                   this.LevelSettings.CameraViewport.
-                                   ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0));//Get Mouse Y relative to player
-            this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
-            this.SlingShotProjectCog.Get(0).BoxCollider.Ghost=false;
+            this.SlinShoAmmCou+=1;
+            //Creating a SlingShotProjectile
+            Console.WriteLine(this.Owner.Transform.Translation.X);
+            //this.ProjMoveVec.Add(Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
+            this.SlingShotProjectArchArr.Add(this.SlingShotProjectArch);
+            Console.WriteLine(this.SlinShoAmmCou);
+            var stuff = this.Space.CreateAtPosition(this.SlingShotProjectArchArr.Get(this.SlinShoAmmCou), this.Owner.Transform.Translation);
+            this.SlingShotProjectCog.Add(stuff);
+            this.SlingShotFiring=true;
+            if (Zero.Mouse.IsButtonDown(MouseButtons.Right))
+                {
+                this.ProjMoveVec.Add(Real3(this.LevelSettings.CameraViewport.
+                                       ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
+                                       this.LevelSettings.CameraViewport.
+                                       ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0));//Get Mouse Y relative to player
+                //this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
+                this.SlingShotProjectCog.Get(this.SlinShoAmmCou).BoxCollider.Ghost=false;
+                }
+            if(this.Gamepad.LeftTrigger.X >= 1)// Left Bumper
+                {
+                //this.ProjMoveVec=Real3(0,0,0);
+                //this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
+                //this.SlingShotProjectCog.Sprite.Visible=true;
+                //this.ProjMoveVec=Real3(this.Gamepad.RightStick.X,this.Gamepad.RightStick.Y,0);
+                //this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
+                this.SlingShotProjectCog.Get(this.SlinShoAmmCou).BoxCollider.Ghost=false;
+                }
+            this.MoveProjectile(this.ProjMoveVec.Get(this.SlinShoAmmCou));
             }
-        if(this.Gamepad.LeftTrigger.X >= 1)// Left Bumper
+
+        if (Zero.Mouse.IsButtonDown(MouseButtons.Right)==false) //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
             {
-            //this.ProjMoveVec=Real3(0,0,0);
-            //this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
-            //this.SlingShotProjectCog.Sprite.Visible=true;
-            //this.ProjMoveVec=Real3(this.Gamepad.RightStick.X,this.Gamepad.RightStick.Y,0);
-            this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
-            this.SlingShotProjectCog.Get(0).BoxCollider.Ghost=false;
-            }
-        else //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
-            {
+                this.SlingShotFiring=false;
+            //    this.SlingShotFiring=false;
             //this.SlingShotProjectCog.SpriteParticleSystem.Visible=false;
             //this.SlingShotProjectCog.BoxCollider.Ghost=true;
             }
@@ -138,7 +150,7 @@ class PlayerController : ZilchComponent
         this.UpdateFacingInput();
         this.SwordSlash();
         this.ProjectileLaunch();
-        this.MoveProjectile(this.ProjMoveVec.Get(0));
+       
         //this.SlingshotSpeed+=0.12;
         //this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);
         //this.UpdateMouseMovement();
@@ -313,8 +325,8 @@ class PlayerController : ZilchComponent
     function MoveProjectile(moveR3: Real3)
         {
                 //slingshot move
-        this.SlingShotProjectCog.Get(0).RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
-        this.SlingShotProjectCog.Get(0).RigidBody.Velocity = Math.Normalize(this.SlingShotProjectCog.Get(0).RigidBody.Velocity);
-        this.SlingShotProjectCog.Get(0).RigidBody.Velocity *= this.MoveSpeed;
+        this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
+        this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity = Math.Normalize(this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity);
+        this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity *= this.MoveSpeed;
         }
 }

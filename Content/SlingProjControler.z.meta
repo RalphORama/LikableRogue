@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "SlingProjControler",
+		uint64 ResourceId = 55d3243c62085f41,
+	},
+},
