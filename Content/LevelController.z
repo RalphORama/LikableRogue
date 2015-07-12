@@ -1,70 +1,95 @@
-// TODO: 
-//       - random generation for rooms around secondary rooms (tertriary room generation)
-//       - create interior objects, write generation code ]V
-//       - work on background randomization ]-> create arrays, implement 
-//       - work on wall randomization       ]
+/* TODO: rewrite random code generator to be based off of 
+ *       array (top left to bottom right) rather than current 
+ *       model (middle out)
+*/
+
+/*
+    How will we determine stuff to do based off of the array?
+    - create an array that is based off of the MaxWorldWidth 
+      and Height properties 
+    - start by putting a random room in a random space in this 
+      array. this will be our "origin" room 
+    - we'll then put a few rooms around this room, but 
+      reference the location in the array, rather than the 
+      room itself. 
+    - we'll need a few checks for this 
+    - 1) are we on the edge of the array? if so, which edge?
+    - 2) if not, what rooms are we next to?
+    - 3) depending on what rooms we're next to, what doors 
+         we need to have?
+*/
 
 class LevelController : ZilchComponent
 {
-    // Initialize properties
+    // we'll need to modify the player at a later state
+    [Property]
+    var PlayerCharacter : Archetype = null;
+    
+    // room properties are used to position camera, player.
     [Property]
     var RoomHeight : Integer = 15;
     [Property]
     var RoomWidth : Integer  = 21;
-    [Property]
-    var MaxRooms : Integer   = 5;
     
-    // archetype initialization
+    // instead of generating based off of max number of rooms,
+    // we'll generate based off of the max size of an array.
     [Property]
-    var OuterWallTile : Archetype   = null;
-    [Property]
-    var PlayerCharacter : Archetype = null;
-    [Property]
-    var BackgroundImage : Archetype = null;
+    var MaxWorldHeight : Integer = 5;
+    var MaxWorldWidth  : Integer = 5;
     
-    // random amounts of rooms to generate
-    [Property]
-    var MaxRoomsWithFourExits : Integer  = 2;
-    [Property]
-    var MaxRoomsWithThreeExits : Integer = 3;
-    [Property]
-    var MaxRoomsWithTwoExits : Integer   = 5;
-    // rooms with 1 exit are used to cap off all un-closed exit
-    
-    // here are some variables to modify instead of our properties
-    var NumRoomsWithFourExitsToGenerate : Integer  = 0;
-    var NumRoomsWithThreeExitsToGenerate : Integer = 0;
-    var NumRoomsWithTwoExitsToGenerate : Integer   = 0;
-    
-    // Create several archetypes for rooms
+    // Create several empty archetypes for rooms
     /// ROOMS WITH  FOUR EXITS ///
     [Property]
-    var RoomArchetype00 : Archetype = null;
-    /*
+    var FoRoomArchetype01 : Archetype = null;
+    
     /// ROOMS WITH THREE EXITS ///
     [Property]
-    var RoomArchetype01 : Archetype = null;
+    var ThRoomArchetype01 : Archetype = null;
+    [Property]
+    var ThRoomArchetype02 : Archetype = null;
+    [Property]
+    var ThRoomArchetype03 : Archetype = null;
+    [Property]
+    var ThRoomArchetype04 : Archetype = null;
+    
     ///  ROOMS WITH TWO EXITS  ///
     [Property]
-    var RoomArchetype02 : Archetype = null;
+    var TwRoomArchetype01 : Archetype = null;
+    [Property]
+    var TwRoomArchetype02 : Archetype = null;
+    [Property]
+    var TwRoomArchetype03 : Archetype = null;
+    [Property]
+    var TwRoomArchetype04 : Archetype = null;
+    [Property]
+    var TwRoomArchetype05 : Archetype = null;
+    [Property]
+    var TwRoomArchetype06 : Archetype = null;
+    
     ///  ROOMS WITH  ONE EXIT  ///
     [Property]
-    var RoomArchetype03 : Archetype = null;
-    ///      SPECIAL ROOMS     ///
+    var OnRoomArchetype01 : Archetype = null;
     [Property]
-    var RoomArchetype04 : Archetype = null;
-    */
+    var OnRoomArchetype02 : Archetype = null;
+    [Property]
+    var OnRoomArchetype03 : Archetype = null;
+    [Property]
+    var OnRoomArchetype04 : Archetype = null;
+    
+    ///      SPECIAL ROOMS     ///
+    //[Property]
+    //var RoomArchetype04 : Archetype = null;
     
     /// ARRAY FOR ROOMS WITH FOUR EXITS ///
-    var RoomsWithFourExits : Array[Archetype]   = Array[Archetype]();
+    var RoomsWithFourExits  : Array[Archetype] = Array[Archetype]();
     /// ARRAY FOR ROOMS WITH THREE EXITS ///
-    var RoomsWithThreeExits : Array[Archetype]  = Array[Archetype]();
+    var RoomsWithThreeExits : Array[Archetype] = Array[Archetype]();
     /// ARRAY FOR ROOMS WITH TWO EXITS ///
-    var RoomsWithTwoExits : Array[Archetype]    = Array[Archetype]();
+    var RoomsWithTwoExits   : Array[Archetype] = Array[Archetype]();
     /// ARRAY FOR ROOMS WITH ONE EXIT ///
-    var RoomsWithOneExit : Array[Archetype]     = Array[Archetype]();
+    var RoomsWithOneExit    : Array[Archetype] = Array[Archetype]();
     /// ARRAY FOR SPECIAL ROOMS ///
-    var SpecialRooms : Array[Archetype]         = Array[Archetype]();
+    //var SpecialRooms : Array[Archetype]         = Array[Archetype]();
     
     // create an archetype for our origin room
     var OriginRoom : Cog = null;
@@ -78,19 +103,31 @@ class LevelController : ZilchComponent
     // Create a random number generator for generating random numbers
     var RandomGenerator : Random = Random();
     
+    
+    
     function Initialize(init : CogInitializer)
     {
-        // here are some variables we decrement instead of properties
-        this.NumRoomsWithFourExitsToGenerate    = this.MaxRoomsWithFourExits;
-        this.NumRoomsWithThreeExitsToGenerate   = this.MaxRoomsWithFourExits;
-        this.NumRoomsWithTwoExitsToGenerate     = this.MaxRoomsWithFourExits;
-    
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         
-        // put the room archetypes into the array
-        // I'll change this into a for loop later
-        this.RoomsWithFourExits.Add(this.RoomArchetype00);
+        /// add room archetypes to their repsective arrays
+        /// I'll change this into a for loop later
+        // Rooms with four exits
+        this.RoomsWithFourExits.Add(this.FoRoomArchetype01);
+        
+        // rooms with three exits
+        this.RoomsWithThreeExits.Add(this.ThRoomArchetype01);
+        this.RoomsWithThreeExits.Add(this.ThRoomArchetype02);
+        this.RoomsWithThreeExits.Add(this.ThRoomArchetype03);
+        this.RoomsWithThreeExits.Add(this.ThRoomArchetype04);
+        
+        // rooms with two exits
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype01);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype02);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype03);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype04);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype05);
+        this.RoomsWithTwoExits.Add(this.TwRoomArchetype06);
         
         // create the tiles in the board
         this.BoardSetup();
@@ -111,129 +148,6 @@ class LevelController : ZilchComponent
         var cameraXAvg : Integer = ( ( -1 + (this.RoomWidth + 1) ) / 2 );
         var cameraYAvg : Integer = ( ( -1 + (this.RoomHeight +1) ) / 2 );
         this.LevelCamera.Transform.Translation = Real3(cameraXAvg, cameraYAvg, 40);
-    }
-    
-    function GenerateManyRooms () : Cog {
-        // after initial room is generated, generate rooms fractally around it
-        // could we do this logarithmically in order to rapidly decrease amount
-        // of rooms generated?
-        
-        // I know I can have this code here
-        
-        // we can create some random logic here, using the following variables:
-        //
-        // this.LastRoomGenerated.RoomController.( NorthRoomGenerated | SouthRoomGenerated | EastRoomGenerated | WestRoomGenerated )
-        //
-        // this.MaxRoomsWithFourExits
-        // this.MaxRoomsWithThreeExits
-        // this.MaxRoomsWIthTwoExits
-        //
-        // this.RoomsWithFourExits(n)
-        // this.RoomsWithThreeExits(n)
-        // this.RoomsWithTwoExits(n)
-        // this.RoomsWithOneExit(n)
-        // this.SpecialRooms(n);
-        //
-        // this.NumRoomsWithFourExitsToGenerate
-        // this.NumRoomsWithThreeExitsToGenerate
-        // this.NumRoomsWithThreeExitsToGenerate
-        
-        /// Generate some placeholder variables that we'll fill out later
-        // Whether we should generate rooms in given directions
-        var shouldGenerateNorth = false;
-        var shouldGenerateEast  = false;
-        var shouldGenerateSouth = false;
-        var shouldGenerateWest  = false;
-        // how many exits the room we generate should have
-        var shouldGenerateNumExits : Integer = 0;
-        // 
-        
-        // select the last room we generated 
-        var generatedRoom : Cog = this.LastRoomGenerated;
-        
-        // fill out some of our earlier variables based on the 
-        // properties of the last room generated
-        if ( this.LastRoomGenerated.RoomController.NorthExit == true
-             && this.LastRoomGenerated.RoomController.NorthRoomGenerated == false ) 
-        {
-            shouldGenerateNorth = true;
-        }
-        if ( this.LastRoomGenerated.RoomController.EastExit == true
-             && this.LastRoomGenerated.RoomController.EastRoomGenerated == false ) 
-        {
-            shouldGenerateEast = true;
-        }
-        if ( this.LastRoomGenerated.RoomController.SouthExit == true
-             && this.LastRoomGenerated.RoomController.SouthRoomGenerated == false ) 
-        {
-            shouldGenerateSouth = true;
-        }
-        if ( this.LastRoomGenerated.RoomController.WestExit == true
-             && this.LastRoomGenerated.RoomController.WestRoomGenerated == false ) 
-        {
-            shouldGenerateWest = true;
-        }
-        
-        // now that we know where we _can_ generate rooms,
-        // we should determine what type of room _to_ generate.
-        // if ( this.NumRoomsWithFourExitsToGenerate )
-        // generate a random number between two and four to determine what room we place
-        var numExitsToUse : Integer = 1;
-        if ( this.NumRoomsWithFourExitsToGenerate >= 1 ) {
-            numExitsToUse = Math.Round( this.RandomGenerator.Range(2, 4), 0 ) as Integer;
-        } 
-        else if ( this.NumRoomsWithThreeExitsToGenerate >= 1 ) {
-            numExitsToUse = Math.Round( this.RandomGenerator.Range(2, 3), 0 ) as Integer;
-        }
-        else if ( this.NumRoomsWithTwoExitsToGenerate >= 1 ) {
-            numExitsToUse = 2;
-        }
-        else { numExitsToUse = 1; }
-        /*
-        if ( this.NumRoomsWithTwoExitsToGenerate >= 1 )     { maxExitsToUse == 2; }
-        if ( this.NumRoomsWithThreeExitsToGenerate >= 1 )   { maxExitsToUse == 3; }
-        if ( this.NumRoomsWithFourExitsToGenerate >= 1 )    { maxExitsToUse == 4; }
-        */
-        
-        
-        
-        // generate rooms with for loop
-        // this loop starts at 2, since we already generated the first room
-        var roomsToGenerate : Integer = this.RandomGenerator.Range(2, this.MaxRooms) as Integer;
-        /*
-        for ( var x = 2; x <= roomsToGenerate; ++x ) {
-            var northGenerated : Boolean = false; // cardinal == 1
-            var southGenerated : Boolean = false; // cardinal == 2
-            var eastGenerated  : Boolean = false; // cardinal == 3
-            var westGenerated  : Boolean = false; // cardinal == 4
-            var cardinal : Integer = this.RandomGenerator.Range(1, 5) as Integer;
-            // Console.WriteLine(cardinal);
-            
-            if (cardinal == 1 && northGenerated != true) {
-                northGenerated = false;
-                this.GenerateRoom(0, ( this.RoomHeight + 1 ));
-            }
-            else if (cardinal == 2 && southGenerated != true) {
-                southGenerated = false;
-                this.GenerateRoom(0, ( 0 - (this.RoomHeight + 1) ));
-            }
-            else if (cardinal == 3 && eastGenerated != true) {
-                eastGenerated = false;
-                this.GenerateRoom(( this.RoomWidth + 1 ), 0);
-            }
-            else if (cardinal == 4 && westGenerated != true) {
-                westGenerated = false;
-                this.GenerateRoom(( 0 - (this.RoomWidth + 1)) , 0);
-            }
-            else {
-                Console.WriteLine( "ERROR! \nSomething went wrong generating rooms.\n" );
-            }
-        }
-        */
-        
-        // make this function return the room it generated so we can assign it a value
-        // and read its properties, and whatever other properties we need to
-        return this.LastRoomGenerated; // change to generatedRoom once room generation is, well, working
     }
     
     function GenerateRoom ( originX : Integer,    // x coordinate of first inhabitable square
