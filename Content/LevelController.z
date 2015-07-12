@@ -114,7 +114,6 @@ class LevelController : ZilchComponent
     /// ARRAY FOR SPECIAL ROOMS ///
     var SpecialRooms : Array[Archetype]         = Array[Archetype]();
     
-    
     // create an archetype for our origin room
     var OriginRoom : Cog = null;
     

@@ -7,7 +7,7 @@ class PlayerController : ZilchComponent
     [Property]
     var MoveSpeed : Real = 1;
     
-    [Property]
+    //[Property]
     //var Location : Real3 = Real3(0, 0, 0);
     
     //Initialize empty objects Object Variables
