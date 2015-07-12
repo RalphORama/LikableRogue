@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-13.0838, -1.18327, 51],
+			Vec3 Translation = [-10.7466, -0.1816, 51],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-13.0838, -1.18327, 1],
+			Vec3 LookTarget = [-10.7466, -0.1816, 1],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -171,7 +171,7 @@ Level =
 		},
 		Camera = 
 		{
-			ProjectionMode ProjectionMode = Orthographic,
+			ProjectionMode ProjectionMode = Perspective,
 			Facing Facing = NegativeZ,
 			CameraTransparentSort TransparentSort = InheritFromSpace,
 			float FieldOfView = 23,

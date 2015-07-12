@@ -1,8 +1,5 @@
 class PlayerController : ZilchComponent
-{
-    [Property]
-    var SpriteToChange : SpriteSource = null;
-    
+    {
     [Property]
     //MUST BE 1 - 4
     var PlayerNumber : Integer = 1;
@@ -11,11 +8,10 @@ class PlayerController : ZilchComponent
     var MoveSpeed : Real = 1;
     
     [Property]
-    var Location : Real3 = Real3(0, 0, 0);
+    //var Location : Real3 = Real3(0, 0, 0);
     
     //Initialize empty objects Object Variables
-    var LevelCamera : Cog = null;
-    
+    var LevelCamera : Cog = null;    
     [Property]
     var SlingShotProjectArch : Archetype = null;
     
@@ -28,13 +24,15 @@ class PlayerController : ZilchComponent
     var CamSize : Integer = 17;
     var SwordDamageBox : Cog = null;
     var SwordAttcackZone : Real3 = Real3(0,0,0);
-    var SwordRotation : Quaternion = Quaternion();
+    var LastRigtStick : Real3 = Real3(0,0,0);
+    //var SwordRotation : Quaternion = Quaternion();
     //slingshot vars
     var ProjMoveVec : Array[Real3] =  Array[Real3]();
     var SlingShotFiring : Boolean = false;
     var SlingShotProjectArchArr :Array[Archetype] = Array[Archetype]();
     var SlingShotProjectCog : Array[Cog] = Array[Cog]();
     var SlinShoAmmCou : Integer =  -1;
+    var ProMoveSpeed : Real = 18;
     function Initialize(init : CogInitializer)
         {
         //this.ProjMoveVec.Add(Real3(0,0,0));
@@ -82,10 +80,10 @@ class PlayerController : ZilchComponent
             {
             this.SlinShoAmmCou+=1;
             //Creating a SlingShotProjectile
-            Console.WriteLine(this.Owner.Transform.Translation.X);
+            //this.Owner.Transform.Translation.X);
             //this.ProjMoveVec.Add(Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
             this.SlingShotProjectArchArr.Add(this.SlingShotProjectArch);
-            Console.WriteLine(this.SlinShoAmmCou);
+            //Console.WriteLine(this.SlinShoAmmCou);
             var stuff = this.Space.CreateAtPosition(this.SlingShotProjectArchArr.Get(this.SlinShoAmmCou), this.Owner.Transform.Translation);
             this.SlingShotProjectCog.Add(stuff);
             this.SlingShotFiring=true;
@@ -96,22 +94,25 @@ class PlayerController : ZilchComponent
                                        this.LevelSettings.CameraViewport.
                                        ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0));//Get Mouse Y relative to player
                 //this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
-                this.SlingShotProjectCog.Get(this.SlinShoAmmCou).BoxCollider.Ghost=false;
+                //this.SlingShotProjectCog.Get(this.SlinShoAmmCou).BoxCollider.Ghost=false;
                 }
             if(this.Gamepad.LeftTrigger.X >= 1)// Left Bumper
                 {
+                //var real3temp = Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y,0);
+                this.ProjMoveVec.Add(this.LastRigtStick);
                 //this.ProjMoveVec=Real3(0,0,0);
                 //this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
                 //this.SlingShotProjectCog.Sprite.Visible=true;
                 //this.ProjMoveVec=Real3(this.Gamepad.RightStick.X,this.Gamepad.RightStick.Y,0);
                 //this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
-                this.SlingShotProjectCog.Get(this.SlinShoAmmCou).BoxCollider.Ghost=false;
+                //this.SlingShotProjectCog.Get(this.SlinShoAmmCou).BoxCollider.Ghost=false;
                 }
             this.MoveProjectile(this.ProjMoveVec.Get(this.SlinShoAmmCou));
             }
 
-        if (Zero.Mouse.IsButtonDown(MouseButtons.Right)==false) //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
+        if (Zero.Mouse.IsButtonDown(MouseButtons.Right)==false&&(this.Gamepad.LeftTrigger.X<=0)) //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
             {
+            //Console.WriteLine(this.Gamepad.LeftTrigger.X);
                 this.SlingShotFiring=false;
             //    this.SlingShotFiring=false;
             //this.SlingShotProjectCog.SpriteParticleSystem.Visible=false;
@@ -162,6 +163,10 @@ class PlayerController : ZilchComponent
             {
             this.Ang = Math.Angle2D(Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y , 0));
             }
+        if(Math.Dot(this.Gamepad.RightStick,Real2(0,0))>Real(0.5))
+            {
+            this.LastRigtStick =Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y , 0);
+            }
         //mouse
             //North
             if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
@@ -176,7 +181,7 @@ class PlayerController : ZilchComponent
                 {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-                this.SwordAttcackZone = Real3(1,1,0);                
+                this.SwordAttcackZone = Real3(1,1,0);
                 }
             //East
             if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
@@ -184,7 +189,6 @@ class PlayerController : ZilchComponent
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
                 this.Owner.Sprite.FlipX=false;
                 this.SwordAttcackZone = Real3(1,0,0);
-                this.SwordRotation = Math.ToQuaternion(Real3(0,0,0), 180);
                 }
             //South East
             if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
@@ -264,55 +268,6 @@ class PlayerController : ZilchComponent
     
     function UpdateOtherInput()
     {
-        //###################################################################################################
-        //KEYBOARD INPUTS
-        if(Zero.Keyboard.KeyIsPressed(Keys.Space))
-            {
-            Console.WriteLine("Space: KeyIsPressed Example");
-            }
-        
-        //###################################################################################################
-        //GAMEPAD INPUTS
-        
-        // Letter buttons
-        if(this.Gamepad.IsButtonPressed(0)) // A
-        { Console.WriteLine("A"); }
-        if(this.Gamepad.IsButtonPressed(1)) // B
-        { Console.WriteLine("B"); }
-        if(this.Gamepad.IsButtonPressed(2)) // X
-        { Console.WriteLine("X"); }
-        if(this.Gamepad.IsButtonPressed(3)) // Y
-        { Console.WriteLine("Y"); }
-        
-        // Start & Select
-        if(this.Gamepad.IsButtonPressed(4)) // Start
-        { Console.WriteLine("Start"); }
-        if(this.Gamepad.IsButtonPressed(5)) // Select
-        { Console.WriteLine("Back"); }
-        
-        // Left and Right stick buttons
-        if(this.Gamepad.IsButtonPressed(6)) // Left sitck pressed
-        { Console.WriteLine("L Stick Press"); }
-        if(this.Gamepad.IsButtonPressed(7)) // Right stick pressed
-        { Console.WriteLine("R Stick Press"); }
-        
-        // Triggers and Bumpers
-        if(this.Gamepad.IsButtonPressed(9)) // Right Bumper
-        { Console.WriteLine("R Bumper"); }
-        if(this.Gamepad.RightTrigger.X >= 1) // Right trigger
-        { Console.WriteLine("R Trigger"); }
-        if(this.Gamepad.LeftTrigger.X >= 1) // Left Trigger
-        { Console.WriteLine("L Trigger"); }
-        
-        // Digital Pad
-        if(this.Gamepad.IsButtonPressed(10)) // Dpad up
-        {  Console.WriteLine("DPAD UP"); }
-        if(this.Gamepad.IsButtonPressed(11)) // Dpad down
-        { Console.WriteLine("DPAD DOWN"); }
-        if(this.Gamepad.IsButtonPressed(12)) // Dpad left
-        { Console.WriteLine("DPAD LEFT"); }
-        if(this.Gamepad.IsButtonPressed(13)) // Dpad right
-        { Console.WriteLine("DPAD RIGHT"); }
     }
     function Move(moveR3 : Real3)
     {
@@ -325,8 +280,8 @@ class PlayerController : ZilchComponent
     function MoveProjectile(moveR3: Real3)
         {
                 //slingshot move
-        this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
+        this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.ApplyLinearImpulse(moveR3 * this.ProMoveSpeed);
         this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity = Math.Normalize(this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity);
-        this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity *= this.MoveSpeed;
+        this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity *= this.ProMoveSpeed;
         }
 }
