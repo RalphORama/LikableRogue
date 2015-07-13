@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-10.7466, -0.1816, 51],
+			Vec3 Translation = [5, 5, 51],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-10.7466, -0.1816, 1],
+			Vec3 LookTarget = [5, 5, 1],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -200,7 +200,8 @@ Level =
 		LevelController = 
 		{
 			string PlayerCharacter = "5522de378f164585:Player",
-			int Difficulty = 1,
+			int LevelDifficulty = 1,
+			int DynamicDifficulty = 1,
 			int RoomHeight = 15,
 			int RoomWidth = 21,
 			string EasyLevel01 = "551eefc556b12616:LevelArchetype01",
@@ -247,9 +248,9 @@ Level =
 		},
 		RigidBody = 
 		{
-			bool Static = true,
+			bool Static = false,
 			bool Asleep = false,
-			bool Kinematic = false,
+			bool Kinematic = true,
 			bool RotationLocked = true,
 			bool Mode2D = true,
 			bool AllowSleep = true,
