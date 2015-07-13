@@ -104,45 +104,57 @@ class LevelController : ZilchComponent
     
     /// ChooseAndCreateLevel: takes integer "difficulty," 
     ///     spawns a level based on its value (0-3)
-    function ChooseAndCreateLevel( difficulty : Integer ) {
-        if ( difficulty >= 0 && difficulty <= 3 ) {
-            if ( difficulty == 0 ) {
+    function ChooseAndCreateLevel( difficulty : Integer ) 
+    {
+        if ( difficulty >= 0 && difficulty <= 3 ) 
+        {
+            if ( difficulty == 0 ) 
+            {
                 return;
             }
-            else if ( difficulty == 1 ) {
+            else if ( difficulty == 1 ) 
+            {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.EasyLevels.Count) as Integer;
                 this.CurrentLevel = this.Space.CreateAtPosition( this.EasyLevels.Get(randomIndex), Real3(0, 0, 0) );
             }
-            else if ( difficulty == 2 ) {
+            else if ( difficulty == 2 ) 
+            {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.MediumLevels.Count) as Integer;
                 this.CurrentLevel = this.Space.CreateAtPosition( this.MediumLevels.Get(randomIndex), Real3(0, 0, 0) );
             }
-            else if ( difficulty == 3 ) {
+            else if ( difficulty == 3 ) 
+            {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.HardLevels.Count) as Integer;
                 this.CurrentLevel = this.Space.CreateAtPosition( this.HardLevels.Get(randomIndex), Real3(0, 0, 0) );
             }
         }
         
-        else {
+        else 
+        {
             Console.WriteLine( "ERROR in ChooseAndCreateLevel(): Got `difficulty`, but expected a value between 0 and 3." );
         }
     }
     
-    /*
-    function SpawnPickupsAndEnemies ( listOfRooms : CogNameRange ) {
-        foreach ( var background in listOfRooms ) {
+    function SpawnPickupsAndEnemies ( listOfRooms : CogNameRange ) 
+    {
+        // TODO: - create 3 arrays - easy, medium, and hard rooms.
+        //       - determine whether a room is "easy," "medium," or "hard
+        //         based off of how far away they are from the player 
+        //          (do this based off of real3 comparision?)
+        foreach ( var background in listOfRooms ) 
+        {
             // each background will be a cog
         }
     }
-    */
     
     /// SpawnPlayer: takes two integers that will be used
     ///    as X and Y coordinates relative to the world when
     ///    the player is spawned.
-    function SpawnPlayer ( level : Cog ) {
+    function SpawnPlayer ( level : Cog ) 
+    {
         // create an array of points we can spawn the player at
         var possibleSpawnPoints : Array[Real3] = Array[Real3]()
             // this adds all the spawnpoints of the level
@@ -164,15 +176,11 @@ class LevelController : ZilchComponent
             {
                 actualSpawnPoints.Add( spawnPoint );
             }
-            else
-            {
-                Console.WriteLine("it was 0");
-            }
         }
         
         // get a random index of the spawn point array
         var randomIndex : Integer = this.RandomGenerator.Range(0, actualSpawnPoints.Count) as Integer;
-        Console.WriteLine("`randomIndex` of pspwnpts is \t`actualSpawnPoints.Get(randomIndex)`");
+        //Console.WriteLine("`randomIndex` of pspwnpts is \t`actualSpawnPoints.Get(randomIndex)`");
         // set the player's new spawn point
         var spawnPoint : Real3 = actualSpawnPoints.Get( randomIndex );
         
@@ -184,10 +192,6 @@ class LevelController : ZilchComponent
         
         // orient the camera to the player's location
         this.LevelCamera.Transform.Translation = cameraSpawnPoint;
-        
-        // now the magic happens - spawn the player at the spawnpoint
-        //var player = this.Space.CreateAtPosition(this.PlayerCharacter, spawnPoint);
-        //player.Transform.Translation = spawnPoint;
     }
 }
 
