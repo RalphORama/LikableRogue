@@ -1,4 +1,4 @@
-class EnemyMovement : ZilchComponent
+class EnemyController : ZilchComponent
 {
     var Ang : Real = 0;
     var PlayerCog : Cog = null;
@@ -40,16 +40,13 @@ class EnemyMovement : ZilchComponent
             }
     }
     
-    function UpdateMoveInput()
+    function UpdateEnemyMovement()//Updates Ang based on Player location
     {
-        var moveVec =  Real3(this.PlayerCog.Transform.Translation.X, this.PlayerCog.Transform.Translation.Y, 0);
-        //Console.WriteLine(moveVec);
-        //clamp variables so that keyboard + gamepad input doesn't mess with our intended values of -1 to 1
-        var x = Math.Clamp(moveVec.X,-1,1);
-        var y = Math.Clamp(moveVec.Y,-1,1);
-        moveVec = Real3(x,y,0);
-        //call move function using the variables we made
-        this.Move(moveVec);
+    this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
+        this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+        1);
+    this.Ang = Math.Angle2D(this.PlayerPosition);
+    this.Move(this.PlayerPosition);
     }
     
         function Move(moveR3 : Real3)
@@ -57,21 +54,13 @@ class EnemyMovement : ZilchComponent
         //Applies linear impulse based on movespeed and the given vector
         this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
         this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
-    }
-    
-    function UpdatePlayerMovement()//Updates Ang based on Player location
-    {
-    this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
-        this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-        1);
-    this.Ang = Math.Angle2D(this.PlayerPosition);
+        this.Owner.RigidBody.Velocity *= this.MoveSpeed;
     }
     
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateFacingInput();
-        this.UpdateMoveInput();
-        this.UpdatePlayerMovement();
+        this.UpdateEnemyMovement();
     }
     
 }

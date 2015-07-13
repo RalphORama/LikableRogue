@@ -40,7 +40,7 @@ Cog =
 	{
 		bool Static = false,
 		bool Asleep = false,
-		bool Kinematic = true,
+		bool Kinematic = false,
 		bool RotationLocked = true,
 		bool Mode2D = true,
 		bool AllowSleep = true,
@@ -58,8 +58,8 @@ Cog =
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.5, 0.5, 5],
 	},
-	EnemyMovement = 
+	EnemyController = 
 	{
-		float MoveSpeed = 1,
+		float MoveSpeed = 30,
 	},
 },
