@@ -54,16 +54,14 @@ Cog =
 		bool SendsMessages = true,
 		bool Seamless = true,
 		string MaterialName = "5522c1021f9ffff0:NoBounceMaterial",
-		string SerializedGroupName = "55d33a6d9a08fdf3:PlayerCollisionGroup",
+		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.5, 0.5, 0.5],
 	},
 	PlayerController = 
 	{
-		string SpriteToChange = "",
 		int PlayerNumber = 1,
 		float MoveSpeed = 10,
-		Vec3 Location = [0, 0, 0],
 		string SlingShotProjectArch = "55d2e120dac3a62b:SlingShotProject",
 	},
 	Health = 

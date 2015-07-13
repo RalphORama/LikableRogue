@@ -11,11 +11,13 @@ class SlingProjControler : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
         {
         //Console.WriteLine(this.Owner.RigidBody.Velocity);
-        if (this.Owner.RigidBody.Velocity.X==0||this.Owner.RigidBody.Velocity.Y==0)
+        
+        if (Math.Abs(this.Owner.RigidBody.Velocity.X)<6 && Math.Abs(this.Owner.RigidBody.Velocity.Y)<6)
             {
             this.Owner.Destroy();
             //Console.WriteLine(this.Owner.RigidBody.Velocity);
             }
+        /**/
         }
     function OnCollisionStarted(event : CollisionEvent)
         {

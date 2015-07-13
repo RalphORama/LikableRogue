@@ -17,22 +17,22 @@ class PlayerController : ZilchComponent
     
     
     // gamepad and mouse settings
-    var StickThreshold : Real = 0.3;
-    var Gamepad : Gamepad = null;
-    var MousePosition : Real3 = Real3(0,0,0);
-    var Ang : Real = 0;
-    var CamSize : Integer = 17;
-    var SwordDamageBox : Cog = null;
-    var SwordAttcackZone : Real3 = Real3(0,0,0);
-    var ProjectAngle : Real3 = Real3(0,0,0);
+    var StickThreshold : Real       = 0.3;
+    var Gamepad : Gamepad           = null;
+    var MousePosition : Real3       = Real3(0,0,0);
+    var Ang : Real                  = 0;
+    var CamSize : Integer           = 17;
+    var CamScrollSpeed : Integer    = 3;
+    var SwordDamageBox : Cog        = null;
+    var SwordAttcackZone : Real3    = Real3(0,-1,0);
     //var SwordRotation : Quaternion = Quaternion();
     //slingshot vars
-    var ProjMoveVec : Array[Real3] =  Array[Real3]();
-    var SlingShotFiring : Boolean = false;
-    var SlingShotProjectArchArr :Array[Archetype] = Array[Archetype]();
-    var SlingShotProjectCog : Array[Cog] = Array[Cog]();
-    var SlinShoAmmCou : Integer =  -1;
-    var ProMoveSpeed : Real = 18;
+    var ProjMoveVec : Array[Real3]                  = Array[Real3]();
+    var SlingShotFiring : Boolean                   = false;
+    var SlingShotProjectArchArr :Array[Archetype]   = Array[Archetype]();
+    var SlingShotProjectCog : Array[Cog]            = Array[Cog]();
+    var SlinShoAmmCou : Integer                     = -1;
+    var ProMoveSpeed : Real                         = 30;//18
     function Initialize(init : CogInitializer)
         {
         //this.ProjMoveVec.Add(Real3(0,0,0));
@@ -66,17 +66,19 @@ class PlayerController : ZilchComponent
             this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
             this.SwordDamageBox.Sprite.Visible=true;
             this.SwordDamageBox.BoxCollider.Ghost=false;
+            this.SwordDamageBox.BoxCollider.SendsEvents=true;
             }
         else //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
             {
             this.SwordDamageBox.Sprite.Visible=false;
             this.SwordDamageBox.BoxCollider.Ghost=true;
+            this.SwordDamageBox.BoxCollider.SendsEvents=false;
             }
         }
     function ProjectileLaunch()
         {
 
-        if((Zero.Mouse.IsButtonDown(MouseButtons.Right)||this.Gamepad.LeftTrigger.X >= 1)&& this.SlingShotFiring==false)
+        if((Zero.Mouse.IsButtonDown(MouseButtons.Right)||this.Gamepad.IsButtonPressed(0))&& this.SlingShotFiring==false)
             {
             this.SlinShoAmmCou+=1;
             //Creating a SlingShotProjectile
@@ -84,7 +86,7 @@ class PlayerController : ZilchComponent
             //this.ProjMoveVec.Add(Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
             this.SlingShotProjectArchArr.Add(this.SlingShotProjectArch);
             //Console.WriteLine(this.SlinShoAmmCou);
-            var stuff = this.Space.CreateAtPosition(this.SlingShotProjectArchArr.Get(this.SlinShoAmmCou), this.Owner.Transform.Translation);
+            var stuff = this.Space.CreateAtPosition(this.SlingShotProjectArchArr.Get(this.SlinShoAmmCou), Real3(this.Owner.Transform.Translation.X+this.SwordAttcackZone.X,this.Owner.Transform.Translation.Y+this.SwordAttcackZone.Y,0));
             this.SlingShotProjectCog.Add(stuff);
             this.SlingShotFiring=true;
             if (Zero.Mouse.IsButtonDown(MouseButtons.Right))
@@ -99,7 +101,7 @@ class PlayerController : ZilchComponent
                 */
                 this.ProjMoveVec.Add(this.SwordAttcackZone);
                 }
-            if(this.Gamepad.LeftTrigger.X >= 1)// Left Bumper
+            if(this.Gamepad.IsButtonPressed(0))// Left Bumper
                 {
                 //var real3temp = Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y,0);
                 this.ProjMoveVec.Add(this.SwordAttcackZone);
@@ -126,13 +128,13 @@ class PlayerController : ZilchComponent
         {
         if(event.Scroll.Y<0)
             {
-            this.CamSize+=1;
+            this.CamSize += this.CamScrollSpeed;
             }
         else
             {
-            this.CamSize-=1;
+            this.CamSize -= this.CamScrollSpeed;
             }
-        this.LevelCamera.Camera.Size = this.CamSize;
+        this.LevelCamera.Camera.Size        = this.CamSize;
         this.LevelCamera.Camera.FieldOfView = this.CamSize;
         }
     function OnMouseMove(event : MouseEvent)//Updates Ang when mouse moves
@@ -142,10 +144,9 @@ class PlayerController : ZilchComponent
     function UpdateMouseMovement()//Updates Ang based on mouse location
         {
         
-        this.MousePosition = Real3(this.LevelSettings.CameraViewport.
-                                   ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
-                                   this.LevelSettings.CameraViewport.
-                                   ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0);//Get Mouse Y relative to player
+        this.MousePosition = Real3(this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
+                                   this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,
+                                   0);//Get Mouse Y relative to player
         this.Ang = Math.Angle2D(this.MousePosition);
         }
     function OnLogicUpdate(event : UpdateEvent)
@@ -198,7 +199,6 @@ class PlayerController : ZilchComponent
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(1,-1,0);
-                this.ProjectAngle = Real3(1,0,0);
                 }
             //South
             if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)

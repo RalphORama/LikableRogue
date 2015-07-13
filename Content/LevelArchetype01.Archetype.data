@@ -22,7 +22,7 @@ Cog =
 	{
 		int LevelDifficulty = 0,
 		Vec3 PlayerSpawn01 = [10, 7, 0],
-		Vec3 PlayerSpawn02 = [10, 56, 0],
+		Vec3 PlayerSpawn02 = [10, 55, 0],
 		Vec3 PlayerSpawn03 = [-34, 39, 0],
 		Vec3 PlayerSpawn04 = [0, 0, 0],
 		Vec3 PlayerSpawn05 = [0, 0, 0],
