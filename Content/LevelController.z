@@ -26,14 +26,7 @@ class LevelController : ZilchComponent
     // TODO: Write code to increment / decrement this value as the player
     //       lives, dies, gets pickups, clears rooms, etc.
     [Property]
-    var DynamicDifficulty : Integer = 1;
-    
-    /// Room height and width is used for 
-    /// initial placement of the camera and player
-    [Property]
-    var RoomHeight : Integer = 15;
-    [Property]
-    var RoomWidth : Integer  = 21;
+    var DynamicDifficulty : Real = 1;
     
     /// Here we'll create some objects for the type of level we want
     // Intial level
@@ -58,6 +51,9 @@ class LevelController : ZilchComponent
     [Property]
     var HardLevel02 : Archetype = null;
     
+    // Modifier for loot rooms
+    [Property]
+    var LootRoomModifier : Integer = 2;
     // TODO: implement bossrush levels? Ask luke.
     
     // Arrays to store the various level types in
@@ -81,6 +77,9 @@ class LevelController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
+        // TODO: make this dynamically change
+        this.DynamicDifficulty = 2.5;
+        
         /// We'll need to add the various levels to arrays
         /// so that we can create them based off of how 
         /// difficult we want the player's experience to be.
@@ -96,10 +95,14 @@ class LevelController : ZilchComponent
         
         // add each background into ListOfBackgrounds
         // we use this later to determine room positions
-        //this.ListOfBackgrounds = this.Space.FindAllObjectsByName( "Background" );
+        this.ListOfBackgrounds = this.Space.FindAllObjectsByName( "Background" );
         
         /// SpawnPlayer() spawns the player at a set location relative to the world.
         this.SpawnPlayer( this.CurrentLevel );
+        
+        /// SpawnEnemiesAndPickUps() creates the enemies and pickups based off of
+        /// relative distance to the player's starting location
+        this.SpawnPickupsAndEnemies( this.ListOfBackgrounds );
     }
     
     /// ChooseAndCreateLevel: takes integer "difficulty," 
@@ -144,10 +147,65 @@ class LevelController : ZilchComponent
         //       - determine whether a room is "easy," "medium," or "hard
         //         based off of how far away they are from the player 
         //          (do this based off of real3 comparision?)
+        
+        /// create a real3 using the camera's location (fuck it, it's easy)
+        var spawnLocation : Real3 = Real3( this.LevelCamera.Transform.WorldTranslation.X,
+                                           this.LevelCamera.Transform.WorldTranslation.Y,
+                                           0 );        
+        /// create some arrays to store enemies and pickups in the future
+        
+        // array for enemies
+        // TODO: create individual arrays for how hard enemies are?
+        //var enemiesToSpawn : Array[Archetype] = Array[Archetype]();
+        
+        // array for pickups
+        // TODO: create individual arrays for health, dmg, speed?
+        //var pickupsToSpawn : Array[Archetype] = Array[Archetype]();
+        
+        // arrays for rooms 
+        // this will be populated by the following foreach loop
+        var easyRooms : Array[Cog]      = Array[Cog]();
+        var mediumRooms : Array[Cog]    = Array[Cog]();
+        var hardRooms : Array[Cog]      = Array[Cog]();
+        // special rooms
+        var safeRooms : Array[Cog]      = Array[Cog]();
+        var lootRooms : Array[Cog]      = Array[Cog]();
+        
+        // to check if special rooms have spawned
+        var spawnedLootRooms : Integer  = 0;
+        var maxLootRooms : Integer      = this.LevelDifficulty * this.LootRoomModifier; // 2 easy, 4 medium, 6 hard
+        
         foreach ( var background in listOfRooms ) 
         {
-            // each background will be a cog
+            // populate each array of rooms based off of
+            // relative distance between the room and the player
+            var roomLocation : Real3 = background.Transform.WorldTranslation;
+            
+            // we only need the x and y difference, not Z
+            var xDifference : Integer = Math.Abs( spawnLocation.X - roomLocation.X ) as Integer;
+            var yDifference : Integer = Math.Abs( spawnLocation.Y - roomLocation.Y ) as Integer;
+            //Console.WriteLine( "Found difference of:\t`xDifference`, `yDifference`" );
+            
+            // check if we're not in the spawn room and we haven't spawned the max # of loot rooms yet
+            if ( (xDifference != 0 as Integer) && (yDifference != 0 as Integer) && (spawnedLootRooms < maxLootRooms) )
+            {
+                // get a random number between 0 and some multiple of 5 based off of the dynamic difficulty
+                var shouldSpawn : Integer = this.RandomGenerator.Range( 0, (5 * this.DynamicDifficulty) ) as Integer;
+                // if that random number is less than or equal to two, spawn a loot room
+                if ( shouldSpawn <= 2 ) 
+                {
+                    ++spawnedLootRooms;
+                    background.Sprite.Color = Real4( 255, 240, 128, 1.00 );
+                }
+            }
         }
+        
+        /*
+        Console.WriteLine("\n Done with easy rooms.\n");
+        foreach ( var room in easyRooms ) {
+            Console.WriteLine( "Found easy room at:\t`room.Transform.WorldTranslation`" );
+        }
+        */
     }
     
     /// SpawnPlayer: takes two integers that will be used
