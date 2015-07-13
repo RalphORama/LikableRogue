@@ -72,7 +72,6 @@ class EnemyMovement : ZilchComponent
         this.UpdateFacingInput();
         this.UpdateMoveInput();
         this.UpdatePlayerMovement();
-        Console.WriteLine(this.Owner.Transform.Scale);
     }
     
 }
