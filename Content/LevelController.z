@@ -114,6 +114,7 @@ class LevelController : ZilchComponent
     /// ARRAY FOR SPECIAL ROOMS ///
     var SpecialRooms : Array[Archetype]         = Array[Archetype]();
     
+    
     // create an archetype for our origin room
     var OriginRoom : Cog = null;
     
@@ -145,13 +146,6 @@ class LevelController : ZilchComponent
         // we only have one room with four exits.
         this.RoomsWithFourExits.Add(this.FRoomArchetype00);
         
-        // we have (this.NumRoomsWithThreeExits) rooms with three exits
-        // TODO: Get this for loop working
-        /*for ( var room : Integer = 0; room < this.NumRoomsWithThreeExits; ++room ) {
-            var nameOfRoom : String = "this.ThRoomArchetype0`room`";
-            this.RoomsWithThreeExits.Add( nameOfRoom as Archetype );
-        }*/
-        // I'll use the above for loop when I can figure out how
         // to concatenate two strings into a valid variable name.
         this.RoomsWithThreeExits.Add(this.ThRoomArchetype00);
         this.RoomsWithThreeExits.Add(this.ThRoomArchetype01);
@@ -176,7 +170,7 @@ class LevelController : ZilchComponent
         
         // TODO: add special case rooms 
         
-        // create the tiles in the board
+        // create the empty level and pupulate it.
         this.BoardSetup();
         // spawn the player 
         this.SpawnPlayer(10, 7);
@@ -185,8 +179,12 @@ class LevelController : ZilchComponent
     function BoardSetup () {
         
         // generate the initial room
-        this.OriginRoom = this.GenerateRoom( 0, 0, this.RoomsWithFourExits[0] );
-        this.LastRoomGenerated = this.OriginRoom;
+        //this.OriginRoom = this.GenerateRoom( 0, 0, this.RoomsWithFourExits[0] );
+        //this.LastRoomGenerated = this.OriginRoom;
+        
+        // create the array to generate the level inside of
+        
+        
         
         // generate the following rooms
         //this.GenerateManyRooms ();
