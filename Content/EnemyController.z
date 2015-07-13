@@ -1,0 +1,66 @@
+class EnemyController : ZilchComponent
+{
+    var Ang : Real = 0;
+    var PlayerCog : Cog = null;
+    var PlayerPosition : Real3 = Real3(0,0,0);
+    [Property]
+    var MoveSpeed : Real = 1;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.PlayerCog = this.Space.FindObjectByName("Player");
+    }
+    
+    function UpdateFacingInput()
+    {
+//North
+        if (this.Ang>0.79&&this.Ang<1.57&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyN");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+            }
+        //East
+        if (this.Ang>-0.79&&this.Ang<0.79&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyE");
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+            }
+        //South
+        if (this.Ang<-0.79&&this.Ang>-1.57&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+            }
+        //West
+        if (this.Ang>2.36||this.Ang<-2.36&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");//Sets Sprite
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+            }
+    }
+    
+    function UpdateEnemyMovement()//Updates Ang based on Player location
+    {
+    this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
+        this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+        1);
+    this.Ang = Math.Angle2D(this.PlayerPosition);
+    this.Move(this.PlayerPosition);
+    }
+    
+        function Move(moveR3 : Real3)
+    {
+        //Applies linear impulse based on movespeed and the given vector
+        this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
+        this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
+        this.Owner.RigidBody.Velocity *= this.MoveSpeed;
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.UpdateFacingInput();
+        this.UpdateEnemyMovement();
+    }
+    
+}

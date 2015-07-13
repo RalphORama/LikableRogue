@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 100,
+			float Size = 18.2683,
 		},
 		EditorCameraController = 
 		{
@@ -222,6 +222,10 @@ Level =
 		{
 			string Name = "Enemy",
 		},
+		Archetyped = 
+		{
+			string Name = "555896ce3c0fb42c:Enemy",
+		},
 		Transform = 
 		{
 			Vec3 Translation = [5, 5, 1],
@@ -250,7 +254,7 @@ Level =
 		{
 			bool Static = false,
 			bool Asleep = false,
-			bool Kinematic = true,
+			bool Kinematic = false,
 			bool RotationLocked = true,
 			bool Mode2D = true,
 			bool AllowSleep = true,
@@ -268,9 +272,9 @@ Level =
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 5],
 		},
-		EnemyMovement = 
+		EnemyController = 
 		{
-			float MoveSpeed = 1,
+			float MoveSpeed = 2,
 		},
 	},
 },
