@@ -17,21 +17,22 @@ class PlayerController : ZilchComponent
     
     
     // gamepad and mouse settings
-    var StickThreshold : Real = 0.3;
-    var Gamepad : Gamepad = null;
-    var MousePosition : Real3 = Real3(0,0,0);
-    var Ang : Real = 0;
-    var CamSize : Integer = 17;
-    var SwordDamageBox : Cog = null;
-    var SwordAttcackZone : Real3 = Real3(0,-1,0);
+    var StickThreshold : Real       = 0.3;
+    var Gamepad : Gamepad           = null;
+    var MousePosition : Real3       = Real3(0,0,0);
+    var Ang : Real                  = 0;
+    var CamSize : Integer           = 17;
+    var CamScrollSpeed : Integer    = 3;
+    var SwordDamageBox : Cog        = null;
+    var SwordAttcackZone : Real3    = Real3(0,-1,0);
     //var SwordRotation : Quaternion = Quaternion();
     //slingshot vars
-    var ProjMoveVec : Array[Real3] =  Array[Real3]();
-    var SlingShotFiring : Boolean = false;
-    var SlingShotProjectArchArr :Array[Archetype] = Array[Archetype]();
-    var SlingShotProjectCog : Array[Cog] = Array[Cog]();
-    var SlinShoAmmCou : Integer =  -1;
-    var ProMoveSpeed : Real = 30;//18
+    var ProjMoveVec : Array[Real3]                  = Array[Real3]();
+    var SlingShotFiring : Boolean                   = false;
+    var SlingShotProjectArchArr :Array[Archetype]   = Array[Archetype]();
+    var SlingShotProjectCog : Array[Cog]            = Array[Cog]();
+    var SlinShoAmmCou : Integer                     = -1;
+    var ProMoveSpeed : Real                         = 30;//18
     function Initialize(init : CogInitializer)
         {
         //this.ProjMoveVec.Add(Real3(0,0,0));
@@ -127,13 +128,13 @@ class PlayerController : ZilchComponent
         {
         if(event.Scroll.Y<0)
             {
-            this.CamSize+=1;
+            this.CamSize += this.CamScrollSpeed;
             }
         else
             {
-            this.CamSize-=1;
+            this.CamSize -= this.CamScrollSpeed;
             }
-        this.LevelCamera.Camera.Size = this.CamSize;
+        this.LevelCamera.Camera.Size        = this.CamSize;
         this.LevelCamera.Camera.FieldOfView = this.CamSize;
         }
     function OnMouseMove(event : MouseEvent)//Updates Ang when mouse moves
