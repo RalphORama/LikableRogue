@@ -24,7 +24,7 @@ class PlayerController : ZilchComponent
     var CamSize : Integer = 17;
     var SwordDamageBox : Cog = null;
     var SwordAttcackZone : Real3 = Real3(0,0,0);
-    var LastRigtStick : Real3 = Real3(0,0,0);
+    var ProjectAngle : Real3 = Real3(0,0,0);
     //var SwordRotation : Quaternion = Quaternion();
     //slingshot vars
     var ProjMoveVec : Array[Real3] =  Array[Real3]();
@@ -89,17 +89,20 @@ class PlayerController : ZilchComponent
             this.SlingShotFiring=true;
             if (Zero.Mouse.IsButtonDown(MouseButtons.Right))
                 {
+                /*
                 this.ProjMoveVec.Add(Real3(this.LevelSettings.CameraViewport.
                                        ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
                                        this.LevelSettings.CameraViewport.
                                        ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0));//Get Mouse Y relative to player
                 //this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
                 //this.SlingShotProjectCog.Get(this.SlinShoAmmCou).BoxCollider.Ghost=false;
+                */
+                this.ProjMoveVec.Add(this.SwordAttcackZone);
                 }
             if(this.Gamepad.LeftTrigger.X >= 1)// Left Bumper
                 {
                 //var real3temp = Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y,0);
-                this.ProjMoveVec.Add(this.LastRigtStick);
+                this.ProjMoveVec.Add(this.SwordAttcackZone);
                 //this.ProjMoveVec=Real3(0,0,0);
                 //this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
                 //this.SlingShotProjectCog.Sprite.Visible=true;
@@ -138,6 +141,7 @@ class PlayerController : ZilchComponent
         }
     function UpdateMouseMovement()//Updates Ang based on mouse location
         {
+        
         this.MousePosition = Real3(this.LevelSettings.CameraViewport.
                                    ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
                                    this.LevelSettings.CameraViewport.
@@ -163,14 +167,11 @@ class PlayerController : ZilchComponent
             {
             this.Ang = Math.Angle2D(Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y , 0));
             }
-        if(Math.Dot(this.Gamepad.RightStick,Real2(0,0))>Real(0.5))
-            {
-            this.LastRigtStick =Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y , 0);
-            }
         //mouse
             //North
             if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
                 {
+                //this.ProjectAngle = Real3(0,1,0);
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(0,1,0);//This is an example of moving the sword when the player turns
@@ -179,6 +180,7 @@ class PlayerController : ZilchComponent
             //Nort East
             if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
                 {
+                //this.ProjectAngle = Real3(1,1,0);
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(1,1,0);
@@ -196,6 +198,7 @@ class PlayerController : ZilchComponent
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(1,-1,0);
+                this.ProjectAngle = Real3(1,0,0);
                 }
             //South
             if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
