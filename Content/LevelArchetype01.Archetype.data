@@ -8,15 +8,25 @@ Cog =
 	{
 		string Name = "LevelArchetype01",
 	},
+	Archetyped = 
+	{
+		string Name = "551eefc556b12616:LevelArchetype01",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
-	LevelArchetypeProperties = 
+	LevelArchetypeController = 
 	{
-		int Difficulty = 1,
+		int LevelDifficulty = 0,
+		Vec3 PlayerSpawn01 = [10, 7, 0],
+		Vec3 PlayerSpawn02 = [10, 56, 0],
+		Vec3 PlayerSpawn03 = [-34, 39, 0],
+		Vec3 PlayerSpawn04 = [0, 0, 0],
+		Vec3 PlayerSpawn05 = [0, 0, 0],
+		Vec3 PlayerSpawn06 = [0, 0, 0],
 	},
 	Hierarchy = 
 	{

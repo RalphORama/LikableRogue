@@ -1,4 +1,4 @@
-class LevelArchetypeProperties : ZilchComponent
+class LevelArchetypeController : ZilchComponent
 {
     // difficulty levels as follows:
     // 0 - introductory (no enemies)
@@ -11,7 +11,15 @@ class LevelArchetypeProperties : ZilchComponent
     
     // Possible spawn points for the player
     [Property]
-    var PlayerSpawn01 : Real3 = Real3(0, 0, 0);
+    var PlayerSpawn01 : Real3 = Real3();
     [Property]
     var PlayerSpawn02 : Real3 = Real3();
+    [Property]
+    var PlayerSpawn03 : Real3 = Real3();
+    [Property]
+    var PlayerSpawn04 : Real3 = Real3();
+    [Property]
+    var PlayerSpawn05 : Real3 = Real3();
+    [Property]
+    var PlayerSpawn06 : Real3 = Real3();
 }
