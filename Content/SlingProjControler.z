@@ -15,6 +15,7 @@ class SlingProjControler : ZilchComponent
         if (this.Pickup==false&&(Math.Abs(this.Owner.RigidBody.Velocity.X)<6 && Math.Abs(this.Owner.RigidBody.Velocity.Y)<6))
             {
             this.Pickup=true;
+            this.Owner.SphericalParticleEmitter.Active=false;
             }
         }
     function OnCollisionStarted(event : CollisionEvent)
