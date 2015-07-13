@@ -1,0 +1,17 @@
+class LevelArchetypeProperties : ZilchComponent
+{
+    // difficulty levels as follows:
+    // 0 - introductory (no enemies)
+    // 1 - easy
+    // 2 - medium
+    // 3 - hard
+    // TODO: have 4 - bossrush?
+    [Property]
+    var LevelDifficulty : Integer = 0;
+    
+    // Possible spawn points for the player
+    [Property]
+    var PlayerSpawn01 : Real3 = Real3(0, 0, 0);
+    [Property]
+    var PlayerSpawn02 : Real3 = Real3();
+}

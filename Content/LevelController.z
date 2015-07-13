@@ -20,7 +20,13 @@ class LevelController : ZilchComponent
     [Property]
     // TODO: create introductory level, change this to zero.
     // TODO: Implement difficulty changes when the level changes.
-    var Difficulty : Integer = 1;
+    var LevelDifficulty : Integer = 1;
+    
+    /// Dynamic difficulty changes as the player interacts with the world
+    // TODO: Write code to increment / decrement this value as the player
+    //       lives, dies, gets pickups, clears rooms, etc.
+    [Property]
+    var DynamicDifficulty : Integer = 1;
     
     /// Room height and width is used for 
     /// initial placement of the camera and player
@@ -78,7 +84,7 @@ class LevelController : ZilchComponent
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         
         /// ChooseAndCreateLevel() spawns in the basic world geometry
-        this.ChooseAndCreateLevel( this.Difficulty );
+        this.ChooseAndCreateLevel( this.LevelDifficulty );
         /// BoradSetup() creates the level, positions the camera
         this.BoardSetup();
         /// SpawnPlayer() spawns the player at a set location relative to the world.
