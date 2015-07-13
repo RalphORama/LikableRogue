@@ -14,7 +14,7 @@ class SlingProjControler : ZilchComponent
         if (this.Owner.RigidBody.Velocity.X==0||this.Owner.RigidBody.Velocity.Y==0)
             {
             this.Owner.Destroy();
-            Console.WriteLine(this.Owner.RigidBody.Velocity);
+            //Console.WriteLine(this.Owner.RigidBody.Velocity);
             }
         }
     function OnCollisionStarted(event : CollisionEvent)
