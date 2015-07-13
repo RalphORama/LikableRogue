@@ -1,47 +1,48 @@
 class EnemyMovement : ZilchComponent
 {
     var Ang : Real = 0;
-    var PlayerPosition : Cog = null;
-    var MousePosition : Real3 = Real3(0,0,0);
+    var PlayerCog : Cog = null;
+    var PlayerPosition : Real3 = Real3(0,0,0);
     [Property]
     var MoveSpeed : Real = 1;
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        this.PlayerPosition = this.Space.FindObjectByName("Player");
+        this.PlayerCog = this.Space.FindObjectByName("Player");
     }
     
     function UpdateFacingInput()
     {
-        //North
-        if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
+//North
+        if (this.Ang>0.79&&this.Ang<1.57&&this.Ang!=0)
             {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyN");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyN");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
         //East
-        if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
+        if (this.Ang>-0.79&&this.Ang<0.79&&this.Ang!=0)
             {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyE");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyE");
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
         //South
-        if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
+        if (this.Ang<-0.79&&this.Ang>-1.57&&this.Ang!=0)
             {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyS");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
         //West
-        if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
+        if (this.Ang>2.36||this.Ang<-2.36&&this.Ang!=0)
             {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyE");//Sets Sprite
-                this.Owner.Sprite.FlipX=true;
-            }            
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");//Sets Sprite
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+            }
     }
-     function UpdateMoveInput()
+    
+    function UpdateMoveInput()
     {
-        var moveVec =  Real3(this.PlayerPosition.Transform.Translation.X, this.PlayerPosition.Transform.Translation.Y, 0);
+        var moveVec =  Real3(this.PlayerCog.Transform.Translation.X, this.PlayerCog.Transform.Translation.Y, 0);
         //Console.WriteLine(moveVec);
         //clamp variables so that keyboard + gamepad input doesn't mess with our intended values of -1 to 1
         var x = Math.Clamp(moveVec.X,-1,1);
@@ -60,9 +61,10 @@ class EnemyMovement : ZilchComponent
     
     function UpdatePlayerMovement()//Updates Ang based on Player location
     {
-    this.MousePosition = Real3(this.PlayerPosition.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
-this.PlayerPosition.Transform.Translation.Y-this.Owner.Transform.Translation.Y,0);//Get Mouse Y relative to player
-    this.Ang = Math.Angle2D(this.MousePosition);
+    this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
+        this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+        1);
+    this.Ang = Math.Angle2D(this.PlayerPosition);
     }
     
     function OnLogicUpdate(event : UpdateEvent)
@@ -70,6 +72,7 @@ this.PlayerPosition.Transform.Translation.Y-this.Owner.Transform.Translation.Y,0
         this.UpdateFacingInput();
         this.UpdateMoveInput();
         this.UpdatePlayerMovement();
+        Console.WriteLine(this.Owner.Transform.Scale);
     }
     
 }
