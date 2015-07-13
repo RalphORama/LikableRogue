@@ -6,17 +6,17 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "LevelArchetype00",
-	},
-	Archetyped = 
-	{
-		string Name = "551e378ab8f90d3e:LevelArchetype00",
+		string Name = "LevelArchetype01",
 	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
+	},
+	LevelArchetypeProperties = 
+	{
+		int Difficulty = 1,
 	},
 	Hierarchy = 
 	{

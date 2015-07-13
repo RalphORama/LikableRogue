@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "LevelArchetypeProperties",
+		uint64 ResourceId = 551eee4b7f9a6314,
+	},
+},
