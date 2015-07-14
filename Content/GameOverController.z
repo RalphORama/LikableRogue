@@ -1,0 +1,57 @@
+class GameOverController : ZilchComponent
+{
+    [Dependency]
+    var Sprite: SpriteText;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
+        Zero.Connect(this.Owner, Events.MouseExit,  this.OnMouseExit);
+        Zero.Connect(this.Owner, Events.MouseDown,  this.OnMouseDown);
+        Zero.Connect(this.Owner, Events.MouseUp,    this.OnMouseUp);
+        
+        // reduce the alpha
+        this.Owner.SpriteText.Color = this.Owner.SpriteText.Color + Real4(0.0, 0.0, 0.0, 0.25 - this.Owner.SpriteText.Color.W);
+    }
+
+    function OnMouseUp(event : ViewportMouseEvent)
+    {
+        this.Space.LoadLevel( Level.Find("MainGame") );
+    }
+
+    function OnMouseDown(event : ViewportMouseEvent)
+    {
+        // we'll animate the button's change in color to make this look nicer
+        var buttonAnimate : ActionSet = Action.Sequence( this.Owner.Actions as ActionSet );
+        
+        // Become brightest to show clicking
+        var newOpacity = this.Owner.SpriteText.Color + Real4(0.0, 0.0, 0.0, 1.0 - this.Owner.SpriteText.Color.W);
+        
+        // Become brighter to show you are hovering over the button
+        Action.Property( buttonAnimate, @this.Owner.SpriteText.Color, newOpacity, 0.3, Ease.Linear );
+    }
+
+    function OnMouseExit(event : ViewportMouseEvent)
+    {
+        // we'll animate the button's change in color to make this look nicer
+        var buttonAnimate : ActionSet = Action.Sequence( this.Owner.Actions as ActionSet );
+        
+        // Become dullest to allow it to fade into the background
+        var newOpacity = this.Owner.SpriteText.Color + Real4(0.0, 0.0, 0.0, 0.25 - this.Owner.SpriteText.Color.W);
+        
+        // Become brighter to show you are hovering over the button
+        Action.Property( buttonAnimate, @this.Owner.SpriteText.Color, newOpacity, 0.3, Ease.Linear );
+    }
+
+    function OnMouseEnter(event : ViewportMouseEvent)
+    {
+        // we'll animate the button's change in color to make this look nicer
+        var buttonAnimate : ActionSet = Action.Sequence( this.Owner.Actions as ActionSet );
+        
+        // define new transparancy for transition
+        var newOpacity = this.Owner.SpriteText.Color + Real4(0.0, 0.0, 0.0, 0.75 - this.Owner.SpriteText.Color.W);
+        
+        // Become brighter to show you are hovering over the button
+        Action.Property( buttonAnimate, @this.Owner.SpriteText.Color, newOpacity, 0.3, Ease.Linear );
+    }
+}
