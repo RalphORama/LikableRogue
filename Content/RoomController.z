@@ -26,4 +26,6 @@ class RoomController : ZilchComponent
     
     [Property]
     var EnemiesDead : Boolean = false;
+    [Property]
+    var IsLootRoom : Boolean  = false;
 }
