@@ -2,9 +2,11 @@ class EnemyController : ZilchComponent
 {
     var Ang : Real = 0;
     var PlayerCog : Cog = null;
+    var LevelCog : Cog = null;
     var PlayerPosition : Real3 = Real3(0,0,0);
+
     [Property]
-    var HP : Real = 5;
+    var HP : Real;
     var StartingHP : Real;
     
     [Property]
@@ -16,6 +18,7 @@ class EnemyController : ZilchComponent
         {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.PlayerCog = this.Space.FindObjectByName("Player");
+        this.LevelCog = this.Space.FindObjectByName("LevelManager");
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         this.StartingHP = this.HP;
         }
@@ -65,11 +68,11 @@ class EnemyController : ZilchComponent
         if (hurt == 0)
             this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
                 this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                1);
+                1); //going towards the player
         else
             this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
                 this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                1);
+                1); //going away from the player
         this.Ang = Math.Angle2D(this.PlayerPosition);
         this.Move(this.PlayerPosition);
     }
@@ -84,18 +87,19 @@ class EnemyController : ZilchComponent
     
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if (this.HP<=0)
-            {
+        if (this.HP<=0) //this kills the player after its HP hits 0 and drops a "rock"
+        {
             this.Space.CreateAtPosition(this.Drop1, this.Owner.Transform.Translation);            
             this.Owner.Destroy();
-            }
+        }
         this.UpdateFacingInput();
         /*Console.WriteLine(this.StartingHP);
-        Console.WriteLine(this.HP);*/ //used for decoding
-        if (this.HP >= (this.StartingHP/2)) //this is going to check if HP is >= half of its StartingHP
+        Console.WriteLine(this.HP);
+        Console.WriteLine(this.LevelCog.LevelController.DynamicDifficulty);*/   //used for decoding
+        if (this.HP > (1/(2 * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) * this.StartingHP))
+        //this (above) is going to check if the current HP is > the StartingHP divided by (2*LevelDifficulty*DynamicDifficulty)
             this.UpdateEnemyMovement(0); //when this is sent, the enemy will move towards the player
         else
             this.UpdateEnemyMovement(1); //when this is sent, the enemy will "run" away from the player
     }
-    
 }
