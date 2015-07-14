@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [2.52869, 2.29763, 50],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [2.52869, 2.29763, 0],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -201,7 +201,7 @@ Level =
 		{
 			string PlayerCharacter = "5522de378f164585:Player",
 			int LevelDifficulty = 1,
-			float DynamicDifficulty = 50,
+			float DynamicDifficulty = 25,
 			string EasyLevel01 = "551eefc556b12616:LevelArchetype01",
 			string EasyLevel02 = "",
 			string MediumLevel01 = "551eefc556b12616:LevelArchetype01",
