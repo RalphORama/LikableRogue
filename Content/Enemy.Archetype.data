@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [5, 5, 1],
+		Vec3 Translation = [2.52869, 2.29763, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -61,5 +61,6 @@ Cog =
 	EnemyController = 
 	{
 		float MoveSpeed = 2,
+		string Drop1 = "55d2e120dac3a62b:SlingShotProject",
 	},
 },

@@ -34,7 +34,7 @@ class PlayerController : ZilchComponent
     var SlingShotProjectCog : Array[Cog] = Array[Cog]();
     var SlinShoAmmCou : Integer =  -1;
     var ProMoveSpeed : Real = 30;//18
-    var MaxProjec : Integer = 10;
+    var MaxProjec : Integer = 1;
     var CurentProject : Integer = 0;
     function Initialize(init : CogInitializer)
         {
@@ -162,7 +162,7 @@ class PlayerController : ZilchComponent
         this.ProjectileLaunch();
         if (this.Health<=0)
             {
-            Console.WriteLine(this.Health);
+            this.Owner.Destroy();
             }
         //this.SlingshotSpeed+=0.12;
         //this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);
