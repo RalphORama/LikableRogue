@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 16.5299,
+			float Size = 9.07181,
 		},
 		EditorCameraController = 
 		{
@@ -238,115 +238,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [5.14217, 2.98375, 0],
-			Vec3 Scale = [0.5, 0.5, 0.5],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "ProjSpeIncDrop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
-		LinkId = 
-		{
-			uint Id = 7,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [6.27615, 2.98375, 0],
-			Vec3 Scale = [0.5, 0.5, 0.5],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "ProjSpeIncDrop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
-		LinkId = 
-		{
-			uint Id = 8,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [4.79325, 4.42303, 0],
-			Vec3 Scale = [0.5, 0.5, 0.5],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "ProjSpeIncDrop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
-		LinkId = 
-		{
-			uint Id = 9,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [6.49422, 4.11773, 0],
-			Vec3 Scale = [0.5, 0.5, 0.5],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "ProjSpeIncDrop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
-		LinkId = 
-		{
-			uint Id = 10,
-		},
-		Transform = 
-		{
 			Vec3 Translation = [3.65927, 3.50712, 0],
-			Vec3 Scale = [0.5, 0.5, 0.5],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "ProjSpeIncDrop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
-		LinkId = 
-		{
-			uint Id = 11,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [7.23567, 3.4199, 0],
-			Vec3 Scale = [0.5, 0.5, 0.5],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "ProjSpeIncDrop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
-		LinkId = 
-		{
-			uint Id = 12,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [5.75277, 5.25171, 0],
 			Vec3 Scale = [0.5, 0.5, 0.5],
 			Quat Rotation = [0, 0, 0, 1],
 		},
