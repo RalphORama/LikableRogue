@@ -78,7 +78,7 @@ class LevelController : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         // TODO: make this dynamically change
-        this.DynamicDifficulty = 2.5;
+        //this.DynamicDifficulty = 2.5;
         
         /// We'll need to add the various levels to arrays
         /// so that we can create them based off of how 
