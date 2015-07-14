@@ -5,4 +5,11 @@ TextContent =
 		string Name = "EnemySpawnController",
 		uint64 ResourceId = 551a3405bbdd86ea,
 	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Controller",
+		],
+	},
 },
