@@ -25,7 +25,9 @@ class RoomController : ZilchComponent
     var WestRoomGenerated  : Boolean = false;
     
     [Property]
-    var EnemiesDead : Boolean = false;
+    var EnemiesDead : Boolean       = false;
     [Property]
-    var IsLootRoom : Boolean  = false;
+    var EnemiesSpawned : Boolean    = false;
+    [Property]
+    var IsLootRoom : Boolean        = false;
 }

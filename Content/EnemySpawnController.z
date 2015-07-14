@@ -1,0 +1,99 @@
+class EnemySpawnController : ZilchComponent
+{
+    // we need a few types of enemies to spawn
+    [Property]
+    var Enemy01 : Archetype = null;
+    [Property]
+    var Enemy02 : Archetype = null;
+    [Property]
+    var Enemy03 : Archetype = null;
+    
+    // a multiplier for how many enemies to spawn
+    [Property]
+    var EnemySpawnRateMultiplier : Integer = 3;
+    
+    // an array that the enemies will be stored in
+    var EnemyArray : Array[Archetype] = Array[Archetype]();
+    
+    // a cog to store the level manager in
+    var LevelManager : Cog = null;
+    
+    // Create a random number generator for generating random numbers
+    var RandomGenerator : Random = Random();
+    
+    function Initialize(init : CogInitializer)
+    {
+        // add all of our enemies to the proper array
+        this.EnemyArray.Add( this.Enemy01 );
+        // TODO: uncomment this when we have multiple enemy types
+        //this.EnemyArray.Add( this.Enemy02 );
+        //this.EnemyArray.Add( this.Enemy03 );
+        
+        this.LevelManager = this.Space.FindObjectByName( "LevelManager" );
+        
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent) 
+    {
+        
+        if ( event.OtherObject.Name == "Background" ) 
+        {
+            Console.WriteLine( "`this.Owner.Name` collided with `event.OtherObject.Name`" );
+            //Console.WriteLine
+            if ( event.OtherObject.Parent.RoomController.EnemiesDead == false && event.OtherObject.Parent.RoomController.EnemiesSpawned == false )
+            {
+                Console.WriteLine( "I should spawn enemies now" );
+                // so we don't do this twice
+                event.OtherObject.Parent.RoomController.EnemiesSpawned = true;
+                
+                // get the worldtranslation of the background, then create min and max values
+                var roomPosition : Real3 = event.OtherObject.Transform.WorldTranslation;
+                
+                // create reals to pass to SpawnEnemies()
+                var minLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) - 10, 
+                                                        (roomPosition.Y as Integer) - 7, 
+                                                        0 );
+                var maxLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) + 10, 
+                                                        (roomPosition.Y as Integer) + 7, 
+                                                        0 );
+                
+                // access the current difficulty, assign it to a local variable
+                var dynamDifficulty : Real      = this.LevelManager.LevelController.DynamicDifficulty;
+                var levelDifficulty : Integer   = this.LevelManager.LevelController.LevelDifficulty;
+                
+                // calculate the number of enemies to spawn
+                // min: difficulty of the floor (0 - 3)
+                // max: difficulty of the floor * dynamic difficulty
+                var numEnemiesToSpawn : Integer = this.RandomGenerator.Range( levelDifficulty, levelDifficulty * dynamDifficulty ) as Integer;
+                
+                // spawn the enemies
+                this.SpawnEnemies( numEnemiesToSpawn, minLocationToSpawn, maxLocationToSpawn );
+            }
+        }
+    }
+    
+    function SpawnEnemies ( numEnemiesToSpawn : Integer,
+                            minSpawnLocation  : Real3,
+                            maxSpawnLocation  : Real3   )
+    {
+        // for each enemy that we need to spawn
+        for ( var enemiesSpawned : Integer = 0; enemiesSpawned < numEnemiesToSpawn; ++enemiesSpawned )
+        {
+            // first, generate some random numbers
+            // where to spawn
+            var spawnPoint : Real3 = Real3( this.RandomGenerator.Range(minSpawnLocation.X, maxSpawnLocation.X) as Integer, 
+                                            this.RandomGenerator.Range(minSpawnLocation.Y, maxSpawnLocation.Y) as Integer,
+                                            0 );
+                                            
+            // randomIndex of the enemy array
+            var randomIndex : Integer = this.RandomGenerator.Range( 0, this.EnemyArray.Count ) as Integer;
+            
+            // random enemy from enemy array using randomIndex
+            var enemyToSpawn : Archetype = this.EnemyArray.Get( randomIndex );
+            
+            // finally, create the enemy
+            this.Space.CreateAtPosition( enemyToSpawn, spawnPoint );
+        }
+    }
+}

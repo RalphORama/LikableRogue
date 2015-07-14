@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 1],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -29,7 +29,9 @@ Cog =
 		bool EastRoomGenerated = false,
 		bool SouthRoomGenerated = false,
 		bool WestRoomGenerated = false,
-		bool EnemiesDead = true,
+		bool EnemiesDead = false,
+		bool EnemiesSpawned = false,
+		bool IsLootRoom = false,
 	},
 	Hierarchy = 
 	{

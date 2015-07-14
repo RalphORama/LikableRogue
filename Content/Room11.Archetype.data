@@ -8,6 +8,10 @@ Cog =
 	{
 		string Name = "Room11",
 	},
+	Archetyped = 
+	{
+		string Name = "551e328fbd625bb6:Room11",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
@@ -25,7 +29,9 @@ Cog =
 		bool EastRoomGenerated = false,
 		bool SouthRoomGenerated = false,
 		bool WestRoomGenerated = false,
-		bool EnemiesDead = true,
+		bool EnemiesDead = false,
+		bool EnemiesSpawned = false,
+		bool IsLootRoom = false,
 	},
 	Hierarchy = 
 	{
