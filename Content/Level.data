@@ -226,7 +226,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "ProjSpeIncDrop",
+			string Name = "ProjectileSpeedDrop",
 		},
 	},
 },

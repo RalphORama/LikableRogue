@@ -2,8 +2,8 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "ProjSpeIncDrop",
-		uint64 ResourceId = 55d7f50eb857fc8b,
+		string Name = "ProjectileSpeedDrop",
+		uint64 ResourceId = 555d42616cadebc0,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,
