@@ -177,12 +177,12 @@ class PlayerController : ZilchComponent
             {
             this.Ang = Math.Angle2D(Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y , 0));
             }
-        //mouse
+        //Player direction check/set code
             //North
             if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
                 {
                 //this.ProjectAngle = Real3(0,1,0);
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerN");//Sets Sprite
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(0,1,0);//This is an example of moving the sword when the player turns
                 //this.SwordDamageBox.Orientation.Rotation;
@@ -191,50 +191,50 @@ class PlayerController : ZilchComponent
             if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
                 {
                 //this.ProjectAngle = Real3(1,1,0);
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleNW");//Sets Sprite
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(1,1,0);
                 }
             //East
             if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");
-                this.Owner.Sprite.FlipX=false;
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleW");
+                this.Owner.Sprite.FlipX=true;
                 this.SwordAttcackZone = Real3(1,0,0);
                 }
             //South East
             if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleSW");//Sets Sprite
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(1,-1,0);
                 }
             //South
             if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");//Sets Sprite
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleS");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(0,-1,0);
                 }
             //South West
             if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerSE");//Sets Sprite
-                this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleSW");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
                 this.SwordAttcackZone = Real3(-1,-1,0);
                 }
             //West
             if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");//Sets Sprite
-                this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleW");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
                 this.SwordAttcackZone = Real3(-1,0,0);
                 }
             //North West
             if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerNE");//Sets Sprite
-                this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleNW");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
                 this.SwordAttcackZone = Real3(-1,1,0);
                 }
             
