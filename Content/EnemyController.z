@@ -19,52 +19,52 @@ class EnemyController : ZilchComponent
     var Drop1: Archetype = null;
     
     function Initialize(init : CogInitializer)
-        {
+    {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         this.PlayerCog = this.Space.FindObjectByName("Player");
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
         this.StartingHP = this.HP;
-        }
+    }
     
     function OnCollisionStarted(event : CollisionEvent)
-        {
+    {
         //for dealing damage to the enemy
         if (event.OtherObject.Name == "Player")
-            {
+        {
             this.PlayerCog.PlayerController.Health -= 1;//int for taking damag, set to a var to costomize based on enemy
-            }
+        }
         if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)
-            {
-            this.HP-=1;
-            }
-        }    
+        {
+            this.HP-=this.PlayerCog.PlayerController.Pjtl_Damage;
+        }
+    }    
     function UpdateFacingInput()
     {
-//North
+        //North
         if (this.Ang>0.79&&this.Ang<1.57&&this.Ang!=0)
-            {
+        {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyN");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-            }
+        }
         //East
         if (this.Ang>-0.79&&this.Ang<0.79&&this.Ang!=0)
-            {
+        {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyE");
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-            }
+        }
         //South
         if (this.Ang<-0.79&&this.Ang>-1.57&&this.Ang!=0)
-            {
+        {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-            }
+        }
         //West
         if (this.Ang>2.36||this.Ang<-2.36&&this.Ang!=0)
-            {
+        {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");//Sets Sprite
             this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
-            }
+        }
     }
     
     function UpdateEnemyMovement(hurt : Boolean)//Updates Ang based on Player location
@@ -88,7 +88,7 @@ class EnemyController : ZilchComponent
         }
     }
     
-        function Move(moveR3 : Real3)
+    function Move(moveR3 : Real3)
     {
         //Applies linear impulse based on movespeed and the given vector
         this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
