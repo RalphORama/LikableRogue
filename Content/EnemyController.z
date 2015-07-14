@@ -33,8 +33,7 @@ class EnemyController : ZilchComponent
             {
             this.HP-=1;
             }
-        }
-    
+        }    
     function UpdateFacingInput()
     {
 //North
