@@ -114,6 +114,8 @@ class EnemyController : ZilchComponent
         {
             this.Space.CreateAtPosition(this.Drop1, this.Owner.Transform.Translation);            
             this.Owner.Destroy();
+            this.LevelCog.LevelController.DynamicDifficulty += 0.1;
+            //Console.WriteLine("The dynamic difficulity is: `this.LevelCog.LevelController.DynamicDifficulty`"); //debug
         }
         this.UpdateFacingInput();
         this.UpdateEnemyMovement();
