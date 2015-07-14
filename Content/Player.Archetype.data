@@ -42,13 +42,13 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = true,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	BoxCollider = 
+	SphereCollider = 
 	{
 		bool Ghost = false,
 		bool SendsMessages = true,
@@ -56,13 +56,14 @@ Cog =
 		string MaterialName = "5522c1021f9ffff0:NoBounceMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
-		Vec3 Size = [0.5, 0.5, 0.5],
+		float Radius = 0.5,
 	},
 	PlayerController = 
 	{
 		int PlayerNumber = 1,
 		float MoveSpeed = 10,
 		string SlingShotProjectArch = "55d2e120dac3a62b:SlingShotProject",
+		int Health = 2,
 	},
 	Health = 
 	{

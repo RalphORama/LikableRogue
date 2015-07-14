@@ -18,6 +18,9 @@ class DoorController : ZilchComponent
     
     var ContainingRoom : Cog = null;
     
+    var IsPlayerTouchingMe : Boolean = false;
+    var PlayerCog : Cog = null;
+    
     function Initialize(init : CogInitializer)
     {
         // initialize location for collision
@@ -26,15 +29,39 @@ class DoorController : ZilchComponent
         // initialize containing room
         this.ContainingRoom = this.Owner.Parent;
         
+        // Connect to collision events
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+        
+        // Connect to physics update
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnCollisionStarted(event : CollisionEvent)
     {
-        if (event.OtherObject.Name == "Player") {
+        if (event.OtherObject.Name == "Player") 
+        {
+            this.PlayerCog = event.OtherObject;
+            this.IsPlayerTouchingMe = true;
+        }
+    }
+    
+    function OnCollisionEnded(event : CollisionEvent)
+    {
+        if (event.OtherObject.Name == "Player" )
+        {
+            this.IsPlayerTouchingMe = false;
+            this.PlayerCog = null;
+        }
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (this.IsPlayerTouchingMe == true) 
+        {
             // get the location of the player in order to calculate where he is
             // in relation to us.
-            var playerLoc : Real3 = event.OtherObject.Transform.Translation;
+            var playerLoc : Real3 = this.PlayerCog.Transform.Translation;
             // get the value (-1, 1, or 0) depending on where the player is
             // in relation to us. 
             // (0, -1) is south of us
@@ -57,14 +84,14 @@ class DoorController : ZilchComponent
                 // then, add that real3 to the player's Y location
                 // then set the player's location to the new real3
                 var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.75), 0 );
-                event.OtherObject.Transform.Translation = toPutPlayer;
+                this.PlayerCog.Transform.Translation = toPutPlayer;
             }
             else if ( xDifference == 0 && yDifference == 1      // going south
                       && this.ContainingRoom.RoomController.SouthExit == true
                       && this.IsLocked == false) {
                 
                 var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.75), 0 );
-                event.OtherObject.Transform.Translation = toPutPlayer;
+                this.PlayerCog.Transform.Translation = toPutPlayer;
                 
             }
             else if ( xDifference == -1 && yDifference == 0     // going east
@@ -72,18 +99,18 @@ class DoorController : ZilchComponent
                       && this.IsLocked == false) { 
                 
                 var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2.75), playerLoc.Y, 0 );
-                event.OtherObject.Transform.Translation = toPutPlayer;
+                this.PlayerCog.Transform.Translation = toPutPlayer;
             }
             else if ( xDifference == 1 && yDifference == 0      // going west
                       && this.ContainingRoom.RoomController.WestExit == true
                       && this.IsLocked == false) {
                 var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2.75), playerLoc.Y, 0 );
-                event.OtherObject.Transform.Translation = toPutPlayer;
+                this.PlayerCog.Transform.Translation = toPutPlayer;
             }
             else {                                              // error case
                 return;
                 //Console.WriteLine("I don't know where the player is going"); 
-            } 
+            }
         }
     }
 }
