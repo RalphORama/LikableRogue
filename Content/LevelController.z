@@ -108,6 +108,9 @@ class LevelController : ZilchComponent
         /// SpawnEnemiesAndPickUps() creates the enemies and pickups based off of
         /// relative distance to the player's starting location
         this.SpawnPickupsAndExits( this.Space.FindAllObjectsByName("Background") );
+        
+        // connect to physicsupdate (we only use this to cap dynamicdifficulty)
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
     
     /// ChooseAndCreateLevel: takes integer "difficulty," 
@@ -144,6 +147,69 @@ class LevelController : ZilchComponent
         {
             Console.WriteLine( "ERROR in ChooseAndCreateLevel(): Got `difficulty`, but expected a value between 0 and 3." );
         }
+    }
+    
+    /// SpawnPlayer: takes two integers that will be used
+    ///    as X and Y coordinates relative to the world when
+    ///    the player is spawned.
+    function SpawnPlayer ( level : Cog ) 
+    {
+        // create an array of points we can spawn the player at
+        var possibleSpawnPoints : Array[Real3] = Array[Real3]()
+            // this adds all the spawnpoints of the level
+            // (we'll assume we have a max of 6)
+            { level.LevelArchetypeController.PlayerSpawn01,
+              level.LevelArchetypeController.PlayerSpawn02, 
+              level.LevelArchetypeController.PlayerSpawn03, 
+              level.LevelArchetypeController.PlayerSpawn04, 
+              level.LevelArchetypeController.PlayerSpawn05, 
+              level.LevelArchetypeController.PlayerSpawn06 };
+              
+        var actualSpawnPoints : Array[Real3] = Array[Real3]();
+        
+        /// now we use foreach to eliminate any invalid spawnpoints
+        // any non-set spawnpoints will be (0, 0, 0)
+        foreach ( var spawnPoint in possibleSpawnPoints ) 
+        {
+            if ( (spawnPoint.X != 0.0) && (spawnPoint.Y != 0.0) ) 
+            {
+                actualSpawnPoints.Add( spawnPoint );
+            }
+        }
+        
+        // get a random index of the spawn point array
+        var randomIndex : Integer = this.RandomGenerator.Range(0, actualSpawnPoints.Count) as Integer;
+        //Console.WriteLine("`randomIndex` of pspwnpts is \t`actualSpawnPoints.Get(randomIndex)`");
+        // set the player's new spawn point
+        var spawnPoint : Real3 = actualSpawnPoints.Get( randomIndex );
+        
+        // before we spawn the player, make sure no enemies spawn in with him
+        foreach( var background in this.ListOfBackgrounds ) 
+        {
+            var roomLocation : Real3 = background.Transform.WorldTranslation;
+            
+            //Console.WriteLine( "SpawnPlayer():\t\t Processing room at `roomLocation`" );
+            
+            // we only need the x and y difference, not Z
+            var xDifference : Integer = Math.Abs( spawnPoint.X - roomLocation.X ) as Integer;
+            var yDifference : Integer = Math.Abs( spawnPoint.Y - roomLocation.Y ) as Integer;
+            
+            if ( (xDifference == 0 as Integer) && (yDifference == 0 as Integer) )
+            {
+                background.Sprite.Color = Real4( 0, 128, 255, 1.0 );
+                background.Parent.RoomController.EnemiesDead    = true;
+                background.Parent.RoomController.EnemiesSpawned = true;
+            }
+        }
+        
+        // spawn the player
+        var player = this.Space.CreateAtPosition( this.PlayerCharacter, spawnPoint );
+        
+        // use the player's location to orient the camera
+        var cameraSpawnPoint : Real3 = Real3( spawnPoint.X, spawnPoint.Y, this.LevelCamera.Transform.Translation.Z );
+        
+        // orient the camera to the player's location
+        this.LevelCamera.Transform.Translation = cameraSpawnPoint;
     }
     
     function SpawnPickupsAndExits ( listOfRooms : CogNameRange ) 
@@ -226,67 +292,9 @@ class LevelController : ZilchComponent
         */
     }
     
-    /// SpawnPlayer: takes two integers that will be used
-    ///    as X and Y coordinates relative to the world when
-    ///    the player is spawned.
-    function SpawnPlayer ( level : Cog ) 
+    function OnLogicUpdate(event : UpdateEvent)
     {
-        // create an array of points we can spawn the player at
-        var possibleSpawnPoints : Array[Real3] = Array[Real3]()
-            // this adds all the spawnpoints of the level
-            // (we'll assume we have a max of 6)
-            { level.LevelArchetypeController.PlayerSpawn01,
-              level.LevelArchetypeController.PlayerSpawn02, 
-              level.LevelArchetypeController.PlayerSpawn03, 
-              level.LevelArchetypeController.PlayerSpawn04, 
-              level.LevelArchetypeController.PlayerSpawn05, 
-              level.LevelArchetypeController.PlayerSpawn06 };
-              
-        var actualSpawnPoints : Array[Real3] = Array[Real3]();
-        
-        /// now we use foreach to eliminate any invalid spawnpoints
-        // any non-set spawnpoints will be (0, 0, 0)
-        foreach ( var spawnPoint in possibleSpawnPoints ) 
-        {
-            if ( (spawnPoint.X != 0.0) && (spawnPoint.Y != 0.0) ) 
-            {
-                actualSpawnPoints.Add( spawnPoint );
-            }
-        }
-        
-        // get a random index of the spawn point array
-        var randomIndex : Integer = this.RandomGenerator.Range(0, actualSpawnPoints.Count) as Integer;
-        //Console.WriteLine("`randomIndex` of pspwnpts is \t`actualSpawnPoints.Get(randomIndex)`");
-        // set the player's new spawn point
-        var spawnPoint : Real3 = actualSpawnPoints.Get( randomIndex );
-        
-        // before we spawn the player, make sure no enemies spawn in with him
-        foreach( var background in this.ListOfBackgrounds ) 
-        {
-            var roomLocation : Real3 = background.Transform.WorldTranslation;
-            
-            //Console.WriteLine( "SpawnPlayer():\t\t Processing room at `roomLocation`" );
-            
-            // we only need the x and y difference, not Z
-            var xDifference : Integer = Math.Abs( spawnPoint.X - roomLocation.X ) as Integer;
-            var yDifference : Integer = Math.Abs( spawnPoint.Y - roomLocation.Y ) as Integer;
-            
-            if ( (xDifference == 0 as Integer) && (yDifference == 0 as Integer) )
-            {
-                background.Sprite.Color = Real4( 0, 128, 255, 1.0 );
-                background.Parent.RoomController.EnemiesDead    = true;
-                background.Parent.RoomController.EnemiesSpawned = true;
-            }
-        }
-        
-        // spawn the player
-        var player = this.Space.CreateAtPosition( this.PlayerCharacter, spawnPoint );
-        
-        // use the player's location to orient the camera
-        var cameraSpawnPoint : Real3 = Real3( spawnPoint.X, spawnPoint.Y, this.LevelCamera.Transform.Translation.Z );
-        
-        // orient the camera to the player's location
-        this.LevelCamera.Transform.Translation = cameraSpawnPoint;
+        Math.Clamp( this.DynamicDifficulty, 0, 100 );
     }
 }
 
