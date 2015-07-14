@@ -48,7 +48,13 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	BoxCollider = 
+	EnemyController = 
+	{
+		float HP = 5,
+		float MoveSpeed = 2,
+		string Drop1 = "55d2e120dac3a62b:SlingShotProject",
+	},
+	SphereCollider = 
 	{
 		bool Ghost = false,
 		bool SendsMessages = true,
@@ -56,11 +62,6 @@ Cog =
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
-		Vec3 Size = [0.5, 0.5, 5],
-	},
-	EnemyController = 
-	{
-		float MoveSpeed = 2,
-		string Drop1 = "55d2e120dac3a62b:SlingShotProject",
+		float Radius = 0.5,
 	},
 },

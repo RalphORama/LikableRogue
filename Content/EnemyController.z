@@ -26,7 +26,7 @@ class EnemyController : ZilchComponent
             {
             this.PlayerCog.PlayerController.Health -= 1;//int for taking damag, set to a var to costomize based on enemy
             }
-        if (event.OtherObject.Name == "SlingShotProject")
+        if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)
             {
             this.HP-=1;
             }
