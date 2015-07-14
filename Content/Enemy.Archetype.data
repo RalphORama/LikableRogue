@@ -60,6 +60,7 @@ Cog =
 	},
 	EnemyController = 
 	{
+		float HP = 5,
 		float MoveSpeed = 2,
 		string Drop1 = "55d2e120dac3a62b:SlingShotProject",
 	},

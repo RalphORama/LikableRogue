@@ -54,6 +54,7 @@ class PlayerController : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
         Zero.Connect(this.LevelCamera, Events.MouseScroll, this.OnMouseScroll);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         this.LevelCamera.Camera.Size = this.CamSize;
         this.LevelCamera.Camera.FieldOfView = this.CamSize;
         //this.Space.CreateAtPosition(this.SlingShotProjectArchArr(0), Real3(0,0,0))
@@ -294,4 +295,13 @@ class PlayerController : ZilchComponent
         this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity = Math.Normalize(this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity);
         this.SlingShotProjectCog.Get(this.SlinShoAmmCou).RigidBody.Velocity *= this.ProMoveSpeed;
         }
+    
+    //Dylan wrote this v
+    function OnCollisionStarted(event : CollisionEvent) {
+        if ( event.OtherObject.Name == "Background" ) {
+        
+        }
+    }
 }
+
+    

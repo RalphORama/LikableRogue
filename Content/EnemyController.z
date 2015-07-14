@@ -1,9 +1,12 @@
 class EnemyController : ZilchComponent
 {
+    var Active : Boolean = true;
+    
     var Ang : Real = 0;
+    var PlayerPosition : Real3 = Real3(0,0,0);
+    
     var PlayerCog : Cog = null;
     var LevelCog : Cog = null;
-    var PlayerPosition : Real3 = Real3(0,0,0);
 
     [Property]
     var HP : Real;
@@ -11,20 +14,22 @@ class EnemyController : ZilchComponent
     
     [Property]
     var MoveSpeed : Real = 1;
+    
     [Property]
     var Drop1: Archetype = null;
     
     function Initialize(init : CogInitializer)
         {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         this.PlayerCog = this.Space.FindObjectByName("Player");
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
-        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         this.StartingHP = this.HP;
         }
     
     function OnCollisionStarted(event : CollisionEvent)
         {
+        //for dealing damage to the enemy
         if (event.OtherObject.Name == "Player")
             {
             this.PlayerCog.PlayerController.Health -= 1;//int for taking damag, set to a var to costomize based on enemy
@@ -63,18 +68,25 @@ class EnemyController : ZilchComponent
             }
     }
     
-    function UpdateEnemyMovement(hurt : Integer)//Updates Ang based on Player location
+    function UpdateEnemyMovement(hurt : Boolean)//Updates Ang based on Player location
     {
-        if (hurt == 0)
-            this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
-                this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                1); //going towards the player
-        else
-            this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
-                this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                1); //going away from the player
-        this.Ang = Math.Angle2D(this.PlayerPosition);
-        this.Move(this.PlayerPosition);
+        if (this.Active)
+        {
+            if (!hurt)
+            {
+                this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
+                    this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                    1); //going towards the player
+            }
+            else
+            {
+                this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
+                    this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                    1); //going away from the player
+            }
+            this.Ang = Math.Angle2D(this.PlayerPosition);
+            this.Move(this.PlayerPosition);
+        }
     }
     
         function Move(moveR3 : Real3)
@@ -97,9 +109,13 @@ class EnemyController : ZilchComponent
         Console.WriteLine(this.HP);
         Console.WriteLine(this.LevelCog.LevelController.DynamicDifficulty);*/   //used for decoding
         if (this.HP > (1/(2 * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) * this.StartingHP))
+        {
         //this (above) is going to check if the current HP is > the StartingHP divided by (2*LevelDifficulty*DynamicDifficulty)
-            this.UpdateEnemyMovement(0); //when this is sent, the enemy will move towards the player
+            this.UpdateEnemyMovement(false); //when this is sent, the enemy will move towards the player
+        }
         else
-            this.UpdateEnemyMovement(1); //when this is sent, the enemy will "run" away from the player
+        {
+            this.UpdateEnemyMovement(true); //when this is sent, the enemy will "run" away from the player
+        }
     }
 }
