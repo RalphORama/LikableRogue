@@ -202,6 +202,7 @@ class LevelController : ZilchComponent
                 {
                     ++spawnedLootRooms;
                     background.Parent.RoomController.IsLootRoom = true;
+                    background.Parent.RoomController.EnemiesDead = true;
                     background.Sprite.Color = Real4( 255, 240, 128, 1.00 );
                 }
             }
@@ -258,6 +259,22 @@ class LevelController : ZilchComponent
         //Console.WriteLine("`randomIndex` of pspwnpts is \t`actualSpawnPoints.Get(randomIndex)`");
         // set the player's new spawn point
         var spawnPoint : Real3 = actualSpawnPoints.Get( randomIndex );
+        
+        // before we spawn the player, make sure no enemies spawn in with him
+        foreach( var background in this.ListOfBackgrounds ) 
+        {
+            var roomLocation : Real3 = background.Transform.WorldTranslation;
+            
+            // we only need the x and y difference, not Z
+            var xDifference : Integer = Math.Abs( spawnPoint.X - roomLocation.X ) as Integer;
+            var yDifference : Integer = Math.Abs( spawnPoint.Y - roomLocation.Y ) as Integer;
+            
+            if ( (xDifference == 0 as Integer) && (yDifference == 0 as Integer) )
+            {
+                background.Parent.RoomController.EnemiesDead = true;
+                background.Parent.RoomController.EnemiesSpawned = true;
+            }
+        }
         
         // spawn the player
         var player = this.Space.CreateAtPosition( this.PlayerCharacter, spawnPoint );

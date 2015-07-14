@@ -65,6 +65,16 @@ Cog =
 		string SlingShotProjectArch = "55d2e120dac3a62b:SlingShotProject",
 		int Health = 2,
 	},
+	CameraPositionController = 
+	{
+	},
+	EnemySpawnController = 
+	{
+		string Enemy01 = "555896ce3c0fb42c:Enemy",
+		string Enemy02 = "",
+		string Enemy03 = "",
+		int EnemySpawnRateMultiplier = 3,
+	},
 	Health = 
 	{
 		float MaxHealth = 50,
@@ -76,9 +86,6 @@ Cog =
 		float Damage = 15,
 		bool SendsDeathEvent = true,
 		bool DieOnCollide = false,
-	},
-	CameraPositionController = 
-	{
 	},
 	Hierarchy = 
 	{
