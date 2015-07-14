@@ -1,0 +1,23 @@
+class ProjSpeIncController : ZilchComponent
+    {
+    var PlayerCog : Cog = null;
+    function Initialize(init : CogInitializer)
+        {
+        this.PlayerCog = this.Space.FindObjectByName("Player");
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        }
+    function OnLogicUpdate(event : UpdateEvent)
+        {
+        }
+    function OnCollisionStarted(event : CollisionEvent)
+        {
+        if (event.OtherObject.Name == "Player")
+            {
+            this.PlayerCog.PlayerController.ProMoveSpeed+=10;
+            this.PlayerCog.PlayerController.Pjtl_Damage*=2;
+            Console.WriteLine(this.PlayerCog.PlayerController.Pjtl_Damage);
+            this.Owner.Destroy();
+            }
+        }
+}

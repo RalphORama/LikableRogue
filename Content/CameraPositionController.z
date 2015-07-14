@@ -28,7 +28,7 @@ class CameraPositionController : ZilchComponent
             var newCameraPos : Real3 = Real3( toMoveCameraX, toMoveCameraY, toMoveCameraZ );
             
             // animate the camera's movement path so it's not jumpy
-            Action.Property( cameraMoveSeq, @this.LevelCamera.Transform.Translation, newCameraPos, 0.3, Ease.Linear );
+            Action.Property(cameraMoveSeq, @this.LevelCamera.Transform.Translation, newCameraPos, 0.3, Ease.Linear );
         }
     }
 }

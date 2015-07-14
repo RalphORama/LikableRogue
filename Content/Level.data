@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [8.66644, 7.49663, 51],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 60.6531,
+			float Size = 9.07181,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [8.66644, 7.49663, 1],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -200,13 +200,13 @@ Level =
 		LevelController = 
 		{
 			string PlayerCharacter = "5522de378f164585:Player",
-			int LevelDifficulty = 2,
+			int LevelDifficulty = 1,
 			float DynamicDifficulty = 1,
 			string EasyLevel01 = "551eefc556b12616:LevelArchetype01",
 			string EasyLevel02 = "",
-			string MediumLevel01 = "551a3ba390356dc1:LevelArchetype02",
+			string MediumLevel01 = "551eefc556b12616:LevelArchetype01",
 			string MediumLevel02 = "",
-			string HardLevel01 = "",
+			string HardLevel01 = "551eefc556b12616:LevelArchetype01",
 			string HardLevel02 = "",
 			int LootRoomModifier = 2,
 		},
@@ -227,6 +227,24 @@ Level =
 		Named = 
 		{
 			string Name = "Enemy",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
+		LinkId = 
+		{
+			uint Id = 6,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [3.65927, 3.50712, 0],
+			Vec3 Scale = [0.5, 0.5, 0.5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ProjSpeIncDrop",
 		},
 	},
 },
