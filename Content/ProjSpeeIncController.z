@@ -16,7 +16,7 @@ class ProjSpeIncController : ZilchComponent
             {
             this.PlayerCog.PlayerController.ProMoveSpeed+=10;
             this.PlayerCog.PlayerController.Pjtl_Damage*=2;
-            Console.WriteLine(this.PlayerCog.PlayerController.Pjtl_Damage);
+            //Console.WriteLine(this.PlayerCog.PlayerController.Pjtl_Damage);
             this.Owner.Destroy();
             }
         }
