@@ -11,6 +11,7 @@ class EnemyController : ZilchComponent
     [Property]
     var HP : Real;
     var StartingHP : Real;
+    var Hurt: Boolean = false;
     
     [Property]
     var MoveSpeed : Real = 1;
@@ -67,21 +68,23 @@ class EnemyController : ZilchComponent
         }
     }
     
-    function UpdateEnemyMovement(hurt : Boolean)//Updates Ang based on Player location
+    function UpdateEnemyMovement()//Updates Ang based on Player location
     {
         if (this.Active)
         {
-            if (!hurt)
+            //Console.WriteLine("I'm supposed to be moving"); //for decoding
+            if (this.Hurt)
             {
-                this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
-                    this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                    1); //going towards the player
+            this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
+                this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                1); //going away from the player
             }
             else
             {
-                this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
-                    this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                    1); //going away from the player
+            this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
+                this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                1); //going towards the player
+
             }
             this.Ang = Math.Angle2D(this.PlayerPosition);
             this.Move(this.PlayerPosition);
@@ -91,9 +94,18 @@ class EnemyController : ZilchComponent
     function Move(moveR3 : Real3)
     {
         //Applies linear impulse based on movespeed and the given vector
-        this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
-        this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
-        this.Owner.RigidBody.Velocity *= this.MoveSpeed;
+        if (this.Hurt)
+        {
+            this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * (this.MoveSpeed+1));
+            this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
+            this.Owner.RigidBody.Velocity *= this.MoveSpeed+1;
+        }
+        else
+        {
+            this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
+            this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
+            this.Owner.RigidBody.Velocity *= this.MoveSpeed;
+        }
     }
     
     function OnLogicUpdate(event : UpdateEvent)
@@ -104,17 +116,18 @@ class EnemyController : ZilchComponent
             this.Owner.Destroy();
         }
         this.UpdateFacingInput();
+        this.UpdateEnemyMovement();
         /*Console.WriteLine(this.StartingHP);
         Console.WriteLine(this.HP);
         Console.WriteLine(this.LevelCog.LevelController.DynamicDifficulty);*/   //used for decoding
         if (this.HP > (1/(2 * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) * this.StartingHP))
         {
         //this (above) is going to check if the current HP is > the StartingHP divided by (2*LevelDifficulty*DynamicDifficulty)
-            this.UpdateEnemyMovement(false); //when this is sent, the enemy will move towards the player
+            this.Hurt = false; //when this is sent, the enemy will move towards the player
         }
         else
         {
-            this.UpdateEnemyMovement(true); //when this is sent, the enemy will "run" away from the player
+            this.Hurt = true; //when this is sent, the enemy will "run" away from the player
         }
     }
 }
