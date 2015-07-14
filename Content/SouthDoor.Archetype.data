@@ -8,9 +8,13 @@ Cog =
 	{
 		string Name = "SouthDoor",
 	},
+	Archetyped = 
+	{
+		string Name = "5521b5d5b28c9d96:SouthDoor",
+	},
 	Transform = 
 	{
-		Vec3 Translation = [10, -1, 1],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1.1, 1.1, 1.1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -44,6 +48,10 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
+	DoorController = 
+	{
+		bool IsLocked = false,
+	},
 	BoxCollider = 
 	{
 		bool Ghost = true,
@@ -52,10 +60,6 @@ Cog =
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0.2, 0],
-		Vec3 Size = [0.5, 0.5, 0.5],
-	},
-	DoorController = 
-	{
-		bool IsLocked = false,
+		Vec3 Size = [0.5, 0.5, 0.65],
 	},
 },
