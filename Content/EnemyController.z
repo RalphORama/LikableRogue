@@ -3,8 +3,11 @@ class EnemyController : ZilchComponent
     var Ang : Real = 0;
     var PlayerCog : Cog = null;
     var PlayerPosition : Real3 = Real3(0,0,0);
+    var HP : Integer = 3;
     [Property]
     var MoveSpeed : Real = 1;
+    [Property]
+    var Drop1: Archetype = null;
     
     function Initialize(init : CogInitializer)
         {
@@ -18,6 +21,10 @@ class EnemyController : ZilchComponent
         if (event.OtherObject.Name == "Player")
             {
             this.PlayerCog.PlayerController.Health -= 1;//int for taking damag, set to a var to costomize based on enemy
+            }
+        if (event.OtherObject.Name == "SlingShotProject")
+            {
+            this.HP-=1;
             }
         }
     
@@ -68,8 +75,15 @@ class EnemyController : ZilchComponent
     
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if (this.HP<=0)
+            {
+            this.Space.CreateAtPosition(this.Drop1, Real3(0,0,0));
+            
+            this.Owner.Destroy();
+            }
         this.UpdateFacingInput();
         this.UpdateEnemyMovement();
+
     }
     
 }
