@@ -1,0 +1,66 @@
+class EnemySpawnController : ZilchComponent
+{
+    // we need a few types of enemies to spawn
+    [Property]
+    var Enemy01 : Archetype = null;
+    [Property]
+    var Enemy02 : Archetype = null;
+    [Property]
+    var Enemy03 : Archetype = null;
+    
+    // a multiplier for how many enemies to spawn
+    [Property]
+    var EnemySpawnRateMultiplier : Integer = 3;
+    
+    // an array that the enemies will be stored in
+    var EnemyArray : Array[Archetype] = Array[Archetype]();
+    
+    // a cog to store the level manager in
+    var LevelManager : Cog = null;
+    
+    // Create a random number generator for generating random numbers
+    var RandomGenerator : Random = Random();
+    
+    function Initialize(init : CogInitializer)
+    {
+        // add all of our enemies to the proper array
+        this.EnemyArray.Add( this.Enemy01 );
+        // TODO: uncomment this when we have multiple enemy types
+        //this.EnemyArray.Add( this.Enemy02 );
+        //this.EnemyArray.Add( this.Enemy03 );
+        
+        this.LevelManager = this.Space.FindObjectByName( "LevelManager" );
+        
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent) {
+        
+        if ( event.OtherObject.Name == "Background" ) 
+        {
+            if ( event.OtherObject.Parent.RoomController.EnemiesDead == false && event.OtherObject.Parent.RoomController.EnemiesSpawned == false )
+            {
+                // so we don't do this twice
+                event.OtherObject.RoomController.EnemiesSpawned = true;
+                
+                // get the worldtranslation of the background, then create min and max values
+                var roomPosition : Real3 = event.OtherObject.Transform.WorldTranslation;
+                // X values
+                var minX : Integer = (roomPosition.X as Integer) - 10;
+                var maxX : Integer = (roomPosition.X as Integer) + 10;
+                // Y values
+                var minY : Integer = (roomPosition.Y as Integer) - 7;
+                var maxY : Integer = (roomPosition.Y as Integer) + 7;
+                
+                // access the current difficulty, assign it to a local variable
+                var dynamDifficulty : Real = this.LevelManager.LevelController.DynamicDifficulty;
+                var levelDifficulty : Real = this.LevelManager.LevelController.LevelDifficulty;
+                
+                // calculate the number of enemies to spawn
+                // min: difficulty of the floor (0 - 3)
+                // max: difficulty of the floor * dynamic difficulty
+                var numEnemiesToSpawn : Integer = this.RandomGenerator.Range( levelDifficulty, levelDifficulty * dynamDifficulty ) as Integer;
+            }
+        }
+    }
+}
