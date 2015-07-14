@@ -34,7 +34,7 @@ class PlayerController : ZilchComponent
     var SlingShotProjectCog : Array[Cog] = Array[Cog]();
     var SlinShoAmmCou : Integer =  -1;
     var ProMoveSpeed : Real = 30;//18
-    var MaxProjec : Integer = 3;
+    var MaxProjec : Integer = 1;
     var CurentProject : Integer = 0;
     function Initialize(init : CogInitializer)
         {

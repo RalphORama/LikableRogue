@@ -10,6 +10,7 @@ class SlingProjControler : ZilchComponent
             Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
             Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
             //Zero.Connect(this.Owner, Events.CollisionStarted);
+            Console.WriteLine("I exssitst");
         }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -17,11 +18,13 @@ class SlingProjControler : ZilchComponent
         if (this.Pickup==false&&(Math.Abs(this.Owner.RigidBody.Velocity.X)<6 && Math.Abs(this.Owner.RigidBody.Velocity.Y)<6))
             {
             this.Pickup=true;
+            //this.Owner.BoxCollider.SendsEvents = true;
             this.Owner.SphericalParticleEmitter.Active=false;
             }
         }
     function OnCollisionStarted(event : CollisionEvent)
         {
+        //Console.WriteLine("coliding");
         if (event.OtherObject.Name == "Player" && this.Pickup==true)
             {
             ++this.PlayerCog.PlayerController.MaxProjec;

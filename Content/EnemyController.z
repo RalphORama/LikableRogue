@@ -77,8 +77,7 @@ class EnemyController : ZilchComponent
     {
         if (this.HP<=0)
             {
-            this.Space.CreateAtPosition(this.Drop1, Real3(0,0,0));
-            
+            this.Space.CreateAtPosition(this.Drop1, this.Owner.Transform.Translation);            
             this.Owner.Destroy();
             }
         this.UpdateFacingInput();
