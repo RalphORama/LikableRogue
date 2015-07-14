@@ -121,7 +121,11 @@ Level =
 		},
 		Transform = 
 		{
+<<<<<<< HEAD
 			Vec3 Translation = [0, 0, 50],
+=======
+			Vec3 Translation = [3.17951, 3.96508, 50],
+>>>>>>> 9fba04e21cb655f829d21fab6216641541933527
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +137,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 10.0259,
+			float Size = 16.5299,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +145,11 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
+<<<<<<< HEAD
 			Vec3 LookTarget = [0, 0, 0],
+=======
+			Vec3 LookTarget = [3.17951, 3.96508, 0],
+>>>>>>> 9fba04e21cb655f829d21fab6216641541933527
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -211,19 +219,12 @@ Level =
 			int LootRoomModifier = 2,
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "555896ce3c0fb42c:Enemy",
 		LinkId = 
 		{
 			uint Id = 5,
-		},
-		Named = 
-		{
-			string Name = "Enemy",
-		},
-		Archetyped = 
-		{
-			string Name = "555896ce3c0fb42c:Enemy",
 		},
 		Transform = 
 		{
@@ -231,51 +232,135 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 0, 0, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
+			string Name = "Enemy",
 		},
-		RigidBody = 
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
+		LinkId = 
 		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = true,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
+			uint Id = 6,
 		},
-		BoxCollider = 
+		Transform = 
 		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 5],
+			Vec3 Translation = [5.14217, 2.98375, 0],
+			Vec3 Scale = [0.5, 0.5, 0.5],
+			Quat Rotation = [0, 0, 0, 1],
 		},
-		EnemyController = 
+		Named = 
 		{
-			float HP = 5,
-			float MoveSpeed = 2,
-			string Drop1 = "55d2e120dac3a62b:SlingShotProject",
+			string Name = "ProjSpeIncDrop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
+		LinkId = 
+		{
+			uint Id = 7,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [6.27615, 2.98375, 0],
+			Vec3 Scale = [0.5, 0.5, 0.5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ProjSpeIncDrop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [4.79325, 4.42303, 0],
+			Vec3 Scale = [0.5, 0.5, 0.5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ProjSpeIncDrop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [6.49422, 4.11773, 0],
+			Vec3 Scale = [0.5, 0.5, 0.5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ProjSpeIncDrop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [3.65927, 3.50712, 0],
+			Vec3 Scale = [0.5, 0.5, 0.5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ProjSpeIncDrop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
+		LinkId = 
+		{
+			uint Id = 11,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [7.23567, 3.4199, 0],
+			Vec3 Scale = [0.5, 0.5, 0.5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ProjSpeIncDrop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [5.75277, 5.25171, 0],
+			Vec3 Scale = [0.5, 0.5, 0.5],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "ProjSpeIncDrop",
 		},
 	},
 },
