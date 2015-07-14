@@ -107,7 +107,7 @@ class LevelController : ZilchComponent
         
         /// SpawnEnemiesAndPickUps() creates the enemies and pickups based off of
         /// relative distance to the player's starting location
-        this.SpawnPickupsAndExits( this.ListOfBackgrounds );
+        this.SpawnPickupsAndExits( this.Space.FindAllObjectsByName("Background") );
     }
     
     /// ChooseAndCreateLevel: takes integer "difficulty," 
@@ -201,7 +201,7 @@ class LevelController : ZilchComponent
                 if ( shouldSpawn <= 2 ) 
                 {
                     ++spawnedLootRooms;
-                    background.Parent.RoomController.IsLootRoom = true;
+                    background.Parent.RoomController.IsLootRoom  = true;
                     background.Parent.RoomController.EnemiesDead = true;
                     background.Sprite.Color = Real4( 255, 240, 128, 1.00 );
                 }
@@ -265,13 +265,16 @@ class LevelController : ZilchComponent
         {
             var roomLocation : Real3 = background.Transform.WorldTranslation;
             
+            //Console.WriteLine( "SpawnPlayer():\t\t Processing room at `roomLocation`" );
+            
             // we only need the x and y difference, not Z
             var xDifference : Integer = Math.Abs( spawnPoint.X - roomLocation.X ) as Integer;
             var yDifference : Integer = Math.Abs( spawnPoint.Y - roomLocation.Y ) as Integer;
             
             if ( (xDifference == 0 as Integer) && (yDifference == 0 as Integer) )
             {
-                background.Parent.RoomController.EnemiesDead = true;
+                background.Sprite.Color = Real4( 0, 128, 255, 1.0 );
+                background.Parent.RoomController.EnemiesDead    = true;
                 background.Parent.RoomController.EnemiesSpawned = true;
             }
         }
