@@ -17,7 +17,6 @@ class PlayerController : ZilchComponent
     [Property]
     var MaxHP : Integer = 2;
     var CurentHP : Integer = 0;
-    var TempHP : Integer = 0;
     
     // gamepad and mouse settings
     var StickThreshold : Real = 0.3;
@@ -46,8 +45,8 @@ class PlayerController : ZilchComponent
     {   
         //this.Owner.CapsuleCollider.SendsEvents=false;
         //this.Owner.CapsuleCollider.Ghost=true;
-        this.Owner.Collider.CollisionGroup.Name="InvincableCollisionGroup";
-        this.TempHP = this.CurentHP;
+        this.Owner.Collider.CollisionGroup = CollisionGroup.Find("InvincableCollisionGroup");
+        Console.WriteLine(this.Owner.Collider.CollisionGroup.Name);
         this.Owner.Sprite.Color=Real4(1,255,255,1);
         this.IsPlayerStun = true;
         var seq = Action.Sequence(this.Owner.Actions);
@@ -56,10 +55,7 @@ class PlayerController : ZilchComponent
     }
     function RemoveStun()
         {
-        //this.Owner.CapsuleCollider.SendsEvents=true;
-        //this.Owner.CapsuleCollider.Ghost=false;
-        
-        this.CurentHP = this.TempHP;
+        this.Owner.Collider.CollisionGroup = CollisionGroup.Find("DefaultGroup");
         this.Owner.Sprite.Color=Real4(1,1,1,1);
         this.IsPlayerStun = false;
         }
@@ -185,12 +181,12 @@ class PlayerController : ZilchComponent
         if (this.IsPlayerStun==false)
         {
             this.UpdateMoveInput();
-            if (this.CurentHP<=0)
+        }
+        if (this.CurentHP<=0)
             {
                 //this.Owner.Destroy();
                 this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );
             }
-        }
         this.ProjectileLaunch();
         this.SwordSlash();
         this.UpdateOtherInput();

@@ -40,7 +40,7 @@ class EnemyController : ZilchComponent
         if (event.OtherObject.Name == "Player")
         {   
             event.OtherObject.PlayerController.StunPlayer(0.5);
-            event.OtherObject.RigidBody.ApplyLinearImpulse(Real3((this.PlayerPosition.X)*7,(this.PlayerPosition.Y)*7,0));
+            event.OtherObject.RigidBody.ApplyLinearImpulse(Real3((this.PlayerPosition.X)*15,(this.PlayerPosition.Y)*15,0));
             //this.PlayerCog.RigidBody.ApplyLinearImpulse(Real3(1000,1000,0));
             //this.PlayerCog.PlayerController.MoveVec=Real3(this.Owner.Transform.Translation.X+(this.PlayerPosition.X*2),this.Owner.Transform.Translation.Y+(this.PlayerPosition.Y*2),0);            
             this.PlayerCog.PlayerController.CurentHP -= 1;//int for taking damag, set to a var to costomize based on enemy
