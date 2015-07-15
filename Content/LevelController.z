@@ -71,10 +71,6 @@ class LevelController : ZilchComponent
     // so we can destroy him on level change
     var PlayerCog : Cog = null;
     
-    // CogNameRange of all backgrounds in the level
-    // will be populated in Initialize
-    var ListOfBackgrounds : CogNameRange = null;
-    
     // Create a random number generator for generating random numbers
     var RandomGenerator : Random = Random();
     
@@ -101,16 +97,12 @@ class LevelController : ZilchComponent
         /// ChooseAndCreateLevel() spawns in the basic world geometry
         this.ChooseAndCreateLevel( this.LevelDifficulty );
         
-        // add each background into ListOfBackgrounds
-        // we use this later to determine room positions
-        this.ListOfBackgrounds = this.Space.FindAllObjectsByName( "Background" );
-        
         /// SpawnPlayer() spawns the player at a set location relative to the world.
         this.SpawnPlayer( this.CurrentLevel );
         
         /// SpawnEnemiesAndPickUps() creates the enemies and pickups based off of
         /// relative distance to the player's starting location
-        this.SpawnPickupsAndExits( this.Space.FindAllObjectsByName("Background") );
+        this.SpawnPickupsAndExits( /*this.Space.FindAllObjectsByName("Background")*/ );
         
         // connect to physicsupdate (we only use this to cap dynamicdifficulty)
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -119,12 +111,39 @@ class LevelController : ZilchComponent
     /// SpawnNewLevel
     /// Does the same thing as the Init function, but for level changes
     function SpawnNewLevel () {
+        /// take care of existing stuff - delete objects
+        // first, get rid of every enemy
+        Console.WriteLine( "RoomController: SpawnNewLevel(); \tDestroying all enemies." ); // debugging
+        
+        var enemyList : CogNameRange = this.Space.FindAllObjectsByName( "Enemy" );
+        foreach ( var enemy in enemyList )
+        {
+            Console.WriteLine( "SpawnNewLevel(): \t\t\t\tDestroyed enemy at `enemy.Transform.WorldTranslation`" ); // debugging
+            enemy.Destroy();
+        }
+        
+        // next, increment the LevelDifficulty
+        Console.WriteLine( "RoomController: SpawnNewLevel(); \tIncrementing Level Difficulty" ); // debugging
+        if ( this.LevelDifficulty < 3 )
+        {
+            this.LevelDifficulty += 1;
+        }
+        Console.WriteLine( "SpawnNewLevel(): \t\t\t\t\tChanged leveldifficulty to `this.LevelDifficulty`" ); // debugging
+        
+        // destroy the current level to make way for a new one
+        this.CurrentLevel.Destroy();
+        Console.WriteLine( "SpawnNewLevel(): \t\t\t\t\tDestroyed existing level to make way for a new one." ); // debugging
+        
+        // finally, spawn in all the new stuff
         Console.WriteLine( "\nRoomController: SpawnNewLevel(); Choosing and creating levels." );
         this.ChooseAndCreateLevel( this.LevelDifficulty );
-        Console.WriteLine( "\nRoomController: SpawnNewLevel(); Spawning pickups and exits." );
-        this.SpawnPickupsAndExits( this.Space.FindAllObjectsByName("Background") );
+        
         Console.WriteLine( "\nRoomController: SpawnNewLevel(); Spawning the player." );
         this.SpawnPlayer( this.CurrentLevel );
+        
+        Console.WriteLine( "\nRoomController: SpawnNewLevel(); Spawning pickups and exits." );
+        this.SpawnPickupsAndExits( /*this.Space.FindAllObjectsByName("Background")*/ );
+        
         Console.WriteLine( "\nRoomController: SpawnNewLevel(); Done.\n" );
     }
     
@@ -142,21 +161,21 @@ class LevelController : ZilchComponent
             {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.EasyLevels.Count) as Integer;
-                Console.WriteLine( "ChooseAndCreateLevel(): \tSpawing room `this.EasyLevels.Get(randomIndex)`" );
+                Console.WriteLine( "ChooseAndCreateLevel(): \t\tSpawing room `this.EasyLevels.Get(randomIndex)`" );
                 this.CurrentLevel = this.Space.CreateAtPosition( this.EasyLevels.Get(randomIndex), Real3(0, 0, 0) );
             }
             else if ( difficulty == 2 ) 
             {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.MediumLevels.Count) as Integer;
-                Console.WriteLine( "ChooseAndCreateLevel(): \tSpawing room `this.MediumLevels.Get(randomIndex)`" );
+                Console.WriteLine( "ChooseAndCreateLevel(): \t\tSpawing room `this.MediumLevels.Get(randomIndex)`" );
                 this.CurrentLevel = this.Space.CreateAtPosition( this.MediumLevels.Get(randomIndex), Real3(0, 0, 0) );
             }
             else if ( difficulty == 3 ) 
             {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.HardLevels.Count) as Integer;
-                Console.WriteLine( "ChooseAndCreateLevel(): \tSpawing room `this.HardLevels.Get(randomIndex)`" );
+                Console.WriteLine( "ChooseAndCreateLevel(): \t\tSpawing room `this.HardLevels.Get(randomIndex)`" );
                 this.CurrentLevel = this.Space.CreateAtPosition( this.HardLevels.Get(randomIndex), Real3(0, 0, 0) );
             }
         }
@@ -198,13 +217,14 @@ class LevelController : ZilchComponent
         
         // get a random index of the spawn point array
         var randomIndex : Integer = this.RandomGenerator.Range(0, actualSpawnPoints.Count) as Integer;
-        //Console.WriteLine("`randomIndex` of pspwnpts is \t`actualSpawnPoints.Get(randomIndex)`");
+        //Console.WriteLine("`randomIndex` of pspwnpts is \t`actualSpawnPoints.Get(randomIndex)`"); // debugging
         // set the player's new spawn point
         var spawnPoint : Real3 = actualSpawnPoints.Get( randomIndex );
         Console.WriteLine( "SpawnPlayer(): \t\t\t\tChose spawnpoint `spawnPoint`\n" ); // debugging
         
         // before we spawn the player, make sure no enemies spawn in with him
-        foreach( var background in this.ListOfBackgrounds ) 
+        var listOfBackgrounds : CogNameRange = this.Space.FindAllObjectsByName( "Background" );
+        foreach( var background in listOfBackgrounds ) 
         {
             var roomLocation : Real3 = background.Transform.WorldTranslation;
             
@@ -224,6 +244,8 @@ class LevelController : ZilchComponent
             }
         }
         
+        Console.WriteLine(); // debugging
+        
         // spawn the player
         if ( this.PlayerCog == null ) {
             Console.WriteLine( "SpawnPlayer(): \t\t\t\tCreating player cog at `spawnPoint`." );
@@ -239,9 +261,10 @@ class LevelController : ZilchComponent
         this.LevelCamera.Transform.Translation = Real3( spawnPoint.X, spawnPoint.Y, this.LevelCamera.Transform.Translation.Z );
     }
     
-    function SpawnPickupsAndExits ( listOfRooms : CogNameRange ) 
+    function SpawnPickupsAndExits ( /*listOfRooms : CogNameRange*/ ) 
     {
-        // TODO: - create 3 arrays - easy, medium, and hard rooms.
+        Console.WriteLine( "SpawnPickupsAndExits(): Starting..." ); // debugging
+        // TODO: 
         //       - determine whether a room is "easy," "medium," or "hard
         //         based off of how far away they are from the player 
         //          (do this based off of real3 comparision?)
@@ -251,6 +274,10 @@ class LevelController : ZilchComponent
                                            this.LevelCamera.Transform.WorldTranslation.Y,
                                            0 );        
         /// create some arrays to store enemies and pickups in the future
+        
+        Console.WriteLine( "SpawnPickupsAndExits(): Grabbing all current rooms" ); // debugging
+        // cognamerange for every room
+        var listOfRooms : CogNameRange = this.Space.FindAllObjectsByName( "Background" );
         
         // array for enemies
         // TODO: create individual arrays for how hard enemies are?
@@ -274,8 +301,12 @@ class LevelController : ZilchComponent
         var maxLootRooms : Integer      = this.LevelDifficulty * this.LootRoomModifier; // 2 easy, 4 medium, 6 hard
         var exitRoomSpawned : Boolean   = false;
         
+        Console.WriteLine( "SpawnPickupsAndExits(): Processing rooms, determining loot rooms" ); // debugging
+        
         foreach ( var background in listOfRooms ) 
         {
+            Console.WriteLine( "SpawnPickupsAndExits(): Checking room at `background.Transform.WorldTranslation`" ); // debugging
+            
             // populate each array of rooms based off of
             // relative distance between the room and the player
             var roomLocation : Real3 = background.Transform.WorldTranslation;
@@ -283,20 +314,27 @@ class LevelController : ZilchComponent
             // we only need the x and y difference, not Z
             var xDifference : Integer = Math.Abs( spawnLocation.X - roomLocation.X ) as Integer;
             var yDifference : Integer = Math.Abs( spawnLocation.Y - roomLocation.Y ) as Integer;
-            //Console.WriteLine( "Found difference of:\t`xDifference`, `yDifference`" );
+            Console.WriteLine( "SpawnPickupsAndExits(): Found difference of:\t`xDifference`, `yDifference`" ); // debugging
             
             // check if we're not in the spawn room and we haven't spawned the max # of loot rooms yet
             if ( (xDifference != 0 as Integer) && (yDifference != 0 as Integer) && (spawnedLootRooms < maxLootRooms) )
             {
                 // get a random number between 0 and some multiple of 5 based off of the dynamic difficulty
-                var shouldSpawn : Integer = this.RandomGenerator.Range( 0, (5 * this.DynamicDifficulty) ) as Integer;
+                var shouldSpawn : Integer = this.RandomGenerator.Range( this.LevelDifficulty, (5 * this.DynamicDifficulty) ) as Integer;
                 // if that random number is less than or equal to two, spawn a loot room
                 if ( shouldSpawn <= 2 ) 
                 {
+                    Console.WriteLine( "= = = = = = = = = = = = = = = = = = = = = =" );
+                    Console.WriteLine( "= =         SPAWNED A LOOT ROOM         = =" );
+                    Console.WriteLine( "= =         LOOT ROOM LOCATION:         = =" ); // major fucking debugging
+                    Console.WriteLine( "= =            `background.Transform.WorldTranslation`            = =" );
+                    Console.WriteLine( "= = = = = = = = = = = = = = = = = = = = = =" );
+                    
                     ++spawnedLootRooms;
                     background.Parent.RoomController.IsLootRoom  = true;
                     background.Parent.RoomController.EnemiesDead = true;
                     background.Sprite.Color = Real4( 255, 240, 128, 1.00 );
+                    
                 }
             }
             
@@ -322,17 +360,10 @@ class LevelController : ZilchComponent
                 // spawn in the exit tile
                 this.Space.CreateAtPosition( this.LevelExit, spawnPoint );
                 
-                Console.WriteLine( "Exit room spawned at: `background.Parent.Transform.WorldTranslation`" );
+                Console.WriteLine( "SpawnPickupsAndExits(): \tExit room spawned at: `background.Parent.Transform.WorldTranslation`" );
             }
             
         }
-        
-        /*
-        Console.WriteLine("\n Done with easy rooms.\n");
-        foreach ( var room in easyRooms ) {
-            Console.WriteLine( "Found easy room at:\t`room.Transform.WorldTranslation`" );
-        }
-        */
     }
     
     function OnLogicUpdate(event : UpdateEvent)
