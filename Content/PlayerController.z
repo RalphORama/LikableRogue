@@ -42,15 +42,15 @@ class PlayerController : ZilchComponent
     
     function StunPlayer(time : Real)
     {
+        this.Owner.Sprite.Color=Real4(1,255,255,1);
         this.IsPlayerStun = true;
         var seq = Action.Sequence(this.Owner.Actions);
         Actions.Delay(seq, time);
         Actions.Call(seq, this.RemoveStun);
-        
-        
     }
     function RemoveStun()
         {
+        this.Owner.Sprite.Color=Real4(1,1,1,1);
         this.IsPlayerStun = false;
         }
     function Initialize(init : CogInitializer)
@@ -176,10 +176,10 @@ class PlayerController : ZilchComponent
         if (this.IsPlayerStun==false)
         {
             this.UpdateMoveInput();
-            this.UpdateOtherInput();
-            this.SwordSlash();
-            this.ProjectileLaunch();
         }
+        this.ProjectileLaunch();
+        this.SwordSlash();
+        this.UpdateOtherInput();
         this.UpdateFacingInput();
         if (this.Health<=0)
             {
