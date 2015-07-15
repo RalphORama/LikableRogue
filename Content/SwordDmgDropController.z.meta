@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "SwordDmgDropController",
+		uint64 ResourceId = 55d462ae9485b211,
+	},
+},

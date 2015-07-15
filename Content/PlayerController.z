@@ -18,6 +18,9 @@ class PlayerController : ZilchComponent
     var MaxHP : Integer = 2;
     var CurentHP : Integer = 0;
     
+    //damag vars
+    var SwordDamag : Integer = 2;
+    
     // gamepad and mouse settings
     var StickThreshold : Real = 0.3;
     var Gamepad : Gamepad = null;
