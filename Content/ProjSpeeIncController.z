@@ -16,7 +16,7 @@ class ProjSpeIncController : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.PlayerCog.PlayerController.ProMoveSpeed+=10;
+            this.PlayerCog.PlayerController.ProMoveSpeed+=4;
             this.PlayerCog.PlayerController.Pjtl_Damage*=2;
             this.LevelCog.LevelController.DynamicDifficulty += 0.3;
             //Console.WriteLine(this.PlayerCog.PlayerController.Pjtl_Damage);

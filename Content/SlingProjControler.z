@@ -16,7 +16,7 @@ class SlingProjControler : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
         {
-        if (this.Pickup==false&&(Math.Abs(this.Owner.RigidBody.Velocity.X)<6 && Math.Abs(this.Owner.RigidBody.Velocity.Y)<6))
+        if (this.Pickup==false&&(Math.Abs(this.Owner.RigidBody.Velocity.X)<3 && Math.Abs(this.Owner.RigidBody.Velocity.Y)<3))
             {
             this.Pickup=true;
             //this.Owner.BoxCollider.SendsEvents = true;
