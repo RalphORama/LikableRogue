@@ -201,7 +201,7 @@ Level =
 		{
 			string PlayerCharacter = "5522de378f164585:Player",
 			int LevelDifficulty = 1,
-			float DynamicDifficulty = 10,
+			float DynamicDifficulty = 1,
 			string EasyLevel01 = "551eefc556b12616:LevelArchetype01",
 			string EasyLevel02 = "",
 			string MediumLevel01 = "551eefc556b12616:LevelArchetype01",

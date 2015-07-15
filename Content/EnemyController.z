@@ -50,6 +50,7 @@ class EnemyController : ZilchComponent
         if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)
         {
             this.HP-=this.PlayerCog.PlayerController.Pjtl_Damage;
+            this.StunEnemy(0.3);
         }
     }    
     function UpdateFacingInput()
@@ -156,6 +157,7 @@ class EnemyController : ZilchComponent
         Actions.Delay(seq, time);   //delays the program for a certain amount of seconds
         Actions.Call(seq, this.RemoveStun);
     }
+    
     function RemoveStun()
     {
         this.Owner.Sprite.Color=Real4(1,1,1,1);
