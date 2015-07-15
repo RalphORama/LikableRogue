@@ -1,8 +1,4 @@
 /* TODO: 
- *       - create room sets with properties
- *          - i.e. "difficulty," etc.
- *       - implement generator that uses sets of rooms,
- *          individual rooms.
  *       - create interior objects, write generation code 
 */
 
@@ -123,9 +119,13 @@ class LevelController : ZilchComponent
     /// SpawnNewLevel
     /// Does the same thing as the Init function, but for level changes
     function SpawnNewLevel () {
+        Console.WriteLine( "\nRoomController: SpawnNewLevel(); Choosing and creating levels." );
         this.ChooseAndCreateLevel( this.LevelDifficulty );
+        Console.WriteLine( "\nRoomController: SpawnNewLevel(); Spawning pickups and exits." );
         this.SpawnPickupsAndExits( this.Space.FindAllObjectsByName("Background") );
+        Console.WriteLine( "\nRoomController: SpawnNewLevel(); Spawning the player." );
         this.SpawnPlayer( this.CurrentLevel );
+        Console.WriteLine( "\nRoomController: SpawnNewLevel(); Done.\n" );
     }
     
     /// ChooseAndCreateLevel: takes integer "difficulty," 
@@ -142,18 +142,21 @@ class LevelController : ZilchComponent
             {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.EasyLevels.Count) as Integer;
+                Console.WriteLine( "ChooseAndCreateLevel(): \tSpawing room `this.EasyLevels.Get(randomIndex)`" );
                 this.CurrentLevel = this.Space.CreateAtPosition( this.EasyLevels.Get(randomIndex), Real3(0, 0, 0) );
             }
             else if ( difficulty == 2 ) 
             {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.MediumLevels.Count) as Integer;
+                Console.WriteLine( "ChooseAndCreateLevel(): \tSpawing room `this.MediumLevels.Get(randomIndex)`" );
                 this.CurrentLevel = this.Space.CreateAtPosition( this.MediumLevels.Get(randomIndex), Real3(0, 0, 0) );
             }
             else if ( difficulty == 3 ) 
             {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.HardLevels.Count) as Integer;
+                Console.WriteLine( "ChooseAndCreateLevel(): \tSpawing room `this.HardLevels.Get(randomIndex)`" );
                 this.CurrentLevel = this.Space.CreateAtPosition( this.HardLevels.Get(randomIndex), Real3(0, 0, 0) );
             }
         }
@@ -188,6 +191,7 @@ class LevelController : ZilchComponent
         {
             if ( (spawnPoint.X != 0.0) && (spawnPoint.Y != 0.0) ) 
             {
+                Console.WriteLine( "SpawnPlayer(): \t\t\t\tFound possible spawn point at: `spawnPoint`" ); // debugging
                 actualSpawnPoints.Add( spawnPoint );
             }
         }
@@ -197,13 +201,14 @@ class LevelController : ZilchComponent
         //Console.WriteLine("`randomIndex` of pspwnpts is \t`actualSpawnPoints.Get(randomIndex)`");
         // set the player's new spawn point
         var spawnPoint : Real3 = actualSpawnPoints.Get( randomIndex );
+        Console.WriteLine( "SpawnPlayer(): \t\t\t\tChose spawnpoint `spawnPoint`\n" ); // debugging
         
         // before we spawn the player, make sure no enemies spawn in with him
         foreach( var background in this.ListOfBackgrounds ) 
         {
             var roomLocation : Real3 = background.Transform.WorldTranslation;
             
-            //Console.WriteLine( "SpawnPlayer():\t\t Processing room at `roomLocation`" );
+            Console.WriteLine( "SpawnPlayer(): \t\t\t\tProcessing room at `roomLocation`" ); // debugging
             
             // we only need the x and y difference, not Z
             var xDifference : Integer = Math.Abs( spawnPoint.X - roomLocation.X ) as Integer;
@@ -211,6 +216,8 @@ class LevelController : ZilchComponent
             
             if ( (xDifference == 0 as Integer) && (yDifference == 0 as Integer) )
             {
+                // designate spawn room
+                Console.WriteLine( "SpawnPlayer():* \t\t\tDesignated room at `background.Transform.WorldTranslation` as spawn/safe room." ); // debugging
                 background.Sprite.Color = Real4( 0, 128, 255, 1.0 );
                 background.Parent.RoomController.EnemiesDead    = true;
                 background.Parent.RoomController.EnemiesSpawned = true;
@@ -219,18 +226,17 @@ class LevelController : ZilchComponent
         
         // spawn the player
         if ( this.PlayerCog == null ) {
+            Console.WriteLine( "SpawnPlayer(): \t\t\t\tCreating player cog at `spawnPoint`." );
             this.PlayerCog = this.Space.CreateAtPosition( this.PlayerCharacter, spawnPoint );
         }
         else
         {
+            Console.WriteLine( "SpawnPlayer(): \t\t\t\tMoving player cog to `spawnPoint`." );
             this.PlayerCog.Transform.Translation = spawnPoint;
         }
         
-        // use the player's location to orient the camera
-        var cameraSpawnPoint : Real3 = Real3( spawnPoint.X, spawnPoint.Y, this.LevelCamera.Transform.Translation.Z );
-        
         // orient the camera to the player's location
-        this.LevelCamera.Transform.Translation = cameraSpawnPoint;
+        this.LevelCamera.Transform.Translation = Real3( spawnPoint.X, spawnPoint.Y, this.LevelCamera.Transform.Translation.Z );
     }
     
     function SpawnPickupsAndExits ( listOfRooms : CogNameRange ) 
