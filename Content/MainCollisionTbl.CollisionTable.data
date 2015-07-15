@@ -7,15 +7,15 @@ CollisionTable =
 		"55d7fa3de6800924:PlayersWeponsCollisionGroup",
 		"55d33a6d9a08fdf3:PlayerCollisionGroup",
 		"55d33870d4114c42:PlayersProjectile",
-		"55d7fa0ee4126d7a:EnemyCollisionGroup",
 		"55d761e92477b1a3:DoorCollisionGroup",
+		"55d7fa0ee4126d7a:EnemyCollisionGroup",
 	],
 	Array CollisionFilters = 
 	[
 		{
 			string TypeA = "55d33870d4114c42:PlayersProjectile",
 			string TypeB = "55d33870d4114c42:PlayersProjectile",
-			bool SkipResolution = false,
+			bool SkipResolution = true,
 			bool SkipDetectingCollision = false,
 			bool StartEvent = false,
 			bool EndEvent = false,
