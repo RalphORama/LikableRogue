@@ -2,6 +2,8 @@ class EnemyController : ZilchComponent
 {
     var Active : Boolean = true;
     
+    var RandomGenerator : Random = Random();
+    
     var Ang : Real = 0;
     var PlayerPosition : Real3 = Real3(0,0,0);
     
@@ -17,7 +19,9 @@ class EnemyController : ZilchComponent
     var MoveSpeed : Real = 1;
     
     [Property]
-    var Drop1: Archetype = null;
+    var ProjectileCog: Archetype = null;
+    [Property]
+    var ProjectileSpeedDropCog: Archetype = null;
     
     function Initialize(init : CogInitializer)
     {
@@ -112,7 +116,25 @@ class EnemyController : ZilchComponent
     {
         if (this.HP<=0) //this kills the player after its HP hits 0 and drops a "rock"
         {
-            this.Space.CreateAtPosition(this.Drop1, this.Owner.Transform.Translation);            
+            var randomDrop : Integer =
+                this.RandomGenerator.Range(1, 1 + this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+            //randomDrop becomes a random Integer between 1 to LvlDiff + DynDiff
+            //Console.WriteLine(1 + this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty); //debug
+            if (randomDrop == 1)    //if rD is 1, drops a ProjectileSpeedDrop
+            {
+                Console.WriteLine("Dropping a Projectile speed drop!");
+                this.Space.CreateAtPosition(this.ProjectileSpeedDropCog, this.Owner.Transform.Translation);  
+            }
+            else if ( randomDrop > 1 && randomDrop <= 3)    //if rD is 2 or 3, drops a Projectile
+            {
+                Console.WriteLine("Dropping a Projectile!");
+                this.Space.CreateAtPosition(this.ProjectileCog, this.Owner.Transform.Translation);
+            }
+            else
+            {
+                Console.WriteLine("Dropping nothing!");
+            }
+            //otherwise, drop nothing
             this.Owner.Destroy();
             this.LevelCog.LevelController.DynamicDifficulty += 0.1;
             //Console.WriteLine("The dynamic difficulity is: `this.LevelCog.LevelController.DynamicDifficulty`"); //debug

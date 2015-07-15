@@ -164,7 +164,8 @@ class PlayerController : ZilchComponent
         this.ProjectileLaunch();
         if (this.Health<=0)
             {
-            this.Owner.Destroy();
+            //this.Owner.Destroy();
+            this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );
             }
         //this.SlingshotSpeed+=0.12;
         //this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);

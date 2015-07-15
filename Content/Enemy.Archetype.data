@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [2.52869, 2.29763, 0],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = true,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -62,6 +62,7 @@ Cog =
 	{
 		float HP = 5,
 		float MoveSpeed = 2,
-		string Drop1 = "55d2e120dac3a62b:SlingShotProject",
+		string ProjectileCog = "55d2e120dac3a62b:SlingShotProject",
+		string ProjectileSpeedDropCog = "555d42616cadebc0:ProjectileSpeedDrop",
 	},
 },
