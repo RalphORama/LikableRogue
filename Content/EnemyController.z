@@ -1,8 +1,8 @@
 class EnemyController : ZilchComponent
 {
-    var IsEnemyStun : Boolean = false;
+    var Active : Boolean = true; //Use this when programming when the Enemy is moving or not
     
-    var Active : Boolean = true;
+    var IsEnemyStun : Boolean = false;
     
     var RandomGenerator : Random = Random();
     
@@ -33,6 +33,7 @@ class EnemyController : ZilchComponent
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         this.PlayerCog = this.Space.FindObjectByName("Player");
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
+        this.HP = (this.HP * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
         this.StartingHP = this.HP;
     }
     
