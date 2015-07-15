@@ -18,6 +18,7 @@ class SlingProjControler : ZilchComponent
         {
         if (this.Pickup==false&&(Math.Abs(this.Owner.RigidBody.Velocity.X)<3 && Math.Abs(this.Owner.RigidBody.Velocity.Y)<3))
             {
+            this.Owner.Sprite.Color=Real4(115,115,115,0.35);
             this.Pickup=true;
             //this.Owner.BoxCollider.SendsEvents = true;
             this.Owner.SphericalParticleEmitter.Active=false;
