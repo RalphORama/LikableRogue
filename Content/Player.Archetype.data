@@ -63,7 +63,6 @@ Cog =
 	PlayerController = 
 	{
 		int PlayerNumber = 1,
-		float MoveSpeed = 10,
 		string SlingShotProjectArch = "55d2e120dac3a62b:SlingShotProject",
 		int Health = 4,
 	},

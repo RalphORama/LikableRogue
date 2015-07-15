@@ -38,7 +38,11 @@ class EnemyController : ZilchComponent
     {
         //for dealing damage to the enemy
         if (event.OtherObject.Name == "Player")
-        {
+        {   
+            event.OtherObject.PlayerController.StunPlayer(0.5);
+            event.OtherObject.RigidBody.ApplyLinearImpulse(Real3((this.PlayerPosition.X)*7,(this.PlayerPosition.Y)*7,0));
+            //this.PlayerCog.RigidBody.ApplyLinearImpulse(Real3(1000,1000,0));
+            //this.PlayerCog.PlayerController.MoveVec=Real3(this.Owner.Transform.Translation.X+(this.PlayerPosition.X*2),this.Owner.Transform.Translation.Y+(this.PlayerPosition.Y*2),0);            
             this.PlayerCog.PlayerController.Health -= 1;//int for taking damag, set to a var to costomize based on enemy
         }
         if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)

@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [1.05479, 2.067, 0],
+		Vec3 Translation = [2.10017, 2.21542, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -42,11 +42,11 @@ Cog =
 	SphericalParticleEmitter = 
 	{
 		bool Active = true,
-		uint EmitCount = 18,
+		uint EmitCount = 6,
 		float EmitRate = 37,
 		float EmitVariance = 3,
 		float Size = 0.3,
-		float SizeVariance = 0.3,
+		float SizeVariance = 0.2,
 		float Lifetime = 1,
 		float LifetimeVariance = 0.2,
 		float Spin = 0,
