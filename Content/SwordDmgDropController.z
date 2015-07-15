@@ -1,0 +1,23 @@
+class SwordDmgDropController : ZilchComponent
+{
+    var LevelCog : Cog = null;
+    function Initialize(init : CogInitializer)
+    {
+        this.LevelCog=this.Space.FindObjectByName("LevelManager");
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+        {
+        }
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        if (event.OtherObject.Name == "Player")
+            {
+            event.OtherObject.PlayerController.SwordDamag*=2;            
+            this.LevelCog.LevelController.DynamicDifficulty += 0.04;
+            this.Owner.Destroy();
+            }
+    }
+}

@@ -10,28 +10,14 @@ Level =
 		{
 			string Name = "LevelSettings",
 		},
-		GravityEffect = 
-		{
-			bool Active = true,
-			bool WakeUpOnChange = false,
-			bool LocalSpaceDirection = true,
-			float Strength = 0,
-			Vec3 Direction = [0, -1, 0],
-		},
-		DragEffect = 
-		{
-			bool Active = true,
-			bool WakeUpOnChange = false,
-			float Drag = 0.99,
-		},
 		CameraViewport = 
 		{
-			bool Background = true,
+			bool Background = false,
 			Vec2 Offset = [0, 0],
 			Vec2 Size = [1, 1],
-			int Layer = 0,
+			int Layer = 1,
 			bool Active = true,
-			bool Blocking = true,
+			bool Blocking = false,
 			CogPath Renderer = 
 			{
 				string Path = ".",
@@ -68,7 +54,7 @@ Level =
 		},
 		ForwardRenderer = 
 		{
-			Vec4 ClearColor = [0, 0, 0, 1],
+			Vec4 ClearColor = [1, 0, 0, 1],
 			bool DrawNonVisible = false,
 			bool DrawDebugObjects = true,
 			bool DrawEditorIcons = true,
@@ -90,24 +76,6 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
-		DeferredRenderer = 
-		{
-			Vec4 ClearColor = [0.81, 0.08505, 0.08505, 1],
-			bool DrawNonVisible = false,
-			bool DrawDebugObjects = true,
-			bool DrawEditorIcons = true,
-			bool EditorIconDepth = true,
-			bool Hdr = true,
-			bool Shadows = true,
-			bool AntiAliasing = false,
-			bool Refraction = true,
-			bool Reflections = true,
-			string ReflectionEnvironmentName = "4fab71e8bcb7a8ce:DefaultTexture",
-			bool GodRays = true,
-			bool RenderMasks = false,
-			bool Glow = false,
-			float GlowThreshold = 1,
-		},
 	},
 	Cog = 
 	{
@@ -121,7 +89,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [1.53548, 1.17839, 50],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -130,10 +98,10 @@ Level =
 			ProjectionMode ProjectionMode = Orthographic,
 			Facing Facing = NegativeZ,
 			CameraTransparentSort TransparentSort = ZDepth,
-			float FieldOfView = 89,
+			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 27.2533,
+			float Size = 30.1195,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +109,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [1.53548, 1.17839, 6.71178e-008],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -174,17 +142,14 @@ Level =
 			ProjectionMode ProjectionMode = Orthographic,
 			Facing Facing = NegativeZ,
 			CameraTransparentSort TransparentSort = InheritFromSpace,
-			float FieldOfView = 23,
+			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 200,
-			float Size = 50,
+			float Size = 20,
 		},
 		Microphone = 
 		{
 			bool Active = true,
-		},
-		Hierarchy = 
-		{
 		},
 	},
 	Cog = 
@@ -195,39 +160,31 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "LevelManager",
-		},
-		LevelController = 
-		{
-			string PlayerCharacter = "5522de378f164585:Player",
-			int LevelDifficulty = 1,
-			float DynamicDifficulty = 1,
-			string EasyLevel01 = "551eefc556b12616:LevelArchetype01",
-			string EasyLevel02 = "",
-			string MediumLevel01 = "551a3ba390356dc1:LevelArchetype02",
-			string MediumLevel02 = "",
-			string HardLevel01 = "551eefc556b12616:LevelArchetype01",
-			string HardLevel02 = "",
-			string LevelExit = "551aed6ca44b32ee:LevelExit",
-			int LootRoomModifier = 2,
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d460dbd23592c7:SwordDmgDrop",
-		LinkId = 
-		{
-			uint Id = 5,
+			string Name = "HudSprite",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [1.1479, 1.19122, 0],
-			Vec3 Scale = [0.5, 0.5, 0.4],
+			Vec3 Translation = [0, 8, 0],
+			Vec3 Scale = [20, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "SwordDmgDrop",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = None,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
 		},
 	},
 },
