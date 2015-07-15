@@ -1,0 +1,29 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "LevelManager",
+	},
+	Archetyped = 
+	{
+		string Name = "5519993b48ca09da:LevelManager",
+	},
+	LevelController = 
+	{
+		string PlayerCharacter = "5522de378f164585:Player",
+		int LevelDifficulty = 1,
+		float DynamicDifficulty = 1,
+		string EasyLevel01 = "551eefc556b12616:LevelArchetype01",
+		string EasyLevel02 = "",
+		string MediumLevel01 = "551a3ba390356dc1:LevelArchetype02",
+		string MediumLevel02 = "",
+		string HardLevel01 = "551eefc556b12616:LevelArchetype01",
+		string HardLevel02 = "",
+		string LevelExit = "551aed6ca44b32ee:LevelExit",
+		int LootRoomModifier = 2,
+	},
+},

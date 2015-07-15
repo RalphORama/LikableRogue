@@ -1,0 +1,12 @@
+class BackgroundLogic : ZilchComponent
+{
+    var LevelManager : Cog = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.LevelManager = this.Space.FindObjectByName( "LevelManager" );
+        
+        this.LevelManager.LevelController.TestBGArray.Add( this.Owner );
+        this.LevelManager.LevelController.TestRoomArray.Add( this.Owner.Parent );
+    }
+}
