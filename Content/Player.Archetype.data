@@ -48,15 +48,17 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	SphereCollider = 
+	CapsuleCollider = 
 	{
 		bool Ghost = false,
 		bool SendsMessages = true,
 		bool Seamless = true,
 		string MaterialName = "5522c1021f9ffff0:NoBounceMaterial",
 		string SerializedGroupName = "55d33a6d9a08fdf3:PlayerCollisionGroup",
-		Vec3 Offset = [0, 0, 0],
-		float Radius = 0.5,
+		Vec3 Offset = [0, -0.07, 0],
+		float Radius = 0.23,
+		float Height = 1.1,
+		uint Direction = 1,
 	},
 	PlayerController = 
 	{
