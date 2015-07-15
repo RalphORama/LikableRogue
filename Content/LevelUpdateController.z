@@ -1,0 +1,37 @@
+class LevelUpdateController : ZilchComponent
+{
+    var LevelManager : Cog = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.LevelManager = this.Space.FindObjectByName( "LevelManager" );
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        if ( event.OtherObject.Name == "Player" )
+        {
+            // increment difficulty if it's less than 3
+            if ( this.LevelManager.LevelController.LevelDifficulty < 3 )
+            {
+                this.LevelManager.LevelController.LevelDifficulty += 1;
+            }
+            
+            // get rid of all the enemies
+            var enemyList = this.Space.FindAllObjectsByName( "enemy" );
+            foreach ( var enemy in enemyList )
+            {
+                enemy.Destroy();
+            }
+            
+            // we have to destroy a bunch of stuff for when we create it again
+            this.LevelManager.LevelController.CurrentLevel.Destroy();
+            //this.LevelManager.LevelController.PlayerCog.Destroy();
+            
+            this.LevelManager.LevelController.SpawnNewLevel();
+            
+            this.Owner.Destroy();
+        }
+    }
+}

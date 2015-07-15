@@ -1,0 +1,15 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "LevelUpdateController",
+		uint64 ResourceId = 551aede64b0849a3,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Controller",
+		],
+	},
+},
