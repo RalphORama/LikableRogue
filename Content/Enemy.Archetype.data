@@ -64,5 +64,6 @@ Cog =
 		float MoveSpeed = 2,
 		string ProjectileCog = "55d2e120dac3a62b:SlingShotProject",
 		string ProjectileSpeedDropCog = "555d42616cadebc0:ProjectileSpeedDrop",
+		string DeathParticleArche = "55d75955791bb063:DeathParticle",
 	},
 },

@@ -22,6 +22,8 @@ class EnemyController : ZilchComponent
     var ProjectileCog: Archetype = null;
     [Property]
     var ProjectileSpeedDropCog: Archetype = null;
+    [Property]
+    var DeathParticleArche : Archetype = null;
     
     function Initialize(init : CogInitializer)
     {
@@ -116,6 +118,7 @@ class EnemyController : ZilchComponent
     {
         if (this.HP<=0) //this kills the player after its HP hits 0 and drops a "rock"
         {
+            this.Space.CreateAtPosition(this.DeathParticleArche, this.Owner.Transform.Translation);//makes a partical efect on death
             var randomDrop : Integer =
                 this.RandomGenerator.Range(1, 1 + this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) as Integer;
             //randomDrop becomes a random Integer between 1 to LvlDiff + DynDiff
