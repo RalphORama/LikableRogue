@@ -41,7 +41,7 @@ class DoorController : ZilchComponent
     function OnCollisionPersisted(event : CollisionEvent)
     {
         //debugging
-        Console.WriteLine("`this.Owner.Name`\tcollided with\t`event.OtherObject.Name`");
+        //Console.WriteLine("`this.Owner.Name`\tcollided with\t`event.OtherObject.Name`");
         
         if (event.OtherObject.Name == "Player") 
         {
