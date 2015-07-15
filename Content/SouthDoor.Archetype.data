@@ -42,15 +42,11 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = false,
+		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
-	},
-	DoorController = 
-	{
-		bool IsLocked = false,
 	},
 	BoxCollider = 
 	{
@@ -58,8 +54,12 @@ Cog =
 		bool SendsMessages = true,
 		bool Seamless = true,
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+		string SerializedGroupName = "55d761e92477b1a3:DoorCollisionGroup",
 		Vec3 Offset = [0, 0.2, 0],
-		Vec3 Size = [0.5, 0.5, 1.5],
+		Vec3 Size = [0.5, 0.5, 1],
+	},
+	DoorController = 
+	{
+		bool IsLocked = false,
 	},
 },

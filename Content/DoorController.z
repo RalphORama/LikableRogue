@@ -41,7 +41,7 @@ class DoorController : ZilchComponent
     function OnCollisionPersisted(event : CollisionEvent)
     {
         //debugging
-        //Console.WriteLine("`this.Owner.Name`\tcollided with\t`event.OtherObject.Name`");
+        Console.WriteLine("`this.Owner.Name`\tcollided with\t`event.OtherObject.Name`");
         if (event.OtherObject.Name == "Player") 
         {
             // get the location of the player in order to calculate where he is
@@ -55,7 +55,7 @@ class DoorController : ZilchComponent
             // (1, 0)   is east
             var xDifference : Real = Math.Round( (playerLoc.X - this.MyLocation.X), -1 );
             var yDifference : Real = Math.Round( (playerLoc.Y - this.MyLocation.Y), -1 );
-            
+            Console.WriteLine(yDifference);
             // debugging
             //Console.WriteLine( "Player location is: \t\t`xDifference`, `yDifference`" );
             
@@ -74,10 +74,9 @@ class DoorController : ZilchComponent
                 var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.75), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
-            else if ( (xDifference >= -0.1 && xDifference <= 0.1) && (yDifference >= 0.9 && yDifference <= 1.1 )      // going south
+            else if ( (xDifference >= -0.5 && xDifference <= 0.5) && (yDifference >= 0.9 && yDifference <= 1.1)      // going south
                       && this.ContainingRoom.RoomController.SouthExit == true
                       && this.IsLocked == false) {
-                
                 var toPutPlayer : Real3 = Real3( playerLoc.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.75), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
                 

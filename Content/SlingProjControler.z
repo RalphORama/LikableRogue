@@ -30,7 +30,7 @@ class SlingProjControler : ZilchComponent
         if (event.OtherObject.Name == "Player")
             {
             ++this.PlayerCog.PlayerController.MaxProjec;
-            this.LevelCog.LevelController.DynamicDifficulty += 0.2;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.02;
             this.Owner.Destroy();
             }    
         if (event.OtherObject.Name == "Enemy")

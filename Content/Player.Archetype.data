@@ -54,7 +54,7 @@ Cog =
 		bool SendsMessages = true,
 		bool Seamless = true,
 		string MaterialName = "5522c1021f9ffff0:NoBounceMaterial",
-		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+		string SerializedGroupName = "55d33a6d9a08fdf3:PlayerCollisionGroup",
 		Vec3 Offset = [0, 0, 0],
 		float Radius = 0.5,
 	},
