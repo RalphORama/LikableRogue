@@ -47,12 +47,6 @@ class DoorController : ZilchComponent
             // get the location of the player in order to calculate where he is
             // in relation to us.
             var playerLoc : Real3 = event.OtherObject.Transform.Translation;
-            // get the value (-1, 1, or 0) depending on where the player is
-            // in relation to us. 
-            // (0, -1) is south of us
-            // (0, 1)  is north
-            // (-1, 0)  is west
-            // (1, 0)   is east
             
             // now some logic
             // if the player is going in a direction
@@ -81,29 +75,4 @@ class DoorController : ZilchComponent
                 }
         }
     }
-
-    /*
-    function OnCollisionStarted(event : CollisionEvent)
-    {
-        if (event.OtherObject.Name == "Player") 
-        {
-            this.PlayerCog = event.OtherObject;
-            this.IsPlayerTouchingMe = true;
-        }
-    }
-    
-    function OnCollisionEnded(event : CollisionEvent)
-    {
-        if (event.OtherObject.Name == "Player" )
-        {
-            this.IsPlayerTouchingMe = false;
-            this.PlayerCog = null;
-        }
-    }
-    
-    function OnLogicUpdate(event : UpdateEvent)
-    {
-        
-    }
-    */
 }
