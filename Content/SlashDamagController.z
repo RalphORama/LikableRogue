@@ -2,20 +2,22 @@ class SwordDamagController : ZilchComponent
 {
     function Initialize(init : CogInitializer)
         {
-            Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
+            Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
             //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-            //Zero.Connect(this.Owner, Events.CollisionStarted);
         }
 
     function OnLogicUpdate(event : UpdateEvent)
         { 
         }
-    function OnCollisionPersisted(event : CollisionEvent)
-        {
+        
+    function OnCollisionStarted(event : CollisionEvent)
+    {
         if (event.OtherObject.Name == "Enemy")
-            {
+        {
+            event.OtherObject.EnemyController.StunEnemy(0.3);
+            event.OtherObject.RigidBody.ApplyLinearImpulse(Real3((event.OtherObject.EnemyController.PlayerPosition.X)*-0.5,(event.OtherObject.EnemyController.PlayerPosition.Y)*-0.5,0));
             event.OtherObject.EnemyController.HP-=2;
-            Console.WriteLine(event.OtherObject.EnemyController.HP);
-            }
+            //Console.WriteLine(event.OtherObject.EnemyController.HP);
         }
+    }
 }

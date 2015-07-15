@@ -1,5 +1,7 @@
 class EnemyController : ZilchComponent
 {
+    var IsEnemyStun : Boolean = false;
+    
     var Active : Boolean = true;
     
     var RandomGenerator : Random = Random();
@@ -105,24 +107,27 @@ class EnemyController : ZilchComponent
     
     function UpdateEnemyMovement()//Updates Ang based on Player location
     {
-        if (this.Active)
+        if (!this.IsEnemyStun)
         {
-            //Console.WriteLine("I'm supposed to be moving"); //for decoding
-            if (this.Hurt)
+            if (this.Active)
             {
-            this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
-                this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                1); //going away from the player
-            }
-            else
-            {
-            this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
-                this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                1); //going towards the player
+                //Console.WriteLine("I'm supposed to be moving"); //for decoding
+                if (this.Hurt)
+                {
+                this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
+                    this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                    1); //going away from the player
+                }
+                else
+                {
+                this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
+                    this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                    1); //going towards the player
 
+                }
+                this.Ang = Math.Angle2D(this.PlayerPosition);
+                this.Move(this.PlayerPosition);
             }
-            this.Ang = Math.Angle2D(this.PlayerPosition);
-            this.Move(this.PlayerPosition);
         }
     }
     
@@ -141,6 +146,20 @@ class EnemyController : ZilchComponent
             this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
             this.Owner.RigidBody.Velocity *= this.MoveSpeed;
         }
+    }
+    
+    function StunEnemy(time : Real)
+    {
+        this.Owner.Sprite.Color=Real4(1,255,255,1);
+        this.IsEnemyStun = true;
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, time);   //delays the program for a certain amount of seconds
+        Actions.Call(seq, this.RemoveStun);
+    }
+    function RemoveStun()
+    {
+        this.Owner.Sprite.Color=Real4(1,1,1,1);
+        this.IsEnemyStun = false;
     }
     
     function OnLogicUpdate(event : UpdateEvent)
