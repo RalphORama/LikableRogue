@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 14.9569,
+			float Size = 27.2532,
 		},
 		EditorCameraController = 
 		{
@@ -206,8 +206,9 @@ Level =
 			string EasyLevel02 = "",
 			string MediumLevel01 = "551eefc556b12616:LevelArchetype01",
 			string MediumLevel02 = "",
-			string HardLevel01 = "551eefc556b12616:LevelArchetype01",
+			string HardLevel01 = "551a3ba390356dc1:LevelArchetype02",
 			string HardLevel02 = "",
+			string LevelExit = "551aed6ca44b32ee:LevelExit",
 			int LootRoomModifier = 2,
 		},
 	},
