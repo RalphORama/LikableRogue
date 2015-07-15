@@ -26,14 +26,14 @@ class PlayerController : ZilchComponent
     var CamSize : Integer = 17;
     var SwordDamageBox : Cog = null;
     var SwordAttcackZone : Real3 = Real3(0,-1,0);
-    //var SwordRotation : Quaternion = Quaternion();
+    
     //slingshot vars
     var ProjMoveVec : Array[Real3] =  Array[Real3]();
     var SlingShotFiring : Boolean = false;
     var SlingShotProjectArchArr :Array[Archetype] = Array[Archetype]();
     var SlingShotProjectCog : Array[Cog] = Array[Cog]();
     var SlinShoAmmCou : Integer =  -1;
-    var ProMoveSpeed : Real = 12;//18
+    var ProMoveSpeed : Real = 20;//Make sure player cant catch it in the air
     var MaxProjec : Integer = 1;
     var CurentProject : Integer = 0;
     var Pjtl_Damage : Integer = 1;
