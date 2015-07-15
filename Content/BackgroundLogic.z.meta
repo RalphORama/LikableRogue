@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "BackgroundLogic",
+		uint64 ResourceId = 551999765a7ef002,
+	},
+},

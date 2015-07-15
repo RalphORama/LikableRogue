@@ -6,7 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "LevelArchetype01",
+		string Name = "LevelArchetype",
 	},
 	Archetyped = 
 	{
