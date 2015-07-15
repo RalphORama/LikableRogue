@@ -5,6 +5,8 @@ class EnemyController : ZilchComponent
     var IsEnemyStun : Boolean = false;
     
     var RandomGenerator : Random = Random();
+    var RandomSpeed : Real;
+    var RandomDrop: Integer;
     
     var Ang : Real = 0;
     var PlayerPosition : Real3 = Real3(0,0,0);
@@ -18,7 +20,7 @@ class EnemyController : ZilchComponent
     var Hurt: Boolean = false;
     
     [Property]
-    var MoveSpeed : Real = 1;
+    var MoveSpeed : Real;
     
     [Property]
     var ProjectileCog: Archetype = null;
@@ -29,10 +31,29 @@ class EnemyController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
+        this.LevelCog = this.Space.FindObjectByName("LevelManager");
+        if (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty >= 2 && this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty <= 5)
+        {
+            this.RandomSpeed = this.RandomGenerator.Range(
+                                ( (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) / 2 ),
+                                ( 3 * (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) / 2 )
+                                );
+        //sets the randomSpeed to a number between the (LD * DD)/2 and 3(LD * DD)/2)
+        }
+        else if (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty < 2) 
+        //this else statement is here to make sure that the set speed isn't halfed or anything.
+        {
+            this.RandomSpeed = this.RandomGenerator.Range(1, 1.5);
+        }
+        else
+        {
+            this.RandomSpeed = this.RandomGenerator.Range(2.5, 5);
+        }
+        this.MoveSpeed += this.RandomSpeed;
+        Console.WriteLine(this.MoveSpeed); //debug
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         this.PlayerCog = this.Space.FindObjectByName("Player");
-        this.LevelCog = this.Space.FindObjectByName("LevelManager");
         this.HP = (this.HP * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
         this.StartingHP = this.HP;
     }
@@ -172,16 +193,16 @@ class EnemyController : ZilchComponent
         if (this.HP<=0) //this kills the player after its HP hits 0 and drops a "rock"
         {
             this.Space.CreateAtPosition(this.DeathParticleArche, this.Owner.Transform.Translation);//makes a partical efect on death
-            var randomDrop : Integer =
-                this.RandomGenerator.Range(1, 1 + this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) as Integer;
-            //randomDrop becomes a random Integer between 1 to LvlDiff + DynDiff
+            this.RandomDrop =
+                this.RandomGenerator.Range(1, this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+            //RandomDrop becomes a random Integer between 1 to LvlDiff + DynDiff
             //Console.WriteLine(1 + this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty); //debug
-            if (randomDrop == 1)    //if rD is 1, drops a ProjectileSpeedDrop
+            if (this.RandomDrop == 1)    //if rD is 1, drops a ProjectileSpeedDrop
             {
                 Console.WriteLine("Dropping a Projectile speed drop!");
                 this.Space.CreateAtPosition(this.ProjectileSpeedDropCog, this.Owner.Transform.Translation);  
             }
-            else if ( randomDrop > 1 && randomDrop <= 3)    //if rD is 2 or 3, drops a Projectile
+            else if (this.RandomDrop > 1 && this.RandomDrop <= 3)    //if rD is 2 or 3, drops a Projectile
             {
                 Console.WriteLine("Dropping a Projectile!");
                 this.Space.CreateAtPosition(this.ProjectileCog, this.Owner.Transform.Translation);
