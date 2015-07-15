@@ -52,30 +52,55 @@ class EnemyController : ZilchComponent
     }    
     function UpdateFacingInput()
     {
-        //North
-        if (this.Ang>0.79&&this.Ang<1.57&&this.Ang!=0)
+        if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyN");//Sets Sprite
+            //this.ProjectAngle = Real3(0,1,0);
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatN");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-        }
+            }
+        //Nort East
+        if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
+            {
+            //this.ProjectAngle = Real3(1,1,0);
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
         //East
-        if (this.Ang>-0.79&&this.Ang<0.79&&this.Ang!=0)
-        {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyE");
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-        }
+        if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
+        //South East
+        if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
         //South
-        if (this.Ang<-0.79&&this.Ang>-1.57&&this.Ang!=0)
-        {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");//Sets Sprite
+        if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-        }
+            }
+        //South West
+        if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+            }
         //West
-        if (this.Ang>2.36||this.Ang<-2.36&&this.Ang!=0)
-        {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");//Sets Sprite
-            this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
-        }
+        if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+            }
+        //North West
+        if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+            }
     }
     
     function UpdateEnemyMovement()//Updates Ang based on Player location
