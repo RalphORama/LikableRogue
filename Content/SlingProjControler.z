@@ -3,13 +3,15 @@ class SlingProjControler : ZilchComponent
     {
     var PlayerCog : Cog  = null;
     var Pickup : Boolean = false;
+    var LevelCog : Cog = null;
     function Initialize(init : CogInitializer)
         {   
-            this.PlayerCog = this.Space.FindObjectByName("Player");
-            this.Owner.Collider.CollisionGroup.Name;
-            Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
-            Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-            //Zero.Connect(this.Owner, Events.CollisionStarted);
+        this.LevelCog = this.Space.FindObjectByName("LevelManager");
+        this.PlayerCog = this.Space.FindObjectByName("Player");
+        this.Owner.Collider.CollisionGroup.Name;
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        //Zero.Connect(this.Owner, Events.CollisionStarted);
         }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -27,6 +29,7 @@ class SlingProjControler : ZilchComponent
         if (event.OtherObject.Name == "Player")
             {
             ++this.PlayerCog.PlayerController.MaxProjec;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.2;
             this.Owner.Destroy();
             }    
         if (event.OtherObject.Name == "Enemy")

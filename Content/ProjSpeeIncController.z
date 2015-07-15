@@ -1,8 +1,10 @@
 class ProjSpeIncController : ZilchComponent
     {
     var PlayerCog : Cog = null;
+    var LevelCog : Cog = null;
     function Initialize(init : CogInitializer)
         {
+        this.LevelCog = this.Space.FindObjectByName("LevelManager");
         this.PlayerCog = this.Space.FindObjectByName("Player");
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -16,6 +18,7 @@ class ProjSpeIncController : ZilchComponent
             {
             this.PlayerCog.PlayerController.ProMoveSpeed+=10;
             this.PlayerCog.PlayerController.Pjtl_Damage*=2;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.3;
             //Console.WriteLine(this.PlayerCog.PlayerController.Pjtl_Damage);
             this.Owner.Destroy();
             }
