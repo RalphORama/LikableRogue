@@ -15,12 +15,9 @@ class LevelController : ZilchComponent
     // 3 = hard
     [Property]
     // TODO: create introductory level, change this to zero.
-    // TODO: Implement difficulty changes when the level changes.
     var LevelDifficulty : Integer = 1;
     
     /// Dynamic difficulty changes as the player interacts with the world
-    // TODO: Write code to increment / decrement this value as the player
-    //       lives, dies, gets pickups, clears rooms, etc.
     [Property]
     var DynamicDifficulty : Real = 1;
     
@@ -80,9 +77,6 @@ class LevelController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
-        // TODO: make this dynamically change
-        //this.DynamicDifficulty = 2.5;
-        
         /// We'll need to add the various levels to arrays
         /// so that we can create them based off of how 
         /// difficult we want the player's experience to be.
@@ -253,11 +247,6 @@ class LevelController : ZilchComponent
     
     function SpawnPickupsAndExits ( /*listOfRooms : CogNameRange*/ ) 
     {
-        // TODO: 
-        //       - determine whether a room is "easy," "medium," or "hard
-        //         based off of how far away they are from the player 
-        //          (do this based off of real3 comparision?)
-        
         /// create a real3 using the camera's location (fuck it, it's easy)
         var spawnLocation : Real3 = Real3( this.LevelCamera.Transform.WorldTranslation.X,
                                            this.LevelCamera.Transform.WorldTranslation.Y,
@@ -280,6 +269,9 @@ class LevelController : ZilchComponent
         var safeRooms : Array[Cog]      = Array[Cog]();
         var lootRooms : Array[Cog]      = Array[Cog]();
         
+        // Arrays for special room locations
+        var lootRoomLocations : Array[Real3] = Array[Real3]();
+        
         // to check if special rooms have spawned
         var spawnedLootRooms : Integer  = 0;
         var maxLootRooms : Integer      = this.LevelDifficulty * this.LootRoomModifier; // 2 easy, 4 medium, 6 hard
@@ -288,7 +280,6 @@ class LevelController : ZilchComponent
         foreach ( var room in listOfRooms ) 
         {
             var background = room.FindChildByName( "Background" );
-            //Console.WriteLine( "SpawnPickupsAndExits(): Checking room at `background.Transform.WorldTranslation`" ); // debugging
             
             // populate each array of rooms based off of
             // relative distance between the room and the player
@@ -297,17 +288,43 @@ class LevelController : ZilchComponent
             // we only need the x and y difference, not Z
             var xDifference : Integer = Math.Abs( spawnLocation.X - roomLocation.X ) as Integer;
             var yDifference : Integer = Math.Abs( spawnLocation.Y - roomLocation.Y ) as Integer;
-            //Console.WriteLine( "SpawnPickupsAndExits(): Found difference of:\t`xDifference`, `yDifference`" ); // debugging
             
             // check if we're not in the spawn room and we haven't spawned the max # of loot rooms yet
             if ( (xDifference != 0 as Integer) && (yDifference != 0 as Integer) && (spawnedLootRooms < maxLootRooms) )
             {
+                // also, check to make sure we're not too close to any other loot room
+                var lootRoomIsFarAway : Boolean = false;
+                if ( lootRoomLocations.Count != 0 )
+                {
+                    // run this check for each existing loot room
+                    foreach ( var lootRoom in lootRoomLocations )
+                    {
+                        var lootXDifference : Integer = Math.Abs( lootRoom.X - roomLocation.X ) as Integer;
+                        var lootYDifference : Integer = Math.Abs( lootRoom.Y - roomLocation.Y ) as Integer;
+                        
+                        Console.WriteLine( "Calcualted difference of (`lootXDifference`, `lootYDifference`)." );
+                        
+                        // if the room is at least 50 units away in the x direction or 35 units away in the y,
+                        // spawn the loot room at this location
+                        if ( lootXDifference >= 30 || lootYDifference >= 22 )
+                        {
+                            lootRoomIsFarAway = true;
+                        }
+                    }
+                }
+                else 
+                {
+                    Console.WriteLine( "Spawned first loot room at `roomLocation`" );
+                    lootRoomIsFarAway = true;
+                }
+                
                 // get a random number between 0 and some multiple of 5 based off of the dynamic difficulty
-                var shouldSpawn : Integer = this.RandomGenerator.Range( 0, (3 * this.LevelDifficulty) ) as Integer;
+                var shouldSpawn : Integer = this.RandomGenerator.Range( 0, (25 * this.LevelDifficulty) ) as Integer;
                 // if that random number is less than or equal to two, spawn a loot room
-                if ( shouldSpawn <= 2 ) 
+                if ( shouldSpawn <= 2 && lootRoomIsFarAway ) 
                 {
                     ++spawnedLootRooms;
+                    lootRoomLocations.Add( roomLocation );
                     background.Parent.RoomController.IsLootRoom  = true;
                     background.Parent.RoomController.EnemiesDead = true;
                     background.Sprite.Color = Real4( 255, 240, 128, 1.00 );
