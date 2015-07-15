@@ -48,7 +48,7 @@ class EnemySpawnController : ZilchComponent
                 var roomPosition : Real3 = event.OtherObject.Transform.WorldTranslation;
                 
                 // create reals to pass to SpawnEnemies()
-                var minLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) - 9, // x axis 
+                var minLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) - 8, // x axis 
                                                         (roomPosition.Y as Integer) - 5, // y axis
                                                         0 );
                 var maxLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) + 9, 

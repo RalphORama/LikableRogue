@@ -15,7 +15,8 @@ class PlayerController : ZilchComponent
     var SlingShotProjectArch : Archetype = null;
     
     [Property]
-    var Health : Integer = 2;
+    var MaxHP : Integer = 2;
+    var CurentHP : Integer = 0;
     
     // gamepad and mouse settings
     var StickThreshold : Real = 0.3;
@@ -41,7 +42,11 @@ class PlayerController : ZilchComponent
     var MoveVec : Real3 = Real3(0,0,0);
     
     function StunPlayer(time : Real)
-    {
+    {   
+        //this.Owner.CapsuleCollider.SendsEvents=false;
+        //this.Owner.CapsuleCollider.Ghost=true;
+        this.Owner.Collider.CollisionGroup = CollisionGroup.Find("InvincableCollisionGroup");
+        Console.WriteLine(this.Owner.Collider.CollisionGroup.Name);
         this.Owner.Sprite.Color=Real4(1,255,255,1);
         this.IsPlayerStun = true;
         var seq = Action.Sequence(this.Owner.Actions);
@@ -50,13 +55,13 @@ class PlayerController : ZilchComponent
     }
     function RemoveStun()
         {
+        this.Owner.Collider.CollisionGroup = CollisionGroup.Find("DefaultGroup");
         this.Owner.Sprite.Color=Real4(1,1,1,1);
         this.IsPlayerStun = false;
         }
     function Initialize(init : CogInitializer)
         {
-        //this.ProjMoveVec.Add(Real3(0,0,0));
-        //this.SlingshotSpeed=0;
+        this.CurentHP = this.MaxHP;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         //Initalizes sword damage box
@@ -86,13 +91,11 @@ class PlayerController : ZilchComponent
             {
             this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
             this.SwordDamageBox.Sprite.Visible=true;
-            this.SwordDamageBox.BoxCollider.Ghost=false;
             this.SwordDamageBox.BoxCollider.SendsEvents=true;
             }
         else //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
             {
             this.SwordDamageBox.Sprite.Visible=false;
-            this.SwordDamageBox.BoxCollider.Ghost=true;
             this.SwordDamageBox.BoxCollider.SendsEvents=false;
             }
         }
@@ -177,15 +180,15 @@ class PlayerController : ZilchComponent
         {
             this.UpdateMoveInput();
         }
+        if (this.CurentHP<=0)
+            {
+                //this.Owner.Destroy();
+                this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );
+            }
         this.ProjectileLaunch();
         this.SwordSlash();
         this.UpdateOtherInput();
         this.UpdateFacingInput();
-        if (this.Health<=0)
-            {
-            //this.Owner.Destroy();
-            this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );
-            }
         //this.SlingshotSpeed+=0.12;
         //this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);
         //this.UpdateMouseMovement();
