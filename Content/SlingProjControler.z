@@ -10,7 +10,6 @@ class SlingProjControler : ZilchComponent
             Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
             Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
             //Zero.Connect(this.Owner, Events.CollisionStarted);
-            Console.WriteLine("I exssitst");
         }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -25,16 +24,11 @@ class SlingProjControler : ZilchComponent
     function OnCollisionStarted(event : CollisionEvent)
         {
         //Console.WriteLine("coliding");
-        if (event.OtherObject.Name == "Player" && this.Pickup==true)
+        if (event.OtherObject.Name == "Player")
             {
             ++this.PlayerCog.PlayerController.MaxProjec;
             this.Owner.Destroy();
-            }
-        else if (event.OtherObject.Name == "Player")
-            {
-            Console.WriteLine("player got hit");
-            }
-    
+            }    
         if (event.OtherObject.Name == "Enemy")
             {
             Console.WriteLine("Enemy Took Damag");
