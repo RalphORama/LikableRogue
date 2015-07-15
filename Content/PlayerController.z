@@ -92,12 +92,15 @@ class PlayerController : ZilchComponent
             this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
             this.SwordDamageBox.Sprite.Visible=true;
             this.SwordDamageBox.BoxCollider.SendsEvents=true;
+            var seq = Action.Sequence(this.Owner.Actions);
+            Actions.Delay(seq, 0.1);
+            Actions.Call(seq, this.DeSlash);
             }
-        else //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
-            {
-            this.SwordDamageBox.Sprite.Visible=false;
+    }
+    function DeSlash()
+        {
+        this.SwordDamageBox.Sprite.Visible=false;
             this.SwordDamageBox.BoxCollider.SendsEvents=false;
-            }
         }
     function ProjectileLaunch()
         {
