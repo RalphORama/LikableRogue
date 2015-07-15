@@ -15,7 +15,9 @@ class PlayerController : ZilchComponent
     var SlingShotProjectArch : Archetype = null;
     
     [Property]
-    var Health : Integer = 2;
+    var MaxHP : Integer = 2;
+    var CurentHP : Integer = 0;
+    var TempHP : Integer = 0;
     
     // gamepad and mouse settings
     var StickThreshold : Real = 0.3;
@@ -41,7 +43,11 @@ class PlayerController : ZilchComponent
     var MoveVec : Real3 = Real3(0,0,0);
     
     function StunPlayer(time : Real)
-    {
+    {   
+        //this.Owner.CapsuleCollider.SendsEvents=false;
+        //this.Owner.CapsuleCollider.Ghost=true;
+        this.Owner.Collider.CollisionGroup.Name="InvincableCollisionGroup";
+        this.TempHP = this.CurentHP;
         this.Owner.Sprite.Color=Real4(1,255,255,1);
         this.IsPlayerStun = true;
         var seq = Action.Sequence(this.Owner.Actions);
@@ -50,13 +56,16 @@ class PlayerController : ZilchComponent
     }
     function RemoveStun()
         {
+        //this.Owner.CapsuleCollider.SendsEvents=true;
+        //this.Owner.CapsuleCollider.Ghost=false;
+        
+        this.CurentHP = this.TempHP;
         this.Owner.Sprite.Color=Real4(1,1,1,1);
         this.IsPlayerStun = false;
         }
     function Initialize(init : CogInitializer)
         {
-        //this.ProjMoveVec.Add(Real3(0,0,0));
-        //this.SlingshotSpeed=0;
+        this.CurentHP = this.MaxHP;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         //Initalizes sword damage box
@@ -176,16 +185,16 @@ class PlayerController : ZilchComponent
         if (this.IsPlayerStun==false)
         {
             this.UpdateMoveInput();
+            if (this.CurentHP<=0)
+            {
+                //this.Owner.Destroy();
+                this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );
+            }
         }
         this.ProjectileLaunch();
         this.SwordSlash();
         this.UpdateOtherInput();
         this.UpdateFacingInput();
-        if (this.Health<=0)
-            {
-            //this.Owner.Destroy();
-            this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );
-            }
         //this.SlingshotSpeed+=0.12;
         //this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);
         //this.UpdateMouseMovement();
