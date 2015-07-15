@@ -51,6 +51,10 @@ class LevelController : ZilchComponent
     [Property]
     var HardLevel02 : Archetype = null;
     
+    // Special tiles
+    [Property]
+    var LevelExit : Archetype = null;
+    
     // Modifier for loot rooms
     [Property]
     var LootRoomModifier : Integer = 2;
@@ -67,6 +71,9 @@ class LevelController : ZilchComponent
     // this variable will store the level we generate
     // we'll use this after we set up the board
     var CurrentLevel : Cog = null;
+    
+    // so we can destroy him on level change
+    var PlayerCog : Cog = null;
     
     // CogNameRange of all backgrounds in the level
     // will be populated in Initialize
@@ -87,7 +94,7 @@ class LevelController : ZilchComponent
         //this.EasyLevels.Add( this.EasyLevel02 );
         this.MediumLevels.Add( this.MediumLevel01 );
         //this.MediumLevels.Add( this.MediumLevel02 );
-        //this.HardLevels.Add( this.HardLevel01 );
+        this.HardLevels.Add( this.HardLevel01 );
         //this.HardLevels.Add( this.HardLevel02 );
         // TODO: add more here once we have more levels
         
@@ -111,6 +118,14 @@ class LevelController : ZilchComponent
         
         // connect to physicsupdate (we only use this to cap dynamicdifficulty)
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    /// SpawnNewLevel
+    /// Does the same thing as the Init function, but for level changes
+    function SpawnNewLevel () {
+        this.ChooseAndCreateLevel( this.LevelDifficulty );
+        this.SpawnPickupsAndExits( this.Space.FindAllObjectsByName("Background") );
+        this.SpawnPlayer( this.CurrentLevel );
     }
     
     /// ChooseAndCreateLevel: takes integer "difficulty," 
@@ -203,7 +218,13 @@ class LevelController : ZilchComponent
         }
         
         // spawn the player
-        var player = this.Space.CreateAtPosition( this.PlayerCharacter, spawnPoint );
+        if ( this.PlayerCog == null ) {
+            this.PlayerCog = this.Space.CreateAtPosition( this.PlayerCharacter, spawnPoint );
+        }
+        else
+        {
+            this.PlayerCog.Transform.Translation = spawnPoint;
+        }
         
         // use the player's location to orient the camera
         var cameraSpawnPoint : Real3 = Real3( spawnPoint.X, spawnPoint.Y, this.LevelCamera.Transform.Translation.Z );
@@ -278,7 +299,23 @@ class LevelController : ZilchComponent
                 && (background.Parent.RoomController.IsLootRoom == false) && (exitRoomSpawned == false) )
             {
                 exitRoomSpawned = true;
-                background.Sprite.Color = Real4( 40, 255, 0, 1.00);
+                background.Sprite.Color = Real4( 16, 255, 128, 1.00);
+                
+                // create an exit tile in the exit room
+                var minLocationToSpawn : Real3 = Real3( (background.Transform.WorldTranslation.X as Integer) - 8, 
+                                                        (background.Transform.WorldTranslation.Y as Integer) - 5, 
+                                                        0 );
+                var maxLocationToSpawn : Real3 = Real3( (background.Transform.WorldTranslation.X as Integer) + 8, 
+                                                        (background.Transform.WorldTranslation.Y as Integer) + 5, 
+                                                        0 );
+                // create the spawnpoint for the exit
+                var spawnPoint : Real3 = Real3( this.RandomGenerator.Range(minLocationToSpawn.X, maxLocationToSpawn.X) as Integer, 
+                                                this.RandomGenerator.Range(minLocationToSpawn.Y, maxLocationToSpawn.Y) as Integer,
+                                                0 );
+
+                // spawn in the exit tile
+                this.Space.CreateAtPosition( this.LevelExit, spawnPoint );
+                
                 Console.WriteLine( "Exit room spawned at: `background.Parent.Transform.WorldTranslation`" );
             }
             

@@ -19,6 +19,7 @@ class DoorController : ZilchComponent
     var ContainingRoom : Cog = null;
     
     var IsPlayerTouchingMe : Boolean = false;
+    
     var PlayerCog : Cog = null;
     
     function Initialize(init : CogInitializer)
