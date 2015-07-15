@@ -2,7 +2,7 @@ class SwordDamagController : ZilchComponent
 {
     function Initialize(init : CogInitializer)
         {
-            Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+            Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
             //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
             //Zero.Connect(this.Owner, Events.CollisionStarted);
         }
@@ -10,11 +10,12 @@ class SwordDamagController : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
         { 
         }
-    function OnCollisionStarted(event : CollisionEvent)
+    function OnCollisionPersisted(event : CollisionEvent)
         {
         if (event.OtherObject.Name == "Enemy")
             {
-            Console.WriteLine("Enemy Took Damag");
+            event.OtherObject.EnemyController.HP-=2;
+            Console.WriteLine(event.OtherObject.EnemyController.HP);
             }
         }
 }
