@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [1.53548, 1.17839, 50],
+			Vec3 Translation = [1.53548, 3.01639, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 27.2533,
+			float Size = 16.53,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [1.53548, 1.17839, 6.71178e-008],
+			Vec3 LookTarget = [1.53548, 3.01639, 6.71178e-008],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -212,22 +212,21 @@ Level =
 			int LootRoomModifier = 2,
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "55d460dbd23592c7:SwordDmgDrop",
 		LinkId = 
 		{
 			uint Id = 5,
 		},
-		Transform = 
-		{
-			Vec3 Translation = [1.1479, 1.19122, 0],
-			Vec3 Scale = [0.5, 0.5, 0.4],
-			Quat Rotation = [0, 0, 0, 1],
-		},
 		Named = 
 		{
-			string Name = "SwordDmgDrop",
+			string Name = "Transform",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
 		},
 	},
 },
