@@ -47,10 +47,12 @@ class EnemyController : ZilchComponent
             //this.PlayerCog.PlayerController.MoveVec=Real3(this.Owner.Transform.Translation.X+(this.PlayerPosition.X*2),this.Owner.Transform.Translation.Y+(this.PlayerPosition.Y*2),0);            
             this.PlayerCog.PlayerController.CurentHP -= 1;//int for taking damag, set to a var to costomize based on enemy
         }
-        if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)
-        {
-            this.HP-=this.PlayerCog.PlayerController.Pjtl_Damage;
-            this.StunEnemy(0.3);
+        if (!this.IsEnemyStun){
+            if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)
+            {
+                this.HP-=this.PlayerCog.PlayerController.Pjtl_Damage;
+                this.StunEnemy(0.3);
+            }
         }
     }    
     function UpdateFacingInput()
