@@ -1,5 +1,7 @@
 class EnemyController : ZilchComponent
 {
+    var IsEnemyStun : Boolean = false;
+    
     var Active : Boolean = true;
     
     var RandomGenerator : Random = Random();
@@ -38,62 +40,95 @@ class EnemyController : ZilchComponent
     {
         //for dealing damage to the enemy
         if (event.OtherObject.Name == "Player")
-        {
-            this.PlayerCog.PlayerController.Health -= 1;//int for taking damag, set to a var to costomize based on enemy
+        {   
+            event.OtherObject.PlayerController.StunPlayer(0.5);
+            event.OtherObject.RigidBody.ApplyLinearImpulse(Real3((this.PlayerPosition.X)*15,(this.PlayerPosition.Y)*15,0));
+            //this.PlayerCog.RigidBody.ApplyLinearImpulse(Real3(1000,1000,0));
+            //this.PlayerCog.PlayerController.MoveVec=Real3(this.Owner.Transform.Translation.X+(this.PlayerPosition.X*2),this.Owner.Transform.Translation.Y+(this.PlayerPosition.Y*2),0);            
+            this.PlayerCog.PlayerController.CurentHP -= 1;//int for taking damag, set to a var to costomize based on enemy
         }
         if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)
         {
             this.HP-=this.PlayerCog.PlayerController.Pjtl_Damage;
+            this.StunEnemy(0.3);
         }
     }    
     function UpdateFacingInput()
     {
-        //North
-        if (this.Ang>0.79&&this.Ang<1.57&&this.Ang!=0)
+        if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyN");//Sets Sprite
+            //this.ProjectAngle = Real3(0,1,0);
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatN");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-        }
+            }
+        //Nort East
+        if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
+            {
+            //this.ProjectAngle = Real3(1,1,0);
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
         //East
-        if (this.Ang>-0.79&&this.Ang<0.79&&this.Ang!=0)
-        {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_enemyE");
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-        }
+        if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
+        //South East
+        if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
         //South
-        if (this.Ang<-0.79&&this.Ang>-1.57&&this.Ang!=0)
-        {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerS");//Sets Sprite
+        if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-        }
+            }
+        //South West
+        if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+            }
         //West
-        if (this.Ang>2.36||this.Ang<-2.36&&this.Ang!=0)
-        {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("basic_playerE");//Sets Sprite
-            this.Owner.Sprite.FlipX=true;//Resets mirror flip to on
-        }
+        if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+            }
+        //North West
+        if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
+            {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+            }
     }
     
     function UpdateEnemyMovement()//Updates Ang based on Player location
     {
-        if (this.Active)
+        if (!this.IsEnemyStun)
         {
-            //Console.WriteLine("I'm supposed to be moving"); //for decoding
-            if (this.Hurt)
+            if (this.Active)
             {
-            this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
-                this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                1); //going away from the player
-            }
-            else
-            {
-            this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
-                this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                1); //going towards the player
+                //Console.WriteLine("I'm supposed to be moving"); //for decoding
+                if (this.Hurt)
+                {
+                this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
+                    this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                    1); //going away from the player
+                }
+                else
+                {
+                this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
+                    this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                    1); //going towards the player
 
+                }
+                this.Ang = Math.Angle2D(this.PlayerPosition);
+                this.Move(this.PlayerPosition);
             }
-            this.Ang = Math.Angle2D(this.PlayerPosition);
-            this.Move(this.PlayerPosition);
         }
     }
     
@@ -112,6 +147,21 @@ class EnemyController : ZilchComponent
             this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
             this.Owner.RigidBody.Velocity *= this.MoveSpeed;
         }
+    }
+    
+    function StunEnemy(time : Real)
+    {
+        this.Owner.Sprite.Color=Real4(1,255,255,1);
+        this.IsEnemyStun = true;
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, time);   //delays the program for a certain amount of seconds
+        Actions.Call(seq, this.RemoveStun);
+    }
+    
+    function RemoveStun()
+    {
+        this.Owner.Sprite.Color=Real4(1,1,1,1);
+        this.IsEnemyStun = false;
     }
     
     function OnLogicUpdate(event : UpdateEvent)

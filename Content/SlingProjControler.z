@@ -32,10 +32,6 @@ class SlingProjControler : ZilchComponent
             ++this.PlayerCog.PlayerController.MaxProjec;
             this.LevelCog.LevelController.DynamicDifficulty += 0.02;
             this.Owner.Destroy();
-            }    
-        if (event.OtherObject.Name == "Enemy")
-            {
-            Console.WriteLine("Enemy Took Damag");
             }
         }
 }

@@ -1,4 +1,4 @@
-class ProjSpeIncController : ZilchComponent
+class ProjSpeIncDropController : ZilchComponent
     {
     var PlayerCog : Cog = null;
     var LevelCog : Cog = null;

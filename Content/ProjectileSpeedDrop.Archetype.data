@@ -8,6 +8,10 @@ Cog =
 	{
 		string Name = "ProjectileSpeedDrop",
 	},
+	Archetyped = 
+	{
+		string Name = "555d42616cadebc0:ProjectileSpeedDrop",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
@@ -32,9 +36,6 @@ Cog =
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
-	ProjSpeIncController = 
-	{
-	},
 	BoxCollider = 
 	{
 		bool Ghost = false,
@@ -44,5 +45,8 @@ Cog =
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.5, 0.5, 0.5],
+	},
+	ProjSpeIncDropController = 
+	{
 	},
 },

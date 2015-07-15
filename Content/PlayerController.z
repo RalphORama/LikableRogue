@@ -4,8 +4,7 @@ class PlayerController : ZilchComponent
     //MUST BE 1 - 4
     var PlayerNumber : Integer = 1;
     
-    [Property]
-    var MoveSpeed : Real = 1;
+    var MoveSpeed : Real = 6;
     
     //[Property]
     //var Location : Real3 = Real3(0, 0, 0);
@@ -16,7 +15,8 @@ class PlayerController : ZilchComponent
     var SlingShotProjectArch : Archetype = null;
     
     [Property]
-    var Health : Integer = 2;
+    var MaxHP : Integer = 2;
+    var CurentHP : Integer = 0;
     
     // gamepad and mouse settings
     var StickThreshold : Real = 0.3;
@@ -37,10 +37,31 @@ class PlayerController : ZilchComponent
     var MaxProjec : Integer = 1;
     var CurentProject : Integer = 0;
     var Pjtl_Damage : Integer = 1;
+    
+    var IsPlayerStun : Boolean = false;
+    var MoveVec : Real3 = Real3(0,0,0);
+    
+    function StunPlayer(time : Real)
+    {   
+        //this.Owner.CapsuleCollider.SendsEvents=false;
+        //this.Owner.CapsuleCollider.Ghost=true;
+        this.Owner.Collider.CollisionGroup = CollisionGroup.Find("InvincableCollisionGroup");
+        Console.WriteLine(this.Owner.Collider.CollisionGroup.Name);
+        this.Owner.Sprite.Color=Real4(1,255,255,1);
+        this.IsPlayerStun = true;
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, time);
+        Actions.Call(seq, this.RemoveStun);
+    }
+    function RemoveStun()
+        {
+        this.Owner.Collider.CollisionGroup = CollisionGroup.Find("DefaultGroup");
+        this.Owner.Sprite.Color=Real4(1,1,1,1);
+        this.IsPlayerStun = false;
+        }
     function Initialize(init : CogInitializer)
         {
-        //this.ProjMoveVec.Add(Real3(0,0,0));
-        //this.SlingshotSpeed=0;
+        this.CurentHP = this.MaxHP;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         //Initalizes sword damage box
@@ -70,13 +91,11 @@ class PlayerController : ZilchComponent
             {
             this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
             this.SwordDamageBox.Sprite.Visible=true;
-            this.SwordDamageBox.BoxCollider.Ghost=false;
             this.SwordDamageBox.BoxCollider.SendsEvents=true;
             }
         else //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
             {
             this.SwordDamageBox.Sprite.Visible=false;
-            this.SwordDamageBox.BoxCollider.Ghost=true;
             this.SwordDamageBox.BoxCollider.SendsEvents=false;
             }
         }
@@ -157,16 +176,19 @@ class PlayerController : ZilchComponent
         }
     function OnLogicUpdate(event : UpdateEvent)
         {
-        this.UpdateMoveInput();
+        if (this.IsPlayerStun==false)
+        {
+            this.UpdateMoveInput();
+        }
+        if (this.CurentHP<=0)
+            {
+                //this.Owner.Destroy();
+                this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );
+            }
+        this.ProjectileLaunch();
+        this.SwordSlash();
         this.UpdateOtherInput();
         this.UpdateFacingInput();
-        this.SwordSlash();
-        this.ProjectileLaunch();
-        if (this.Health<=0)
-            {
-            //this.Owner.Destroy();
-            this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );
-            }
         //this.SlingshotSpeed+=0.12;
         //this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);
         //this.UpdateMouseMovement();
@@ -244,39 +266,39 @@ class PlayerController : ZilchComponent
         {
         this.Owner.RigidBody.Velocity = Real3(0,0,0);
         //start with the lstick input
-        var moveVec = Real3(this.Gamepad.LeftStick.X,this.Gamepad.LeftStick.Y,0);
+        this.MoveVec = Real3(this.Gamepad.LeftStick.X,this.Gamepad.LeftStick.Y,0);
         
         //add keyboard input
         
         if(Zero.Keyboard.KeyIsDown(Keys.A))
         {
-            moveVec += Real3(-1,0,0);
+            this.MoveVec += Real3(-1,0,0);
             this.UpdateMouseMovement();//Updates Ang when key moves
         }
         if(Zero.Keyboard.KeyIsDown(Keys.D))
         {
-            moveVec += Real3(1,0,0);
+            this.MoveVec += Real3(1,0,0);
             this.UpdateMouseMovement();//Updates Ang when key moves
         }
         if(Zero.Keyboard.KeyIsDown(Keys.W))
         {
-            moveVec += Real3(0,1,0);
+            this.MoveVec += Real3(0,1,0);
             this.UpdateMouseMovement();//Updates Ang when key moves
         }
         if(Zero.Keyboard.KeyIsDown(Keys.S))
         {
-            moveVec += Real3(0,-1,0);
+            this.MoveVec += Real3(0,-1,0);
             this.UpdateMouseMovement();//Updates Ang when key moves
         }
         
         //clamp variables so that keyboard + gamepad input doesn't mess with our intended values of -1 to 1
-        var x = Math.Clamp(moveVec.X,-1,1);
-        var y = Math.Clamp(moveVec.Y,-1,1);
-        moveVec = Real3(x,y,0);
+        var x = Math.Clamp(this.MoveVec.X,-1,1);
+        var y = Math.Clamp(this.MoveVec.Y,-1,1);
+        this.MoveVec = Real3(x,y,0);
         
         
         //call move function using the variables we made
-        this.Move(moveVec);
+        this.Move(this.MoveVec);
     }
     
     function UpdateOtherInput()
@@ -300,10 +322,8 @@ class PlayerController : ZilchComponent
     
     //Dylan wrote this v
     function OnCollisionStarted(event : CollisionEvent) {
-        if ( event.OtherObject.Name == "Background" ) {
-        
-        }
+        if ( event.OtherObject.Name == "Enemy" )
+            {
+            }
     }
 }
-
-    
