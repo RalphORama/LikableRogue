@@ -211,22 +211,4 @@ Level =
 			int LootRoomModifier = 2,
 		},
 	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d7f50eb857fc8b:ProjSpeIncDrop",
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [3.65927, 3.50712, 0],
-			Vec3 Scale = [0.5, 0.5, 0.5],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "ProjectileSpeedDrop",
-		},
-	},
 },
