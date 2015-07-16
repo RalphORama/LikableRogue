@@ -15,8 +15,8 @@ class SwordDmgDropController : ZilchComponent
     {
         if (event.OtherObject.Name == "Player")
             {
-            event.OtherObject.PlayerController.SwordDamag*=2;            
-            this.LevelCog.LevelController.DynamicDifficulty += 0.03;
+            event.OtherObject.PlayerController.SwordDamag+=2;            
+            this.LevelCog.LevelController.DynamicDifficulty += 0.07;
             this.Owner.Destroy();
             }
     }
