@@ -37,7 +37,7 @@ class PlayerController : ZilchComponent
     var SlingShotProjectCog : Array[Cog] = Array[Cog]();
     var SlinShoAmmCou : Integer =  -1;
     var ProMoveSpeed : Real = 20;//Make sure player cant catch it in the air
-    var MaxProjec : Integer = 1;
+    var MaxProjec : Integer = 0;
     var CurentProject : Integer = 0;
     var Pjtl_Damage : Integer = 1;
     

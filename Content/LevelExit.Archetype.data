@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, -1],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -60,5 +60,6 @@ Cog =
 	},
 	LevelUpdateController = 
 	{
+		string LevelExitSoundArche = "55d5af4ccb73e8b1:LevelExitSound",
 	},
 },

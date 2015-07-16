@@ -17,8 +17,8 @@ class ProjSpeIncDropController : ZilchComponent
         if (event.OtherObject.Name == "Player")
             {
             this.PlayerCog.PlayerController.ProMoveSpeed+=4;
-            this.PlayerCog.PlayerController.Pjtl_Damage*=2;
-            this.LevelCog.LevelController.DynamicDifficulty += 0.03;
+            this.PlayerCog.PlayerController.Pjtl_Damage+=1;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.04;
             //Console.WriteLine(this.PlayerCog.PlayerController.Pjtl_Damage);
             this.Owner.Destroy();
             }

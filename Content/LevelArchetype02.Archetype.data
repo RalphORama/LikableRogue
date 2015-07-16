@@ -966,5 +966,23 @@ Cog =
 				string Name = "Room07",
 			},
 		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e3ae7b50f9e:Room10",
+			LinkId = 
+			{
+				uint Id = 54,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room10",
+			},
+		},
 	},
 },
