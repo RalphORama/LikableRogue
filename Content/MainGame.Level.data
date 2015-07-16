@@ -212,22 +212,4 @@ Level =
 			int LootRoomModifier = 2,
 		},
 	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d460dbd23592c7:SwordDmgDrop",
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [1.1479, 1.19122, 0],
-			Vec3 Scale = [0.5, 0.5, 0.4],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "SwordDmgDrop",
-		},
-	},
 },
