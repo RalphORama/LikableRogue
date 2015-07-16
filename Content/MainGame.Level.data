@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [7.83251, -3.83164, 49.999],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 5.50236,
+			float Size = 7.42742,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [7.83251, -3.83164, -0.001],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -185,13 +185,85 @@ Level =
 		},
 		Hierarchy = 
 		{
+			Cog = 
+			{
+				LinkId = 
+				{
+					uint Id = 4,
+				},
+				Named = 
+				{
+					string Name = "HudContainer",
+				},
+				Transform = 
+				{
+					Vec3 Translation = [0, 0, -5],
+					Vec3 Scale = [1, 1, 1],
+					Quat Rotation = [0, 0, 0, 1],
+				},
+				Hierarchy = 
+				{
+					ArchetypeInstance = 
+					{
+						string Name = "5517683e6ddeecf7:HudSprite",
+						LinkId = 
+						{
+							uint Id = 5,
+						},
+						Transform = 
+						{
+							Vec3 Translation = [7, -6.1, 0],
+							Vec3 Scale = [5, 2, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Named = 
+						{
+							string Name = "HudSprite",
+						},
+					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 6,
+						},
+						Named = 
+						{
+							string Name = "HPText",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [3.68235, -4.7, -5],
+							Vec3 Scale = [1, 1, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						SpriteText = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 1],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string FontName = "55176b72d4c99274:LuckiestGuy",
+							uint FontSize = 54,
+							string Text = "HP: <3 <3 <3 <3",
+							TextAlign Align = Left,
+							float PixelsPerUnit = 64,
+							bool Smoothing = true,
+						},
+					},
+				},
+			},
 		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 4,
+			uint Id = 7,
 		},
 		Named = 
 		{
