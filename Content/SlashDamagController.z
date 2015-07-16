@@ -17,6 +17,7 @@ class SwordDamagController : ZilchComponent
         if (event.OtherObject.Name == "Enemy")
         {
             if (!event.OtherObject.EnemyController.IsEnemyStun){
+                this.Owner.SoundEmitter.Play();//plays Dmg Sound
                 event.OtherObject.EnemyController.StunEnemy(0.3);
                 event.OtherObject.RigidBody.ApplyLinearImpulse(Real3((event.OtherObject.EnemyController.PlayerPosition.X)*-1,(event.OtherObject.EnemyController.PlayerPosition.Y)*-1,0));
                 event.OtherObject.EnemyController.HP-=this.PlayerCog.PlayerController.SwordDamag;

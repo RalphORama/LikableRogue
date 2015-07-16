@@ -15,7 +15,7 @@ class PlayerController : ZilchComponent
     var SlingShotProjectArch : Archetype = null;
     
     [Property]
-    var MaxHP : Integer = 2;
+    var MaxHP : Integer = 10;
     var CurentHP : Integer = 0;
     
     //damag vars

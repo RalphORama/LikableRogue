@@ -16,6 +16,7 @@ class ProjSpeIncDropController : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            event.OtherObject.SoundEmitter.Play();
             this.PlayerCog.PlayerController.ProMoveSpeed+=4;
             this.PlayerCog.PlayerController.Pjtl_Damage+=1;
             this.LevelCog.LevelController.DynamicDifficulty += 0.04;

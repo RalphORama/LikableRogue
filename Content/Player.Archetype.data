@@ -64,13 +64,7 @@ Cog =
 	{
 		int PlayerNumber = 1,
 		string SlingShotProjectArch = "55d2e120dac3a62b:SlingShotProject",
-		int MaxHP = 2,
-	},
-	DamageOnCollide = 
-	{
-		float Damage = 15,
-		bool SendsDeathEvent = true,
-		bool DieOnCollide = false,
+		int MaxHP = 10,
 	},
 	CameraPositionController = 
 	{
@@ -81,6 +75,15 @@ Cog =
 		string Enemy02 = "",
 		string Enemy03 = "",
 		int EnemySpawnRateMultiplier = 3,
+	},
+	SoundEmitter = 
+	{
+		bool StartPlaying = false,
+		int ExtraPriority = 0,
+		string CueName = "55da86d2b6f9a935:PikupSFX_Cue",
+		float Volume = 1,
+		float Pitch = 1,
+		bool Positional = true,
 	},
 	Hierarchy = 
 	{
