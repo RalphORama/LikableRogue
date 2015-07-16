@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 7.42742,
+			float Size = 10.026,
 		},
 		EditorCameraController = 
 		{
@@ -203,22 +203,46 @@ Level =
 				},
 				Hierarchy = 
 				{
-					ArchetypeInstance = 
+					Cog = 
 					{
-						string Name = "5517683e6ddeecf7:HudSprite",
 						LinkId = 
 						{
 							uint Id = 5,
 						},
-						Transform = 
-						{
-							Vec3 Translation = [7, -6.1, 0],
-							Vec3 Scale = [5, 2, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
 						Named = 
 						{
 							string Name = "HudSprite",
+						},
+						Archetyped = 
+						{
+							string Name = "5517683e6ddeecf7:HudSprite",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [7, -6.1, -1],
+							Vec3 Scale = [5, 1.5, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Sprite = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 1],
+							BlendMode BlendMode = Additive,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string SpriteSource = "55175500f41278be:binding_dark",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
+						},
+						Hierarchy = 
+						{
 						},
 					},
 					Cog = 
@@ -229,11 +253,11 @@ Level =
 						},
 						Named = 
 						{
-							string Name = "HPText",
+							string Name = "HPLabel",
 						},
 						Transform = 
 						{
-							Vec3 Translation = [3.68235, -4.7, -5],
+							Vec3 Translation = [6.5, -5.15, 0],
 							Vec3 Scale = [1, 1, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -249,8 +273,42 @@ Level =
 							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 							string FontName = "55176b72d4c99274:LuckiestGuy",
 							uint FontSize = 54,
-							string Text = "HP: <3 <3 <3 <3",
-							TextAlign Align = Left,
+							string Text = "HP:",
+							TextAlign Align = Right,
+							float PixelsPerUnit = 64,
+							bool Smoothing = true,
+						},
+					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 7,
+						},
+						Named = 
+						{
+							string Name = "AmmoLabel",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [6.5, -6.05, 0],
+							Vec3 Scale = [1, 1, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						SpriteText = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 1],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string FontName = "55176b72d4c99274:LuckiestGuy",
+							uint FontSize = 54,
+							string Text = "Ammo:",
+							TextAlign Align = Right,
 							float PixelsPerUnit = 64,
 							bool Smoothing = true,
 						},
@@ -263,7 +321,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 7,
+			uint Id = 8,
 		},
 		Named = 
 		{
