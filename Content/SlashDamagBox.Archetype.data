@@ -49,4 +49,13 @@ Cog =
 	SwordDamagController = 
 	{
 	},
+	SoundEmitter = 
+	{
+		bool StartPlaying = false,
+		int ExtraPriority = 0,
+		string CueName = "55da9fcec7fb76cd:SwordHitSFXSoundCue",
+		float Volume = 1,
+		float Pitch = 1,
+		bool Positional = true,
+	},
 },

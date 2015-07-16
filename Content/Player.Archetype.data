@@ -64,13 +64,7 @@ Cog =
 	{
 		int PlayerNumber = 1,
 		string SlingShotProjectArch = "55d2e120dac3a62b:SlingShotProject",
-		int MaxHP = 2,
-	},
-	DamageOnCollide = 
-	{
-		float Damage = 15,
-		bool SendsDeathEvent = true,
-		bool DieOnCollide = false,
+		int MaxHP = 10,
 	},
 	CameraPositionController = 
 	{
@@ -82,21 +76,23 @@ Cog =
 		string Enemy03 = "",
 		int EnemySpawnRateMultiplier = 3,
 	},
+	SoundEmitter = 
+	{
+		bool StartPlaying = false,
+		int ExtraPriority = 0,
+		string CueName = "55da86d2b6f9a935:PikupSFX_Cue",
+		float Volume = 1,
+		float Pitch = 1,
+		bool Positional = true,
+	},
 	Hierarchy = 
 	{
-		Cog = 
+		ArchetypeInstance = 
 		{
+			string Name = "55d2c0910ed66a96:SlashDamagBox",
 			LinkId = 
 			{
 				uint Id = 2,
-			},
-			Named = 
-			{
-				string Name = "SwordDamagBox",
-			},
-			Archetyped = 
-			{
-				string Name = "55d2c0910ed66a96:SlashDamagBox",
 			},
 			Transform = 
 			{
@@ -104,36 +100,9 @@ Cog =
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
-			Sprite = 
+			Named = 
 			{
-				bool Visible = false,
-				bool VisibilityCulling = true,
-				bool VisibilityEvents = true,
-				bool CastShadows = false,
-				Vec4 Color = [1, 0.46, 0.460324, 1],
-				BlendMode BlendMode = Alpha,
-				SpriteGeometryMode GeometryMode = ZPlane,
-				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "5275aa4d802dd6dc:Square",
-				bool RenderMask = false,
-				bool FlipX = false,
-				bool FlipY = false,
-				bool AnimationActive = true,
-				float AnimationSpeed = 1,
-				uint StartFrame = 0,
-			},
-			BoxCollider = 
-			{
-				bool Ghost = true,
-				bool SendsMessages = false,
-				bool Seamless = true,
-				string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-				string SerializedGroupName = "55d7fa3de6800924:PlayersWeponsCollisionGroup",
-				Vec3 Offset = [0, 0, 0],
-				Vec3 Size = [0.5, 0.5, 0.5],
-			},
-			SwordDamagController = 
-			{
+				string Name = "SwordDamagBox",
 			},
 		},
 	},
