@@ -211,5 +211,9 @@ Level =
 			string LevelExit = "551aed6ca44b32ee:LevelExit",
 			int LootRoomModifier = 2,
 		},
+		CheatCodeController = 
+		{
+			string SpriteText = "55174013910ac619:CheatCodeSpriteText",
+		},
 	},
 },
