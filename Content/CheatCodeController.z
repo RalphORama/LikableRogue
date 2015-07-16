@@ -1,0 +1,72 @@
+class CheatCodeController : ZilchComponent
+{
+    [Property]
+    var SpriteText : Archetype = null;
+    
+    var PlayerCog : Cog = null;
+    
+    var CameraCog : Cog = null;
+    
+    var OldHP : Integer = 0;
+    
+    var GodMode : Boolean = false;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.PlayerCog = this.Space.FindObjectByName( "Player" );
+        this.CameraCog = this.Space.FindObjectByName( "Camera" );
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        // godmode cheat
+        // activated by pressing shift+G
+        if ( Zero.Keyboard.KeyIsDown(Keys.Shift) && Zero.Keyboard.KeyIsPressed(Keys.G) )
+        {
+            if ( this.GodMode == false )
+            {
+                this.GodMode = true;
+                this.OldHP = this.PlayerCog.PlayerController.CurentHP;
+                
+                this.PlayerCog.PlayerController.CurentHP = 9999;
+                this.DisplayCheatText( this.SpriteText, "God mode enabled..." );
+                //Console.WriteLine( "God mode enabled" );
+            }
+            else
+            {
+                this.GodMode = false;
+                this.PlayerCog.PlayerController.CurentHP = this.OldHP;
+                this.DisplayCheatText( this.SpriteText, "God mode disabled..." );
+                //Console.WriteLine( "God mode disabled" );
+            }
+        }
+    }
+    
+    function DisplayCheatText( textCog : Archetype, text : String )
+    {
+        // create a new action sequence for delays, property changes, etc
+        var seq = Action.Sequence(this.Owner.Actions);
+        // create the actual spriteText that we'll be manipulating
+        var cheatText = this.Space.CreateAtPosition( textCog, 
+                                                     Real3(this.CameraCog.Transform.WorldTranslation.X, 
+                                                           this.CameraCog.Transform.WorldTranslation.Y - 5, 
+                                                           2.0) );
+        
+        // set the text to invisible at first so we don't see it
+        cheatText.SpriteText.Color = Real4( 1.0, 0.1, 0.1, 0.0 );
+        // change the text to what we pass to it
+        cheatText.SpriteText.Text = text;
+        
+        // fade in the text, then fade it out
+        Action.Property( seq, @cheatText.SpriteText.Color, Real4(1.0, 0.1, 0.1, 1.00), 0.25, Ease.Linear );
+        Action.Delay( seq, 1.5 );
+        Action.Property( seq, @cheatText.SpriteText.Color, Real4(1.0, 0.1, 0.1, 0.0), 0.25, Ease.Linear );
+        Action.Call( seq, cheatText.Destroy );
+        
+        // get rid of the text so it's not just invisible
+        //cheatText.Destroy();
+        
+    }
+}

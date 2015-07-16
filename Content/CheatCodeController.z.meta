@@ -1,0 +1,15 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "CheatCodeController",
+		uint64 ResourceId = 551740d14a90441d,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Controller",
+		],
+	},
+},

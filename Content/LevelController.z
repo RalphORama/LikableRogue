@@ -125,13 +125,10 @@ class LevelController : ZilchComponent
         this.CurrentLevel.Destroy();
         
         // finally, spawn in all the new stuff
-        Console.WriteLine( "\nRoomController: SpawnNewLevel(); Choosing and creating levels." );
         this.ChooseAndCreateLevel( this.LevelDifficulty );
         
-        Console.WriteLine( "\nRoomController: SpawnNewLevel(); Spawning pickups and exits." );
         this.SpawnPickupsAndExits( /*this.Space.FindAllObjectsByName("Background")*/ );
         
-        Console.WriteLine( "\nRoomController: SpawnNewLevel(); Spawning the player." );
         this.SpawnPlayer( this.CurrentLevel );
     }
     
@@ -195,7 +192,6 @@ class LevelController : ZilchComponent
         {
             if ( (spawnPoint.X != 0.0) && (spawnPoint.Y != 0.0) ) 
             {
-                //Console.WriteLine( "SpawnPlayer(): \t\t\t\tFound possible spawn point at: `spawnPoint`" ); // debugging
                 actualSpawnPoints.Add( spawnPoint );
             }
         }
@@ -225,8 +221,6 @@ class LevelController : ZilchComponent
                 background.Parent.RoomController.EnemiesSpawned = true;
             }
         }
-        
-        Console.WriteLine(); // debugging
         
         // spawn the player
         if ( this.PlayerCog == null ) {
@@ -298,8 +292,6 @@ class LevelController : ZilchComponent
                         var lootXDifference : Integer = Math.Abs( lootRoom.X - roomLocation.X ) as Integer;
                         var lootYDifference : Integer = Math.Abs( lootRoom.Y - roomLocation.Y ) as Integer;
                         
-                        Console.WriteLine( "Calcualted difference of (`lootXDifference`, `lootYDifference`)." );
-                        
                         // if the room is at least 50 units away in the x direction or 35 units away in the y,
                         // spawn the loot room at this location
                         if ( lootXDifference >= 30 || lootYDifference >= 22 )
@@ -310,7 +302,6 @@ class LevelController : ZilchComponent
                 }
                 else 
                 {
-                    Console.WriteLine( "Spawned first loot room at `roomLocation`" );
                     lootRoomIsFarAway = true;
                 }
                 
