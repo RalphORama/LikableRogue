@@ -49,10 +49,10 @@ class EnemySpawnController : ZilchComponent
                 
                 // create reals to pass to SpawnEnemies()
                 var minLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) - 7, // x axis 
-                                                        (roomPosition.Y as Integer) - 4, // y axis
+                                                        (roomPosition.Y as Integer) - 3, // y axis
                                                         0 );
                 var maxLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) + 7, 
-                                                        (roomPosition.Y as Integer) + 4, 
+                                                        (roomPosition.Y as Integer) + 3, 
                                                         0 );
                 
                 // access the current difficulty, assign it to a local variable
