@@ -65,15 +65,15 @@ class EnemyController : ZilchComponent
         //for dealing damage to the enemy
         if (event.OtherObject.Name == "Player")
         {
-            var playerPush = Real2(-5,-5);
-            event.OtherObject.PlayerController.StunPlayer(0.5);
+            var playerPush = Real2(-10,-10);
+            event.OtherObject.PlayerController.StunPlayer(0.4);//seconds player pushed
             if (this.PlayerPosition.X>0)
                 {
-                playerPush.X=5;
+                playerPush.X=10;
                 }
             if (this.PlayerPosition.Y>0)
                 {
-                playerPush.Y=5;
+                playerPush.Y=10;
                 }
             event.OtherObject.RigidBody.ApplyLinearImpulse(Real3(playerPush.X,playerPush.Y,0));
             //this.PlayerCog.RigidBody.ApplyLinearImpulse(Real3(1000,1000,0));
