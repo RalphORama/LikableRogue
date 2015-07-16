@@ -71,10 +71,6 @@ class LevelController : ZilchComponent
     // Create a random number generator for generating random numbers
     var RandomGenerator : Random = Random();
     
-    // debugginbg array
-    var TestBGArray : Array[Cog] = Array[Cog]();
-    var TestRoomArray : Array[Cog] = Array[Cog]();
-    
     function Initialize(init : CogInitializer)
     {
         /// We'll need to add the various levels to arrays
