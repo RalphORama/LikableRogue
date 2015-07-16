@@ -23,9 +23,11 @@ class EnemyController : ZilchComponent
     var MoveSpeed : Real;
     
     [Property]
-    var ProjectileCog: Archetype = null;
+    var ProjectileCog : Archetype = null;
     [Property]
-    var ProjectileSpeedDropCog: Archetype = null;
+    var ProjectileSpeedDropCog : Archetype = null;
+    [Property]
+    var SwordDamageDropCog : Archetype = null;
     [Property]
     var DeathParticleArche : Archetype = null;
     
@@ -194,15 +196,20 @@ class EnemyController : ZilchComponent
         {
             this.Space.CreateAtPosition(this.DeathParticleArche, this.Owner.Transform.Translation);//makes a partical efect on death
             this.RandomDrop =
-                this.RandomGenerator.Range(1, this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+                this.RandomGenerator.Range(1, 3 + this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) as Integer;
             //RandomDrop becomes a random Integer between 1 to LvlDiff + DynDiff
             //Console.WriteLine(1 + this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty); //debug
             if (this.RandomDrop == 1)    //if rD is 1, drops a ProjectileSpeedDrop
             {
-                Console.WriteLine("Dropping a Projectile speed drop!");
+                Console.WriteLine("Dropping a Projectile increase drop!");
                 this.Space.CreateAtPosition(this.ProjectileSpeedDropCog, this.Owner.Transform.Translation);  
             }
-            else if (this.RandomDrop > 1 && this.RandomDrop <= 3)    //if rD is 2 or 3, drops a Projectile
+            else if (this.RandomDrop == 2)    //if rD is 1, drops a ProjectileSpeedDrop
+            {
+                Console.WriteLine("Dropping a Sword increase drop!");
+                this.Space.CreateAtPosition(this.SwordDamageDropCog, this.Owner.Transform.Translation);  
+            }
+            else if (this.RandomDrop >= 2 && this.RandomDrop <= 5)    //if rD is 2 or 3, drops a Projectile
             {
                 Console.WriteLine("Dropping a Projectile!");
                 this.Space.CreateAtPosition(this.ProjectileCog, this.Owner.Transform.Translation);
