@@ -14,15 +14,15 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-1, 7, 0],
-		Vec3 Scale = [1, 15, 1],
+		Vec3 Translation = [0, 0, 0],
+		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
 	{
 		bool Visible = true,
-		bool VisibilityCulling = true,
-		bool VisibilityEvents = true,
+		bool VisibilityCulling = false,
+		bool VisibilityEvents = false,
 		bool CastShadows = false,
 		Vec4 Color = [0.76, 0.76, 0.76, 1],
 		BlendMode BlendMode = Alpha,
