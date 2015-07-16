@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [1.53548, 1.17839, 50],
+			Vec3 Translation = [8.4926, 8.34697, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [1.53548, 1.17839, 6.71178e-008],
+			Vec3 LookTarget = [8.4926, 8.34697, 3.71223e-007],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -210,78 +210,6 @@ Level =
 			string HardLevel02 = "",
 			string LevelExit = "551aed6ca44b32ee:LevelExit",
 			int LootRoomModifier = 2,
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d460dbd23592c7:SwordDmgDrop",
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [1.71528, 2.15177, 0],
-			Vec3 Scale = [0.5, 0.5, 0.4],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "SwordDmgDrop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d460dbd23592c7:SwordDmgDrop",
-		LinkId = 
-		{
-			uint Id = 6,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [4.00949, 2.13862, 0],
-			Vec3 Scale = [0.5, 0.5, 0.4],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "SwordDmgDrop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d460dbd23592c7:SwordDmgDrop",
-		LinkId = 
-		{
-			uint Id = 7,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [5.47808, 2.18381, 0],
-			Vec3 Scale = [0.5, 0.5, 0.4],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "SwordDmgDrop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55d460dbd23592c7:SwordDmgDrop",
-		LinkId = 
-		{
-			uint Id = 8,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [5.99774, 4.44318, 0],
-			Vec3 Scale = [0.5, 0.5, 0.4],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "SwordDmgDrop",
 		},
 	},
 },

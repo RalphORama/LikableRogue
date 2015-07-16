@@ -1,6 +1,8 @@
 class LevelUpdateController : ZilchComponent
 {
     var LevelManager : Cog = null;
+    [Property]
+    var LevelExitSoundArche : Archetype = null;
     
     function Initialize(init : CogInitializer)
     {
@@ -12,6 +14,7 @@ class LevelUpdateController : ZilchComponent
     {
         if ( event.OtherObject.Name == "Player" )
         {
+            this.Space.CreateAtPosition(this.LevelExitSoundArche, Real3(0,0,0));
             // start routine to create new level
             this.LevelManager.LevelController.SpawnNewLevel();
             // destroy myself so there's not two exits
