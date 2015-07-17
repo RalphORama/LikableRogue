@@ -69,4 +69,11 @@ Cog =
 		string SwordDamageDropCog = "55d460dbd23592c7:SwordDmgDrop",
 		string DeathParticleArche = "55d75955791bb063:DeathParticle",
 	},
+	EnemyRaycaster = 
+	{
+		float CastDistance = 100,
+		Vec4 DrawColor = [1, 1, 1, 1],
+		float HeadSize = 0.25,
+		bool OnTop = true,
+	},
 },
