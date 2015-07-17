@@ -120,4 +120,13 @@ Cog =
 	SlingProjControler = 
 	{
 	},
+	SoundEmitter = 
+	{
+		bool StartPlaying = true,
+		int ExtraPriority = 0,
+		string CueName = "55dab8e227ed2904:ProjectLaunchSoundCue",
+		float Volume = 1,
+		float Pitch = 1,
+		bool Positional = true,
+	},
 },
