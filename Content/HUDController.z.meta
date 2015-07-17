@@ -2,8 +2,8 @@ TextContent =
 {
 	ZilchScriptBuilder = 
 	{
-		string Name = "EnemyController",
-		uint64 ResourceId = 5558da3aed7f79a8,
+		string Name = "HUDController",
+		uint64 ResourceId = 55177a1fc2b454f9,
 	},
 	ContentTags = 
 	{

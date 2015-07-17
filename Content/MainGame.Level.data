@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [6.62452, 4.76421, 49.999],
+			Vec3 Translation = [6.99878, -3.50909, 49.999],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 10.026,
+			float Size = 11.0804,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [6.62452, 4.76421, -0.000999812],
+			Vec3 LookTarget = [6.99878, -3.50909, -0.001],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -201,6 +201,12 @@ Level =
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
+				HUDController = 
+				{
+					string WholeHeartSprite = "55177bbe340a422e:WholeHeartSprite",
+					string HalfHeartSprite = "55177b983a0797d4:HalfHeartSprite",
+					string NoHeartSprite = "55177b7221bede98:NoHeartSprite",
+				},
 				Hierarchy = 
 				{
 					Cog = 
@@ -208,48 +214,6 @@ Level =
 						LinkId = 
 						{
 							uint Id = 5,
-						},
-						Named = 
-						{
-							string Name = "HudSprite",
-						},
-						Archetyped = 
-						{
-							string Name = "5517683e6ddeecf7:HudSprite",
-						},
-						Transform = 
-						{
-							Vec3 Translation = [7, -6.1, -1],
-							Vec3 Scale = [5, 1.5, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Sprite = 
-						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 1],
-							BlendMode BlendMode = Additive,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "55175500f41278be:binding_dark",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = true,
-							float AnimationSpeed = 1,
-							uint StartFrame = 0,
-						},
-						Hierarchy = 
-						{
-						},
-					},
-					Cog = 
-					{
-						LinkId = 
-						{
-							uint Id = 6,
 						},
 						Named = 
 						{
@@ -283,7 +247,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 7,
+							uint Id = 6,
 						},
 						Named = 
 						{
@@ -311,6 +275,51 @@ Level =
 							TextAlign Align = Right,
 							float PixelsPerUnit = 64,
 							bool Smoothing = true,
+						},
+						Hierarchy = 
+						{
+						},
+					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 7,
+						},
+						Named = 
+						{
+							string Name = "HudBG",
+						},
+						Archetyped = 
+						{
+							string Name = "5517683e6ddeecf7:HudSprite",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [7, -6.1, -1],
+							Vec3 Scale = [5, 1.5, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Sprite = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 0.5],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string SpriteSource = "55175500f41278be:binding_dark",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
+						},
+						Hierarchy = 
+						{
 						},
 					},
 				},
