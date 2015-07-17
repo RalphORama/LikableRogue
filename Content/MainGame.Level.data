@@ -206,33 +206,14 @@ Level =
 					string WholeHeartSprite = "55177bbe340a422e:WholeHeartSprite",
 					string HalfHeartSprite = "55177b983a0797d4:HalfHeartSprite",
 					string NoHeartSprite = "55177b7221bede98:NoHeartSprite",
-					Vec3 HealthSpriteAnchor = [0, 0, 0],
 				},
 				Hierarchy = 
 				{
-					ArchetypeInstance = 
-					{
-						string Name = "5517683e6ddeecf7:HudSprite",
-						LinkId = 
-						{
-							uint Id = 5,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [7, -6.1, -1],
-							Vec3 Scale = [5, 1.5, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "HudSprite",
-						},
-					},
 					Cog = 
 					{
 						LinkId = 
 						{
-							uint Id = 6,
+							uint Id = 5,
 						},
 						Named = 
 						{
@@ -266,7 +247,7 @@ Level =
 					{
 						LinkId = 
 						{
-							uint Id = 7,
+							uint Id = 6,
 						},
 						Named = 
 						{
@@ -294,6 +275,51 @@ Level =
 							TextAlign Align = Right,
 							float PixelsPerUnit = 64,
 							bool Smoothing = true,
+						},
+						Hierarchy = 
+						{
+						},
+					},
+					Cog = 
+					{
+						LinkId = 
+						{
+							uint Id = 7,
+						},
+						Named = 
+						{
+							string Name = "HudBG",
+						},
+						Archetyped = 
+						{
+							string Name = "5517683e6ddeecf7:HudSprite",
+						},
+						Transform = 
+						{
+							Vec3 Translation = [7, -6.1, -1],
+							Vec3 Scale = [5, 1.5, 1],
+							Quat Rotation = [0, 0, 0, 1],
+						},
+						Sprite = 
+						{
+							bool Visible = true,
+							bool VisibilityCulling = true,
+							bool VisibilityEvents = true,
+							bool CastShadows = false,
+							Vec4 Color = [1, 1, 1, 0.5],
+							BlendMode BlendMode = Alpha,
+							SpriteGeometryMode GeometryMode = ZPlane,
+							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+							string SpriteSource = "55175500f41278be:binding_dark",
+							bool RenderMask = false,
+							bool FlipX = false,
+							bool FlipY = false,
+							bool AnimationActive = true,
+							float AnimationSpeed = 1,
+							uint StartFrame = 0,
+						},
+						Hierarchy = 
+						{
 						},
 					},
 				},

@@ -5,4 +5,11 @@ TextContent =
 		string Name = "EnemyController",
 		uint64 ResourceId = 5558da3aed7f79a8,
 	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Controller",
+		],
+	},
 },
