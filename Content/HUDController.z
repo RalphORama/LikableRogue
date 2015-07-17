@@ -69,62 +69,6 @@ class HUDController : ZilchComponent
                 // HP setup is now done.
                 this.HPSetupDone = true;
             }
-            // if HP's already been set up, we want to modify it based off of the player's current stats
-            
-            else
-            {
-                /*
-                foreach ( var hpSprite in this.HPArray )
-                {
-                    hpSprite = null;
-                }
-                
-                // we want the following specs for each HP:
-                // if we have 2 HP, that sprite is this.WholeHeartSprite
-                // if we have 1 HP, that sprite is this.HalfHeartSprite
-                // if we have 0 HP, that sprite is this.NoHeartSprite
-                // we can calculate this based off of this.PlayerCog.PlayerController.MaxHP and .CurrentHP
-                
-                // calculate the current difference between current and max HP
-                var hpDiff : Integer = this.PlayerCog.PlayerController.MaxHP - this.PlayerCog.PlayerController.MaxHP;
-                // in this case we won't need a half heart
-                if ( hpDiff % 2 == 0 )
-                {
-                    for ( var hp : Integer = 1; hp <= (this.PlayerCog.PlayerController.CurentHP / 2); ++hp )
-                    {
-                        if ( hp <= this.PlayerCog.PlayerController.CurentHP )
-                        {
-                            // create the sprite, then parent it to the HUD controller
-                            var healthSprite = this.Space.CreateAtPosition( this.WholeHeartSprite, Real3( 0, 0, 0 ) );
-                            healthSprite.AttachTo( this.Owner );
-                            
-                            // set the new position for the sprite
-                            healthSprite.Transform.Translation = this.HealthSpriteAnchor;
-                            // increment the X value of where we'll place the next sprite
-                            this.HealthSpriteAnchor.X += 0.75;
-                        }
-                        else
-                        {
-                            // create the sprite, then parent it to the HUD controller
-                            var healthSprite = this.Space.CreateAtPosition( this.NoHeartSprite, Real3( 0, 0, 0 ) );
-                            healthSprite.AttachTo( this.Owner );
-                            
-                            // set the new position for the sprite
-                            healthSprite.Transform.Translation = this.HealthSpriteAnchor;
-                            // increment the X value of where we'll place the next sprite
-                            this.HealthSpriteAnchor.X += 0.75;
-                        }
-                    }
-                }
-                // in this case, we will need a half heart
-                else
-                {
-                    for ( var hp : Integer = 1; hp <= this.PlayerCog.PlayerController.CurentHP; ++hp )
-                    {
-                        return;
-                    }
-                }*/
-            }
         }
         // if we are referencing a null object, try to fill the object 
         else 
@@ -135,52 +79,49 @@ class HUDController : ZilchComponent
     
     function UpdateHealth ( player : Cog )
     {
-        // reset sprite creation location
-        this.HealthSpriteAnchor = Real3( this.HPLabel.Transform.Translation.X + 0.5, 
-                                         this.HPLabel.Transform.Translation.Y - 0.55, 
-                                         this.HPLabel.Transform.Translation.Z );
+        // find every sprite that was or has been created
+        var allHealthSprites  : HierarchyNameRange = this.Owner.FindAllChildrenByName( "HeartArchetype" );
+        // we increment this in the foreach loop so it works like a for loop
+        // this variable works inversely in the if statements.
+        var healthSpritesDone : Integer = 0;
+        // so we only create one "half heart"
+        var halfHeartCreated  : Boolean = false;
         
-        
-        // TODO: Iron out this logic
-        var hpDiff : Integer = player.PlayerController.MaxHP - player.PlayerController.CurentHP;
-        
-        for ( var hp : Integer = 1; hp <= (player.PlayerController.MaxHP / 2); ++hp )
+        foreach ( var sprite : Cog in allHealthSprites )
         {
-            //Console.WriteLine( "UpdateHealth(): hp        = `hp`." );
-            //Console.WriteLine( "UpdateHealth(): CurrentHP = `player.PlayerController.CurentHP`." );
-            //Console.WriteLine( "UpdateHealth(): MaxHP     = `player.PlayerController.MaxHP`." );
-            
-            var allHealthSprites : HierarchyNameRange = this.Owner.FindAllChildrenByName( "HeartArchetype" );
-            var healthSpritesDone : Integer = 0;
-            foreach ( var sprite : Cog in allHealthSprites )
+            // increment this first so we don't divide by 0
+            ++healthSpritesDone;
+            // - we check if the current hp / 2 is less than how many health sprites we have done
+            // - we divide CurrentHP by two because we have one sprite for every two hit points
+            // - we check to see if it's less than the current sprites done because, if it isn't, we need
+            //   to create an empty heart instead
+            if ( player.PlayerController.CurentHP / 2 < healthSpritesDone )
             {
-                if ( hp <= (player.PlayerController.CurentHP / 2) ) // if hp is less than the current hp (i.e. we have hearts here)
+                // now, if the player's HP mod 2 isn't zero, we want to create half a heart
+                // but, we only want to create half a heart once, so we check if we've done that already.
+                if ( (player.PlayerController.CurentHP % 2 == 1) && (halfHeartCreated == false) )
                 {
-                    ++healthSpritesDone;
-                    Console.WriteLine( "HealthSpritesDone == `healthSpritesDone`" );
-                    Console.WriteLine( "        CurrentHP == `player.PlayerController.CurentHP`");
-                    Console.WriteLine( "               hp == `hp`" );
-                    if ( hp < healthSpritesDone )
-                    {
-                        if ( (player.PlayerController.CurentHP % 2 == 1) && (player.PlayerController.CurentHP / 2 == healthSpritesDone) )
-                        {
-                            Console.WriteLine( "I should make an orange heart." );
-                            sprite.Sprite.Color = Real4( 1.0, 0.5, 0.0, 1.0 ); // orange, half a heart
-                        }
-                        else
-                        {
-                            Console.WriteLine( "I should make a red heart" );
-                            sprite.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.25 ); // red, a whole heart
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine( "I should make an empty heart" );
-                        sprite.Sprite.Color = Real4( 1.0, 0.0, 0.0, 1.0 ); // grey, no heart
-                    }
+                    // TODO: change this to 
+                    //sprite.Sprite.SpriteSource = this.HalfHeartSprite;
+                    sprite.Sprite.Color = Real4( 1.0, 0.5, 0.0, 1.0 ); // orange, half a heart
+                    halfHeartCreated = true;
+                }
+                // otherwise, if the HP mod 2 == 0, there only exists empty and full hearts.
+                // thus, we create a whole heart
+                else
+                {
+                    // TODO: change this to
+                    // sprite.Sprite.SpriteSource = this.WholeHeartSprite;
+                    sprite.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.25 ); // red, a whole heart
                 }
             }
+            // if player's current HP div 2 is greater than the amount of healthsprites we've created,
+            // that means that we need to start creating empty sprites.
+            else
+            {
+                Console.WriteLine( "I should make an empty heart" );
+                sprite.Sprite.Color = Real4( 1.0, 0.0, 0.0, 1.0 ); // grey, no heart
+            }
         }
-        Console.WriteLine();
     }
 }
