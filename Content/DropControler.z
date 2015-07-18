@@ -16,7 +16,7 @@ class DropControler : ZilchComponent
         if (event.OtherObject.Name == "Player")
             {
             event.OtherObject.SoundEmitter.Play();
-            ++event.OtherObject.PlayerController.MaxHP;
+            event.OtherObject.PlayerController.MaxHP+=2;
             this.LevelCog.LevelController.DynamicDifficulty += 0.02;
             this.Owner.Destroy();
             }
