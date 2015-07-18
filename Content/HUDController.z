@@ -125,4 +125,32 @@ class HUDController : ZilchComponent
             }
         }
     }
+    
+    function AddHealth ( healthIncrement : Integer ) : Boolean
+    {
+        if ( healthIncrement % 2 == 0 )
+        {
+            for ( var h : Integer = 1; h <= healthIncrement / 2; ++h )
+            {
+                // create the sprite, then parent it to the HUD controller
+                var healthSprite = this.Space.CreateAtPosition( this.HeartArchetype, Real3( 0, 0, 0 ) );
+                healthSprite.AttachTo( this.Owner );
+                // TODO: change the sprite source instead of the color
+                //healthSprite.Sprite.SpriteSource = this.WholeHeartSprite;
+                healthSprite.Sprite.Color = Real4( 1.0, 0, 0, 1.0 );
+                
+                // set the new position for the sprite
+                healthSprite.Transform.Translation = this.HealthSpriteAnchor;
+                // increment the X value of where we'll place the next sprite
+                this.HealthSpriteAnchor.X += 0.75;
+            }
+            
+            this.UpdateHealth( this.Space.FindObjectByName("Player") );
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
