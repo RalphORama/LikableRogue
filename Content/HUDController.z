@@ -1,12 +1,15 @@
 class HUDController : ZilchComponent
 {
+    // the cog we'll be modifying 
+    [Property]
+    var HeartArchetype : Archetype      = null;
     // sprites to display
     [Property]
-    var WholeHeartSprite : Archetype = null;
+    var WholeHeartSprite : SpriteSource = null;
     [Property]
-    var HalfHeartSprite : Archetype  = null;
+    var HalfHeartSprite : SpriteSource  = null;
     [Property]
-    var NoHeartSprite : Archetype    = null;
+    var NoHeartSprite : SpriteSource    = null;
     
     // we'll use this for debugging, maybe carry it over into production
     //[Property]
@@ -20,9 +23,11 @@ class HUDController : ZilchComponent
     var MaxPlayerHP : Integer = 4; 
     var HPSetupDone : Boolean = false;
     
+    // an array of the cogs we'll manipulate to display health
+    var HPCogs : Array[Cog] = Array[Cog]();
+    
     // HPLable - we'll use this for positioning
     var HPLabel : Cog = null;
-    var HPArray : Array[Cog] = Array[Cog]();
     
     function Initialize(init : CogInitializer)
     {
@@ -44,84 +49,25 @@ class HUDController : ZilchComponent
             // should we set up the HP?
             if ( this.HPSetupDone == false )
             {
-                /*
-                // we'll have one sprite for every 2 starting HP
-                for ( var i : Integer = 1; i <= (this.PlayerCog.PlayerController.CurentHP / 2); ++i )
+                // we're setting yup health instead of updating it
+                for ( var hp : Integer = 1; hp <= (this.PlayerCog.PlayerController.MaxHP / 2); ++hp )
                 {
                     // create the sprite, then parent it to the HUD controller
-                    var healthSprite = this.Space.CreateAtPosition( this.WholeHeartSprite, Real3( 0, 0, 0 ) );
+                    var healthSprite = this.Space.CreateAtPosition( this.HeartArchetype, Real3( 0, 0, 0 ) );
                     healthSprite.AttachTo( this.Owner );
+                    // TODO: change the sprite source instead of the color
+                    //healthSprite.Sprite.SpriteSource = this.WholeHeartSprite;
+                    healthSprite.Sprite.Color = Real4( 1.0, 0, 0, 1.0 );
                     
                     // set the new position for the sprite
                     healthSprite.Transform.Translation = this.HealthSpriteAnchor;
-                    
-                    // add the health sprite to the HP array
-                    this.HPArray.Add( healthSprite );
-                    
                     // increment the X value of where we'll place the next sprite
                     this.HealthSpriteAnchor.X += 0.75;
                 }
-                */
-                this.UpdateHealth( this.PlayerCog );
+                //this.UpdateHealth( this.PlayerCog );
                 
                 // HP setup is now done.
                 this.HPSetupDone = true;
-            }
-            // if HP's already been set up, we want to modify it based off of the player's current stats
-            
-            else
-            {
-                /*
-                foreach ( var hpSprite in this.HPArray )
-                {
-                    hpSprite = null;
-                }
-                
-                // we want the following specs for each HP:
-                // if we have 2 HP, that sprite is this.WholeHeartSprite
-                // if we have 1 HP, that sprite is this.HalfHeartSprite
-                // if we have 0 HP, that sprite is this.NoHeartSprite
-                // we can calculate this based off of this.PlayerCog.PlayerController.MaxHP and .CurrentHP
-                
-                // calculate the current difference between current and max HP
-                var hpDiff : Integer = this.PlayerCog.PlayerController.MaxHP - this.PlayerCog.PlayerController.MaxHP;
-                // in this case we won't need a half heart
-                if ( hpDiff % 2 == 0 )
-                {
-                    for ( var hp : Integer = 1; hp <= (this.PlayerCog.PlayerController.CurentHP / 2); ++hp )
-                    {
-                        if ( hp <= this.PlayerCog.PlayerController.CurentHP )
-                        {
-                            // create the sprite, then parent it to the HUD controller
-                            var healthSprite = this.Space.CreateAtPosition( this.WholeHeartSprite, Real3( 0, 0, 0 ) );
-                            healthSprite.AttachTo( this.Owner );
-                            
-                            // set the new position for the sprite
-                            healthSprite.Transform.Translation = this.HealthSpriteAnchor;
-                            // increment the X value of where we'll place the next sprite
-                            this.HealthSpriteAnchor.X += 0.75;
-                        }
-                        else
-                        {
-                            // create the sprite, then parent it to the HUD controller
-                            var healthSprite = this.Space.CreateAtPosition( this.NoHeartSprite, Real3( 0, 0, 0 ) );
-                            healthSprite.AttachTo( this.Owner );
-                            
-                            // set the new position for the sprite
-                            healthSprite.Transform.Translation = this.HealthSpriteAnchor;
-                            // increment the X value of where we'll place the next sprite
-                            this.HealthSpriteAnchor.X += 0.75;
-                        }
-                    }
-                }
-                // in this case, we will need a half heart
-                else
-                {
-                    for ( var hp : Integer = 1; hp <= this.PlayerCog.PlayerController.CurentHP; ++hp )
-                    {
-                        return;
-                    }
-                }*/
             }
         }
         // if we are referencing a null object, try to fill the object 
@@ -133,95 +79,49 @@ class HUDController : ZilchComponent
     
     function UpdateHealth ( player : Cog )
     {
-        Console.WriteLine( "UpdateHealth(): Called." );
-        // reset sprite creation location
-        this.HealthSpriteAnchor = Real3( this.HPLabel.Transform.Translation.X + 0.5, 
-                                         this.HPLabel.Transform.Translation.Y - 0.55, 
-                                         this.HPLabel.Transform.Translation.Z );
+        // find every sprite that was or has been created
+        var allHealthSprites  : HierarchyNameRange = this.Owner.FindAllChildrenByName( "HeartArchetype" );
+        // we increment this in the foreach loop so it works like a for loop
+        // this variable works inversely in the if statements.
+        var healthSpritesDone : Integer = 0;
+        // so we only create one "half heart"
+        var halfHeartCreated  : Boolean = false;
         
-        // delete all the old sprites
-        /*
-        foreach ( var hpSprite in this.HPArray )
+        foreach ( var sprite : Cog in allHealthSprites )
         {
-            Console.WriteLine( "UpdateHealth(): Destroying an old sprite." );
-            hpSprite.Destroy();
-        }
-        */
-        
-        // TODO: Iron out this logic
-        var hpDiff : Integer = player.PlayerController.MaxHP - player.PlayerController.CurentHP;
-        
-        if ( hpDiff % 2 == 0 )
-        {
-            // remove this later
-            // TODO: Figure out why this keeps throwing "Attempted to call a member function on a null object"
-            foreach ( var hpSprite in this.HPArray )
+            // increment this first so we don't divide by 0
+            ++healthSpritesDone;
+            // - we check if the current hp / 2 is less than how many health sprites we have done
+            // - we divide CurrentHP by two because we have one sprite for every two hit points
+            // - we check to see if it's less than the current sprites done because, if it isn't, we need
+            //   to create an empty heart instead
+            if ( player.PlayerController.CurentHP / 2 < healthSpritesDone )
             {
-                Console.WriteLine( "UpdateHealth(): Destroying an old sprite `hpSprite`." );
-                //hpSprite.Detach();
-                //hpSprite.Destroy();
-            }
-            //
-            Console.WriteLine( "UpdateHealth(): hpDiff even." );
-            for ( var hp : Integer = 1; hp <= (player.PlayerController.MaxHP / 2); ++hp )
-            {
-                Console.WriteLine( "UpdateHealth(): hp        = `hp`." );
-                Console.WriteLine( "UpdateHealth(): CurrentHP = `player.PlayerController.CurentHP`." );
-                Console.WriteLine( "UpdateHealth(): MaxHP     = `player.PlayerController.MaxHP`." );
-                if ( hp <= player.PlayerController.CurentHP )
+                // now, if the player's HP mod 2 isn't zero, we want to create half a heart
+                // but, we only want to create half a heart once, so we check if we've done that already.
+                if ( (player.PlayerController.CurentHP % 2 == 1) && (halfHeartCreated == false) )
                 {
-                    Console.WriteLine( "UpdateHealth(): hp <= CurrentHP." );
-                    // create the sprite, then parent it to the HUD controller
-                    var healthSprite = this.Space.CreateAtPosition( this.WholeHeartSprite, Real3( 0, 0, 0 ) );
-                    this.HPArray.Add( healthSprite );
-                    healthSprite.AttachTo( this.Owner );
-                    
-                    // set the new position for the sprite
-                    healthSprite.Transform.Translation = this.HealthSpriteAnchor;
-                    // increment the X value of where we'll place the next sprite
-                    this.HealthSpriteAnchor.X += 0.75;
+                    // TODO: change this to 
+                    //sprite.Sprite.SpriteSource = this.HalfHeartSprite;
+                    sprite.Sprite.Color = Real4( 1.0, 0.5, 0.0, 1.0 ); // orange, half a heart
+                    halfHeartCreated = true;
                 }
+                // otherwise, if the HP mod 2 == 0, there only exists empty and full hearts.
+                // thus, we create a whole heart
                 else
                 {
-                    Console.WriteLine( "UpdateHealth(): hp > CurrentHP." );
-                    // create the sprite, then parent it to the HUD controller
-                    var healthSprite = this.Space.CreateAtPosition( this.NoHeartSprite, Real3( 0, 0, 0 ) );
-                    this.HPArray.Add( healthSprite );
-                    healthSprite.AttachTo( this.Owner );
-                    
-                    // set the new position for the sprite
-                    healthSprite.Transform.Translation = this.HealthSpriteAnchor;
-                    // increment the X value of where we'll place the next sprite
-                    this.HealthSpriteAnchor.X += 0.75;
+                    // TODO: change this to
+                    // sprite.Sprite.SpriteSource = this.WholeHeartSprite;
+                    sprite.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.25 ); // red, a whole heart
                 }
             }
+            // if player's current HP div 2 is greater than the amount of healthsprites we've created,
+            // that means that we need to start creating empty sprites.
+            else
+            {
+                Console.WriteLine( "I should make an empty heart" );
+                sprite.Sprite.Color = Real4( 1.0, 0.0, 0.0, 1.0 ); // grey, no heart
+            }
         }
-        else if ( hpDiff % 2 == 1 )
-        {
-            Console.WriteLine( "Handle this later" );
-        }
-        else
-        {
-            Console.WriteLine( "ERROR: UpdateHealth(): hpDiff should be 0 or 1, but got `hpDiff % 2` instead" );
-        }
-        
-        /*
-        // create the new sprites
-        for ( var i : Integer = 1; i <= player.PlayerController.CurentHP; ++i )
-        {
-            // create the sprite, then parent it to the HUD controller
-            var healthSprite = this.Space.CreateAtPosition( this.WholeHeartSprite, Real3( 0, 0, 0 ) );
-            healthSprite.AttachTo( this.Owner );
-            
-            // set the new position for the sprite
-            healthSprite.Transform.Translation = this.HealthSpriteAnchor;
-            
-            // add the health sprite to the HP array
-            this.HPArray.Add( healthSprite );
-            
-            // increment the X value of where we'll place the next sprite
-            this.HealthSpriteAnchor.X += 0.75;
-        }
-        */
     }
 }

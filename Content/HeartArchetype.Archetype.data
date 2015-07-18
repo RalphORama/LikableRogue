@@ -6,11 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "WholeHeartSprite",
+		string Name = "HeartArchetype",
 	},
 	Archetyped = 
 	{
-		string Name = "55177bbe340a422e:WholeHeartSprite",
+		string Name = "5516c24ac778cf46:HeartArchetype",
 	},
 	Transform = 
 	{

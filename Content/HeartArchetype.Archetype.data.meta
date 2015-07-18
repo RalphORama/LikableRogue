@@ -2,8 +2,8 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "NoHeartSprite",
-		uint64 ResourceId = 55177b7221bede98,
+		string Name = "HeartArchetype",
+		uint64 ResourceId = 5516c24ac778cf46,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,
