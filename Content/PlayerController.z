@@ -17,6 +17,9 @@ class PlayerController : ZilchComponent
     [Property]
     var MaxHP : Integer = 10;
     var CurentHP : Integer = 0;
+    [Property]
+    var PlayerDeathParticleEffectArche : Archetype = null;
+    var IsPlayerDead : Boolean = false;
     
     //damag vars
     var SwordDamag : Integer = 2;
@@ -46,6 +49,8 @@ class PlayerController : ZilchComponent
     
     function StunPlayer(time : Real)
     {   
+    if(this.IsPlayerDead==false)
+                {
         //this.Owner.CapsuleCollider.SendsEvents=false;
         //this.Owner.CapsuleCollider.Ghost=true;
         this.Owner.Collider.CollisionGroup = CollisionGroup.Find("InvincableCollisionGroup");
@@ -55,6 +60,7 @@ class PlayerController : ZilchComponent
         var seq = Action.Sequence(this.Owner.Actions);
         Actions.Delay(seq, time);
         Actions.Call(seq, this.RemoveStun);
+        }
     }
     function RemoveStun()
         {
@@ -182,22 +188,27 @@ class PlayerController : ZilchComponent
         }
     function OnLogicUpdate(event : UpdateEvent)
         {
-        if (this.IsPlayerStun==false)
-        {
-            this.UpdateMoveInput();
-        }
-        if (this.CurentHP<=0)
-            {
-                //this.Owner.Destroy();
-                this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );
-            }
-        this.ProjectileLaunch();
-        this.SwordSlash();
-        this.UpdateOtherInput();
-        this.UpdateFacingInput();
-        //this.SlingshotSpeed+=0.12;
-        //this.SlingShotProjectCog.Transform.Translation=Real3(this.SlingshotSpeed,0,0);
-        //this.UpdateMouseMovement();
+            if(this.IsPlayerDead==false)
+                {
+                if (this.IsPlayerStun==false)
+                    {
+                    this.UpdateMoveInput();
+                    }
+                    if (this.CurentHP<=0)
+                        {
+                        //this.Owner.Destroy();
+                        this.Space.CreateAtPosition(this.PlayerDeathParticleEffectArche, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
+                        this.IsPlayerDead=true;
+                        }
+                    this.ProjectileLaunch();
+                    this.SwordSlash();
+                    this.UpdateOtherInput();
+                    this.UpdateFacingInput();
+                }
+            if(this.IsPlayerDead==true)
+                {
+                this.Owner.Sprite.Color=Real4(0,0,0,0);
+                }
         }
     function UpdateFacingInput()
         {
