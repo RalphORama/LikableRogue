@@ -49,23 +49,26 @@ class PlayerController : ZilchComponent
     
     function StunPlayer(time : Real)
     {   
-    if(this.IsPlayerDead==false)
-                {
-        //this.Owner.CapsuleCollider.SendsEvents=false;
-        //this.Owner.CapsuleCollider.Ghost=true;
-        this.Owner.Collider.CollisionGroup = CollisionGroup.Find("InvincableCollisionGroup");
-        Console.WriteLine(this.Owner.Collider.CollisionGroup.Name);
-        this.Owner.Sprite.Color=Real4(1,255,255,1);
-        this.IsPlayerStun = true;
-        var seq = Action.Sequence(this.Owner.Actions);
-        Actions.Delay(seq, time);
-        Actions.Call(seq, this.RemoveStun);
-        }
+        if(this.IsPlayerDead==false)
+            {
+            //this.Owner.CapsuleCollider.SendsEvents=false;
+            //this.Owner.CapsuleCollider.Ghost=true;
+            this.Owner.Collider.CollisionGroup = CollisionGroup.Find("InvincableCollisionGroup");
+            Console.WriteLine(this.Owner.Collider.CollisionGroup.Name);
+            this.Owner.Sprite.Color=Real4(1,255,255,1);
+            this.IsPlayerStun = true;
+            var seq = Action.Sequence(this.Owner.Actions);
+            Actions.Delay(seq, time);
+            Actions.Call(seq, this.RemoveStun);
+            }
     }
     function RemoveStun()
         {
         this.Owner.Collider.CollisionGroup = CollisionGroup.Find("DefaultGroup");
+        if(this.IsPlayerDead==false)
+            {
         this.Owner.Sprite.Color=Real4(1,1,1,1);
+            }
         this.IsPlayerStun = false;
         }
     function Initialize(init : CogInitializer)
@@ -81,7 +84,7 @@ class PlayerController : ZilchComponent
         //this.LevelCamera.Camera.Size = 50;
 
         //getting the right gamepad is what enables us to have different gamepads per instance of this script due to the playernumber var
-        this.Gamepad = Zero.Gamepads.GetGamePad(this.PlayerNumber - 1);
+        this.Gamepad = Zero.Gamepads.GetGamePad(0);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.LevelSettings, Events.MouseMove, this.OnMouseMove);
         Zero.Connect(this.LevelCamera, Events.MouseScroll, this.OnMouseScroll);
@@ -197,8 +200,9 @@ class PlayerController : ZilchComponent
                     if (this.CurentHP<=0)
                         {
                         //this.Owner.Destroy();
-                        this.Space.CreateAtPosition(this.PlayerDeathParticleEffectArche, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
                         this.IsPlayerDead=true;
+                        this.Space.CreateAtPosition(this.PlayerDeathParticleEffectArche, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
+                        this.Owner.Sprite.Color=Real4(0,0,0,0);
                         }
                     this.ProjectileLaunch();
                     this.SwordSlash();
@@ -207,7 +211,6 @@ class PlayerController : ZilchComponent
                 }
             if(this.IsPlayerDead==true)
                 {
-                this.Owner.Sprite.Color=Real4(0,0,0,0);
                 }
         }
     function UpdateFacingInput()
