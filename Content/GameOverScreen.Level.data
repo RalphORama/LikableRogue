@@ -115,7 +115,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 4.97872,
+			float Size = 18.2684,
 		},
 		EditorCameraController = 
 		{
@@ -174,40 +174,6 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "GameOverText",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 2, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		SpriteText = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "4e7bac697bec55c5:Verdana",
-			uint FontSize = 72,
-			string Text = "You died!",
-			TextAlign Align = Center,
-			float PixelsPerUnit = 64,
-			bool Smoothing = true,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Named = 
-		{
 			string Name = "Background",
 		},
 		Transform = 
@@ -239,6 +205,40 @@ Level =
 	{
 		LinkId = 
 		{
+			uint Id = 5,
+		},
+		Named = 
+		{
+			string Name = "GameOverText",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0, 2, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		SpriteText = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string FontName = "55176b72d4c99274:LuckiestGuy",
+			uint FontSize = 72,
+			string Text = "You died!",
+			TextAlign Align = Center,
+			float PixelsPerUnit = 64,
+			bool Smoothing = true,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
 			uint Id = 6,
 		},
 		Named = 
@@ -261,7 +261,7 @@ Level =
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "4e7bac697bec55c5:Verdana",
+			string FontName = "55176b72d4c99274:LuckiestGuy",
 			uint FontSize = 30,
 			string Text = "Play Again?",
 			TextAlign Align = Center,
