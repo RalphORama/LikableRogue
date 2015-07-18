@@ -1,0 +1,24 @@
+class DropControler : ZilchComponent
+{
+    var LevelCog : Cog = null;
+    function Initialize(init : CogInitializer)
+    {
+        this.LevelCog = this.Space.FindObjectByName("LevelManager");
+        //costom initializing
+        if(this.Owner.Name=="MaxHP_Drop")
+            {
+            Zero.Connect(this.Owner, Events.CollisionStarted, this.OnMaxHP_DropCollisionStarted);
+            }
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    function OnMaxHP_DropCollisionStarted(event : CollisionEvent)
+        {
+        if (event.OtherObject.Name == "Player")
+            {
+            event.OtherObject.SoundEmitter.Play();
+            ++event.OtherObject.PlayerController.MaxHP;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.02;
+            this.Owner.Destroy();
+            }
+        }
+}
