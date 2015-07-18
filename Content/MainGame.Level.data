@@ -203,9 +203,10 @@ Level =
 				},
 				HUDController = 
 				{
-					string WholeHeartSprite = "55177bbe340a422e:WholeHeartSprite",
-					string HalfHeartSprite = "55177b983a0797d4:HalfHeartSprite",
-					string NoHeartSprite = "55177b7221bede98:NoHeartSprite",
+					string HeartArchetype = "5516c24ac778cf46:HeartArchetype",
+					string WholeHeartSprite = "",
+					string HalfHeartSprite = "",
+					string NoHeartSprite = "",
 				},
 				Hierarchy = 
 				{

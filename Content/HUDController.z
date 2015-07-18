@@ -35,7 +35,7 @@ class HUDController : ZilchComponent
         this.HPLabel    = this.Owner.FindChildByName( "HPLabel" );
         
         this.HealthSpriteAnchor = Real3( this.HPLabel.Transform.Translation.X + 0.5, 
-                                         this.HPLabel.Transform.Translation.Y - 0.55, 
+                                         this.HPLabel.Transform.Translation.Y - 0.6, 
                                          this.HPLabel.Transform.Translation.Z );
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -119,7 +119,8 @@ class HUDController : ZilchComponent
             // that means that we need to start creating empty sprites.
             else
             {
-                Console.WriteLine( "I should make an empty heart" );
+                // TODO: change this to
+                //sprite.Sprite.SpriteSource = this.NoHeartSprite;
                 sprite.Sprite.Color = Real4( 1.0, 0.0, 0.0, 1.0 ); // grey, no heart
             }
         }
