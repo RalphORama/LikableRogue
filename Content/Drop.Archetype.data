@@ -6,15 +6,15 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "MaxHP_Drop",
+		string Name = "Drop",
 	},
 	Archetyped = 
 	{
-		string Name = "55db1c51be0b8ae6:MaxHP_Drop",
+		string Name = "55dfddc25814a1f0:Drop",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [2.71161, 6.02919, -0.001],
+		Vec3 Translation = [6.16736, 6.03445, -0.000999451],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 0, 0, 1],
+		Vec4 Color = [1, 1, 1, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
