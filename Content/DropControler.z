@@ -5,10 +5,22 @@ class DropControler : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
-        var intRand = this.RandomGenerator.Range(1, 4+(this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty))as Integer;//add random stuff 1-2
-        if(intRand>4)
+        var intRand = this.RandomGenerator.Range(1, 6+(this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty))as Integer;//add random stuff 1-2
+        if(intRand>6)
             {
             this.Owner.Destroy();
+            }
+        else if(intRand > 5)//Sets To ProjDrop
+            {
+            Zero.Connect(this.Owner, Events.CollisionStarted, this.OnProjDropCollisionStarted);
+            this.Owner.Sprite.SpriteSource=SpriteSource.Find("Proj");
+            this.Owner.Sprite.Color=Real4(1,1,175,1);
+            }
+        //Sets To HP_Drop
+        else if (intRand > 4)
+            {
+            Zero.Connect(this.Owner, Events.CollisionStarted, this.OnHP_DropCollisionStarted);
+            this.Owner.Sprite.Color=Real4(1,1,0,1);
             }
         else if(intRand > 3)//Sets To ProjSpeDrop
             {
@@ -27,6 +39,29 @@ class DropControler : ZilchComponent
             }
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
+    //ProjDrop
+    function OnProjDropCollisionStarted(event : CollisionEvent)
+        {
+        if (event.OtherObject.Name == "Player")
+            {
+            ++event.OtherObject.PlayerController.MaxProjec;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.02;
+            event.OtherObject.SoundEmitter.Play();
+            this.Owner.Destroy();
+            }
+        }
+    //HP_Drop
+    function OnHP_DropCollisionStarted(event : CollisionEvent)
+        {
+        if (event.OtherObject.Name == "Player")
+            {
+            event.OtherObject.SoundEmitter.Play();//Sound
+            //buf
+            event.OtherObject.PlayerController.CurentHP+=2;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.01;
+            this.Owner.Destroy();
+            }
+        }
     //ProjSpeDrop
     function OnProjSpeDropCollisionStarted(event : CollisionEvent)
         {
@@ -35,7 +70,7 @@ class DropControler : ZilchComponent
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.ProMoveSpeed+=4;
             event.OtherObject.PlayerController.Pjtl_Damage+=1;
-            this.LevelCog.LevelController.DynamicDifficulty += 0.04;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.02;
             this.Owner.Destroy();
             }
         }
@@ -45,8 +80,8 @@ class DropControler : ZilchComponent
         if (event.OtherObject.Name == "Player")
             {
             event.OtherObject.SoundEmitter.Play();
-            event.OtherObject.PlayerController.SwordDamag+=2;            
-            this.LevelCog.LevelController.DynamicDifficulty += Real(event.OtherObject.PlayerController.SwordDamag)/4;
+            event.OtherObject.PlayerController.SwordDamag+=2;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.03;
             this.Owner.Destroy();
             }
         }
@@ -66,7 +101,7 @@ class DropControler : ZilchComponent
             hud.HUDController.AddHealth( 2 );
             // ok your code resumes here
             
-            this.LevelCog.LevelController.DynamicDifficulty += 0.02;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.04;
             this.Owner.Destroy();
             }
         }
