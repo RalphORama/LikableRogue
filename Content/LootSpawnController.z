@@ -1,0 +1,94 @@
+class LootSpawnController : ZilchComponent
+{
+    // the parent drop archetype cohooses for itself what type of
+    // loot it will be, so we only need one archetype
+    [Property]
+    var ParentDrop : Archetype = null;
+    
+    // we'll fill this in using the init function
+    var LevelManager : Cog = null;
+    
+    // for random numbers
+    var RandomGenerator : Random = Random();
+    
+    function Initialize(init : CogInitializer)
+    {
+        // initialize the level manager
+        this.LevelManager = this.Space.FindObjectByName( "LevelManager" );
+        
+        // connect to collision events
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        if ( event.OtherObject.Name == "Background" )
+        {
+            // take the parent of the background, which should be the room as the whole
+            var room : Cog = event.OtherObject.Parent;
+            
+            // check to make sure the room is a loot room and we haven't spawned loot in it yet
+            if ( room.RoomController.IsLootRoom == true && room.RoomController.LootSpawned == false )
+            {
+                // get the position of the room
+                var roomPosition : Real3 = event.OtherObject.Transform.WorldTranslation;
+                
+                // create min and max locations to spawn loot
+                var minLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) - 1, // x axis
+                                                        (roomPosition.Y as Integer) - 1, // y axis
+                                                        0 );
+                var maxLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) + 1, // x axis
+                                                        (roomPosition.Y as Integer) + 1, // y axis
+                                                        0 );
+                
+                // access the current difficulties and assign them to local variables
+                // this keeps the programmer sane
+                var dynamicDifficulty : Real = this.LevelManager.LevelController.DynamicDifficulty;
+                var   levelDifficulty : Real = this.LevelManager.LevelController.LevelDifficulty;
+                
+                // calculate how many pickups to spawn
+                // minimum is zero, maximum is levelDifficulty
+                // TODO: tweak this range later, set minimum back to 0
+                var numPickupsToSpawn : Integer = this.RandomGenerator.Range( 1, levelDifficulty ) as Integer;
+                Console.WriteLine( "Spawning `numPickupsToSpawn` pickups." ); // debugging
+                this.SpawnPickups( numPickupsToSpawn, minLocationToSpawn, maxLocationToSpawn );                
+            }
+        }
+    }
+    
+    function SpawnPickups ( numPickupsToSpawn : Integer,
+                            minSpawnLocation  : Real3,
+                            maxSpawnLocation  : Real3   )
+    {
+        // first, initialize some variables
+        var pickupLocations : Array[Real3] = Array[Real3]();
+        
+        // loop through every pickup we need to spawn
+        for ( var pickupsSpawned : Integer = 0; pickupsSpawned < numPickupsToSpawn; ++pickupsSpawned )
+        {
+            // create the spawnpoint
+            var spawnPoint : Real3 = Real3( this.RandomGenerator.Range(minSpawnLocation.X, maxSpawnLocation.X) as Integer,
+                                            this.RandomGenerator.Range(minSpawnLocation.Y, maxSpawnLocation.Y) as Integer,
+                                            0 );
+            
+            // the pickup itself will handle what type of thing it is
+            var pickUpToSpawn : Archetype = this.ParentDrop;
+            
+            // create the pickup
+            this.Space.CreateAtPosition( pickUpToSpawn, spawnPoint );
+            
+            // TODO: Deal with overlapping pickups later
+            /*
+            var isPointOverlap : Boolean = false;
+            // check to make sure we're not spawning pickups on top of each other
+            if ( pickupLocations.Count > 0 )
+            {
+                foreach ( location in pickupLocations )
+                {
+                    
+                }
+            }
+            */
+        }
+    }
+}
