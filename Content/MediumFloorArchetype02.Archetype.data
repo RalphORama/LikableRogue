@@ -6,11 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "LevelArchetype",
+		string Name = "MediumFloorArchetype02",
 	},
 	Archetyped = 
 	{
-		string Name = "551a3ba390356dc1:LevelArchetype02",
+		string Name = "551a3ba390356dc1:MediumFloorArchetype02",
 	},
 	Transform = 
 	{

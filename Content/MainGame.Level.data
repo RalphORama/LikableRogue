@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-1.90221, 26.0141, 49.999],
+			Vec3 Translation = [-1.90221, 3.42989, 49.999],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 60.6531,
+			float Size = 100,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-1.90221, 26.0141, -0.00100039],
+			Vec3 LookTarget = [-1.90221, 3.42989, -0.00100039],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -342,11 +342,11 @@ Level =
 			string PlayerCharacter = "5522de378f164585:Player",
 			int LevelDifficulty = 1,
 			float DynamicDifficulty = 1,
-			string EasyLevel01 = "551eefc556b12616:LevelArchetype01",
+			string EasyLevel01 = "551eefc556b12616:EasyFloorArchetype01",
 			string EasyLevel02 = "",
-			string MediumLevel01 = "551a3ba390356dc1:LevelArchetype02",
+			string MediumLevel01 = "551a3ba390356dc1:MediumFloorArchetype02",
 			string MediumLevel02 = "",
-			string HardLevel01 = "551eefc556b12616:LevelArchetype01",
+			string HardLevel01 = "5512164dd7a6ba65:HardFloorArchetype01",
 			string HardLevel02 = "",
 			string LevelExit = "551aed6ca44b32ee:LevelExit",
 			int LootRoomModifier = 2,
