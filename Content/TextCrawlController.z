@@ -1,0 +1,56 @@
+class TextCrawlController : ZilchComponent
+{
+    // we need spritetext in order to work
+    [Dependency]
+    var SpriteText : SpriteText = null;
+    [Dependency]
+    var Area : Area = null;
+    
+    // the final string that we want to display
+    [Property]
+    var TextLine01 : String = "";
+    [Property]
+    var TextLine02 : String = "";
+    
+    var Timer : Real = 0.0;                 // debugging
+    
+    var Line01Crawled : Boolean = false;    // debugging
+    var Line02Crawled : Boolean = false;
+    
+    function Initialize(init : CogInitializer)
+    {
+        // reset parent text
+        this.Owner.SpriteText.Text = "";
+        
+        this.CrawlText( this.TextLine01 );
+        
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        
+    }
+    
+    function CrawlText ( textToCrawl : String )
+    {
+        this.SpriteText.Text = "";
+        
+        var textSeq = Action.Sequence( this.Owner.Actions );
+        
+        var crawlTime : Real = 0.0;
+        foreach ( var char : Rune in textToCrawl )
+        {
+            crawlTime += 0.1;
+        }
+        
+        Action.Property( textSeq, @this.Owner.SpriteText.Text, textToCrawl, crawlTime, Ease.Linear );
+        
+        /*
+        foreach ( var character : Rune in textToCrawl )
+        {
+            Action.Property( textSeq, @this.SpriteText.Text, character, 0.5, Ease.Linear );
+        }
+        */
+    }
+}

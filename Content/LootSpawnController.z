@@ -50,8 +50,10 @@ class LootSpawnController : ZilchComponent
                 // minimum is zero, maximum is levelDifficulty
                 // TODO: tweak this range later, set minimum back to 0
                 var numPickupsToSpawn : Integer = this.RandomGenerator.Range( 1, 6+(levelDifficulty)) as Integer;
-                Console.WriteLine( "Spawning `numPickupsToSpawn` pickups." ); // debugging
-                this.SpawnPickups( numPickupsToSpawn, minLocationToSpawn, maxLocationToSpawn );                
+                //Console.WriteLine( "Spawning `numPickupsToSpawn` pickups." ); // debugging
+                this.SpawnPickups( numPickupsToSpawn, minLocationToSpawn, maxLocationToSpawn );
+                // disable spawning of many objects
+                room.RoomController.LootSpawned = true;
             }
         }
     }
