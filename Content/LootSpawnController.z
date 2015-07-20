@@ -49,7 +49,7 @@ class LootSpawnController : ZilchComponent
                 // calculate how many pickups to spawn
                 // minimum is zero, maximum is levelDifficulty
                 // TODO: tweak this range later, set minimum back to 0
-                var numPickupsToSpawn : Integer = this.RandomGenerator.Range( 1, levelDifficulty ) as Integer;
+                var numPickupsToSpawn : Integer = this.RandomGenerator.Range( 1, levelDifficulty * 1.5 ) as Integer;
                 Console.WriteLine( "Spawning `numPickupsToSpawn` pickups." ); // debugging
                 this.SpawnPickups( numPickupsToSpawn, minLocationToSpawn, maxLocationToSpawn );                
             }

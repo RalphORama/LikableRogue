@@ -5,4 +5,11 @@ TextContent =
 		string Name = "LootSpawnController",
 		uint64 ResourceId = 55121bbd941c91d3,
 	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Controller",
+		],
+	},
 },
