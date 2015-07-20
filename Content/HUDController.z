@@ -11,8 +11,7 @@ class HUDController : ZilchComponent
     [Property]
     var NoHeartSprite : SpriteSource    = null;
     
-    // we'll use this for debugging, maybe carry it over into production
-    //[Property]
+    // the anchor for creating sprites and health
     var HealthSpriteAnchor : Real3 = Real3( 0, 0, 0 );
     
     // the player cog
@@ -28,11 +27,14 @@ class HUDController : ZilchComponent
     
     // HPLable - we'll use this for positioning
     var HPLabel : Cog = null;
+    // AmmoLable - we'll use this for positioning as well
+    var AmmoLabel : Cog = null;
     
     function Initialize(init : CogInitializer)
     {
         // initialize the variable we need later in the Init function
         this.HPLabel    = this.Owner.FindChildByName( "HPLabel" );
+        this.AmmoLabel  = this.Owner.FindChildByName( "AmmoLabel" );
         
         this.HealthSpriteAnchor = Real3( this.HPLabel.Transform.Translation.X + 0.5, 
                                          this.HPLabel.Transform.Translation.Y - 0.6, 
@@ -64,11 +66,13 @@ class HUDController : ZilchComponent
                     // increment the X value of where we'll place the next sprite
                     this.HealthSpriteAnchor.X += 0.75;
                 }
-                //this.UpdateHealth( this.PlayerCog );
                 
                 // HP setup is now done.
                 this.HPSetupDone = true;
             }
+            
+            // update the ammo
+            this.UpdateAmmo( this.PlayerCog.PlayerController.MaxProjec - this.PlayerCog.PlayerController.CurentProject + 1 );
         }
         // if we are referencing a null object, try to fill the object 
         else 
@@ -146,11 +150,18 @@ class HUDController : ZilchComponent
             }
             
             this.UpdateHealth( this.Space.FindObjectByName("Player") );
+            // we succeded to add health
             return true;
         }
         else
         {
+            // we failed at adding health
             return false;
         }
+    }
+    
+    function UpdateAmmo ( newAmmo : Integer )
+    {
+        this.AmmoLabel.SpriteText.Text = "Ammo:  `newAmmo`";
     }
 }
