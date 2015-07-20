@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [13.627, 4.11847, 49.999],
+			Vec3 Translation = [4.07409, 3.21154, 49.999],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 100,
+			float Size = 16.5299,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [13.627, 4.11847, -0.000999711],
+			Vec3 LookTarget = [4.07409, 3.21154, -0.00100013],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -354,6 +354,96 @@ Level =
 		CheatCodeController = 
 		{
 			string SpriteText = "55174013910ac619:CheatCodeSpriteText",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55dfddc25814a1f0:Drop",
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0.737086, 1.33095, -0.000999451],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Drop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55dfddc25814a1f0:Drop",
+		LinkId = 
+		{
+			uint Id = 10,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [2.8965, 3.18973, -0.000999451],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Drop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55dfddc25814a1f0:Drop",
+		LinkId = 
+		{
+			uint Id = 11,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [3.11457, 1.57599, -0.000999451],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Drop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55dfddc25814a1f0:Drop",
+		LinkId = 
+		{
+			uint Id = 12,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [4.77192, 2.57913, -0.000999451],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Drop",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "55dfddc25814a1f0:Drop",
+		LinkId = 
+		{
+			uint Id = 13,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [5.73144, 4.71624, -0.000999451],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Drop",
 		},
 	},
 },
