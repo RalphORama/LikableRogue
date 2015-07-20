@@ -59,9 +59,9 @@ class EnemyRaycaster : ZilchComponent
         // Draw to the raycast point
         var endPos = ray.Start + ray.Direction * distance;
         
-        /*this.DrawArrow(ray.Start, endPos);
+        this.DrawArrow(ray.Start, endPos);
         
-        Console.WriteLine(results.ObjectHit.Name);*/ //for decoding
+        Console.WriteLine(results.ObjectHit.Name); //for decoding
         
         if (results.ObjectHit.Name == "Wall")
         {
