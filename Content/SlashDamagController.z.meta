@@ -5,4 +5,11 @@ TextContent =
 		string Name = "SlashDamagController",
 		uint64 ResourceId = 55d2d28f8a28bd37,
 	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Controller",
+		],
+	},
 },
