@@ -22,8 +22,12 @@ class DoorController : ZilchComponent
     
     var PlayerCog : Cog = null;
     
+    var LevelCog : Cog = null;
     function Initialize(init : CogInitializer)
     {
+        
+        this.LevelCog = this.Space.FindObjectByName("LevelManager");
+    
         // initialize location for collision
         this.MyLocation = this.Owner.Transform.WorldTranslation;
         
@@ -45,6 +49,7 @@ class DoorController : ZilchComponent
         
         if (event.OtherObject.Name == "Player") 
         {
+            this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             // get the location of the player in order to calculate where he is
             // in relation to us.
             var playerLoc : Real3 = event.OtherObject.Transform.Translation;

@@ -45,7 +45,7 @@ class DropControler : ZilchComponent
         if (event.OtherObject.Name == "Player")
             {
             ++event.OtherObject.PlayerController.MaxProjec;
-            this.LevelCog.LevelController.DynamicDifficulty += 0.02;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.01;
             event.OtherObject.SoundEmitter.Play();
             this.Owner.Destroy();
             }
@@ -58,7 +58,7 @@ class DropControler : ZilchComponent
             event.OtherObject.SoundEmitter.Play();//Sound
             //buf
             event.OtherObject.PlayerController.CurentHP+=2;
-            this.LevelCog.LevelController.DynamicDifficulty += 0.01;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.02;
             var hudParent : Cog = this.Space.FindObjectByName( "Camera" );
             var hud : Cog = hudParent.FindChildByName( "HudContainer" );
             hud.HUDController.UpdateHealth( event.OtherObject );
@@ -73,7 +73,7 @@ class DropControler : ZilchComponent
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.ProMoveSpeed+=4;
             event.OtherObject.PlayerController.Pjtl_Damage+=1;
-            this.LevelCog.LevelController.DynamicDifficulty += 0.02;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.03;
             this.Owner.Destroy();
             }
         }
@@ -84,7 +84,7 @@ class DropControler : ZilchComponent
             {
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.SwordDamag+=2;
-            this.LevelCog.LevelController.DynamicDifficulty += 0.03;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.04;
             this.Owner.Destroy();
             }
         }
@@ -104,7 +104,7 @@ class DropControler : ZilchComponent
             hud.HUDController.AddHealth( 2 );
             // ok your code resumes here
             
-            this.LevelCog.LevelController.DynamicDifficulty += 0.04;
+            this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             this.Owner.Destroy();
             }
         }
