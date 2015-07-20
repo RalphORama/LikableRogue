@@ -1,4 +1,4 @@
-class EnemyController : ZilchComponent
+class Enemy2Controller : ZilchComponent
 {
     var Active : Boolean = true; //Use this when programming when the Enemy is moving or not
     
@@ -93,49 +93,49 @@ class EnemyController : ZilchComponent
     {
         if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatN");//Sets Sprite
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigN");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
         //Nort East
         if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
             this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
         }
         //East
         if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");
             this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
         }
         //South East
         if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
             this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
         }
         //South
         if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");//Sets Sprite
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
         }
         //South West
         if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
         }
         //West
         if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");//Sets Sprite
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
         }
         //North West
         if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
         }
     }

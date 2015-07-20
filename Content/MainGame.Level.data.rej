@@ -1,0 +1,9 @@
+diff a/Content/MainGame.Level.data b/Content/MainGame.Level.data	(rejected hunks)
+@@ -121,7 +121,6 @@
+ 		},
+ 		Transform = 
+ 		{
+-<<<<<<< HEAD
+ 			Vec3 Translation = [0, 0, 50],
+ 			Vec3 Scale = [1, 1, 1],
+ 			Quat Rotation = [-0, -1.09278e-008, 0, 1],

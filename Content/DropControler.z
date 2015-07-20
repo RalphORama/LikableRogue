@@ -57,7 +57,7 @@ class DropControler : ZilchComponent
             {
             event.OtherObject.SoundEmitter.Play();//Sound
             //buf
-            event.OtherObject.PlayerController.CurentHP+=2;
+            event.OtherObject.PlayerController.CurentHP+=1;
             this.LevelCog.LevelController.DynamicDifficulty += 0.02;
             var hudParent : Cog = this.Space.FindObjectByName( "Camera" );
             var hud : Cog = hudParent.FindChildByName( "HudContainer" );
