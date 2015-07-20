@@ -36,7 +36,6 @@ class EnemySpawnController : ZilchComponent
 
     function OnCollisionStarted(event : CollisionEvent) 
     {
-        
         if ( event.OtherObject.Name == "Background" ) 
         {
             if ( event.OtherObject.Parent.RoomController.EnemiesDead == false && event.OtherObject.Parent.RoomController.EnemiesSpawned == false )
@@ -63,7 +62,7 @@ class EnemySpawnController : ZilchComponent
                 // min: difficulty of the floor (0 - 3)
                 // max: difficulty of the floor * dynamic difficulty
                 var numEnemiesToSpawn : Integer = ( (this.RandomGenerator.Range(levelDifficulty, levelDifficulty * dynamDifficulty) / 2) + 1 ) as Integer;
-                Console.WriteLine( "Spawning `numEnemiesToSpawn` enemies." );
+                //Console.WriteLine( "Spawning `numEnemiesToSpawn` enemies." );
                 
                 // spawn the enemies
                 this.SpawnEnemies( numEnemiesToSpawn, minLocationToSpawn, maxLocationToSpawn );
