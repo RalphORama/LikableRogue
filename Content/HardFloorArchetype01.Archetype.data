@@ -18,6 +18,16 @@ Cog =
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
+	LevelArchetypeController = 
+	{
+		int LevelDifficulty = 3,
+		Vec3 PlayerSpawn01 = [186, 39, 0],
+		Vec3 PlayerSpawn02 = [-78, 55, 0],
+		Vec3 PlayerSpawn03 = [-12, -9, 0],
+		Vec3 PlayerSpawn04 = [-34, -73, 0],
+		Vec3 PlayerSpawn05 = [76, -73, 0],
+		Vec3 PlayerSpawn06 = [0, 0, 0],
+	},
 	Hierarchy = 
 	{
 		ArchetypeInstance = 
