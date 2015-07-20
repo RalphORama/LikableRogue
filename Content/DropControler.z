@@ -5,18 +5,28 @@ class DropControler : ZilchComponent
     {
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
         //costom initializing
-        if(this.Owner.Name=="MaxHP_Drop")
+        if(this.Owner.Name == "MaxHP_Drop")
             {
             Zero.Connect(this.Owner, Events.CollisionStarted, this.OnMaxHP_DropCollisionStarted);
             }
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
+    
     function OnMaxHP_DropCollisionStarted(event : CollisionEvent)
         {
         if (event.OtherObject.Name == "Player")
             {
             event.OtherObject.SoundEmitter.Play();
-            event.OtherObject.PlayerController.MaxHP+=2;
+            event.OtherObject.PlayerController.MaxHP += 2;
+            
+            // I gotchu mane, dw - Ralph
+            var hud : Cog = this.Space.FindObjectByName( "HudContainer" );
+            // I made this function return true or false, so you can use an if statement
+            // to check and see if your code exectured properly.
+            // it returns false if you submit a number that's not divisble by two.
+            hud.HUDController.AddHealth( 2 );
+            // ok your code resumes here
+            
             this.LevelCog.LevelController.DynamicDifficulty += 0.02;
             this.Owner.Destroy();
             }
