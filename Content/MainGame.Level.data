@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [4.07409, 3.21154, 49.999],
+			Vec3 Translation = [7.24054, -4.78783, 49.999],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 27.2532,
+			float Size = 9.07181,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [4.07409, 3.21154, -0.00100013],
+			Vec3 LookTarget = [7.24054, -4.78783, -0.00100013],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -256,7 +256,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [6.5, -6.05, 0],
+							Vec3 Translation = [3.675, -6.05, 0],
 							Vec3 Scale = [1, 1, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -273,7 +273,7 @@ Level =
 							string FontName = "55176b72d4c99274:LuckiestGuy",
 							uint FontSize = 54,
 							string Text = "Ammo:",
-							TextAlign Align = Right,
+							TextAlign Align = Left,
 							float PixelsPerUnit = 64,
 							bool Smoothing = true,
 						},

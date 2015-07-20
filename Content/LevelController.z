@@ -216,7 +216,7 @@ class LevelController : ZilchComponent
             if ( (xDifference == 0 as Integer) && (yDifference == 0 as Integer) )
             {
                 // designate spawn room
-                background.Sprite.Color = Real4( 0, 128, 255, 1.0 );
+                //background.Sprite.Color = Real4( 0, 128, 255, 1.0 );
                 background.Parent.RoomController.EnemiesDead    = true;
                 background.Parent.RoomController.EnemiesSpawned = true;
             }
@@ -314,7 +314,7 @@ class LevelController : ZilchComponent
                     lootRoomLocations.Add( roomLocation );
                     background.Parent.RoomController.IsLootRoom  = true;
                     background.Parent.RoomController.EnemiesDead = true;
-                    background.Sprite.Color = Real4( 255, 240, 128, 1.00 );
+                    //background.Sprite.Color = Real4( 255, 240, 128, 1.00 );
                 }
             }
             
@@ -323,7 +323,7 @@ class LevelController : ZilchComponent
                 && (background.Parent.RoomController.IsLootRoom == false) && (exitRoomSpawned == false) )
             {
                 exitRoomSpawned = true;
-                background.Sprite.Color = Real4( 16, 255, 128, 1.00);
+                //background.Sprite.Color = Real4( 16, 255, 128, 1.00);
                 
                 // create an exit tile in the exit room
                 var minLocationToSpawn : Real3 = Real3( (background.Transform.WorldTranslation.X as Integer) - 6, 
