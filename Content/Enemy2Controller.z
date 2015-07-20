@@ -1,0 +1,226 @@
+class Enemy2Controller : ZilchComponent
+{
+    var Active : Boolean = true; //Use this when programming when the Enemy is moving or not
+    
+    var IsEnemyStun : Boolean = false;
+    
+    var RandomGenerator : Random = Random();
+    var RandomSpeed : Real;
+    var RandomDrop: Integer;
+    
+    var Ang : Real = 0;
+    var PlayerPosition : Real3 = Real3(0,0,0);
+    
+    var PlayerCog : Cog = null;
+    var LevelCog : Cog = null;
+
+    [Property]
+    var HP : Real;
+    var StartingHP : Real;
+    var Hurt: Boolean = false;
+    
+    [Property]
+    var MoveSpeed : Real;
+    
+    [Property]
+    var Drop : Archetype = null;
+    [Property]
+    var DeathParticleArche : Archetype = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.LevelCog = this.Space.FindObjectByName("LevelManager");
+        if (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty >= 2 && this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty <= 5)
+        {
+            this.RandomSpeed = this.RandomGenerator.Range(
+                                ( (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) / 2 ),
+                                ( 3 * (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) / 2 )
+                                );
+        //sets the randomSpeed to a number between the (LD * DD)/2 and 3(LD * DD)/2)
+        }
+        else if (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty < 2) 
+        //this else statement is here to make sure that the set speed isn't halfed or anything.
+        {
+            this.RandomSpeed = this.RandomGenerator.Range(1, 1.5);
+        }
+        else
+        {
+            this.RandomSpeed = this.RandomGenerator.Range(2.5, 5);
+        }
+        this.MoveSpeed += this.RandomSpeed;
+        Console.WriteLine(this.MoveSpeed); //debug
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        this.PlayerCog = this.Space.FindObjectByName("Player");
+        this.HP = (this.HP * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+        this.StartingHP = this.HP;
+    }
+    
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        //for dealing damage to the enemy
+        if (event.OtherObject.Name == "Player")
+        {
+            var playerPush = Real2(-10,-10);
+            event.OtherObject.PlayerController.StunPlayer(0.4);//seconds player pushed
+            if (this.PlayerPosition.X>0)
+                {
+                playerPush.X=10;
+                }
+            if (this.PlayerPosition.Y>0)
+                {
+                playerPush.Y=10;
+                }
+            event.OtherObject.RigidBody.ApplyLinearImpulse(Real3(playerPush.X,playerPush.Y,0));
+            //this.PlayerCog.RigidBody.ApplyLinearImpulse(Real3(1000,1000,0));
+            //this.PlayerCog.PlayerController.MoveVec=Real3(this.Owner.Transform.Translation.X+(this.PlayerPosition.X*2),this.Owner.Transform.Translation.Y+(this.PlayerPosition.Y*2),0);            
+            this.PlayerCog.PlayerController.CurentHP -= 1;//int for taking damag, set to a var to costomize based on enemy
+            // here's some code for updating the HUD
+            // signed, Ralph
+            var hudParent : Cog = this.Space.FindObjectByName( "Camera" );
+            var hud : Cog = hudParent.FindChildByName( "HudContainer" );
+            hud.HUDController.UpdateHealth( event.OtherObject );
+        }
+        if (!this.IsEnemyStun){
+            if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)
+            {
+                this.HP-=this.PlayerCog.PlayerController.Pjtl_Damage;
+                this.StunEnemy(0.3);
+            }
+        }
+    }    
+    function UpdateFacingInput()
+    {
+        if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigN");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+            }
+        //Nort East
+        if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+        }
+        //East
+        if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+        }
+        //South East
+        if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
+            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+        }
+        //South
+        if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+        }
+        //South West
+        if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+        }
+        //West
+        if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+        }
+        //North West
+        if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+        }
+    }
+    
+    function UpdateEnemyMovement()//Updates Ang based on Player location
+    {
+        if (!this.IsEnemyStun && this.Active)
+        {
+            //Console.WriteLine("I'm supposed to be moving"); //for decoding
+            if (this.Hurt)
+            {
+            this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
+                this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                1); //going away from the player
+            }
+            else
+            {
+            this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
+                this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                1); //going towards the player
+
+            }
+            this.Ang = Math.Angle2D(this.PlayerPosition);
+            this.Move(this.PlayerPosition);
+        }
+        else if (!this.Active)
+        {
+            this.Owner.RigidBody.Velocity = Real3(0, 0, 0);
+        }
+    }
+    
+    function Move(moveR3 : Real3)
+    {
+        //Applies linear impulse based on movespeed and the given vector
+        if (this.Hurt)
+        {
+            this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * (this.MoveSpeed+1));
+            this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
+            this.Owner.RigidBody.Velocity *= this.MoveSpeed+1;
+        }
+        else
+        {
+            this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
+            this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
+            this.Owner.RigidBody.Velocity *= this.MoveSpeed;
+        }
+    }
+    
+    function StunEnemy(time : Real)
+    {
+        this.Owner.Sprite.Color=Real4(1,255,255,1);
+        this.IsEnemyStun = true;
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, time);   //delays the program for a certain amount of seconds
+        Actions.Call(seq, this.RemoveStun);
+    }
+    
+    function RemoveStun()
+    {
+        this.Owner.Sprite.Color=Real4(1,1,1,1);
+        this.IsEnemyStun = false;
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (this.HP<=0) //this kills the player after its HP hits 0 and drops a "rock"
+        {
+            this.Space.CreateAtPosition(this.DeathParticleArche, this.Owner.Transform.Translation);//makes a partical efect on death
+            this.Space.CreateAtPosition(this.Drop, this.Owner.Transform.Translation);
+            this.LevelCog.LevelController.DynamicDifficulty += 0.01;
+            this.Owner.Destroy();
+        }
+        this.UpdateFacingInput();
+        this.UpdateEnemyMovement();
+        /*Console.WriteLine(this.StartingHP);
+        Console.WriteLine(this.HP);
+        Console.WriteLine(this.LevelCog.LevelController.DynamicDifficulty);*/   //used for decoding
+        if (this.HP > (1/(2 * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) * this.StartingHP))
+        {
+        //this (above) is going to check if the current HP is > the StartingHP divided by (2*LevelDifficulty*DynamicDifficulty)
+            this.Hurt = false; //when this is sent, the enemy will move towards the player
+        }
+        else
+        {
+            this.Hurt = true; //when this is sent, the enemy will "run" away from the player
+        }
+    }
+}

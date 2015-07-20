@@ -1,0 +1,8 @@
+FontContent = 
+{
+	FontBuilder = 
+	{
+		string Name = "Ponderosa",
+		uint64 ResourceId = 55123e60ac843019,
+	},
+},
