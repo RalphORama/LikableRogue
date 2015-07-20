@@ -2,8 +2,8 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "LevelArchetype01",
-		uint64 ResourceId = 551eefc556b12616,
+		string Name = "HardFloorArchetype01",
+		uint64 ResourceId = 5512164dd7a6ba65,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,
@@ -12,7 +12,7 @@ DataContent =
 	{
 		Array Tags = 
 		[
-			"Level",
+			"Floor",
 		],
 	},
 },

@@ -32,6 +32,7 @@ Cog =
 		bool EnemiesDead = false,
 		bool EnemiesSpawned = false,
 		bool IsLootRoom = false,
+		bool LootSpawned = false,
 	},
 	Hierarchy = 
 	{
@@ -119,7 +120,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [-0.628733, -1.04655, 0],
+				Vec3 Translation = [0, 0, 0],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
@@ -134,7 +135,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [10.4, 16, 0],
+						Vec3 Translation = [10, 15, 0],
 						Vec3 Scale = [23, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -152,7 +153,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [21.4, 8, 0],
+						Vec3 Translation = [21, 7, 0],
 						Vec3 Scale = [1, 15, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -170,7 +171,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [10.4, 0, 0],
+						Vec3 Translation = [10, -1, 0],
 						Vec3 Scale = [23, 1, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
@@ -188,7 +189,7 @@ Cog =
 					},
 					Transform = 
 					{
-						Vec3 Translation = [-0.4, 8, 0],
+						Vec3 Translation = [-1, 7, 0],
 						Vec3 Scale = [1, 15, 1],
 						Quat Rotation = [0, 0, 0, 1],
 					},
