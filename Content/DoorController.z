@@ -47,7 +47,7 @@ class DoorController : ZilchComponent
         //debugging
         //Console.WriteLine("`this.Owner.Name`\tcollided with\t`event.OtherObject.Name`");
         
-        if (event.OtherObject.Name == "Player") 
+        if ((event.OtherObject.Name == "Player") && event.OtherObject.PlayerController.CurentHP>0) 
         {
             this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             // get the location of the player in order to calculate where he is
