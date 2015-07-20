@@ -1,0 +1,17 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "Floor3",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [4.69086, 3.89373, -0.0010001],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+},
