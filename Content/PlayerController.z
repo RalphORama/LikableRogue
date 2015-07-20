@@ -176,14 +176,13 @@ class PlayerController : ZilchComponent
             }
         this.LevelCamera.Camera.Size = this.CamSize;
         this.LevelCamera.Camera.FieldOfView = this.CamSize;
-        }
+        }    
     function OnMouseMove(event : MouseEvent)//Updates Ang when mouse moves
         {
         this.UpdateMouseMovement();
         }
     function UpdateMouseMovement()//Updates Ang based on mouse location
-        {
-        
+        {        
         this.MousePosition = Real3(this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
                                    this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,
                                    0);//Get Mouse Y relative to player
@@ -206,7 +205,6 @@ class PlayerController : ZilchComponent
                         }
                     this.ProjectileLaunch();
                     this.SwordSlash();
-                    this.UpdateOtherInput();
                     this.UpdateFacingInput();
                 }
             if(this.IsPlayerDead==true)
@@ -319,10 +317,6 @@ class PlayerController : ZilchComponent
         
         //call move function using the variables we made
         this.Move(this.MoveVec);
-    }
-    
-    function UpdateOtherInput()
-    {
     }
     function Move(moveR3 : Real3)
     {
