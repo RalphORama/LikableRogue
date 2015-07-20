@@ -342,11 +342,11 @@ Level =
 			string PlayerCharacter = "5522de378f164585:Player",
 			int LevelDifficulty = 1,
 			float DynamicDifficulty = 1,
-			string EasyLevel01 = "551eefc556b12616:LevelArchetype01",
+			string EasyLevel01 = "551eefc556b12616:EasyFloorArchetype01",
 			string EasyLevel02 = "",
-			string MediumLevel01 = "551a3ba390356dc1:LevelArchetype02",
+			string MediumLevel01 = "551a3ba390356dc1:MediumFloorArchetype02",
 			string MediumLevel02 = "",
-			string HardLevel01 = "551eefc556b12616:LevelArchetype01",
+			string HardLevel01 = "551eefc556b12616:EasyFloorArchetype01",
 			string HardLevel02 = "",
 			string LevelExit = "551aed6ca44b32ee:LevelExit",
 			int LootRoomModifier = 2,
@@ -354,96 +354,6 @@ Level =
 		CheatCodeController = 
 		{
 			string SpriteText = "55174013910ac619:CheatCodeSpriteText",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55dfddc25814a1f0:Drop",
-		LinkId = 
-		{
-			uint Id = 9,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0.737086, 1.33095, -0.000999451],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Drop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55dfddc25814a1f0:Drop",
-		LinkId = 
-		{
-			uint Id = 10,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [2.8965, 3.18973, -0.000999451],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Drop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55dfddc25814a1f0:Drop",
-		LinkId = 
-		{
-			uint Id = 11,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [3.11457, 1.57599, -0.000999451],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Drop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55dfddc25814a1f0:Drop",
-		LinkId = 
-		{
-			uint Id = 12,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [4.77192, 2.57913, -0.000999451],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Drop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55dfddc25814a1f0:Drop",
-		LinkId = 
-		{
-			uint Id = 13,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [5.73144, 4.71624, -0.000999451],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Drop",
 		},
 	},
 },
