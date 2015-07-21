@@ -185,6 +185,10 @@ class PlayerController : ZilchComponent
         }
     function OnLogicUpdate(event : UpdateEvent)
         {
+        if(this.CurentHP>this.MaxHP)
+            {
+            this.CurentHP=this.MaxHP;
+            }
         if(!this.IsPlayerInDialog)
             {
             if(!this.IsPlayerDead)

@@ -59,7 +59,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.SetParticle(this.Owner.Sprite.Color, event);
+            this.SetParticle(Real4(0,0,0,0), event);
             ++event.OtherObject.PlayerController.MaxProjec;
             this.LevelCog.LevelController.DynamicDifficulty += 0.01;
             event.OtherObject.SoundEmitter.Play();
