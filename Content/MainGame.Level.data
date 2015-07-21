@@ -183,6 +183,15 @@ Level =
 		{
 			bool Active = true,
 		},
+		SoundEmitter = 
+		{
+			bool StartPlaying = true,
+			int ExtraPriority = 0,
+			string CueName = "55dc20b636c28b81:BackgroundMusicCue",
+			float Volume = 1,
+			float Pitch = 1,
+			bool Positional = false,
+		},
 		Hierarchy = 
 		{
 			Cog = 
