@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 18.2684,
+			float Size = 16.5299,
 		},
 		EditorCameraController = 
 		{
@@ -183,6 +183,15 @@ Level =
 		{
 			bool Active = true,
 		},
+		SoundEmitter = 
+		{
+			bool StartPlaying = true,
+			int ExtraPriority = 0,
+			string CueName = "55dc20b636c28b81:BackgroundMusicCue",
+			float Volume = 1,
+			float Pitch = 1,
+			bool Positional = false,
+		},
 		Hierarchy = 
 		{
 			Cog = 
@@ -197,7 +206,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -0.4, -5],
+					Vec3 Translation = [0, -0.4, -10],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -340,6 +349,7 @@ Level =
 		LevelController = 
 		{
 			string PlayerCharacter = "5522de378f164585:Player",
+			string FlavorText = "5511ea022e8d41d1:FlavorText",
 			int LevelDifficulty = 1,
 			float DynamicDifficulty = 1,
 			string EasyLevel01 = "551eefc556b12616:EasyFloorArchetype01",
