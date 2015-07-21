@@ -46,6 +46,7 @@ class PlayerController : ZilchComponent
     
     var IsPlayerStun : Boolean = false;
     var MoveVec : Real3 = Real3(0,0,0);
+    var IsPlayerInDialog : Boolean = false;
     
     function StunPlayer(time : Real)
     {   
@@ -184,35 +185,35 @@ class PlayerController : ZilchComponent
         }
     function OnLogicUpdate(event : UpdateEvent)
         {
-        if(this.IsPlayerDead==false)
+        if(!this.IsPlayerInDialog)
             {
-            if (Math.Abs(this.MoveVec.X)>0||Math.Abs(this.MoveVec.Y)>0)
+            if(!this.IsPlayerDead)
                 {
-                var walkingEffectCog = this.Owner.FindChildByName("WalkingEffect");
-                walkingEffectCog.SphericalParticleEmitter.Active=true;
-                }
-            else
-                {
-                var walkingEffectCog = this.Owner.FindChildByName("WalkingEffect");
-                walkingEffectCog.SphericalParticleEmitter.Active=false;
-                }
-            if (this.IsPlayerStun==false)
-                {
-                this.UpdateMoveInput();
-                }
-                if (this.CurentHP<=0)
+                if (Math.Abs(this.MoveVec.X)>0||Math.Abs(this.MoveVec.Y)>0)
                     {
-                    //this.Owner.Destroy();
-                    this.IsPlayerDead=true;
-                    this.Space.CreateAtPosition(this.PlayerDeathParticleEffectArche, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
-                    this.Owner.Sprite.Color=Real4(0,0,0,0);
+                    var walkingEffectCog = this.Owner.FindChildByName("WalkingEffect");
+                    walkingEffectCog.SphericalParticleEmitter.Active=true;
                     }
-                this.ProjectileLaunch();
-                this.SwordSlash();
-                this.UpdateFacingInput();
-            }
-        if(this.IsPlayerDead==true)
-            {
+                else
+                    {
+                    var walkingEffectCog = this.Owner.FindChildByName("WalkingEffect");
+                    walkingEffectCog.SphericalParticleEmitter.Active=false;
+                    }
+                if (this.IsPlayerStun==false)
+                    {
+                    this.UpdateMoveInput();
+                    }
+                    if (this.CurentHP<=0)
+                        {
+                        //this.Owner.Destroy();
+                        this.IsPlayerDead=true;
+                        this.Space.CreateAtPosition(this.PlayerDeathParticleEffectArche, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
+                        this.Owner.Sprite.Color=Real4(0,0,0,0);
+                        }
+                    this.ProjectileLaunch();
+                    this.SwordSlash();
+                    this.UpdateFacingInput();
+                    }
             }
         }
     function UpdateFacingInput()
