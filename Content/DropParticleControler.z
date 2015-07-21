@@ -1,0 +1,14 @@
+class DropParticleControler : ZilchComponent
+{
+    var PlayerCog : Cog = null;
+    function Initialize(init : CogInitializer)
+    {
+        this.PlayerCog = this.Space.FindObjectByName("Player");
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    this.Owner.Transform.Translation=Real3(this.PlayerCog.Transform.Translation.X,this.PlayerCog.Transform.Translation.Y-0.5,1);
+    }
+}

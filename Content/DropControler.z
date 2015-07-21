@@ -2,6 +2,8 @@ class DropControler : ZilchComponent
 {
     var LevelCog : Cog = null;
     var RandomGenerator : Random = Random();
+    [Property]
+    var ChiArch : Archetype = null;
     function Initialize(init : CogInitializer)
     {
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
@@ -45,11 +47,19 @@ class DropControler : ZilchComponent
             }
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
+    function SetParticle(colorset : Real4, event : CollisionEvent)
+        {
+        //activating particle efect
+        this.Space.CreateAtPosition(this.ChiArch, event.OtherObject.Transform.Translation);
+        var cog = this.Space.FindObjectByName("DropEfect");
+        cog.SpriteParticleSystem.Tint=colorset;
+        }
     //ProjDrop
     function OnProjDropCollisionStarted(event : CollisionEvent)
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.SetParticle(Real4(0,0,0,0), event);
             ++event.OtherObject.PlayerController.MaxProjec;
             this.LevelCog.LevelController.DynamicDifficulty += 0.01;
             event.OtherObject.SoundEmitter.Play();
@@ -61,6 +71,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();//Sound
             //buf
             event.OtherObject.PlayerController.CurentHP+=1;
@@ -76,9 +87,9 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.MoveSpeed+=1;
-            event.OtherObject.PlayerController.Pjtl_Damage+=1;
             this.LevelCog.LevelController.DynamicDifficulty += 0.03;
             this.Owner.Destroy();
             }
@@ -88,6 +99,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.ProMoveSpeed+=4;
             this.LevelCog.LevelController.DynamicDifficulty += 0.04;
@@ -99,6 +111,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.SwordDamag+=2;
             this.LevelCog.LevelController.DynamicDifficulty += 0.05;
@@ -110,6 +123,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.MaxHP += 2;
             

@@ -310,6 +310,10 @@ class EnemyController : ZilchComponent
         this.Owner.Sprite.Color=Real4(1,255,255,1);
         this.IsEnemyStun = true;
         var seq = Action.Sequence(this.Owner.Actions);
+        if (this.TypeOfEnemy == "Pig")
+        {
+            time = 0.1;
+        }
         Actions.Delay(seq, time);   //delays the program for a certain amount of seconds
         Actions.Call(seq, this.RemoveStun);
     }
