@@ -51,6 +51,7 @@ class HUDController : ZilchComponent
             // should we set up the HP?
             if ( this.HPSetupDone == false )
             {
+                /*
                 // we're setting yup health instead of updating it
                 for ( var hp : Integer = 1; hp <= (this.PlayerCog.PlayerController.MaxHP / 2); ++hp )
                 {
@@ -65,7 +66,11 @@ class HUDController : ZilchComponent
                     // increment the X value of where we'll place the next sprite
                     this.HealthSpriteAnchor.X += 0.75;
                 }
+                */
                 
+                this.AddHealth( this.PlayerCog.PlayerController.MaxHP );
+                Console.WriteLine( this.PlayerCog.PlayerController.CurentHP );
+                this.UpdateHealth( this.PlayerCog );
                 // HP setup is now done.
                 this.HPSetupDone = true;
             }
@@ -98,6 +103,7 @@ class HUDController : ZilchComponent
             // - we divide CurrentHP by two because we have one sprite for every two hit points
             // - we check to see if it's less than the current sprites done because, if it isn't, we need
             //   to create an empty heart instead
+            //Console.WriteLine( player.PlayerController.CurentHP );
             if ( player.PlayerController.CurentHP / 2 < healthSpritesDone )
             {
                 // now, if the player's HP mod 2 isn't zero, we want to create half a heart
@@ -111,14 +117,14 @@ class HUDController : ZilchComponent
                 // thus, we create a whole heart
                 else
                 {
-                    sprite.Sprite.SpriteSource = this.WholeHeartSprite;
+                    sprite.Sprite.SpriteSource = this.NoHeartSprite;
                 }
             }
             // if player's current HP div 2 is greater than the amount of healthsprites we've created,
             // that means that we need to start creating empty sprites.
             else
             {
-                sprite.Sprite.SpriteSource = this.NoHeartSprite;
+                sprite.Sprite.SpriteSource = this.WholeHeartSprite;
             }
         }
     }
