@@ -58,6 +58,7 @@ class HUDController : ZilchComponent
                     var healthSprite = this.Space.CreateAtPosition( this.HeartArchetype, Real3( 0, 0, 0 ) );
                     healthSprite.AttachTo( this.Owner );
                     healthSprite.Sprite.SpriteSource = this.WholeHeartSprite;
+                    healthSprite.Sprite.Color = Real4( 1.0, 1.0, 1.0, 1.0 );
                     
                     // set the new position for the sprite
                     healthSprite.Transform.Translation = this.HealthSpriteAnchor;
@@ -132,7 +133,8 @@ class HUDController : ZilchComponent
                 var healthSprite = this.Space.CreateAtPosition( this.HeartArchetype, Real3( 0, 0, 0 ) );
                 healthSprite.AttachTo( this.Owner );
 
-                healthSprite.Sprite.SpriteSource = this.WholeHeartSprite;
+                healthSprite.Sprite.SpriteSource = this.NoHeartSprite;
+                healthSprite.Sprite.Color = Real4( 1.0, 1.0, 1.0, 1.0 );
                 
                 // set the new position for the sprite
                 healthSprite.Transform.Translation = this.HealthSpriteAnchor;
