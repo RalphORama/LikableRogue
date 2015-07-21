@@ -1,5 +1,8 @@
 class EnemySpawnController : ZilchComponent
 {
+    [Property]
+    var Debugging_WhatSpawns : String;
+    
     // we need a few types of enemies to spawn
     [Property]
     var Enemy01 : Archetype = null;
@@ -90,7 +93,8 @@ class EnemySpawnController : ZilchComponent
             var enemyToSpawn : Archetype = this.EnemyArray.Get( randomIndex );
             
             // finally, create the enemy
-            this.Space.CreateAtPosition( enemyToSpawn, spawnPoint );
+            var enemy = this.Space.CreateAtPosition( enemyToSpawn, spawnPoint );
+            enemy.EnemyController.TypeOfEnemy = this.Debugging_WhatSpawns;
         }
     }
 }

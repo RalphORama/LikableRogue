@@ -62,8 +62,8 @@ Cog =
 	},
 	EnemyController = 
 	{
-		float HP = 5,
-		float MoveSpeed = 2,
+		float DefaultHP = 5,
+		float StartingMoveSpeed = 2,
 		string Drop = "55dfddc25814a1f0:Drop",
 		string DeathParticleArche = "55d75955791bb063:DeathParticle",
 	},
