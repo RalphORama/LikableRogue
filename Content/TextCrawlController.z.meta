@@ -5,4 +5,11 @@ TextContent =
 		string Name = "TextCrawlController",
 		uint64 ResourceId = 55123e4292942b19,
 	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Controller",
+		],
+	},
 },
