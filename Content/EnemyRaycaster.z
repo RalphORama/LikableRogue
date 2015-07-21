@@ -65,11 +65,11 @@ class EnemyRaycaster : ZilchComponent
         
         if (results.ObjectHit.Name == "Wall")
         {
-            this.EnemyCog.EnemyController.Active = false;
+            this.Owner.EnemyController.Active = false;
         }
         else
         {
-            this.EnemyCog.EnemyController.Active = true;
+            this.Owner.EnemyController.Active = true;
         }
     }
     
