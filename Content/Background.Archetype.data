@@ -58,4 +58,25 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
+	Hierarchy = 
+	{
+		ArchetypeInstance = 
+		{
+			string Name = "55dc2c2dde3c5912:FOW",
+			LinkId = 
+			{
+				uint Id = 2,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 1],
+				Vec3 Scale = [22, 16, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "FOW",
+			},
+		},
+	},
 },
