@@ -355,7 +355,7 @@ class LevelController : ZilchComponent
                 // create the spawnpoint for the exit
                 var spawnPoint : Real3 = Real3( this.RandomGenerator.Range(minLocationToSpawn.X, maxLocationToSpawn.X) as Integer, 
                                                 this.RandomGenerator.Range(minLocationToSpawn.Y, maxLocationToSpawn.Y) as Integer,
-                                                0 );
+                                                -0.1 );
 
                 // spawn in the exit tile
                 this.Space.CreateAtPosition( this.LevelExit, spawnPoint );
