@@ -5,52 +5,43 @@ class TextCrawlController : ZilchComponent
     var SpriteText : SpriteText = null;
     [Dependency]
     var Area : Area = null;
-    
-    // the final string that we want to display
-    [Property]
-    var TextLine01 : String = "";
-    [Property]
-    var TextLine02 : String = "";
-    
-    var Timer : Real = 0.0;                 // debugging
-    
-    var Line01Crawled : Boolean = false;    // debugging
-    var Line02Crawled : Boolean = false;
+
+    var GamePad : Gamepad = null;
     
     function Initialize(init : CogInitializer)
     {
+        // initalize gamepad
+        this.GamePad = Zero.Gamepads.GetGamePad(0);
+        
         // reset parent text
         this.Owner.SpriteText.Text = "";
         
-        this.CrawlText( this.TextLine01 );
-        
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        // connect to update
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
-
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
-        
+        if ( this.GamePad.IsButtonPressed(0) || Zero.Keyboard.KeyIsPressed(Keys.Space) || Zero.Keyboard.KeyIsPressed(Keys.Enter) )
+        {
+            this.Owner.Parent.Destroy();
+        }
     }
     
     function CrawlText ( textToCrawl : String )
     {
-        this.SpriteText.Text = "";
+        this.Owner.SpriteText.Text = "";
         
         var textSeq = Action.Sequence( this.Owner.Actions );
         
         var crawlTime : Real = 0.0;
+        // create a delay for displaying the text - 0.1 seconds for every character
         foreach ( var char : Rune in textToCrawl )
         {
-            crawlTime += 0.1;
+            crawlTime += 0.075;
         }
         
+        Action.Delay( textSeq, 1.0 );
         Action.Property( textSeq, @this.Owner.SpriteText.Text, textToCrawl, crawlTime, Ease.Linear );
-        
-        /*
-        foreach ( var character : Rune in textToCrawl )
-        {
-            Action.Property( textSeq, @this.SpriteText.Text, character, 0.5, Ease.Linear );
-        }
-        */
     }
 }

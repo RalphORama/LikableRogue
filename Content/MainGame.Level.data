@@ -197,7 +197,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -0.4, -5],
+					Vec3 Translation = [0, -0.4, -10],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -340,6 +340,7 @@ Level =
 		LevelController = 
 		{
 			string PlayerCharacter = "5522de378f164585:Player",
+			string FlavorText = "5511ea022e8d41d1:FlavorText",
 			int LevelDifficulty = 1,
 			float DynamicDifficulty = 1,
 			string EasyLevel01 = "551eefc556b12616:EasyFloorArchetype01",
