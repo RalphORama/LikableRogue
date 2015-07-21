@@ -90,7 +90,56 @@ class EnemySpawnController : ZilchComponent
             var enemyToSpawn : Archetype = this.EnemyArray.Get( randomIndex );
             
             // finally, create the enemy
-            this.Space.CreateAtPosition( enemyToSpawn, spawnPoint );
+            var enemy = this.Space.CreateAtPosition( enemyToSpawn, spawnPoint );
+            
+            // this changes what the enemy spawned is based off of what level difficulty the player is on
+            var randomSpawnIndex : Real = this.RandomGenerator.Range(0, 3);
+            //Console.WriteLine(randomSpawnIndex); //debugging
+            if (this.LevelManager.LevelController.LevelDifficulty == 1) //if on the first level
+            {
+                if (randomSpawnIndex <= 1.75)
+                {
+                    enemy.EnemyController.TypeOfEnemy = "Cat";
+                }
+                else if (1.75 < randomSpawnIndex && randomSpawnIndex <= 2.75)
+                {
+                    enemy.EnemyController.TypeOfEnemy = "Pig";
+                }
+                else if (2.75 < randomSpawnIndex)
+                {
+                    enemy.EnemyController.TypeOfEnemy = "Mushroom";
+                }
+            }
+            else if (this.LevelManager.LevelController.LevelDifficulty == 2) //if on the second level
+            {
+                if (randomSpawnIndex <= 1.25)
+                {
+                    enemy.EnemyController.TypeOfEnemy = "Cat";
+                }
+                else if (1.25 < randomSpawnIndex && randomSpawnIndex <= 2.5)
+                {
+                    enemy.EnemyController.TypeOfEnemy = "Pig";
+                }
+                else if (2.5 < randomSpawnIndex)
+                {
+                    enemy.EnemyController.TypeOfEnemy = "Mushroom";
+                }
+            }
+            else if (this.LevelManager.LevelController.LevelDifficulty == 3) //if on the third level
+            {
+                if (randomSpawnIndex <= 1)
+                {
+                    enemy.EnemyController.TypeOfEnemy = "Cat";
+                }
+                else if (1 < randomSpawnIndex && randomSpawnIndex <= 2)
+                {
+                    enemy.EnemyController.TypeOfEnemy = "Pig";
+                }
+                else if (2 < randomSpawnIndex)
+                {
+                    enemy.EnemyController.TypeOfEnemy = "Mushroom";
+                }
+            }
         }
     }
 }

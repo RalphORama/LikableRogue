@@ -1,5 +1,19 @@
 class EnemyController : ZilchComponent
 {
+    var TypeOfEnemy : String; //Cat, Pig, Mushroom
+    /*if (this.TypeOfEnemy == "Cat")
+    {
+    
+    }
+    else if (this.TypeOfEnemy == "Pig")
+    {
+        
+    }
+    else if (this.TypeOfEnemy == "Mushroom")
+    {
+        
+    }*/
+    
     var Active : Boolean = true; //Use this when programming when the Enemy is moving or not
     
     var IsEnemyStun : Boolean = false;
@@ -15,11 +29,12 @@ class EnemyController : ZilchComponent
     var LevelCog : Cog = null;
 
     [Property]
+    var DefaultHP : Real = 5;
     var HP : Real;
-    var StartingHP : Real;
-    var Hurt: Boolean = false;
+    var InitializeHP : Boolean = true;
     
     [Property]
+    var StartingMoveSpeed : Real;
     var MoveSpeed : Real;
     
     [Property]
@@ -29,31 +44,12 @@ class EnemyController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
+        this.MoveSpeed = this.StartingMoveSpeed;
+        this.PlayerCog = this.Space.FindObjectByName("Player");
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
-        if (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty >= 2 && this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty <= 5)
-        {
-            this.RandomSpeed = this.RandomGenerator.Range(
-                                ( (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) / 2 ),
-                                ( 3 * (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) / 2 )
-                                );
-        //sets the randomSpeed to a number between the (LD * DD)/2 and 3(LD * DD)/2)
-        }
-        else if (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty < 2) 
-        //this else statement is here to make sure that the set speed isn't halfed or anything.
-        {
-            this.RandomSpeed = this.RandomGenerator.Range(1, 1.5);
-        }
-        else
-        {
-            this.RandomSpeed = this.RandomGenerator.Range(2.5, 5);
-        }
-        this.MoveSpeed += this.RandomSpeed;
-        Console.WriteLine(this.MoveSpeed); //debug
+        
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
-        this.PlayerCog = this.Space.FindObjectByName("Player");
-        this.HP = (this.HP * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
-        this.StartingHP = this.HP;
     }
     
     function OnCollisionStarted(event : CollisionEvent)
@@ -64,13 +60,27 @@ class EnemyController : ZilchComponent
             var playerPush = Real2(-10,-10);
             event.OtherObject.PlayerController.StunPlayer(0.4);//seconds player pushed
             if (this.PlayerPosition.X>0)
+            {
+                if (this.TypeOfEnemy == "Cat" || this.TypeOfEnemy == "Mushroom")
                 {
-                playerPush.X=10;
+                    playerPush.X=7;
                 }
+                else if (this.TypeOfEnemy == "Pig")
+                {
+                    playerPush.X=11;
+                }
+            }
             if (this.PlayerPosition.Y>0)
+            {
+                if (this.TypeOfEnemy == "Cat" || this.TypeOfEnemy == "Mushroom")
                 {
-                playerPush.Y=10;
+                    playerPush.Y=7;
                 }
+                else if (this.TypeOfEnemy == "Pisg")
+                {
+                    playerPush.Y=11;
+                }
+            }
             event.OtherObject.RigidBody.ApplyLinearImpulse(Real3(playerPush.X,playerPush.Y,0));
             //this.PlayerCog.RigidBody.ApplyLinearImpulse(Real3(1000,1000,0));
             //this.PlayerCog.PlayerController.MoveVec=Real3(this.Owner.Transform.Translation.X+(this.PlayerPosition.X*2),this.Owner.Transform.Translation.Y+(this.PlayerPosition.Y*2),0);            
@@ -81,6 +91,7 @@ class EnemyController : ZilchComponent
             var hud : Cog = hudParent.FindChildByName( "HudContainer" );
             hud.HUDController.UpdateHealth( event.OtherObject );
         }
+        
         if (!this.IsEnemyStun){
             if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)
             {
@@ -93,49 +104,145 @@ class EnemyController : ZilchComponent
     {
         if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatN");//Sets Sprite
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatN");//Sets Sprite
             }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigN");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomN");//Sets Sprite
+            }
+        
+            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+        }
         //Nort East
         if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomNW");//Sets Sprite
+            }
+            
             this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
         }
         //East
         if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomW");//Sets Sprite
+            }
+            
             this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
         }
         //South East
         if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomSW");//Sets Sprite
+            }
+            
             this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
         }
         //South
         if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");//Sets Sprite
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomS");//Sets Sprite
+            }
+            
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
         }
         //South West
         if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomSW");//Sets Sprite
+            }
+            
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
         }
         //West
         if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");//Sets Sprite
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomW");//Sets Sprite
+            }
+            
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
         }
         //North West
         if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
+            }
+            else if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomNW");//Sets Sprite
+            }
+            
             this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
         }
     }
@@ -144,24 +251,14 @@ class EnemyController : ZilchComponent
     {
         if (!this.IsEnemyStun && this.Active)
         {
-            //Console.WriteLine("I'm supposed to be moving"); //for decoding
-            if (this.Hurt)
-            {
-            this.PlayerPosition = Real3(this.Owner.Transform.Translation.X-this.PlayerCog.Transform.Translation.X,//Get Player's X relative to the Enemy
-                this.Owner.Transform.Translation.Y-this.PlayerCog.Transform.Translation.Y, //Get Player's Y relative to the Enemy
-                1); //going away from the player
-            }
-            else
-            {
             this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
                 this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
                 1); //going towards the player
-
-            }
+                
             this.Ang = Math.Angle2D(this.PlayerPosition);
             this.Move(this.PlayerPosition);
         }
-        else if (!this.Active)
+        else
         {
             this.Owner.RigidBody.Velocity = Real3(0, 0, 0);
         }
@@ -170,18 +267,42 @@ class EnemyController : ZilchComponent
     function Move(moveR3 : Real3)
     {
         //Applies linear impulse based on movespeed and the given vector
-        if (this.Hurt)
-        {
-            this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * (this.MoveSpeed+1));
-            this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
-            this.Owner.RigidBody.Velocity *= this.MoveSpeed+1;
+        if (this.TypeOfEnemy == "Cat")
+        {        
+            if (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty >= 2 && this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty <= 5)
+            {
+                this.RandomSpeed = this.RandomGenerator.Range(
+                                    ( (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) / 2 ),
+                                    ( 3 * (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) / 2 )
+                                    );
+            //sets the randomSpeed to a number between the (LD * DD)/2 and 3(LD * DD)/2)
+            }
+            else if (this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty < 2) 
+            //this else statement is here to make sure that the set speed isn't halfed or anything.
+            {
+                this.RandomSpeed = this.RandomGenerator.Range(1, 1.5);
+            }
+            else
+            {
+                this.RandomSpeed = this.RandomGenerator.Range(2.5, 5);
+            }
+            this.MoveSpeed = this.RandomSpeed + this.StartingMoveSpeed;
+            this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
+            //Console.WriteLine(this.MoveSpeed);
         }
-        else
+        else if (this.TypeOfEnemy == "Pig")
         {
             this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
-            this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
-            this.Owner.RigidBody.Velocity *= this.MoveSpeed;
+            //Console.WriteLine(this.MoveSpeed);
         }
+        else if (this.TypeOfEnemy == "Mushroom")
+        {
+            this.MoveSpeed = 0;
+            //Console.WriteLine(this.MoveSpeed);
+        }
+        
+        this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
+        this.Owner.RigidBody.Velocity *= this.MoveSpeed;
     }
     
     function StunEnemy(time : Real)
@@ -201,26 +322,35 @@ class EnemyController : ZilchComponent
     
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.UpdateFacingInput();
+        this.UpdateEnemyMovement();
+        
+        if (this.InitializeHP == true)
+        {
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.HP = (this.DefaultHP / 2 * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.HP = (this.DefaultHP * 2 * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+            }
+            else if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.HP = (this.DefaultHP * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+            }
+            this.InitializeHP = false;
+            
+            //Console.WriteLine(this.HP);                                           //used for decoding
+            //Console.WriteLine(this.LevelCog.LevelController.DynamicDifficulty);   //used for decoding
+        }
+        
         if (this.HP<=0) //this kills the player after its HP hits 0 and drops a "rock"
         {
             this.Space.CreateAtPosition(this.DeathParticleArche, this.Owner.Transform.Translation);//makes a partical efect on death
             this.Space.CreateAtPosition(this.Drop, this.Owner.Transform.Translation);
             this.LevelCog.LevelController.DynamicDifficulty += 0.01;
             this.Owner.Destroy();
-        }
-        this.UpdateFacingInput();
-        this.UpdateEnemyMovement();
-        /*Console.WriteLine(this.StartingHP);
-        Console.WriteLine(this.HP);
-        Console.WriteLine(this.LevelCog.LevelController.DynamicDifficulty);*/   //used for decoding
-        if (this.HP > (1/(2 * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) * this.StartingHP))
-        {
-        //this (above) is going to check if the current HP is > the StartingHP divided by (2*LevelDifficulty*DynamicDifficulty)
-            this.Hurt = false; //when this is sent, the enemy will move towards the player
-        }
-        else
-        {
-            this.Hurt = true; //when this is sent, the enemy will "run" away from the player
         }
     }
 }

@@ -72,6 +72,7 @@ Cog =
 	},
 	EnemySpawnController = 
 	{
+		string Debugging_WhatSpawns = "Cat",
 		string Enemy01 = "555896ce3c0fb42c:Enemy",
 		string Enemy02 = "",
 		string Enemy03 = "",
