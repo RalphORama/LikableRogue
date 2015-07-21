@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "FOW_Controler",
+		uint64 ResourceId = 55dc2c2bdd1b8c13,
+	},
+},
