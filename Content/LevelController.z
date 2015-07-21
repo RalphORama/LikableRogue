@@ -102,7 +102,7 @@ class LevelController : ZilchComponent
         /// relative distance to the player's starting location
         this.SpawnPickupsAndExits();
         
-        this.CreateFlavorText( "Level 01 - The Deep, Dark Depths.   \nI remember...\nThere was this stray cat in our neighborhood. He was old and very thin, and he looked like he was about to die." );
+        this.CreateFlavorText( "Level 01 - The Deep, Dark Depths.   \n\nI remember...\nThere was this stray cat in our neighborhood. He was old and very thin, and he looked like he was about to die." );
         
         // connect to physicsupdate (we only use this to cap dynamicdifficulty)
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -141,13 +141,14 @@ class LevelController : ZilchComponent
     // create the flavor text and display it
     function CreateFlavorText ( textToDisplay : String )
     {
-        Console.WriteLine( "Creating flavor text parent" );
+        var player = this.Space.FindObjectByName( "Player" );
+        player.PlayerController.IsPlayerInDialog = true;
+        
         var flavorText = this.Space.CreateAtPosition( this.FlavorText, Real3(this.LevelCamera.Transform.Translation.X, 
                                                                              this.LevelCamera.Transform.Translation.Y, 
                                                                              this.LevelCamera.Transform.Translation.Z - 5) );
-        Console.WriteLine( "Flavor text parent created at `flavorText.Transform.WorldTranslation`" );
+        
         var flavorTextText : Cog = flavorText.FindChildByName( "FlavorTextText" );
-        Console.WriteLine( "Found child `flavorTextText`" );
         flavorTextText.TextCrawlController.CrawlText( textToDisplay );
     }
     

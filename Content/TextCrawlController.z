@@ -22,9 +22,16 @@ class TextCrawlController : ZilchComponent
     
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if ( this.GamePad.IsButtonPressed(0) || Zero.Keyboard.KeyIsPressed(Keys.Space) || Zero.Keyboard.KeyIsPressed(Keys.Enter) )
+        if ( this.GamePad.IsButtonPressed(0) || Zero.Keyboard.KeyIsPressed(Keys.Space) 
+             || Zero.Keyboard.KeyIsPressed(Keys.Enter) || Zero.Mouse.IsButtonDown(MouseButtons.Left) )
         {
-            this.Owner.Parent.Destroy();
+            //this.Owner.Parent.Destroy();
+            var player = this.Space.FindObjectByName( "Player" );
+            
+            var seq = Action.Sequence( this.Owner.Actions );
+            Action.Property( seq, @player.PlayerController.IsPlayerInDialog, false, 0.0, Ease.Linear );
+            Action.Delay( seq, 0.15 );
+            Action.Call( seq, this.Owner.Parent.Destroy );
         }
     }
     
