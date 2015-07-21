@@ -9,6 +9,6 @@ class DropParticleControler : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-    this.Owner.Transform.Translation=this.PlayerCog.Transform.Translation;
+    this.Owner.Transform.Translation=Real3(this.PlayerCog.Transform.Translation.X,this.PlayerCog.Transform.Translation.Y-0.5,1);
     }
 }
