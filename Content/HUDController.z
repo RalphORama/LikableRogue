@@ -37,7 +37,7 @@ class HUDController : ZilchComponent
         this.AmmoLabel  = this.Owner.FindChildByName( "AmmoLabel" );
         
         this.HealthSpriteAnchor = Real3( this.HPLabel.Transform.Translation.X + 0.5, 
-                                         this.HPLabel.Transform.Translation.Y - 0.6, 
+                                         this.HPLabel.Transform.Translation.Y - 0.5, 
                                          this.HPLabel.Transform.Translation.Z );
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -57,9 +57,7 @@ class HUDController : ZilchComponent
                     // create the sprite, then parent it to the HUD controller
                     var healthSprite = this.Space.CreateAtPosition( this.HeartArchetype, Real3( 0, 0, 0 ) );
                     healthSprite.AttachTo( this.Owner );
-                    // TODO: change the sprite source instead of the color
-                    //healthSprite.Sprite.SpriteSource = this.WholeHeartSprite;
-                    healthSprite.Sprite.Color = Real4( 1.0, 0, 0, 1.0 );
+                    healthSprite.Sprite.SpriteSource = this.WholeHeartSprite;
                     
                     // set the new position for the sprite
                     healthSprite.Transform.Translation = this.HealthSpriteAnchor;
@@ -105,27 +103,21 @@ class HUDController : ZilchComponent
                 // but, we only want to create half a heart once, so we check if we've done that already.
                 if ( (player.PlayerController.CurentHP % 2 == 1) && (halfHeartCreated == false) )
                 {
-                    // TODO: change this to 
-                    //sprite.Sprite.SpriteSource = this.HalfHeartSprite;
-                    sprite.Sprite.Color = Real4( 1.0, 0.5, 0.0, 1.0 ); // orange, half a heart
+                    sprite.Sprite.SpriteSource = this.HalfHeartSprite;
                     halfHeartCreated = true;
                 }
                 // otherwise, if the HP mod 2 == 0, there only exists empty and full hearts.
                 // thus, we create a whole heart
                 else
                 {
-                    // TODO: change this to
-                    // sprite.Sprite.SpriteSource = this.WholeHeartSprite;
-                    sprite.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.25 ); // red, a whole heart
+                    sprite.Sprite.SpriteSource = this.WholeHeartSprite;
                 }
             }
             // if player's current HP div 2 is greater than the amount of healthsprites we've created,
             // that means that we need to start creating empty sprites.
             else
             {
-                // TODO: change this to
-                //sprite.Sprite.SpriteSource = this.NoHeartSprite;
-                sprite.Sprite.Color = Real4( 1.0, 0.0, 0.0, 1.0 ); // grey, no heart
+                sprite.Sprite.SpriteSource = this.NoHeartSprite;
             }
         }
     }
@@ -139,9 +131,8 @@ class HUDController : ZilchComponent
                 // create the sprite, then parent it to the HUD controller
                 var healthSprite = this.Space.CreateAtPosition( this.HeartArchetype, Real3( 0, 0, 0 ) );
                 healthSprite.AttachTo( this.Owner );
-                // TODO: change the sprite source instead of the color
-                //healthSprite.Sprite.SpriteSource = this.WholeHeartSprite;
-                healthSprite.Sprite.Color = Real4( 1.0, 0, 0, 1.0 );
+
+                healthSprite.Sprite.SpriteSource = this.WholeHeartSprite;
                 
                 // set the new position for the sprite
                 healthSprite.Transform.Translation = this.HealthSpriteAnchor;
