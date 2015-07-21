@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [7.11803, 4.96799, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = false,
+		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -60,18 +60,18 @@ Cog =
 		float Height = 1.25,
 		uint Direction = 1,
 	},
-	EnemyController = 
-	{
-		float HP = 5,
-		float MoveSpeed = 2,
-		string Drop = "55dfddc25814a1f0:Drop",
-		string DeathParticleArche = "55d75955791bb063:DeathParticle",
-	},
 	EnemyRaycaster = 
 	{
 		float CastDistance = 100,
 		Vec4 DrawColor = [1, 1, 1, 1],
 		float HeadSize = 0.25,
 		bool OnTop = true,
+	},
+	EnemyController = 
+	{
+		float HP = 0,
+		float MoveSpeed = 0,
+		string Drop = "",
+		string DeathParticleArche = "",
 	},
 },
