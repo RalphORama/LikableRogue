@@ -50,13 +50,16 @@ class TutorialController : ZilchComponent
     
     /// HOW TO CALL THIS FUNCTION:
     /// you have to pass a string, but I've defined a few above.
+    /// it also takes two strings. The first determines how long it takes for the text to 'type out,' 
+    /// the second determines how long it stays on screen.
+    ///
     /// EXAMPLE: this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
-    ///          this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText );
-    function DisplaySpecificTutorial ( textToDisplay : String )
+    ///          this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
+    function DisplaySpecificTutorial ( textToDisplay : String, textCrawlTime : Real, delayBetweenText : Real )
     {
         var seq = Action.Sequence( this.Owner.Actions );
-        var textCrawlTime    = 1.5;
-        var delayBetweenText = 1.5;
+        //var textCrawlTime    = 1.5;
+        //var delayBetweenText = 1.5;
         
         // call a small delay, fade in the BG, call another small delay.
         Action.Delay( seq, 0.5 );
