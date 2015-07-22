@@ -1,5 +1,7 @@
 class EnemyController : ZilchComponent
 {
+    var PigAttacking : Boolean = false;
+    
     var TypeOfEnemy : String; //Cat, Pig, Mushroom
     /*if (this.TypeOfEnemy == "Cat")
     {
@@ -27,6 +29,7 @@ class EnemyController : ZilchComponent
     
     var PlayerCog : Cog = null;
     var LevelCog : Cog = null;
+    var PigDamageBox : Cog = null;
 
     [Property]
     var DefaultHP : Real = 5;
@@ -47,7 +50,7 @@ class EnemyController : ZilchComponent
         this.MoveSpeed = this.StartingMoveSpeed;
         this.PlayerCog = this.Space.FindObjectByName("Player");
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
-        
+        this.PigDamageBox = this.Space.FindObjectByName("PigSlashDamageBox");
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
@@ -249,12 +252,11 @@ class EnemyController : ZilchComponent
     
     function UpdateEnemyMovement()//Updates Ang based on Player location
     {
-        if (!this.IsEnemyStun && this.Active)
+        if (!this.IsEnemyStun && this.Active && !(this.TypeOfEnemy == "Pig" && this.PigAttacking))
         {
             this.PlayerPosition = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
                 this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
                 1); //going towards the player
-                
             this.Ang = Math.Angle2D(this.PlayerPosition);
             this.Move(this.PlayerPosition);
         }
@@ -312,7 +314,7 @@ class EnemyController : ZilchComponent
         var seq = Action.Sequence(this.Owner.Actions);
         if (this.TypeOfEnemy == "Pig")
         {
-            time = 0.1;
+            time /= 3;
         }
         Actions.Delay(seq, time);   //delays the program for a certain amount of seconds
         Actions.Call(seq, this.RemoveStun);
@@ -324,10 +326,44 @@ class EnemyController : ZilchComponent
         this.IsEnemyStun = false;
     }
     
+    function PigDistanceFromPlayer()
+    {
+        if (!this.PigAttacking)
+        {
+            var x = this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X;
+            var y = this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y;
+            var dist = Math.Sqrt(x * x + y * y);
+            if (dist <= 1)
+            {
+                //this.PigAttacking = true;
+                //this.PigSwordSlash();
+            }
+            Console.WriteLine(dist);
+        }
+    }
+        /*function PigSwordSlash()
+        {
+            this.PigDamageBox.Transform.Translation = this.AttackZone;
+            this.PigDamageBox.Sprite.Visible=true;
+            this.PigDamageBox.BoxCollider.SendsEvents=true;
+            var seq = Action.Sequence(this.Owner.Actions);
+            Actions.Delay(seq, 0.1);
+            Actions.Call(seq, this.DeSlash);
+        }
+        
+    function DeSlash()
+        {
+            this.PigDamageBox.Sprite.Visible=false;
+            this.PigDamageBox.BoxCollider.SendsEvents=false;
+        }*/
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateFacingInput();
         this.UpdateEnemyMovement();
+        if (this.TypeOfEnemy == "Pig")
+        {
+            this.PigDistanceFromPlayer();
+        }
         
         if (this.InitializeHP == true)
         {
