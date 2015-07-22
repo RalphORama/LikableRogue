@@ -9,8 +9,8 @@ ImageContent =
 	},
 	SpriteSourceBuilder = 
 	{
-		string Name = "Stair Spite",
-		uint64 ResourceId = 5511f646ac452776,
+		string Name = "hwall000",
+		uint64 ResourceId = 550f59ac00d72a02,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 32,
 		uint FrameSizeY = 32,
@@ -22,6 +22,6 @@ ImageContent =
 		bool Smoothing = true,
 		bool Looping = true,
 		Vec4 Slices = [0, 0, 0, 0],
-		SpriteFill Fill = NineSlice,
+		SpriteFill Fill = Stretch,
 	},
 },

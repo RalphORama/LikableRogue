@@ -4,24 +4,24 @@ ImageContent =
 	{
 		Array Tags = 
 		[
-			"Environment",
+			"SpriteSheet",
 		],
 	},
 	SpriteSourceBuilder = 
 	{
-		string Name = "Stair Spite",
-		uint64 ResourceId = 5511f646ac452776,
+		string Name = "hwalls",
+		uint64 ResourceId = 550f59f517219c24,
 		uint64 AtlasId = 5274cf95e4a661fd,
-		uint FrameSizeX = 32,
+		uint FrameSizeX = 128,
 		uint FrameSizeY = 32,
 		uint FrameCount = 1,
 		float FrameDelay = 0.0833333,
-		float OriginX = 16,
+		float OriginX = 64,
 		float OriginY = 16,
-		float PixelsPerUnit = 32,
+		float PixelsPerUnit = 64,
 		bool Smoothing = true,
 		bool Looping = true,
 		Vec4 Slices = [0, 0, 0, 0],
-		SpriteFill Fill = NineSlice,
+		SpriteFill Fill = Stretch,
 	},
 },
