@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-16.4061, 2.09618, 50],
+			Vec3 Translation = [-1.55716, -0.601304, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 100,
+			float Size = 16.5299,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-16.4061, 2.09618, -7.17132e-007],
+			Vec3 LookTarget = [-1.55716, -0.601304, -6.80642e-008],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -364,78 +364,6 @@ Level =
 		CheatCodeController = 
 		{
 			string SpriteText = "55174013910ac619:CheatCodeSpriteText",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55dfddc25814a1f0:Drop",
-		LinkId = 
-		{
-			uint Id = 9,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [6.47189, 4.61392, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Drop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55dfddc25814a1f0:Drop",
-		LinkId = 
-		{
-			uint Id = 10,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [17.1961, 5.7678, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Drop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55dfddc25814a1f0:Drop",
-		LinkId = 
-		{
-			uint Id = 11,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [16.3253, 16.0675, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Drop",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "55dfddc25814a1f0:Drop",
-		LinkId = 
-		{
-			uint Id = 12,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [25.6909, 25.8863, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Drop",
 		},
 	},
 },

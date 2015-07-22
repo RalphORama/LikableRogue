@@ -61,22 +61,22 @@ class DoorController : ZilchComponent
             // then translate the player to where he should go
             if(this.Owner.Name == "SouthDoor")
             {
-                var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.75), 0 );
+                var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) - 1.7), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
             else if(this.Owner.Name == "NorthDoor")
             {
-                var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) * 2.75), 0 );
+                var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) + 1.7), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
             else if(this.Owner.Name == "EastDoor")
             {
-                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2.75), this.MyLocation.Y, 0 );
+                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) + 1), this.MyLocation.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
             else if(this.Owner.Name == "WestDoor")
             {
-                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) * 2.75), this.MyLocation.Y, 0 );
+                var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) - 1), this.MyLocation.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
         }
