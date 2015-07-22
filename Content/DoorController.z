@@ -59,25 +59,25 @@ class DoorController : ZilchComponent
             // and the player is _allowed_ to go in that direction
             // and the door _isn't_ locked
             // then translate the player to where he should go
-            if(this.Owner.Name == "SouthDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
+            if((this.Owner.Name == "SouthDoor") && (event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0) || Zero.Keyboard.KeyIsPressed(Keys.Space)))
             {
                 var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) - 1.7), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
                 this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             }
-            else if(this.Owner.Name == "NorthDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
+            else if(this.Owner.Name == "NorthDoor" && (event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0) || Zero.Keyboard.KeyIsPressed(Keys.Space)))
             {
                 var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) + 1.7), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
                 this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             }
-            else if(this.Owner.Name == "EastDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
+            else if(this.Owner.Name == "EastDoor" && (event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0) || Zero.Keyboard.KeyIsPressed(Keys.Space)))
             {
                 var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) + 1), this.MyLocation.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
                 this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             }
-            else if(this.Owner.Name == "WestDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
+            else if(this.Owner.Name == "WestDoor" && (event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0) || Zero.Keyboard.KeyIsPressed(Keys.Space)))
             {
                 var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) - 1), this.MyLocation.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;

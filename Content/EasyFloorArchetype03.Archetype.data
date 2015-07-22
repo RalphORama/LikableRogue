@@ -21,8 +21,8 @@ Cog =
 	LevelArchetypeController = 
 	{
 		int LevelDifficulty = 1,
-		Vec3 PlayerSpawn01 = [10, -8, 0],
-		Vec3 PlayerSpawn02 = [0, 0, 0],
+		Vec3 PlayerSpawn01 = [-56, -25, 0],
+		Vec3 PlayerSpawn02 = [10, -57, 0],
 		Vec3 PlayerSpawn03 = [0, 0, 0],
 		Vec3 PlayerSpawn04 = [0, 0, 0],
 		Vec3 PlayerSpawn05 = [0, 0, 0],
@@ -201,7 +201,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [22, -32.5, 0],
+				Vec3 Translation = [22, -32, 0],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
@@ -291,7 +291,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [0, -48.5, 0],
+				Vec3 Translation = [0, -48, 0],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
@@ -345,7 +345,7 @@ Cog =
 			},
 			Transform = 
 			{
-				Vec3 Translation = [22, -48.5, 0],
+				Vec3 Translation = [22, -48, 0],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
@@ -406,6 +406,42 @@ Cog =
 			Named = 
 			{
 				string Name = "Room03",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e328fbd625bb6:Room11",
+			LinkId = 
+			{
+				uint Id = 23,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, -64, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room11",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e33888eb018fe:Room12",
+			LinkId = 
+			{
+				uint Id = 24,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-66, -32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room12",
 			},
 		},
 	},
