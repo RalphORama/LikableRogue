@@ -20,13 +20,8 @@ class TextCrawlController : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
     
-    // debugging
-    var TutorialText : Cog = null;
-    
     function OnLogicUpdate(event : UpdateEvent)
     {
-        // debugging
-        this.TutorialText = this.Space.FindObjectByName( "TutorialHolder" );
         
         if ( this.GamePad.IsButtonPressed(0) || Zero.Keyboard.KeyIsPressed(Keys.Space) 
              || Zero.Keyboard.KeyIsPressed(Keys.Enter) || Zero.Mouse.IsButtonDown(MouseButtons.Left) )
@@ -37,7 +32,6 @@ class TextCrawlController : ZilchComponent
             var seq = Action.Sequence( this.Owner.Actions );
             Action.Property( seq, @player.PlayerController.IsPlayerInDialog, false, 0.0, Ease.Linear );
             Action.Delay( seq, 0.15 );
-            Action.Call( seq, this.TutorialText.TutorialController.DisplayTutorial );
             Action.Call( seq, this.Owner.Parent.Destroy );
         }
     }

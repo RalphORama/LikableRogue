@@ -9,8 +9,8 @@ ImageContent =
 	},
 	SpriteSourceBuilder = 
 	{
-		string Name = "Kyle_Walk_Right_Anim",
-		uint64 ResourceId = 5510b5b50c42e306,
+		string Name = "Kyle_Walk_Left_Anim",
+		uint64 ResourceId = 550f45c46f706699,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 256,
 		uint FrameSizeY = 256,

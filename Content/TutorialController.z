@@ -3,17 +3,17 @@ class TutorialController : ZilchComponent
     // TODO: Edit these later
     // the various tutorial lines
     [Property]
-    var TutLine01 : String = "I can move with WASD or the Left Joystick.";
+    var MoveText : String   = "I can move with WASD or the Left Joystick.";
     [Property]
-    var TutLine02 : String = "I can look with the Mouse or the Right Joystick.";
+    var LookText : String   = "I can look with the Mouse or the Right Joystick.";
     [Property]
-    var TutLine03 : String = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.";
+    var SwordText : String  = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.";
     [Property]
-    var TutLine04 : String = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.";
+    var SlingshotText : String = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.";
     [Property]
-    var TutLine05 : String = "I have to pick up the rocks I shoot with my slingshot, or they get lost.";
+    var PickupText : String = "I have to pick up the rocks I shoot with my slingshot, or they get lost.";
     [Property]
-    var TutLine06 : String = "Press Space or the Right Joystick Button to enter doors.";
+    var DoorText : String   = "Press Space or the Right Joystick Button to enter doors.";
     
     // for interacting with the player
     var PlayerCog : Cog = null;
@@ -26,8 +26,13 @@ class TutorialController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
-        // instantiate the player variable
-        this.PlayerCog = this.Space.FindObjectByName( "Player" );
+        this.Setup();
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function Setup()
+    {
         // instantiate the Text variable
         this.TutorialText = this.Owner.FindChildByName( "TutorialText" );
         // instantiate the background variable
@@ -39,71 +44,43 @@ class TutorialController : ZilchComponent
         this.TutorialText.SpriteText.Text = "";
         // hide sprite
         this.TutorialBackground.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.0 );
-        
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.Owner.Transform.Translation = Real3( this.CameraCog.Transform.WorldTranslation.X - 3.5, this.CameraCog.Transform.WorldTranslation.Y - 6.5, 30 );
-        /*
-        var seq = Action.Sequence( this.Owner.Actions );
-        var newPosition = Real3( this.PlayerCog.Transform.WorldTranslation.X + 5,
-                                 this.PlayerCog.Transform.WorldTranslation.Y + 3,
-                                 10 );
-        var dtModifier : Real = 2.5;
-        
-        Action.Property( seq, @this.Owner.Transform.WorldTranslation, newPosition, event.Dt * dtModifier, Ease.QuadIn );
-        */
     }
     
-    function DisplayTutorial()
+    /// HOW TO CALL THIS FUNCTION:
+    /// you have to pass a string, but I've defined a few above.
+    /// it also takes two reals. The first determines how long it takes for the text to 'type out,' 
+    /// the second determines how long it stays on screen.
+    ///
+    /// EXAMPLE: this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
+    ///          this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
+    function DisplaySpecificTutorial ( textToDisplay : String, textCrawlTime : Real, delayBetweenText : Real )
     {
-        var seq = Action.Sequence( this.Owner.Actions );
-        var textCrawlTime    = 1.5;
-        var delayBetweenText = 1.5;
+        // this is weird
+        this.Setup();
         
+        var seq = Action.Sequence( this.Owner.Actions );
+        //var textCrawlTime    = 1.5;
+        //var delayBetweenText = 1.5;
+        
+        // call a small delay, fade in the BG, call another small delay.
         Action.Delay( seq, 0.5 );
         Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.5), 0.5, Ease.Linear );
         Action.Delay( seq, 0.5 );
         
-        // Line 01
         // first, print ou the line of the tutorial that we want to use
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine01, textCrawlTime, Ease.Linear );
+        Action.Property( seq, @this.TutorialText.SpriteText.Text, textToDisplay, textCrawlTime, Ease.Linear );
         // then wait so the player can read it
         Action.Delay( seq, delayBetweenText );
         // then clear out the text box to avoid weird visual glitches
         Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        // delay for half a second to keep glitchyness down
-        Action.Delay( seq, 0.25 );
-        // Line 02
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine02, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        Action.Delay( seq, 0.25 );
-        // Line 03
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine03, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        Action.Delay( seq, 0.25 );
-        // Line 04
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine04, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        Action.Delay( seq, 0.25 );
-        // Line 05
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine05, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        Action.Delay( seq, 0.25 );
-        // Line 06
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine06, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime, Ease.Linear );
-        Action.Delay( seq, 0.25 );
         
+        // call a short delay, then fade out / hide the background.
         Action.Delay( seq, delayBetweenText );
         Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.0), 0.5, Ease.Linear );
-        Action.Call( seq, this.Owner.Destroy );
     }
 }

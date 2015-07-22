@@ -48,6 +48,8 @@ class PlayerController : ZilchComponent
     var MoveVec : Real3 = Real3(0,0,0);
     var IsPlayerInDialog : Boolean = false;
     
+    var TutorialHolder : Cog = null;
+    var HasPlayerMoved : Boolean = false;
     function StunPlayer(time : Real)
     {   
         if(this.IsPlayerDead==false)
@@ -72,8 +74,21 @@ class PlayerController : ZilchComponent
             }
         this.IsPlayerStun = false;
         }
-    function Initialize(init : CogInitializer)
+    function StartTotorial1()
         {
+        if(!this.HasPlayerMoved)
+            {
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
+            }
+        }
+    function Initialize(init : CogInitializer)//initialize
+        {
+        //initialize torial
+        this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, 16);
+        Actions.Call(seq, this.StartTotorial1);
+        
         this.CurentHP = this.MaxHP;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
@@ -130,18 +145,10 @@ class PlayerController : ZilchComponent
             this.SlingShotFiring=true;
             if (Zero.Mouse.IsButtonDown(MouseButtons.Right))
                 {
-                /*
-                this.ProjMoveVec.Add(Real3(this.LevelSettings.CameraViewport.
-                                       ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
-                                       this.LevelSettings.CameraViewport.
-                                       ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0));//Get Mouse Y relative to player
-                //this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
-                //this.SlingShotProjectCog.Get(this.SlinShoAmmCou).BoxCollider.Ghost=false;
-                */
                 this.ProjMoveVec.Add(this.SwordAttcackZone);
                 ++this.CurentProject;
                 }
-            if(this.Gamepad.IsButtonPressed(9)||this.Gamepad.RightTrigger.X<1)// Left Bumper
+            if(this.Gamepad.IsButtonPressed(9)||this.Gamepad.RightTrigger.X>0)// Left Bumper
                 {
                 //var real3temp = Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y,0);
                 this.ProjMoveVec.Add(this.SwordAttcackZone);
@@ -183,6 +190,7 @@ class PlayerController : ZilchComponent
                                    0);//Get Mouse Y relative to player
         this.Ang = Math.Angle2D(this.MousePosition);
         }
+
     function OnLogicUpdate(event : UpdateEvent)
         {
         Console.WriteLine(this.Gamepad.RightTrigger.X);
@@ -293,31 +301,35 @@ class PlayerController : ZilchComponent
     function UpdateMoveInput()
         {
         this.Owner.RigidBody.Velocity = Real3(0,0,0);
-        //start with the lstick input
+        //start with the L_Stick input
         this.MoveVec = Real3(this.Gamepad.LeftStick.X,this.Gamepad.LeftStick.Y,0);
         
         //add keyboard input
         
         if(Zero.Keyboard.KeyIsDown(Keys.A))
-        {
+            {
             this.MoveVec += Real3(-1,0,0);
             this.UpdateMouseMovement();//Updates Ang when key moves
-        }
+            }
         if(Zero.Keyboard.KeyIsDown(Keys.D))
-        {
+            {
             this.MoveVec += Real3(1,0,0);
             this.UpdateMouseMovement();//Updates Ang when key moves
-        }
+            }
         if(Zero.Keyboard.KeyIsDown(Keys.W))
-        {
+            {
             this.MoveVec += Real3(0,1,0);
             this.UpdateMouseMovement();//Updates Ang when key moves
-        }
+            }
         if(Zero.Keyboard.KeyIsDown(Keys.S))
-        {
+            {
             this.MoveVec += Real3(0,-1,0);
             this.UpdateMouseMovement();//Updates Ang when key moves
-        }
+            }
+        if(this.MoveVec!=Real3(0,0,0))
+            {
+            this.HasPlayerMoved=true;
+            }
         
         //clamp variables so that keyboard + gamepad input doesn't mess with our intended values of -1 to 1
         var x = Math.Clamp(this.MoveVec.X,-1,1);
