@@ -50,7 +50,7 @@ class TutorialController : ZilchComponent
     
     /// HOW TO CALL THIS FUNCTION:
     /// you have to pass a string, but I've defined a few above.
-    /// it also takes two strings. The first determines how long it takes for the text to 'type out,' 
+    /// it also takes two reals. The first determines how long it takes for the text to 'type out,' 
     /// the second determines how long it stays on screen.
     ///
     /// EXAMPLE: this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
