@@ -48,6 +48,8 @@ class PlayerController : ZilchComponent
     var MoveVec : Real3 = Real3(0,0,0);
     var IsPlayerInDialog : Boolean = false;
     
+    var TutorialHolder : Cog = null;
+    
     function StunPlayer(time : Real)
     {   
         if(this.IsPlayerDead==false)
@@ -72,8 +74,10 @@ class PlayerController : ZilchComponent
             }
         this.IsPlayerStun = false;
         }
-    function Initialize(init : CogInitializer)
+    function Initialize(init : CogInitializer)//initialize
         {
+        this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
+        this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
         this.CurentHP = this.MaxHP;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
