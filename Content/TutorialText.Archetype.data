@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [7, 4, 10],
+		Vec3 Translation = [-3.77286, -6.39675, 10],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -25,6 +25,7 @@ Cog =
 		string TutLine03 = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.",
 		string TutLine04 = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.",
 		string TutLine05 = "I have to pick up the rocks I shoot with my slingshot, or they get lost.",
+		string TutLine06 = "Press Space or the Right Joystick Button to enter doors.",
 	},
 	Hierarchy = 
 	{
@@ -63,7 +64,7 @@ Cog =
 			},
 			Area = 
 			{
-				Vec2 Size = [7.25, 3],
+				Vec2 Size = [12, 1.5],
 				Location Origin = Center,
 			},
 		},
@@ -103,7 +104,7 @@ Cog =
 			},
 			Area = 
 			{
-				Vec2 Size = [21, 4.5],
+				Vec2 Size = [14.1, 2],
 				Location Origin = Center,
 			},
 		},

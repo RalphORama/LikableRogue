@@ -12,6 +12,8 @@ class TutorialController : ZilchComponent
     var TutLine04 : String = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.";
     [Property]
     var TutLine05 : String = "I have to pick up the rocks I shoot with my slingshot, or they get lost.";
+    [Property]
+    var TutLine06 : String = "Press Space or the Right Joystick Button to enter doors.";
     
     // for interacting with the player
     var PlayerCog : Cog = null;
@@ -43,7 +45,7 @@ class TutorialController : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.Owner.Transform.Translation = Real3( this.CameraCog.Transform.WorldTranslation.X, this.CameraCog.Transform.WorldTranslation.Y - 5.5, 30 );
+        this.Owner.Transform.Translation = Real3( this.CameraCog.Transform.WorldTranslation.X - 3.5, this.CameraCog.Transform.WorldTranslation.Y - 6.5, 30 );
         /*
         var seq = Action.Sequence( this.Owner.Actions );
         var newPosition = Real3( this.PlayerCog.Transform.WorldTranslation.X + 5,
@@ -62,7 +64,7 @@ class TutorialController : ZilchComponent
         var delayBetweenText = 1.5;
         
         Action.Delay( seq, 0.5 );
-        Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 1.0), 0.5, Ease.Linear );
+        Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.5), 0.5, Ease.Linear );
         Action.Delay( seq, 0.5 );
         
         // Line 01
@@ -72,23 +74,34 @@ class TutorialController : ZilchComponent
         Action.Delay( seq, delayBetweenText );
         // then clear out the text box to avoid weird visual glitches
         Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
+        // delay for half a second to keep glitchyness down
+        Action.Delay( seq, 0.25 );
         // Line 02
         Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine02, textCrawlTime, Ease.Linear );
         Action.Delay( seq, delayBetweenText );
         Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
+        Action.Delay( seq, 0.25 );
         // Line 03
         Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine03, textCrawlTime, Ease.Linear );
         Action.Delay( seq, delayBetweenText );
         Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
+        Action.Delay( seq, 0.25 );
         // Line 04
         Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine04, textCrawlTime, Ease.Linear );
         Action.Delay( seq, delayBetweenText );
         Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
+        Action.Delay( seq, 0.25 );
         // Line 05
         Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine05, textCrawlTime, Ease.Linear );
         Action.Delay( seq, delayBetweenText );
-        
+        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
+        Action.Delay( seq, 0.25 );
+        // Line 06
+        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine06, textCrawlTime, Ease.Linear );
+        Action.Delay( seq, delayBetweenText );
         Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime, Ease.Linear );
+        Action.Delay( seq, 0.25 );
+        
         Action.Delay( seq, delayBetweenText );
         Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.0), 0.5, Ease.Linear );
         Action.Call( seq, this.Owner.Destroy );

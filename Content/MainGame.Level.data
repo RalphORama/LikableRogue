@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 19.5533,
+			float Size = 17.6926,
 		},
 		EditorCameraController = 
 		{
@@ -290,19 +290,12 @@ Level =
 						{
 						},
 					},
-					Cog = 
+					ArchetypeInstance = 
 					{
+						string Name = "5517683e6ddeecf7:HudSprite",
 						LinkId = 
 						{
 							uint Id = 7,
-						},
-						Named = 
-						{
-							string Name = "HudBG",
-						},
-						Archetyped = 
-						{
-							string Name = "5517683e6ddeecf7:HudSprite",
 						},
 						Transform = 
 						{
@@ -310,26 +303,9 @@ Level =
 							Vec3 Scale = [5, 1.5, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
-						Sprite = 
+						Named = 
 						{
-							bool Visible = true,
-							bool VisibilityCulling = true,
-							bool VisibilityEvents = true,
-							bool CastShadows = false,
-							Vec4 Color = [1, 1, 1, 0.5],
-							BlendMode BlendMode = Alpha,
-							SpriteGeometryMode GeometryMode = ZPlane,
-							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string SpriteSource = "55175500f41278be:binding_dark",
-							bool RenderMask = false,
-							bool FlipX = false,
-							bool FlipY = false,
-							bool AnimationActive = true,
-							float AnimationSpeed = 1,
-							uint StartFrame = 0,
-						},
-						Hierarchy = 
-						{
+							string Name = "HudBG",
 						},
 					},
 				},
@@ -459,7 +435,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, -5.5, 10],
+			Vec3 Translation = [-3.77286, -6.39675, 10],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -470,6 +446,7 @@ Level =
 			string TutLine03 = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.",
 			string TutLine04 = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.",
 			string TutLine05 = "I have to pick up the rocks I shoot with my slingshot, or they get lost.",
+			string TutLine06 = "Press Space or the Right Joystick Button to enter doors.",
 		},
 		Hierarchy = 
 		{
@@ -500,7 +477,7 @@ Level =
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "55123e60ac843019:Ponderosa",
-					uint FontSize = 36,
+					uint FontSize = 30,
 					string Text = "Use WASD or the left joystick move.",
 					TextAlign Align = Left,
 					float PixelsPerUnit = 64,
@@ -508,7 +485,7 @@ Level =
 				},
 				Area = 
 				{
-					Vec2 Size = [15, 2],
+					Vec2 Size = [12, 1.5],
 					Location Origin = Center,
 				},
 			},
@@ -534,7 +511,7 @@ Level =
 					bool VisibilityCulling = true,
 					bool VisibilityEvents = true,
 					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 1],
+					Vec4 Color = [1, 1, 1, 0.25],
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -548,7 +525,7 @@ Level =
 				},
 				Area = 
 				{
-					Vec2 Size = [21.1, 4.1],
+					Vec2 Size = [14.1, 2],
 					Location Origin = Center,
 				},
 			},
