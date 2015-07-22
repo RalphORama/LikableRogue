@@ -26,8 +26,13 @@ class TutorialController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
-        // instantiate the player variable
-        this.PlayerCog = this.Space.FindObjectByName( "Player" );
+        this.Setup();
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function Setup()
+    {
         // instantiate the Text variable
         this.TutorialText = this.Owner.FindChildByName( "TutorialText" );
         // instantiate the background variable
@@ -39,8 +44,6 @@ class TutorialController : ZilchComponent
         this.TutorialText.SpriteText.Text = "";
         // hide sprite
         this.TutorialBackground.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.0 );
-        
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -57,6 +60,9 @@ class TutorialController : ZilchComponent
     ///          this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
     function DisplaySpecificTutorial ( textToDisplay : String, textCrawlTime : Real, delayBetweenText : Real )
     {
+        // this is weird
+        this.Setup();
+        
         var seq = Action.Sequence( this.Owner.Actions );
         //var textCrawlTime    = 1.5;
         //var delayBetweenText = 1.5;
