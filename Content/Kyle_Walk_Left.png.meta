@@ -3,7 +3,7 @@ ImageContent =
 	SpriteSourceBuilder = 
 	{
 		string Name = "Kyle_Walk_Left",
-		uint64 ResourceId = 550f4e963a268340,
+		uint64 ResourceId = 550f4f3863def9bf,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 0,
 		uint FrameSizeY = 0,
