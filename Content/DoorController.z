@@ -49,7 +49,7 @@ class DoorController : ZilchComponent
         
         if ((event.OtherObject.Name == "Player") && event.OtherObject.PlayerController.CurentHP>0) 
         {
-            this.LevelCog.LevelController.DynamicDifficulty += 0.05;
+            
             // get the location of the player in order to calculate where he is
             // in relation to us.
             var playerLoc : Real3 = event.OtherObject.Transform.Translation;
@@ -63,21 +63,25 @@ class DoorController : ZilchComponent
             {
                 var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) - 1.7), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
+                this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             }
             else if(this.Owner.Name == "NorthDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
             {
                 var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) + 1.7), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
+                this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             }
             else if(this.Owner.Name == "EastDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
             {
                 var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) + 1), this.MyLocation.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
+                this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             }
             else if(this.Owner.Name == "WestDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
             {
                 var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) - 1), this.MyLocation.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
+                this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             }
         }
     }
