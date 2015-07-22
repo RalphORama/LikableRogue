@@ -1,0 +1,15 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "TutorialController",
+		uint64 ResourceId = 555087dcc7ec5c3c,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Controller",
+		],
+	},
+},
