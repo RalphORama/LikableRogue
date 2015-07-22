@@ -70,6 +70,45 @@ Cog =
 			},
 			Named = 
 			{
+				string Name = "ContinueText",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [6, -8, 2],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteText = 
+			{
+				bool Visible = true,
+				bool VisibilityCulling = true,
+				bool VisibilityEvents = true,
+				bool CastShadows = false,
+				Vec4 Color = [1, 1, 1, 0.5],
+				BlendMode BlendMode = Alpha,
+				SpriteGeometryMode GeometryMode = ZPlane,
+				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+				string FontName = "55123e60ac843019:Ponderosa",
+				uint FontSize = 22,
+				string Text = "Press A or Space to continue...",
+				TextAlign Align = Center,
+				float PixelsPerUnit = 64,
+				bool Smoothing = false,
+			},
+			Area = 
+			{
+				Vec2 Size = [10, 0.5],
+				Location Origin = Center,
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 4,
+			},
+			Named = 
+			{
 				string Name = "FlavorTextBG",
 			},
 			Transform = 
