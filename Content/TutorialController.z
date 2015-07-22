@@ -3,17 +3,17 @@ class TutorialController : ZilchComponent
     // TODO: Edit these later
     // the various tutorial lines
     [Property]
-    var TutLine01 : String = "I can move with WASD or the Left Joystick.";
+    var MoveText : String   = "I can move with WASD or the Left Joystick.";
     [Property]
-    var TutLine02 : String = "I can look with the Mouse or the Right Joystick.";
+    var LookText : String   = "I can look with the Mouse or the Right Joystick.";
     [Property]
-    var TutLine03 : String = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.";
+    var SwordText : String  = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.";
     [Property]
-    var TutLine04 : String = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.";
+    var SlingshotText : String = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.";
     [Property]
-    var TutLine05 : String = "I have to pick up the rocks I shoot with my slingshot, or they get lost.";
+    var PickupText : String = "I have to pick up the rocks I shoot with my slingshot, or they get lost.";
     [Property]
-    var TutLine06 : String = "Press Space or the Right Joystick Button to enter doors.";
+    var DoorText : String   = "Press Space or the Right Joystick Button to enter doors.";
     
     // for interacting with the player
     var PlayerCog : Cog = null;
@@ -46,17 +46,9 @@ class TutorialController : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.Owner.Transform.Translation = Real3( this.CameraCog.Transform.WorldTranslation.X - 3.5, this.CameraCog.Transform.WorldTranslation.Y - 6.5, 30 );
-        /*
-        var seq = Action.Sequence( this.Owner.Actions );
-        var newPosition = Real3( this.PlayerCog.Transform.WorldTranslation.X + 5,
-                                 this.PlayerCog.Transform.WorldTranslation.Y + 3,
-                                 10 );
-        var dtModifier : Real = 2.5;
-        
-        Action.Property( seq, @this.Owner.Transform.WorldTranslation, newPosition, event.Dt * dtModifier, Ease.QuadIn );
-        */
     }
     
+    /*
     function DisplayTutorial()
     {
         var seq = Action.Sequence( this.Owner.Actions );
@@ -104,6 +96,16 @@ class TutorialController : ZilchComponent
         
         Action.Delay( seq, delayBetweenText );
         Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.0), 0.5, Ease.Linear );
-        Action.Call( seq, this.Owner.Destroy );
+        //Action.Call( seq, this.Owner.Destroy );
+    }
+    */
+    
+    /// HOW TO CALL THIS FUNCTION:
+    /// you have to pass a string, but I've defined a few above.
+    /// EXAMPLE: this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
+    ///          this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText );
+    function DisplaySpecificTutorial ( textToDisplay : String )
+    {
+        
     }
 }

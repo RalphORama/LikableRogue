@@ -37,7 +37,6 @@ class TextCrawlController : ZilchComponent
             var seq = Action.Sequence( this.Owner.Actions );
             Action.Property( seq, @player.PlayerController.IsPlayerInDialog, false, 0.0, Ease.Linear );
             Action.Delay( seq, 0.15 );
-            Action.Call( seq, this.TutorialText.TutorialController.DisplayTutorial );
             Action.Call( seq, this.Owner.Parent.Destroy );
         }
     }
