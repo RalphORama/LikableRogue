@@ -7,25 +7,25 @@ class DropControler : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
-        var intRand = this.RandomGenerator.Range(1, 64+(this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty))as Integer;//add random stuff 1-2
-        if(intRand>32)
+        var intRand = this.RandomGenerator.Range(1, 7+(this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty))as Integer;//add random stuff 1-2
+        if(intRand>6)
         {
             this.Owner.Destroy();
         }
-        else if(intRand > 16)//Sets To ProjDrop
+        else if(intRand > 5)//Sets To ProjDrop
         {
             Zero.Connect(this.Owner, Events.CollisionStarted, this.OnProjDropCollisionStarted);
             this.Owner.Sprite.SpriteSource=SpriteSource.Find("Proj");
             this.Owner.Sprite.Color=Real4(1,1,175,1);
         }
         //Sets To HP_Drop
-        else if (intRand > 8)
+        else if (intRand > 4)
         {
             Zero.Connect(this.Owner, Events.CollisionStarted, this.OnHP_DropCollisionStarted);
             this.Owner.Sprite.Color=Real4(0,1,0,1);
         }
         //sets MoveSpe
-        else if (intRand > 4)
+        else if (intRand > 3)
         {
             Zero.Connect(this.Owner, Events.CollisionStarted, this.OnMoveSpeCollisionStarted);
             this.Owner.Sprite.Color=Real4(0,0,1,1);
