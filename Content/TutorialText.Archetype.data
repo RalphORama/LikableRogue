@@ -14,13 +14,13 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [7, 4, 10],
+		Vec3 Translation = [0, -5.5, 10],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	TutorialController = 
 	{
-		string TutLine01 = "I can move with WASD or the Left Joystick.",
+		string TutLine01 = "Use WASD or the Left Joystick to move.",
 		string TutLine02 = "I can look with the Mouse or the Right Joystick.",
 		string TutLine03 = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.",
 		string TutLine04 = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.",
@@ -63,7 +63,7 @@ Cog =
 			},
 			Area = 
 			{
-				Vec2 Size = [7.25, 3],
+				Vec2 Size = [15, 2],
 				Location Origin = Center,
 			},
 		},
@@ -103,7 +103,7 @@ Cog =
 			},
 			Area = 
 			{
-				Vec2 Size = [21, 4.5],
+				Vec2 Size = [18, 2],
 				Location Origin = Center,
 			},
 		},
