@@ -200,5 +200,23 @@ Cog =
 				},
 			},
 		},
+		ArchetypeInstance = 
+		{
+			string Name = "550f564be7bf92ff:WallSpriteHolder",
+			LinkId = 
+			{
+				uint Id = 11,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0.1],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "WallSpriteHolder",
+			},
+		},
 	},
 },

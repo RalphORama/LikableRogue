@@ -2,8 +2,8 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "VerticalWall",
-		uint64 ResourceId = 550f5dd6c75805db,
+		string Name = "CornerWall",
+		uint64 ResourceId = 550f54484141a397,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,
@@ -12,6 +12,7 @@ DataContent =
 	{
 		Array Tags = 
 		[
+			"Selection",
 			"Environment",
 		],
 	},
