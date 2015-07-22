@@ -419,19 +419,12 @@ Level =
 			Vec4 Color4 = [1, 1, 1, 0],
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "555087a9ca35ef1f:TutorialText",
 		LinkId = 
 		{
 			uint Id = 10,
-		},
-		Named = 
-		{
-			string Name = "TutorialHolder",
-		},
-		Archetyped = 
-		{
-			string Name = "555087a9ca35ef1f:TutorialText",
 		},
 		Transform = 
 		{
@@ -439,96 +432,9 @@ Level =
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		TutorialController = 
+		Named = 
 		{
-			string TutLine01 = "I can move with WASD or the Left Joystick.",
-			string TutLine02 = "I can look with the Mouse or the Right Joystick.",
-			string TutLine03 = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.",
-			string TutLine04 = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.",
-			string TutLine05 = "I have to pick up the rocks I shoot with my slingshot, or they get lost.",
-			string TutLine06 = "Press Space or the Right Joystick Button to enter doors.",
-		},
-		Hierarchy = 
-		{
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 11,
-				},
-				Named = 
-				{
-					string Name = "TutorialText",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				SpriteText = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [0, 0, 0, 1],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string FontName = "55123e60ac843019:Ponderosa",
-					uint FontSize = 30,
-					string Text = "Use WASD or the left joystick move.",
-					TextAlign Align = Left,
-					float PixelsPerUnit = 64,
-					bool Smoothing = false,
-				},
-				Area = 
-				{
-					Vec2 Size = [12, 1.5],
-					Location Origin = Center,
-				},
-			},
-			Cog = 
-			{
-				LinkId = 
-				{
-					uint Id = 12,
-				},
-				Named = 
-				{
-					string Name = "TutorialBG",
-				},
-				Transform = 
-				{
-					Vec3 Translation = [0, 0, 0],
-					Vec3 Scale = [1, 1, 1],
-					Quat Rotation = [0, 0, 0, 1],
-				},
-				Sprite = 
-				{
-					bool Visible = true,
-					bool VisibilityCulling = true,
-					bool VisibilityEvents = true,
-					bool CastShadows = false,
-					Vec4 Color = [1, 1, 1, 0.25],
-					BlendMode BlendMode = Alpha,
-					SpriteGeometryMode GeometryMode = ZPlane,
-					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "5275aa4d802dd6dc:Square",
-					bool RenderMask = false,
-					bool FlipX = false,
-					bool FlipY = false,
-					bool AnimationActive = true,
-					float AnimationSpeed = 1,
-					uint StartFrame = 0,
-				},
-				Area = 
-				{
-					Vec2 Size = [14.1, 2],
-					Location Origin = Center,
-				},
-			},
+			string Name = "TutorialHolder",
 		},
 	},
 },
