@@ -59,22 +59,22 @@ class DoorController : ZilchComponent
             // and the player is _allowed_ to go in that direction
             // and the door _isn't_ locked
             // then translate the player to where he should go
-            if(this.Owner.Name == "SouthDoor")
+            if(this.Owner.Name == "SouthDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
             {
                 var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) - 1.7), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
-            else if(this.Owner.Name == "NorthDoor")
+            else if(this.Owner.Name == "NorthDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
             {
                 var toPutPlayer : Real3 = Real3( this.MyLocation.X, playerLoc.Y + ((this.MyLocation.Y - playerLoc.Y) + 1.7), 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
-            else if(this.Owner.Name == "EastDoor")
+            else if(this.Owner.Name == "EastDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
             {
                 var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) + 1), this.MyLocation.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;
             }
-            else if(this.Owner.Name == "WestDoor")
+            else if(this.Owner.Name == "WestDoor" && event.OtherObject.PlayerController.Gamepad.IsButtonHeld(0))
             {
                 var toPutPlayer : Real3 = Real3( playerLoc.X + ((this.MyLocation.X - playerLoc.X) - 1), this.MyLocation.Y, 0 );
                 event.OtherObject.Transform.Translation = toPutPlayer;

@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [4.90066, 3.04332, 50],
+			Vec3 Translation = [7, 4, 60],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [4.90066, 3.04332, 5.68483e-007],
+			Vec3 LookTarget = [7, 4, 10],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -501,7 +501,7 @@ Level =
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 					string FontName = "55123e60ac843019:Ponderosa",
 					uint FontSize = 36,
-					string Text = "I can move with WASD or the left joystick.",
+					string Text = "Use WASD or the left joystick move.",
 					TextAlign Align = Left,
 					float PixelsPerUnit = 64,
 					bool Smoothing = false,

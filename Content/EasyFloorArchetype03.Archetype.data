@@ -10,13 +10,23 @@ Cog =
 	},
 	Archetyped = 
 	{
-		string Name = "55dfd876c3271e34:Floor3",
+		string Name = "55dfd876c3271e34:EasyFloorArchetype03",
 	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
+	},
+	LevelArchetypeController = 
+	{
+		int LevelDifficulty = 1,
+		Vec3 PlayerSpawn01 = [10, -8, 0],
+		Vec3 PlayerSpawn02 = [0, 0, 0],
+		Vec3 PlayerSpawn03 = [0, 0, 0],
+		Vec3 PlayerSpawn04 = [0, 0, 0],
+		Vec3 PlayerSpawn05 = [0, 0, 0],
+		Vec3 PlayerSpawn06 = [0, 0, 0],
 	},
 	Hierarchy = 
 	{
