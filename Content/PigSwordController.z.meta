@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "PigSwordController",
+		uint64 ResourceId = 5548d99354b9d00e,
+	},
+},
