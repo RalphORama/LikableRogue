@@ -4,21 +4,21 @@ ImageContent =
 	{
 		Array Tags = 
 		[
-			"Environment",
+			"SpriteSheet",
 		],
 	},
 	SpriteSourceBuilder = 
 	{
-		string Name = "Dirt",
-		uint64 ResourceId = 55dab2d0d710cfed,
+		string Name = "cwall",
+		uint64 ResourceId = 550f539c0415c80c,
 		uint64 AtlasId = 5274cf95e4a661fd,
-		uint FrameSizeX = 2100,
-		uint FrameSizeY = 1500,
+		uint FrameSizeX = 64,
+		uint FrameSizeY = 64,
 		uint FrameCount = 1,
 		float FrameDelay = 0.0833333,
-		float OriginX = 1050,
-		float OriginY = 750,
-		float PixelsPerUnit = 95,
+		float OriginX = 32,
+		float OriginY = 32,
+		float PixelsPerUnit = 64,
 		bool Smoothing = true,
 		bool Looping = true,
 		Vec4 Slices = [0, 0, 0, 0],
