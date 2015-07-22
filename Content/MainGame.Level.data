@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [7, 4, 60],
+			Vec3 Translation = [0.00351523, 0.665134, 60],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 10.7311,
+			float Size = 19.5533,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [7, 4, 10],
+			Vec3 LookTarget = [0.00351523, 0.665134, 10],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -206,7 +206,7 @@ Level =
 				},
 				Transform = 
 				{
-					Vec3 Translation = [0, -0.4, -10],
+					Vec3 Translation = [0, -0.4, -30],
 					Vec3 Scale = [1, 1, 1],
 					Quat Rotation = [0, 0, 0, 1],
 				},
@@ -459,7 +459,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [7, 4, 10],
+			Vec3 Translation = [0, -5.5, 10],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -508,7 +508,7 @@ Level =
 				},
 				Area = 
 				{
-					Vec2 Size = [7.25, 3],
+					Vec2 Size = [15, 2],
 					Location Origin = Center,
 				},
 			},
@@ -538,7 +538,7 @@ Level =
 					BlendMode BlendMode = Alpha,
 					SpriteGeometryMode GeometryMode = ZPlane,
 					string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-					string SpriteSource = "555084a533d31664:speechBubble",
+					string SpriteSource = "5275aa4d802dd6dc:Square",
 					bool RenderMask = false,
 					bool FlipX = false,
 					bool FlipY = false,
@@ -548,7 +548,7 @@ Level =
 				},
 				Area = 
 				{
-					Vec2 Size = [9, 4.5],
+					Vec2 Size = [21.1, 4.1],
 					Location Origin = Center,
 				},
 			},

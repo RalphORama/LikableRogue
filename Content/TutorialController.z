@@ -19,6 +19,8 @@ class TutorialController : ZilchComponent
     var TutorialText : Cog = null;
     // the background speech bubble behind the text
     var TutorialBackground : Cog = null;
+    // the camera, for positioning
+    var CameraCog : Cog = null;
     
     function Initialize(init : CogInitializer)
     {
@@ -28,6 +30,8 @@ class TutorialController : ZilchComponent
         this.TutorialText = this.Owner.FindChildByName( "TutorialText" );
         // instantiate the background variable
         this.TutorialBackground = this.Owner.FindChildByName( "TutorialBG" );
+        // instantiate the camera
+        this.CameraCog = this.Space.FindObjectByName( "Camera" );
         
         // clear out the text
         this.TutorialText.SpriteText.Text = "";
@@ -39,6 +43,8 @@ class TutorialController : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.Owner.Transform.Translation = Real3( this.CameraCog.Transform.WorldTranslation.X, this.CameraCog.Transform.WorldTranslation.Y - 5.5, 30 );
+        /*
         var seq = Action.Sequence( this.Owner.Actions );
         var newPosition = Real3( this.PlayerCog.Transform.WorldTranslation.X + 5,
                                  this.PlayerCog.Transform.WorldTranslation.Y + 3,
@@ -46,6 +52,7 @@ class TutorialController : ZilchComponent
         var dtModifier : Real = 2.5;
         
         Action.Property( seq, @this.Owner.Transform.WorldTranslation, newPosition, event.Dt * dtModifier, Ease.QuadIn );
+        */
     }
     
     function DisplayTutorial()

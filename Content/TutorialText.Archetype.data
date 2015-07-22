@@ -20,6 +20,11 @@ Cog =
 	},
 	TutorialController = 
 	{
+		string TutLine01 = "I can move with WASD or the Left Joystick.",
+		string TutLine02 = "I can look with the Mouse or the Right Joystick.",
+		string TutLine03 = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.",
+		string TutLine04 = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.",
+		string TutLine05 = "I have to pick up the rocks I shoot with my slingshot, or they get lost.",
 	},
 	Hierarchy = 
 	{
@@ -50,8 +55,8 @@ Cog =
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 				string FontName = "55123e60ac843019:Ponderosa",
-				uint FontSize = 42,
-				string Text = "I can move with WASD or the left joystick.",
+				uint FontSize = 36,
+				string Text = "Use WASD or the left joystick move.",
 				TextAlign Align = Left,
 				float PixelsPerUnit = 64,
 				bool Smoothing = false,
@@ -88,7 +93,7 @@ Cog =
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "555084a533d31664:speechBubble",
+				string SpriteSource = "5275aa4d802dd6dc:Square",
 				bool RenderMask = false,
 				bool FlipX = false,
 				bool FlipY = false,
@@ -98,7 +103,7 @@ Cog =
 			},
 			Area = 
 			{
-				Vec2 Size = [9, 4.5],
+				Vec2 Size = [21, 4.5],
 				Location Origin = Center,
 			},
 		},
