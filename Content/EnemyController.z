@@ -1,6 +1,7 @@
 class EnemyController : ZilchComponent
 {
     var PigAttacking : Boolean = false;
+    var MushroomAttacking : Boolean = false;
     
     var TypeOfEnemy : String; //Cat, Pig, Mushroom
     /*if (this.TypeOfEnemy == "Cat")
@@ -355,7 +356,13 @@ class EnemyController : ZilchComponent
         {
             this.PigDamageBox.Sprite.Visible=false;
             this.PigDamageBox.BoxCollider.SendsEvents=false;
-        }*/
+        }*/ //come back to this please -Dylan
+    
+    function MushroomShooting()
+    {
+            
+    }
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
         this.UpdateFacingInput();
@@ -363,6 +370,10 @@ class EnemyController : ZilchComponent
         if (this.TypeOfEnemy == "Pig")
         {
             this.PigDistanceFromPlayer();
+        }
+        if (this.TypeOfEnemy == "Mushroom" )
+        {
+            this.MushroomShooting();
         }
         
         if (this.InitializeHP == true)
