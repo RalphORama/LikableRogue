@@ -1,0 +1,46 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "VerticalWall",
+	},
+	Archetyped = 
+	{
+		string Name = "550f5dd6c75805db:VerticalWall",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [0, 0, 10],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Sprite = 
+	{
+		bool Visible = true,
+		bool VisibilityCulling = true,
+		bool VisibilityEvents = true,
+		bool CastShadows = false,
+		Vec4 Color = [1, 1, 1, 1],
+		BlendMode BlendMode = Alpha,
+		SpriteGeometryMode GeometryMode = ZPlane,
+		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		string SpriteSource = "550f59ac00d72a02:hwall000",
+		bool RenderMask = false,
+		bool FlipX = false,
+		bool FlipY = false,
+		bool AnimationActive = true,
+		float AnimationSpeed = 1,
+		uint StartFrame = 0,
+	},
+	WallController = 
+	{
+		string WallSprite01 = "550f5c38d49d38fb:vwall000",
+		string WallSprite02 = "550f5c38d4867395:vwall001",
+		string WallSprite03 = "550f5c38d4884ec1:vwall002",
+		string WallSprite04 = "550f5c39d4f23d3d:vwall003",
+	},
+},

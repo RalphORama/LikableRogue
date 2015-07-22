@@ -1,0 +1,47 @@
+class WallController : ZilchComponent
+{
+    [Dependency]
+    var Sprite : Sprite = null;
+    
+    // the various types of wall we could use
+    [Property]
+    var WallSprite01 : SpriteSource = null;
+    [Property]
+    var WallSprite02 : SpriteSource = null;
+    [Property]
+    var WallSprite03 : SpriteSource = null;
+    [Property]
+    var WallSprite04 : SpriteSource = null;
+    
+    // an array of all the possible sprites to use
+    var SpriteArray : Array[SpriteSource] = Array[SpriteSource]();
+    
+    // for random stuff
+    var RandomGenerator : Random = Random();
+    
+    function Initialize(init : CogInitializer)
+    {
+        // add all possible sprites we've been provided to the array
+        this.AddToArrayIfNotNull( this.WallSprite01 );
+        this.AddToArrayIfNotNull( this.WallSprite02 );
+        this.AddToArrayIfNotNull( this.WallSprite03 );
+        this.AddToArrayIfNotNull( this.WallSprite04 );
+        
+        // get a random index of said array if we've got more than 1 sprite in it
+        var randomIndex : Integer = 0;
+        if ( this.SpriteArray.Count > 1 )
+        {
+            randomIndex = this.RandomGenerator.Range( 0, this.SpriteArray.Count ) as Integer;
+        }
+        
+        this.Owner.Sprite.SpriteSource = this.SpriteArray.Get( randomIndex );
+    }
+    
+    function AddToArrayIfNotNull ( sprite : SpriteSource )
+    {
+        if ( sprite != null )
+        {
+            this.SpriteArray.Add( sprite );
+        }
+    }
+}
