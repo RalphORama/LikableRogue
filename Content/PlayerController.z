@@ -47,9 +47,14 @@ class PlayerController : ZilchComponent
     var IsPlayerStun : Boolean = false;
     var MoveVec : Real3 = Real3(0,0,0);
     var IsPlayerInDialog : Boolean = false;
-    
+    //tutorial vars
     var TutorialHolder : Cog = null;
     var HasPlayerMoved : Boolean = false;
+    var HasLooked : Boolean = false;
+    var HasSword : Boolean = false;
+    var HasSlingshot : Boolean = false;
+    var HasPickup : Boolean = false;
+    var HasDoor : Boolean = false;
     function StunPlayer(time : Real)
     {   
         if(this.IsPlayerDead==false)
@@ -74,21 +79,50 @@ class PlayerController : ZilchComponent
             }
         this.IsPlayerStun = false;
         }
-    function StartTotorial1()
+    function TotorialDelay()
+        {
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, 4);
+        Actions.Call(seq, this.StartTotorial);
+        }
+    function StartTotorial()
         {
         if(!this.HasPlayerMoved)
             {
             this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
+            this.TotorialDelay();
+            }
+        else if(!this.HasLooked)
+            {
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.LookText, 1.5, 1.5 );
+            this.TotorialDelay();
+            }
+        else if(!this.HasSword)
+            {
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.SwordText, 1.5, 1.5 );
+            this.TotorialDelay();
+            }
+        else if(!this.HasSlingshot)
+            {
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.SlingshotText, 1.5, 1.5 );
+            this.TotorialDelay();
+            }
+        else if(!this.HasPickup)
+            {
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.PickupText, 1.5, 1.5 );
+            this.TotorialDelay();
+            }
+        else if(!this.HasDoor)
+            {
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.DoorText, 1.5, 1.5 );
+            this.TotorialDelay();
             }
         }
     function Initialize(init : CogInitializer)//initialize
         {
         //initialize torial
         this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
-        var seq = Action.Sequence(this.Owner.Actions);
-        Actions.Delay(seq, 16);
-        Actions.Call(seq, this.StartTotorial1);
-        
+        this.TotorialDelay();
         this.CurentHP = this.MaxHP;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
@@ -117,6 +151,7 @@ class PlayerController : ZilchComponent
             }
         if(this.Gamepad.IsButtonHeld(8)||Zero.Mouse.IsButtonDown(MouseButtons.Left)||this.Gamepad.LeftTrigger.X>0)// Left Bumper
             {
+            this.HasSword=true;
             this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
             this.SwordDamageBox.Sprite.Visible=true;
             this.SwordDamageBox.BoxCollider.SendsEvents=true;
@@ -134,6 +169,7 @@ class PlayerController : ZilchComponent
         {
         if(((Zero.Mouse.IsButtonDown(MouseButtons.Right)||this.Gamepad.IsButtonPressed(9)||this.Gamepad.RightTrigger.X>0)&& this.SlingShotFiring==false)&&(this.MaxProjec>=this.CurentProject))
             {
+            this.HasSlingshot=true;
             this.SlinShoAmmCou+=1;
             //Creating a SlingShotProjectile
             //this.Owner.Transform.Translation.X);
@@ -184,15 +220,18 @@ class PlayerController : ZilchComponent
         this.UpdateMouseMovement();
         }
     function UpdateMouseMovement()//Updates Ang based on mouse location
-        {        
+        {
         this.MousePosition = Real3(this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
                                    this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,
                                    0);//Get Mouse Y relative to player
         this.Ang = Math.Angle2D(this.MousePosition);
         }
-
     function OnLogicUpdate(event : UpdateEvent)
         {
+        if(this.Ang!=0)
+            {
+            this.HasLooked=true;
+            }
         Console.WriteLine(this.Gamepad.RightTrigger.X);
         if(this.CurentHP>this.MaxHP)
             {

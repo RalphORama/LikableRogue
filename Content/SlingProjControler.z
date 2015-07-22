@@ -40,6 +40,7 @@ class SlingProjControler : ZilchComponent
         //Console.WriteLine("coliding");
         if (event.OtherObject.Name == "Player")
             {
+            event.OtherObject.PlayerController.HasPickup=true;
             ++this.PlayerCog.PlayerController.MaxProjec;
             this.LevelCog.LevelController.DynamicDifficulty += 0.02;
             this.Owner.Destroy();
