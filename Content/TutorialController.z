@@ -48,58 +48,6 @@ class TutorialController : ZilchComponent
         this.Owner.Transform.Translation = Real3( this.CameraCog.Transform.WorldTranslation.X - 3.5, this.CameraCog.Transform.WorldTranslation.Y - 6.5, 30 );
     }
     
-    /*
-    function DisplayTutorial()
-    {
-        var seq = Action.Sequence( this.Owner.Actions );
-        var textCrawlTime    = 1.5;
-        var delayBetweenText = 1.5;
-        
-        Action.Delay( seq, 0.5 );
-        Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.5), 0.5, Ease.Linear );
-        Action.Delay( seq, 0.5 );
-        
-        // Line 01
-        // first, print ou the line of the tutorial that we want to use
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine01, textCrawlTime, Ease.Linear );
-        // then wait so the player can read it
-        Action.Delay( seq, delayBetweenText );
-        // then clear out the text box to avoid weird visual glitches
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        // delay for half a second to keep glitchyness down
-        Action.Delay( seq, 0.25 );
-        // Line 02
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine02, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        Action.Delay( seq, 0.25 );
-        // Line 03
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine03, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        Action.Delay( seq, 0.25 );
-        // Line 04
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine04, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        Action.Delay( seq, 0.25 );
-        // Line 05
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine05, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime / 3, Ease.Linear );
-        Action.Delay( seq, 0.25 );
-        // Line 06
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, this.TutLine06, textCrawlTime, Ease.Linear );
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialText.SpriteText.Text, "", textCrawlTime, Ease.Linear );
-        Action.Delay( seq, 0.25 );
-        
-        Action.Delay( seq, delayBetweenText );
-        Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.0), 0.5, Ease.Linear );
-        //Action.Call( seq, this.Owner.Destroy );
-    }
-    */
-    
     /// HOW TO CALL THIS FUNCTION:
     /// you have to pass a string, but I've defined a few above.
     /// EXAMPLE: this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
