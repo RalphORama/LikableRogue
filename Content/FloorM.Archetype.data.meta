@@ -2,10 +2,17 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "FloorM",
+		string Name = "MediumFloorArchetype02",
 		uint64 ResourceId = 55dc698cecf33ca6,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Floor",
+		],
 	},
 },

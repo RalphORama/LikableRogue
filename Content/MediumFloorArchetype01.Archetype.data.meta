@@ -2,7 +2,7 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "MediumFloorArchetype02",
+		string Name = "MediumFloorArchetype01",
 		uint64 ResourceId = 551a3ba390356dc1,
 		string LoaderType = "Cog",
 		uint Version = 0,
