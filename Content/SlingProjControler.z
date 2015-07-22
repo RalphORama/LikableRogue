@@ -18,10 +18,21 @@ class SlingProjControler : ZilchComponent
         {
         if (this.Pickup==false&&(Math.Abs(this.Owner.RigidBody.Velocity.X)<3 && Math.Abs(this.Owner.RigidBody.Velocity.Y)<3))
             {
-            this.Owner.Sprite.Color=Real4(1,1,175,1);
+            this.Owner.SpriteParticleSystem.Texture=SpriteSource.Find("Square");
+            this.Owner.SpriteParticleSystem.Tint=Real4(0.9,0.5,0.2,0.14);
+            this.Owner.SphericalParticleEmitter.EmitRate=20;
+            this.Owner.SphericalParticleEmitter.EmitVariance=5;
+            this.Owner.SphericalParticleEmitter.EmitterSize=Real3(0.2,0.2,0.2);
+            this.Owner.SphericalParticleEmitter.LifetimeVariance=0.2;
+            this.Owner.SphericalParticleEmitter.Spin=0;
+            this.Owner.SphericalParticleEmitter.EmitterVelocityPercent=0;
+            this.Owner.SphericalParticleEmitter.RandomVelocity=Real3(2,2,2);
+            this.Owner.LinearParticleAnimator.RandomForce=Real3(0,0,0);
+            this.Owner.LinearParticleAnimator.Torque=1;
+            this.Owner.LinearParticleAnimator.Dampening=5;
             this.Pickup=true;
             //this.Owner.BoxCollider.SendsEvents = true;
-            this.Owner.SphericalParticleEmitter.Active=false;
+            //this.Owner.SphericalParticleEmitter.Active=false;
             }
         }
     function OnCollisionStarted(event : CollisionEvent)
