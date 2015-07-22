@@ -130,18 +130,10 @@ class PlayerController : ZilchComponent
             this.SlingShotFiring=true;
             if (Zero.Mouse.IsButtonDown(MouseButtons.Right))
                 {
-                /*
-                this.ProjMoveVec.Add(Real3(this.LevelSettings.CameraViewport.
-                                       ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).X-this.Owner.Transform.Translation.X,//Get Mouse X relative to player
-                                       this.LevelSettings.CameraViewport.
-                                       ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0).Y-this.Owner.Transform.Translation.Y,0));//Get Mouse Y relative to player
-                //this.SlingShotProjectCog.Get(0).Transform.Translation=Real3(0,0,0);
-                //this.SlingShotProjectCog.Get(this.SlinShoAmmCou).BoxCollider.Ghost=false;
-                */
                 this.ProjMoveVec.Add(this.SwordAttcackZone);
                 ++this.CurentProject;
                 }
-            if(this.Gamepad.IsButtonPressed(9)||this.Gamepad.RightTrigger.X<1)// Left Bumper
+            if(this.Gamepad.IsButtonPressed(9)||this.Gamepad.RightTrigger.X>0)// Left Bumper
                 {
                 //var real3temp = Real3(this.Gamepad.RightStick.X, this.Gamepad.RightStick.Y,0);
                 this.ProjMoveVec.Add(this.SwordAttcackZone);
