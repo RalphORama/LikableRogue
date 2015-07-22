@@ -77,7 +77,7 @@ class PlayerController : ZilchComponent
     function Initialize(init : CogInitializer)//initialize
         {
         this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
-        this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
+        //this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
         this.CurentHP = this.MaxHP;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
@@ -179,6 +179,7 @@ class PlayerController : ZilchComponent
                                    0);//Get Mouse Y relative to player
         this.Ang = Math.Angle2D(this.MousePosition);
         }
+
     function OnLogicUpdate(event : UpdateEvent)
         {
         Console.WriteLine(this.Gamepad.RightTrigger.X);
