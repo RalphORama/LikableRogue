@@ -20,12 +20,12 @@ Cog =
 	},
 	TutorialController = 
 	{
-		string TutLine01 = "I can move with WASD or the Left Joystick.",
-		string TutLine02 = "I can look with the Mouse or the Right Joystick.",
-		string TutLine03 = "I can swing my sword with the LMB, Left Trigger, or Left Bumper.",
-		string TutLine04 = "I can shoot my slingshot with the RMB, Right Trigger, or Right Bumper.",
-		string TutLine05 = "I have to pick up the rocks I shoot with my slingshot, or they get lost.",
-		string TutLine06 = "Press Space or the Right Joystick Button to enter doors.",
+		string TutLine01 = "Use WASD or the Left Joystick to move.",
+		string TutLine02 = "Mouse or the Right Joystick to look around.",
+		string TutLine03 = "Left mous button, Left Trigger, or Left Bumper to swing my sword.",
+		string TutLine04 = "RMB, Right Trigger, or Right Bumper to use my slingshot.",
+		string TutLine05 = "Pick up the rocks shoot with the slingshot, or they get lost.",
+		string TutLine06 = "Press Space or the Right Joystick Button to go throug doors.",
 	},
 	Hierarchy = 
 	{
@@ -56,7 +56,7 @@ Cog =
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 				string FontName = "55123e60ac843019:Ponderosa",
-				uint FontSize = 36,
+				uint FontSize = 30,
 				string Text = "Use WASD or the left joystick move.",
 				TextAlign Align = Left,
 				float PixelsPerUnit = 64,
@@ -90,7 +90,7 @@ Cog =
 				bool VisibilityCulling = true,
 				bool VisibilityEvents = true,
 				bool CastShadows = false,
-				Vec4 Color = [1, 1, 1, 1],
+				Vec4 Color = [1, 1, 1, 0.25],
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
