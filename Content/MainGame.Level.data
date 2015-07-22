@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 11.8597,
+			float Size = 17.6926,
 		},
 		EditorCameraController = 
 		{
@@ -435,24 +435,6 @@ Level =
 		Named = 
 		{
 			string Name = "TutorialHolder",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "550f5dd6c75805db:VerticalWall",
-		LinkId = 
-		{
-			uint Id = 11,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 0, 10],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "VerticalWall",
 		},
 	},
 },
