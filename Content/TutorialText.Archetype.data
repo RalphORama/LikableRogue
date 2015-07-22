@@ -6,17 +6,20 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "FlavorTextHolder",
+		string Name = "TutorialHolder",
 	},
 	Archetyped = 
 	{
-		string Name = "5511ea022e8d41d1:FlavorText",
+		string Name = "555087a9ca35ef1f:TutorialText",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [7, 4, 10],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
+	},
+	TutorialController = 
+	{
 	},
 	Hierarchy = 
 	{
@@ -28,11 +31,11 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "FlavorTextText",
+				string Name = "TutorialText",
 			},
 			Transform = 
 			{
-				Vec3 Translation = [0, 0, 2],
+				Vec3 Translation = [0, 0, 0],
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
@@ -42,24 +45,21 @@ Cog =
 				bool VisibilityCulling = true,
 				bool VisibilityEvents = true,
 				bool CastShadows = false,
-				Vec4 Color = [1, 1, 1, 1],
+				Vec4 Color = [0, 0, 0, 1],
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
 				string FontName = "55123e60ac843019:Ponderosa",
-				uint FontSize = 32,
-				string Text = "",
+				uint FontSize = 42,
+				string Text = "I can move with WASD or the left joystick.",
 				TextAlign Align = Left,
 				float PixelsPerUnit = 64,
 				bool Smoothing = false,
 			},
 			Area = 
 			{
-				Vec2 Size = [18, 4],
+				Vec2 Size = [7.25, 3],
 				Location Origin = Center,
-			},
-			TextCrawlController = 
-			{
 			},
 		},
 		Cog = 
@@ -70,12 +70,12 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "FlavorTextBG",
+				string Name = "TutorialBG",
 			},
 			Transform = 
 			{
 				Vec3 Translation = [0, 0, 0],
-				Vec3 Scale = [52, 41, 1],
+				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
 			Sprite = 
@@ -84,17 +84,22 @@ Cog =
 				bool VisibilityCulling = true,
 				bool VisibilityEvents = true,
 				bool CastShadows = false,
-				Vec4 Color = [0, 0, 0, 1],
+				Vec4 Color = [1, 1, 1, 1],
 				BlendMode BlendMode = Alpha,
 				SpriteGeometryMode GeometryMode = ZPlane,
 				string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-				string SpriteSource = "5275aa4d802dd6dc:Square",
+				string SpriteSource = "555084a533d31664:speechBubble",
 				bool RenderMask = false,
 				bool FlipX = false,
 				bool FlipY = false,
 				bool AnimationActive = true,
 				float AnimationSpeed = 1,
 				uint StartFrame = 0,
+			},
+			Area = 
+			{
+				Vec2 Size = [9, 4.5],
+				Location Origin = Center,
 			},
 		},
 	},
