@@ -11,12 +11,12 @@ class DropControler : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
-        var intRand = this.RandomGenerator.Range(1, 19+(this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty))as Integer;//add random stuff 1-2
-        if(intRand>17)//2
+        var intRand = this.RandomGenerator.Range(1, 18+(this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty))as Integer;//add random stuff 1-2
+        if(intRand>16)//2
         {
             this.Owner.Destroy();
         }
-        else if(intRand > 14)//Sets To ProjDrop//3
+        else if(intRand > 14)//Sets To ProjDrop//2
         {
             Zero.Connect(this.Owner, Events.CollisionStarted, this.OnProjDropCollisionStarted);
             this.Owner.Sprite.SpriteSource=SpriteSource.Find("Proj");
