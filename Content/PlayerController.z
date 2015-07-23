@@ -235,7 +235,6 @@ class PlayerController : ZilchComponent
             {
             this.HasLooked=true;
             }
-        Console.WriteLine(this.Gamepad.RightTrigger.X);
         if(this.CurentHP>this.MaxHP)
             {
             this.CurentHP=this.MaxHP;
