@@ -94,7 +94,7 @@ class EnemySpawnController : ZilchComponent
             //Console.WriteLine(randomSpawnIndex); //debugging
             if (this.LevelManager.LevelController.LevelDifficulty == 1) //if on the first level
             {
-                /*if (randomSpawnIndex <= 1.75)
+                if (randomSpawnIndex <= 1.75)
                 {
                     enemy.EnemyController.TypeOfEnemy = "Cat";
                 }
@@ -103,9 +103,9 @@ class EnemySpawnController : ZilchComponent
                     enemy.EnemyController.TypeOfEnemy = "Pig";
                 }
                 else if (2.75 < randomSpawnIndex)
-                {*/
+                {
                     enemy.EnemyController.TypeOfEnemy = "Mushroom";
-                //}
+                }
             }
             else if (this.LevelManager.LevelController.LevelDifficulty == 2) //if on the second level
             {

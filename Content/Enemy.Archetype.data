@@ -42,7 +42,7 @@ Cog =
 		bool Asleep = false,
 		bool Kinematic = false,
 		bool RotationLocked = true,
-		bool Mode2D = true,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
@@ -62,6 +62,7 @@ Cog =
 	},
 	EnemyController = 
 	{
+		string MushroomShotArch = "55498398d1b5f35f:MushroomShot",
 		string ActTextArch = "55c3d3f2a7a4ce46:ActText",
 		float DefaultHP = 5,
 		float StartingMoveSpeed = 2,
