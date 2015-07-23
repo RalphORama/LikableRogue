@@ -14,18 +14,18 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-3.5, -6.5, 10],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	TutorialController = 
 	{
-		string TutLine01 = "Use WASD or the Left Joystick to move.",
-		string TutLine02 = "Mouse or the Right Joystick to look around.",
-		string TutLine03 = "Left mous button, Left Trigger, or Left Bumper to swing my sword.",
-		string TutLine04 = "RMB, Right Trigger, or Right Bumper to use my slingshot.",
-		string TutLine05 = "Pick up the rocks shoot with the slingshot, or they get lost.",
-		string TutLine06 = "Press Space or the Right Joystick Button to go throug doors.",
+		string MoveText = "Move with WASD or the Left Joystick.",
+		string LookText = "Use  Mouse or the Right Joystick to look.",
+		string SwordText = "Use the LMB, Left Trigger, or Left Bumper to swing the sword.""",
+		string SlingshotText = "Shoot my slingshot with the RMB, Right Trigger, or Right Bumper.",
+		string PickupText = "Pick up the rocks I shoot with my slingshot, or they get lost.",
+		string DoorText = "Press Space or the Right Joystick Button to enter doors.",
 	},
 	Hierarchy = 
 	{
