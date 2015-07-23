@@ -8,9 +8,13 @@ Cog =
 	{
 		string Name = "ActText",
 	},
+	Archetyped = 
+	{
+		string Name = "55c3d3f2a7a4ce46:ActText",
+	},
 	Transform = 
 	{
-		Vec3 Translation = [0.360924, -0.286164, 10],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -30,5 +34,8 @@ Cog =
 		TextAlign Align = Left,
 		float PixelsPerUnit = 64,
 		bool Smoothing = false,
+	},
+	ActTextController = 
+	{
 	},
 },

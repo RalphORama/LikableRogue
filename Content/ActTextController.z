@@ -1,0 +1,9 @@
+class ActTextController : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, 2);
+        Actions.Call(seq, this.Owner.Destroy);
+    }
+}
