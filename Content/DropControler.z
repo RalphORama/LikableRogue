@@ -116,7 +116,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.CreateActionText("Shot Dmg +1", event);
+            this.CreateActionText("Shot Speed/Dmg +1", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             ++event.OtherObject.PlayerController.Pjtl_Damage;
@@ -130,7 +130,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.CreateActionText("Dmg+1", event);
+            this.CreateActionText("Sword Dmg+1", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.SwordDamag+=2;
