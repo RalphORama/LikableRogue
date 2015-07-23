@@ -87,7 +87,7 @@ class EnemyController : ZilchComponent
                 {
                     playerPush.Y=7;
                 }
-                else if (this.TypeOfEnemy == "Pisg")
+                else if (this.TypeOfEnemy == "Pig")
                 {
                     playerPush.Y=11;
                 }
@@ -98,6 +98,7 @@ class EnemyController : ZilchComponent
             this.PlayerCog.PlayerController.CurentHP -= 1;//int for taking damag, set to a var to costomize based on enemy
             // here's some code for updating the HUD
             // signed, Ralph
+            // thank you! - Dylan
             var hudParent : Cog = this.Space.FindObjectByName( "Camera" );
             var hud : Cog = hudParent.FindChildByName( "HudContainer" );
             hud.HUDController.UpdateHealth( event.OtherObject );
@@ -390,7 +391,7 @@ class EnemyController : ZilchComponent
 
         //recursion yo'
         var seq = Action.Sequence(this.Owner.Actions);
-        var time = 5 - 2 / (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty / 2);
+        var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4;
         Actions.Delay(seq, time);
         Actions.Call(seq, this.MushroomShooting);
     }
