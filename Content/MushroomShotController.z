@@ -3,11 +3,14 @@ class MushroomShotController : ZilchComponent
     var Angle : Real;
     var MoveSpeed : Real;
     var MoveR3 : Real3;
+    
     var LevelCog : Cog = null;
     
     function Initialize(init : CogInitializer)
     {
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
+        
+        //have to put a delay or else the MushroomShot doesn't get the angle from the enemy.
         var seq = Action.Sequence(this.Owner.Actions);
         Actions.Delay(seq, 0.1);
         Actions.Call(seq, this.UpdateMovement);
@@ -33,6 +36,13 @@ class MushroomShotController : ZilchComponent
     {
         if (event.OtherObject.Name == "Wall")
         {
+            this.Owner.Destroy();
+        }
+        
+        if (event.OtherObject.Name == "Player")
+        {
+            event.OtherObject.PlayerController.StunPlayer(0.4);
+            event.OtherObject.PlayerController.CurentHP -= 1;
             this.Owner.Destroy();
         }
     }

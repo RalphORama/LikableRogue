@@ -1,12 +1,13 @@
 class EnemyController : ZilchComponent
 {
+    var Check : Boolean = false;
+    
     var PigAttacking : Boolean = false;
     
     [Property]
     var MushroomShotArch : Archetype = null;
     var MushroomAttacking : Boolean = false;
     var MushroomShotAngle : Integer;
-    var MushroomShotLoopInitiated : Boolean = false; 
     
     var TypeOfEnemy : String; //Cat, Pig, Mushroom
     /*if (this.TypeOfEnemy == "Cat")
@@ -389,7 +390,7 @@ class EnemyController : ZilchComponent
 
         //recursion yo'
         var seq = Action.Sequence(this.Owner.Actions);
-        var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty / 2);
+        var time = 5 - 2 / (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty / 2);
         Actions.Delay(seq, time);
         Actions.Call(seq, this.MushroomShooting);
     }
@@ -398,19 +399,37 @@ class EnemyController : ZilchComponent
     {
         this.UpdateFacingInput();
         this.UpdateEnemyMovement();
-        if (this.TypeOfEnemy == "Pig")
+        
+        //Cat check
+        if (this.TypeOfEnemy == "Cat"&& !this.Check)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");
+            this.Check = true;
+        }
+        
+        //Pig check
+        if (this.TypeOfEnemy == "Pig" && !this.Check)
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");
+            this.Check = true;
+        }
+        else if (this.TypeOfEnemy == "Pig")
         {
             this.PigDistanceFromPlayer();
         }
-        if (this.TypeOfEnemy == "Mushroom" && this.MushroomShotLoopInitiated == false)
+        
+        //Mushroom check
+        if (this.TypeOfEnemy == "Mushroom" && !this.Check)
         {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomS");
             var seq = Action.Sequence(this.Owner.Actions);
-            var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty / 2);
+            var time = 5 - 2 / (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty / 2);
             Actions.Delay(seq, time);
             Actions.Call(seq, this.MushroomShooting);
-            this.MushroomShotLoopInitiated = true;
+            this.Check = true;
         }
         
+        //Health set
         if (this.InitializeHP == true)
         {
             if (this.TypeOfEnemy == "Cat")
