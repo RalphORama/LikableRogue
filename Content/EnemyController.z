@@ -380,15 +380,15 @@ class EnemyController : ZilchComponent
         {
             if (this.TypeOfEnemy == "Cat")
             {
-                this.HP = (this.DefaultHP / 2 * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+                this.HP = (this.DefaultHP / 2 * this.LevelCog.LevelController.DynamicDifficulty + this.LevelCog.LevelController.LevelDifficulty) as Integer;
             }
             else if (this.TypeOfEnemy == "Pig")
             {
-                this.HP = (this.DefaultHP * 2 * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+                this.HP = (this.DefaultHP * 2 * this.LevelCog.LevelController.DynamicDifficulty + this.LevelCog.LevelController.LevelDifficulty) as Integer;
             }
             else if (this.TypeOfEnemy == "Mushroom")
             {
-                this.HP = (this.DefaultHP * this.LevelCog.LevelController.LevelDifficulty * this.LevelCog.LevelController.DynamicDifficulty) as Integer;
+                this.HP = (this.DefaultHP * this.LevelCog.LevelController.DynamicDifficulty + this.LevelCog.LevelController.LevelDifficulty) as Integer;
             }
             this.InitializeHP = false;
             
