@@ -1,5 +1,12 @@
 ImageContent = 
 {
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Environment",
+		],
+	},
 	SpriteSourceBuilder = 
 	{
 		string Name = "Dirt",

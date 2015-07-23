@@ -14,8 +14,7 @@ class PlayerController : ZilchComponent
     [Property]
     var SlingShotProjectArch : Archetype = null;
     
-    [Property]
-    var MaxHP : Integer = 10;
+    var MaxHP : Integer = 4;
     var CurentHP : Integer = 0;
     [Property]
     var PlayerDeathParticleEffectArche : Archetype = null;
@@ -42,7 +41,7 @@ class PlayerController : ZilchComponent
     var ProMoveSpeed : Real = 20;//Make sure player cant catch it in the air
     var MaxProjec : Integer = 0;
     var CurentProject : Integer = 0;
-    var Pjtl_Damage : Integer = 1;
+    var Pjtl_Damage : Integer = 4;
     
     var IsPlayerStun : Boolean = false;
     var MoveVec : Real3 = Real3(0,0,0);
@@ -195,8 +194,7 @@ class PlayerController : ZilchComponent
                 }
             this.MoveProjectile(this.ProjMoveVec.Get(this.SlinShoAmmCou));
             }
-
-        if ((Zero.Mouse.IsButtonDown(MouseButtons.Right)==false&&(this.Gamepad.LeftTrigger.X<=0))&&(this.MaxProjec>=this.CurentProject)) //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
+        if ((Zero.Mouse.IsButtonDown(MouseButtons.Right)==false&&(this.Gamepad.RightTrigger.X<=0))&&(this.MaxProjec>=this.CurentProject)) //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
             {
             //Console.WriteLine(this.Gamepad.LeftTrigger.X);
                 this.SlingShotFiring=false;
@@ -235,7 +233,6 @@ class PlayerController : ZilchComponent
             {
             this.HasLooked=true;
             }
-        Console.WriteLine(this.Gamepad.RightTrigger.X);
         if(this.CurentHP>this.MaxHP)
             {
             this.CurentHP=this.MaxHP;

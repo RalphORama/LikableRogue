@@ -6,16 +6,16 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "ProjectileSpeedDrop",
+		string Name = "CornerWall",
 	},
 	Archetyped = 
 	{
-		string Name = "555d42616cadebc0:ProjectileSpeedDrop",
+		string Name = "550f54484141a397:CornerWall",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
-		Vec3 Scale = [0.5, 0.5, 0.5],
+		Vec3 Translation = [0, 0, 10],
+		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -24,11 +24,11 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.74, 1, 0, 1],
+		Vec4 Color = [1, 1, 1, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5275aa4d802dd6dc:Square",
+		string SpriteSource = "550f59ac00d72a02:hwall000",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
@@ -36,17 +36,11 @@ Cog =
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
-	BoxCollider = 
+	WallController = 
 	{
-		bool Ghost = true,
-		bool SendsMessages = true,
-		bool Seamless = true,
-		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-		Vec3 Offset = [0, 0, 0],
-		Vec3 Size = [0.5, 0.5, 0.5],
-	},
-	ProjSpeIncDropController = 
-	{
+		string WallSprite01 = "550f537e0a2718f6:cwall000",
+		string WallSprite02 = "550f537e0a298c15:cwall001",
+		string WallSprite03 = "550f537f0a137101:cwall002",
+		string WallSprite04 = "550f537f0a155397:cwall003",
 	},
 },

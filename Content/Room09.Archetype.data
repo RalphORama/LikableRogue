@@ -32,6 +32,7 @@ Cog =
 		bool EnemiesDead = false,
 		bool EnemiesSpawned = false,
 		bool IsLootRoom = false,
+		bool LootSpawned = false,
 	},
 	Hierarchy = 
 	{
@@ -179,6 +180,24 @@ Cog =
 						string Name = "Wall",
 					},
 				},
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "550f564be7bf92ff:WallSpriteHolder",
+			LinkId = 
+			{
+				uint Id = 10,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0.1],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "WallSpriteHolder",
 			},
 		},
 	},
