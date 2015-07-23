@@ -8,9 +8,6 @@ class EnemySpawnController : ZilchComponent
     [Property]
     var Enemy03 : Archetype = null;
     
-    // a multiplier for how many enemies to spawn
-    [Property]
-    var EnemySpawnRateMultiplier : Integer = 3;
     
     // an array that the enemies will be stored in
     var EnemyArray : Array[Archetype] = Array[Archetype]();
@@ -61,7 +58,7 @@ class EnemySpawnController : ZilchComponent
                 // calculate the number of enemies to spawn
                 // min: difficulty of the floor (0 - 3)
                 // max: difficulty of the floor * dynamic difficulty
-                var numEnemiesToSpawn : Integer = ( (this.RandomGenerator.Range(levelDifficulty, levelDifficulty * dynamDifficulty) / 2) + 1 ) as Integer;
+                var numEnemiesToSpawn : Integer = ( (this.RandomGenerator.Range(levelDifficulty, Real(levelDifficulty)/2 * dynamDifficulty) / 2) + 1 ) as Integer;
                 //Console.WriteLine( "Spawning `numEnemiesToSpawn` enemies." );
                 
                 // spawn the enemies
