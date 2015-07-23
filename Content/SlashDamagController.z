@@ -1,6 +1,8 @@
 class SwordDamagController : ZilchComponent
 {
     var PlayerCog : Cog = null;
+    [Property]
+    var ActTextArch : Archetype = null;
     function Initialize(init : CogInitializer)
         {
             this.PlayerCog = this.Space.FindObjectByName("Player");
@@ -12,17 +14,24 @@ class SwordDamagController : ZilchComponent
         { 
         }
         
-    function OnCollisionPersisted(event : CollisionEvent)
-    {
+        function OnCollisionPersisted(event : CollisionEvent)
+        {
         if (event.OtherObject.Name == "Enemy")
         {
-            if (!event.OtherObject.EnemyController.IsEnemyStun){
+            if (!event.OtherObject.EnemyController.IsEnemyStun)
+                {
+                //ActionTxtCreate
+                this.Space.CreateAtPosition(this.ActTextArch, event.OtherObject.Transform.Translation);
+                var cog = this.Space.FindObjectByName("ActText");
+                cog.SpriteText.Color=Real4(1,0,0,1);
+                cog.SpriteText.Text="-`this.PlayerCog.PlayerController.SwordDamag`";
+                
                 this.Owner.SoundEmitter.Play();//plays Dmg Sound
                 event.OtherObject.EnemyController.StunEnemy(0.3);
                 event.OtherObject.RigidBody.ApplyLinearImpulse(Real3((event.OtherObject.EnemyController.PlayerPosition.X)*-1,(event.OtherObject.EnemyController.PlayerPosition.Y)*-1,0));
                 event.OtherObject.EnemyController.HP-=this.PlayerCog.PlayerController.SwordDamag;
                 //Console.WriteLine(event.OtherObject.EnemyController.HP);
-            }
+                }
         }
     }
 }

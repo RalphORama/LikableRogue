@@ -48,6 +48,7 @@ Cog =
 	},
 	SwordDamagController = 
 	{
+		string ActTextArch = "55c3d3f2a7a4ce46:ActText",
 	},
 	SoundEmitter = 
 	{

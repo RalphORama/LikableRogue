@@ -58,6 +58,7 @@ Cog =
 	DropControler = 
 	{
 		string ChiArch = "55dc338df95e84ed:DropEfect",
+		string ActTextArch = "55c3d3f2a7a4ce46:ActText",
 	},
 	Hierarchy = 
 	{

@@ -4,6 +4,10 @@ class DropControler : ZilchComponent
     var RandomGenerator : Random = Random();
     [Property]
     var ChiArch : Archetype = null;
+    
+    [Property]
+    var ActTextArch : Archetype = null;
+    
     function Initialize(init : CogInitializer)
     {
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
@@ -57,11 +61,19 @@ class DropControler : ZilchComponent
         var cog = this.Space.FindObjectByName("DropEfect");
         cog.SpriteParticleSystem.Tint=colorset;
         }
+    function CreateActionText(setText : String, event : CollisionEvent)
+        {
+        this.Space.CreateAtPosition(this.ActTextArch, event.OtherObject.Transform.Translation);
+        var cog = this.Space.FindObjectByName("ActText");
+        cog.SpriteText.Color=this.Owner.Sprite.Color;
+        cog.SpriteText.Text=setText;
+        }
     //ProjDrop
     function OnProjDropCollisionStarted(event : CollisionEvent)
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.CreateActionText("Ammo+1", event);
             this.SetParticle(Real4(0,0,0,0), event);
             ++event.OtherObject.PlayerController.MaxProjec;
             this.LevelCog.LevelController.DynamicDifficulty += 0.01;
@@ -74,6 +86,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.CreateActionText("HP+1", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();//Sound
             //buf
@@ -90,6 +103,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.CreateActionText("Spe+1", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.MoveSpeed+=1;
@@ -102,8 +116,10 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.CreateActionText("Shot Speed/Dmg +1", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
+            ++event.OtherObject.PlayerController.Pjtl_Damage;
             event.OtherObject.PlayerController.ProMoveSpeed+=4;
             this.LevelCog.LevelController.DynamicDifficulty += 0.04;
             this.Owner.Destroy();
@@ -114,6 +130,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.CreateActionText("Sword Dmg+1", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.SwordDamag+=2;
@@ -126,6 +143,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
+            this.CreateActionText("Max HP+1", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.MaxHP += 2;
