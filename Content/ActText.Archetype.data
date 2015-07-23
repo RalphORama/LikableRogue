@@ -1,0 +1,34 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "ActText",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [0.360924, -0.286164, 10],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	SpriteText = 
+	{
+		bool Visible = true,
+		bool VisibilityCulling = true,
+		bool VisibilityEvents = true,
+		bool CastShadows = false,
+		Vec4 Color = [1, 0, 0, 1],
+		BlendMode BlendMode = Alpha,
+		SpriteGeometryMode GeometryMode = ZPlane,
+		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+		string FontName = "55123e60ac843019:Ponderosa",
+		uint FontSize = 30,
+		string Text = "HP+1",
+		TextAlign Align = Left,
+		float PixelsPerUnit = 64,
+		bool Smoothing = false,
+	},
+},
