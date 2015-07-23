@@ -51,21 +51,12 @@ Cog =
 		ParticleRenderMode RenderMode = Additive,
 		ParticleSortMode SortMode = Youngest,
 		ParticleAnimation ParticleAnimation = Single,
-		string Texture = "4fab71e8bcb7a8ce:DefaultTexture",
+		string Texture = "5310e87946ed955b:Twinkle",
 		Vec4 Tint = [0.905, 0.731783, 0.11765, 0.9999],
 		float VelocityScale = 1,
 		float LengthScale = 1,
 		float MaxParticleSize = 100,
 		Vec3 SystemSize = [4, 4, 4],
-	},
-	LinearParticleAnimator = 
-	{
-		Vec3 Force = [0, 10, 0],
-		Vec3 RandomForce = [50, 0, 0],
-		float Torque = 0,
-		float Growth = 0,
-		float Dampening = 1,
-		Vec3 Twist = [10, 0, 0],
 	},
 	SphericalParticleEmitter = 
 	{
@@ -87,6 +78,15 @@ Cog =
 		Vec3 TangentVelocity = [0, 0, 0],
 		Vec3 EmitterSize = [0, 0, 0],
 		bool FastMovingEmitter = false,
+	},
+	LinearParticleAnimator = 
+	{
+		Vec3 Force = [0, 10, 0],
+		Vec3 RandomForce = [50, 0, 0],
+		float Torque = 0,
+		float Growth = 0,
+		float Dampening = 1,
+		Vec3 Twist = [10, 0, 0],
 	},
 	DropParticleControler = 
 	{

@@ -14,8 +14,7 @@ class PlayerController : ZilchComponent
     [Property]
     var SlingShotProjectArch : Archetype = null;
     
-    [Property]
-    var MaxHP : Integer = 10;
+    var MaxHP : Integer = 4;
     var CurentHP : Integer = 0;
     [Property]
     var PlayerDeathParticleEffectArche : Archetype = null;
@@ -195,8 +194,7 @@ class PlayerController : ZilchComponent
                 }
             this.MoveProjectile(this.ProjMoveVec.Get(this.SlinShoAmmCou));
             }
-
-        if ((Zero.Mouse.IsButtonDown(MouseButtons.Right)==false&&(this.Gamepad.LeftTrigger.X<=0))&&(this.MaxProjec>=this.CurentProject)) //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
+        if ((Zero.Mouse.IsButtonDown(MouseButtons.Right)==false&&(this.Gamepad.RightTrigger.X<=0))&&(this.MaxProjec>=this.CurentProject)) //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
             {
             //Console.WriteLine(this.Gamepad.LeftTrigger.X);
                 this.SlingShotFiring=false;
