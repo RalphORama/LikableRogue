@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [-3.5, -6.5, 10],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -25,7 +25,7 @@ Cog =
 		string SwordText = "Use the LMB, Left Trigger, or Left Bumper to swing the sword.""",
 		string SlingshotText = "Shoot my slingshot with the RMB, Right Trigger, or Right Bumper.",
 		string PickupText = "Pick up the rocks I shoot with my slingshot, or they get lost.",
-		string DoorText = "Press Space or the Right Joystick Button to enter doors.",
+		string DoorText = "Press Space or the A to enter doors.",
 	},
 	Hierarchy = 
 	{

@@ -81,7 +81,7 @@ class PlayerController : ZilchComponent
     function TotorialDelay()
         {
         var seq = Action.Sequence(this.Owner.Actions);
-        Actions.Delay(seq, 16);
+        Actions.Delay(seq, 8);
         Actions.Call(seq, this.StartTotorial);
         }
         
@@ -89,33 +89,33 @@ class PlayerController : ZilchComponent
     {
         if(!this.HasPlayerMoved)
         {
-            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 2, 2 );
             this.TotorialDelay();
         }
         
         else if(!this.HasLooked)
         {
-            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.LookText, 1.5, 1.5 );
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.LookText, 2, 2 );
             this.TotorialDelay();
         }
         else if(!this.HasSword)
         {
-            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.SwordText, 1.5, 1.5 );
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.SwordText, 2, 2 );
             this.TotorialDelay();
         }
         else if(!this.HasSlingshot)
         {
-            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.SlingshotText, 1.5, 1.5 );
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.SlingshotText, 2, 2 );
             this.TotorialDelay();
         }
         else if(!this.HasPickup)
         {
-            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.PickupText, 1.5, 1.5 );
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.PickupText, 2, 2 );
             this.TotorialDelay();
         }
         else if(!this.HasDoor)
         {
-            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.DoorText, 1.5, 1.5 );
+            this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.DoorText, 2, 2 );
             this.TotorialDelay();
         }
     }
