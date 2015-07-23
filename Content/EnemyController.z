@@ -16,7 +16,8 @@ class EnemyController : ZilchComponent
     {
         
     }*/
-    
+    [Property]
+    var ActTextArch : Archetype = null;
     var Active : Boolean = true; //Use this when programming when the Enemy is moving or not
     
     var IsEnemyStun : Boolean = false;
@@ -99,6 +100,12 @@ class EnemyController : ZilchComponent
         if (!this.IsEnemyStun){
             if (event.OtherObject.Name == "SlingShotProject"&&event.OtherObject.SlingProjControler.Pickup==false)
             {
+                //ActionTxtCreate
+                this.Space.CreateAtPosition(this.ActTextArch, event.OtherObject.Transform.Translation);
+                var cog = this.Space.FindObjectByName("ActText");
+                cog.SpriteText.Color=Real4(1,0,0,1);
+                cog.SpriteText.Text="-`this.PlayerCog.PlayerController.Pjtl_Damage`";
+                
                 this.HP-=this.PlayerCog.PlayerController.Pjtl_Damage;
                 this.StunEnemy(0.3);
             }
