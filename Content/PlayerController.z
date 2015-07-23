@@ -6,6 +6,10 @@ class PlayerController : ZilchComponent
     
     var MoveSpeed : Real = 6;
     
+        //animation sprites
+    var AnimationSprite : SpriteSource = null;
+    var StandingSprite : SpriteSource = null;
+    
     //[Property]
     //var Location : Real3 = Real3(0, 0, 0);
     
@@ -54,6 +58,11 @@ class PlayerController : ZilchComponent
     var HasSlingshot : Boolean = false;
     var HasPickup : Boolean = false;
     var HasDoor : Boolean = false;
+    
+    var IsWalking : Boolean = false;
+    /*        this.AnimationSprite=SpriteSource.Find("Kyle_Walk_Right_Anim");
+        this.Owner.Sprite.SpriteSource=this.AnimationSprite;*/
+    
     function StunPlayer(time : Real)
     {   
         if(this.IsPlayerDead==false)
@@ -122,6 +131,8 @@ class PlayerController : ZilchComponent
     
     function Initialize(init : CogInitializer)//initialize
         {
+        
+        this.AnimationSprite=SpriteSource.Find("Kyle_Walk_Right_Anim");
         //initialize torial
         this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
         this.TotorialDelay();
@@ -229,6 +240,20 @@ class PlayerController : ZilchComponent
         }
     function OnLogicUpdate(event : UpdateEvent)
         {
+        if(this.Owner.RigidBody.Velocity!=Real3(0,0,0) && this.IsWalking==false)
+            {
+            this.Owner.Sprite.SpriteSource=this.AnimationSprite;
+            this.IsWalking=true;
+            }
+        if(this.Owner.RigidBody.Velocity==Real3(0,0,0))
+            {
+            this.Owner.Sprite.SpriteSource=this.StandingSprite;
+            this.IsWalking=false;
+            }
+        if(this.Owner.RigidBody.Velocity!=Real3(0,0,0)&&this.Owner.Sprite.SpriteSource!=this.AnimationSprite)
+            {
+            this.Owner.Sprite.SpriteSource=this.AnimationSprite;
+            }
         if(this.Ang!=0)
             {
             this.HasLooked=true;
@@ -280,7 +305,8 @@ class PlayerController : ZilchComponent
             if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
                 {
                 //this.ProjectAngle = Real3(0,1,0);
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleN");//Sets Sprite
+                this.AnimationSprite = SpriteSource.Find("KyleN");
+                this.StandingSprite = SpriteSource.Find("KyleN");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(0,1,0);//This is an example of moving the sword when the player turns
                 //this.SwordDamageBox.Orientation.Rotation;
@@ -289,49 +315,56 @@ class PlayerController : ZilchComponent
             if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
                 {
                 //this.ProjectAngle = Real3(1,1,0);
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleNW");//Sets Sprite
+                this.AnimationSprite = SpriteSource.Find("KyleNW");
+                this.StandingSprite = SpriteSource.Find("KyleNW");//Sets Sprite
                 this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(1,1,0);
                 }
             //East
             if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleW");
+                this.StandingSprite=SpriteSource.Find("KyleW");
+                this.AnimationSprite = SpriteSource.Find("Kyle_Walk_Left_Anim");
                 this.Owner.Sprite.FlipX=true;
                 this.SwordAttcackZone = Real3(1,0,0);
                 }
             //South East
             if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleSW");//Sets Sprite
+                this.AnimationSprite = SpriteSource.Find("KyleSW");
+                this.StandingSprite = SpriteSource.Find("KyleSW");//Sets Sprite
                 this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(1,-1,0);
                 }
             //South
             if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleS");//Sets Sprite
+                this.AnimationSprite = SpriteSource.Find("KyleS");
+                this.StandingSprite = SpriteSource.Find("KyleS");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
                 this.SwordAttcackZone = Real3(0,-1,0);
                 }
             //South West
             if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleSW");//Sets Sprite
+                this.AnimationSprite = SpriteSource.Find("KyleSW");
+                this.StandingSprite = SpriteSource.Find("KyleSW");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
                 this.SwordAttcackZone = Real3(-1,-1,0);
                 }
             //West
             if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleW");//Sets Sprite
+                this.StandingSprite = SpriteSource.Find("KyleW");
+                this.AnimationSprite = SpriteSource.Find("Kyle_Walk_Left_Anim");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
                 this.SwordAttcackZone = Real3(-1,0,0);
                 }
             //North West
             if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
                 {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("KyleNW");//Sets Sprite
+                this.AnimationSprite = SpriteSource.Find("KyleNW");
+                this.StandingSprite = SpriteSource.Find("KyleNW");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
                 this.SwordAttcackZone = Real3(-1,1,0);
                 }

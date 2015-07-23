@@ -4,7 +4,7 @@ class ActTextController : ZilchComponent
     {
         this.MoveUp();
         var seq = Action.Sequence(this.Owner.Actions);
-        Actions.Delay(seq, 1);
+        Actions.Delay(seq, 0.5);
         Actions.Call(seq, this.Owner.Destroy);
     }
     function MoveUp()
