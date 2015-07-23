@@ -32,6 +32,8 @@ class WallController : ZilchComponent
         if ( this.SpriteArray.Count > 1 )
         {
             randomIndex = this.RandomGenerator.Range( 0, this.SpriteArray.Count ) as Integer;
+            Console.WriteLine( randomIndex );
+            Console.WriteLine( this.SpriteArray.Count );
         }
         
         this.Owner.Sprite.SpriteSource = this.SpriteArray.Get( randomIndex );
