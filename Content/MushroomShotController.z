@@ -1,0 +1,40 @@
+class MushroomShotController : ZilchComponent
+    {
+    var Angle : Real;
+    var MoveSpeed : Real;
+    var MoveR3 : Real3;
+    var LevelCog : Cog = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.LevelCog = this.Space.FindObjectByName("LevelManager");
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, 0.1);
+        Actions.Call(seq, this.UpdateMovement);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.Owner.RigidBody.ApplyLinearImpulse(this.MoveR3 * this.MoveSpeed);
+        this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity);
+        this.Owner.RigidBody.Velocity *= this.MoveSpeed;
+    }
+    
+    function UpdateMovement()
+    {
+        this.MoveSpeed = 1.5 + (this.LevelCog.LevelController.LevelDifficulty/2 + this.LevelCog.LevelController.DynamicDifficulty);
+        this.MoveR3 = Real3(Math.Cos(Math.ToRadians(this.Angle)), Math.Sin(Math.ToRadians(this.Angle)), 0);
+        Console.WriteLine(Math.ToRadians(this.Angle));
+    }
+        
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        if (event.OtherObject.Name == "Wall")
+        {
+            this.Owner.Destroy();
+        }
+    }
+    
+}

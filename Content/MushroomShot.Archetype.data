@@ -6,25 +6,25 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Enemy",
+		string Name = "MushroomShot",
 	},
 	Archetyped = 
 	{
-		string Name = "555896ce3c0fb42c:Enemy",
+		string Name = "55498398d1b5f35f:MushroomShot",
 	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
-		Vec3 Scale = [1, 1, 1],
+		Vec3 Scale = [0.6, 0.6, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
 	{
-		bool Visible = false,
+		bool Visible = true,
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 1, 1, 1],
+		Vec4 Color = [0, 0, 0, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -41,38 +41,24 @@ Cog =
 		bool Static = false,
 		bool Asleep = false,
 		bool Kinematic = false,
-		bool RotationLocked = true,
-		bool Mode2D = false,
+		bool RotationLocked = false,
+		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	CapsuleCollider = 
+	SphereCollider = 
 	{
 		bool Ghost = false,
 		bool SendsMessages = true,
 		bool Seamless = true,
-		string MaterialName = "5522c1021f9ffff0:NoBounceMaterial",
+		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "55d7fa0ee4126d7a:EnemyCollisionGroup",
 		Vec3 Offset = [0, 0, 0],
-		float Radius = 0.23,
-		float Height = 1.25,
-		uint Direction = 1,
+		float Radius = 0.3,
 	},
-	EnemyController = 
+	MushroomShotController = 
 	{
-		string MushroomShotArch = "55498398d1b5f35f:MushroomShot",
-		float DefaultHP = 5,
-		float StartingMoveSpeed = 2,
-		string Drop = "55dfddc25814a1f0:Drop",
-		string DeathParticleArche = "55d75955791bb063:DeathParticle",
-	},
-	EnemyRaycaster = 
-	{
-		float CastDistance = 100,
-		Vec4 DrawColor = [1, 1, 1, 1],
-		float HeadSize = 0.25,
-		bool OnTop = true,
 	},
 },

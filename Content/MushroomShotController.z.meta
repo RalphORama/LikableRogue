@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "MushroomShotController",
+		uint64 ResourceId = 5549b8c7e988d510,
+	},
+},

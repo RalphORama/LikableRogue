@@ -121,7 +121,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.360924, -0.286164, 28.394],
+			Vec3 Translation = [0.286271, -0.286164, 28.394],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +133,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 2,
+			float Size = 16.3323,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +141,7 @@ Level =
 			float LookDistance = 18.394,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0.360924, -0.286164, 10],
+			Vec3 LookTarget = [0.286271, -0.286164, 10],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -334,7 +334,7 @@ Level =
 			string MediumLevel01 = "551a3ba390356dc1:MediumFloorArchetype01",
 			string MediumLevel02 = "55dc698cecf33ca6:MediumFloorArchetype02",
 			string HardLevel01 = "5512164dd7a6ba65:HardFloorArchetype01",
-			string HardLevel02 = "",
+			string HardLevel02 = "4faa6050b86884ec:DefaultArchetype",
 			string LevelExit = "551aed6ca44b32ee:LevelExit",
 			int LootRoomModifier = 2,
 		},
