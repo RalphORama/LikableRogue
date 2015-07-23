@@ -2,8 +2,16 @@ class ActTextController : ZilchComponent
 {
     function Initialize(init : CogInitializer)
     {
+        this.MoveUp();
         var seq = Action.Sequence(this.Owner.Actions);
-        Actions.Delay(seq, 2);
+        Actions.Delay(seq, 1);
         Actions.Call(seq, this.Owner.Destroy);
     }
+    function MoveUp()
+        {
+        this.Owner.Transform.Translation = Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y+0.01,0);
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, 0.01);
+        Actions.Call(seq, this.MoveUp);
+        }
 }

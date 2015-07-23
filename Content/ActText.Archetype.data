@@ -31,7 +31,7 @@ Cog =
 		string FontName = "55123e60ac843019:Ponderosa",
 		uint FontSize = 30,
 		string Text = "HP+1",
-		TextAlign Align = Left,
+		TextAlign Align = Center,
 		float PixelsPerUnit = 64,
 		bool Smoothing = false,
 	},
