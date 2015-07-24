@@ -22,6 +22,9 @@ class TutorialController : ZilchComponent
     // the background speech bubble behind the text
     var TutorialBackground : Cog = null;
     
+    // Michael-Paul needs this for some of his code
+    var CurrentText : String = "";
+    
     function Initialize(init : CogInitializer)
     {
         this.Setup();
@@ -67,6 +70,9 @@ class TutorialController : ZilchComponent
     {
         // this is weird
         this.Setup();
+        
+        // Michael-Paul needs this for his code
+        this.CurrentText = textToDisplay;
         
         // so strange glitchy stuff doesn't happen
         this.TutorialText.SpriteText.Text    = "";
