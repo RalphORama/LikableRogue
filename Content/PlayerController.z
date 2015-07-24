@@ -135,7 +135,6 @@ class PlayerController : ZilchComponent
         this.AnimationSprite=SpriteSource.Find("Kyle_Walk_Right_Anim");
         //initialize torial
         this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
-        this.TotorialDelay();
         this.CurentHP = this.MaxHP;
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");

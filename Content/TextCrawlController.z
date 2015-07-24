@@ -27,7 +27,7 @@ class TextCrawlController : ZilchComponent
              || Zero.Keyboard.KeyIsPressed(Keys.Enter) || Zero.Keyboard.KeyIsPressed(Keys.A) /* for idiots */ )
         {
             var player = this.Space.FindObjectByName( "Player" );
-            
+            player.PlayerController.TotorialDelay();
             var seq = Action.Sequence( this.Owner.Actions );
             Action.Property( seq, @player.PlayerController.IsPlayerInDialog, false, 0.0, Ease.Linear );
             Action.Delay( seq, 0.15 );
