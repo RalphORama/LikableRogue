@@ -68,6 +68,11 @@ class TutorialController : ZilchComponent
         // this is weird
         this.Setup();
         
+        // so strange glitchy stuff doesn't happen
+        this.TutorialText.SpriteText.Text    = "";
+        this.TutorialText.SpriteText.Color   = Real4( 0.0, 0.0, 0.0, 1.0 );
+        this.TutorialBackground.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.0 );
+        
         var seq = Action.Sequence( this.Owner.Actions );
         //var textCrawlTime    = 1.5;
         //var delayBetweenText = 1.5;
@@ -87,5 +92,16 @@ class TutorialController : ZilchComponent
         // call a short delay, then fade out / hide the background.
         Action.Delay( seq, delayBetweenText );
         Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.0), 0.5, Ease.Linear );
+    }
+    
+    function HideTutorial ()
+    {
+        // to prevent bugs
+        this.Setup();
+        
+        // hide the text being displayed
+        this.TutorialText.SpriteText.Color   = Real4( 1.0, 1.0, 1.0, 0.0 );
+        // hide the background for the text
+        this.TutorialBackground.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.0 );
     }
 }
