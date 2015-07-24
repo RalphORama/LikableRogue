@@ -66,7 +66,7 @@ class TutorialController : ZilchComponent
     ///
     /// EXAMPLE: this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );
     ///          this.TutorialHolder.TutorialController.DisplaySpecificTutorial( this.TutorialHolder.TutorialController.MoveText, 1.5, 1.5 );
-    function DisplaySpecificTutorial ( textToDisplay : String, textCrawlTime : Real, delayBetweenText : Real )
+    function DisplaySpecificTutorial( textToDisplay : String, textCrawlTime : Real, delayBetweenText : Real )
     {
         // this is weird
         this.Setup();
@@ -100,7 +100,7 @@ class TutorialController : ZilchComponent
         Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.0), 0.5, Ease.Linear );
     }
     
-    function HideTutorial ()
+    function HideTutorial()
     {
         // to prevent bugs
         this.Setup();
