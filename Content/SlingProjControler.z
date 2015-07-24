@@ -30,6 +30,7 @@ class SlingProjControler : ZilchComponent
             this.Owner.LinearParticleAnimator.RandomForce=Real3(0,0,0);
             this.Owner.LinearParticleAnimator.Torque=1;
             this.Owner.LinearParticleAnimator.Dampening=5;
+            //this.Owner.SpriteParticleSystem.RenderMode.Set(Additive);
             this.Pickup=true;
             //this.Owner.BoxCollider.SendsEvents = true;
             //this.Owner.SphericalParticleEmitter.Active=false;

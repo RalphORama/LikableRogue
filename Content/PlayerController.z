@@ -45,7 +45,7 @@ class PlayerController : ZilchComponent
     var ProMoveSpeed : Real = 20;//Make sure player cant catch it in the air
     var MaxProjec : Integer = 0;
     var CurentProject : Integer = 0;
-    var Pjtl_Damage : Integer = 4;
+    var Pjtl_Damage : Integer = 3;
     
     var IsPlayerStun : Boolean = false;
     var MoveVec : Real3 = Real3(0,0,0);

@@ -106,7 +106,7 @@ class DropControler : ZilchComponent
             this.CreateActionText("Spe+1", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
-            event.OtherObject.PlayerController.MoveSpeed+=1;
+            event.OtherObject.PlayerController.MoveSpeed+=0.5;
             this.LevelCog.LevelController.DynamicDifficulty += 0.03;
             this.Owner.Destroy();
             }
@@ -116,11 +116,11 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.CreateActionText("Shot Speed/Dmg +1", event);
+            this.CreateActionText("Shot Speed/Dmg +2", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             ++event.OtherObject.PlayerController.Pjtl_Damage;
-            event.OtherObject.PlayerController.ProMoveSpeed+=4;
+            event.OtherObject.PlayerController.ProMoveSpeed+=2;
             this.LevelCog.LevelController.DynamicDifficulty += 0.04;
             this.Owner.Destroy();
             }
@@ -133,7 +133,7 @@ class DropControler : ZilchComponent
             this.CreateActionText("Sword Dmg+1", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
-            event.OtherObject.PlayerController.SwordDamag+=2;
+            event.OtherObject.PlayerController.SwordDamag+=1;
             this.LevelCog.LevelController.DynamicDifficulty += 0.05;
             this.Owner.Destroy();
             }
@@ -143,7 +143,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.CreateActionText("Max HP+1", event);
+            this.CreateActionText("Max HP+2", event);
             this.SetParticle(this.Owner.Sprite.Color, event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.MaxHP += 2;
