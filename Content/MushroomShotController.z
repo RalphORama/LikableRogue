@@ -14,6 +14,7 @@ class MushroomShotController : ZilchComponent
         var seq = Action.Sequence(this.Owner.Actions);
         Actions.Delay(seq, 0.1);
         Actions.Call(seq, this.UpdateMovement);
+        
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
@@ -44,6 +45,11 @@ class MushroomShotController : ZilchComponent
             event.OtherObject.PlayerController.StunPlayer(0.4);
             event.OtherObject.PlayerController.CurentHP -= 1;
             this.Owner.Destroy();
+            
+            //update HUD
+            var hudParent : Cog = this.Space.FindObjectByName( "Camera" );
+            var hud : Cog = hudParent.FindChildByName( "HudContainer" );
+            hud.HUDController.UpdateHealth( event.OtherObject );
         }
     }
     
