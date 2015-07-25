@@ -163,6 +163,10 @@ class PlayerController : ZilchComponent
         if(this.Gamepad.IsButtonHeld(8)||Zero.Mouse.IsButtonDown(MouseButtons.Left)||this.Gamepad.LeftTrigger.X>0)// Left Bumper
             {
             this.HasSword=true;
+            if(this.TutorialHolder.TutorialController.CurrentText==this.TutorialHolder.TutorialController.SwordText)
+                {
+                this.TutorialHolder.TutorialController.HideTutorial();
+                }
             this.SwordDamageBox.Transform.Translation=this.SwordAttcackZone;
             this.SwordDamageBox.Sprite.Visible=true;
             this.SwordDamageBox.BoxCollider.SendsEvents=true;
@@ -181,6 +185,10 @@ class PlayerController : ZilchComponent
         if(((Zero.Mouse.IsButtonDown(MouseButtons.Right)||this.Gamepad.IsButtonPressed(9)||this.Gamepad.RightTrigger.X>0)&& this.SlingShotFiring==false)&&(this.MaxProjec>=this.CurentProject))
             {
             this.HasSlingshot=true;
+            if(this.TutorialHolder.TutorialController.CurrentText==this.TutorialHolder.TutorialController.SlingshotText)
+                {
+                this.TutorialHolder.TutorialController.HideTutorial();
+                }
             this.SlinShoAmmCou+=1;
             //Creating a SlingShotProjectile
             //this.Owner.Transform.Translation.X);
@@ -255,6 +263,10 @@ class PlayerController : ZilchComponent
         if(this.Ang!=0)
             {
             this.HasLooked=true;
+            if(this.TutorialHolder.TutorialController.CurrentText==this.TutorialHolder.TutorialController.LookText)
+                {
+                this.TutorialHolder.TutorialController.HideTutorial();
+                }
             }
         if(this.CurentHP>this.MaxHP)
             {
@@ -399,6 +411,10 @@ class PlayerController : ZilchComponent
         if(this.MoveVec!=Real3(0,0,0))
             {
             this.HasPlayerMoved=true;
+            if(this.TutorialHolder.TutorialController.CurrentText==this.TutorialHolder.TutorialController.MoveText)
+                {
+                this.TutorialHolder.TutorialController.HideTutorial();
+                }
             }
         
         //clamp variables so that keyboard + gamepad input doesn't mess with our intended values of -1 to 1

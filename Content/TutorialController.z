@@ -100,7 +100,7 @@ class TutorialController : ZilchComponent
         Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4(1.0, 1.0, 1.0, 0.0), 0.5, Ease.Linear );
     }
     
-    function HideTutorial ()
+    function HideTutorial()
     {
         // to prevent bugs
         this.Setup();

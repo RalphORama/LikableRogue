@@ -5,7 +5,7 @@ class SlingProjControler : ZilchComponent
     var Pickup : Boolean = false;
     var LevelCog : Cog = null;
     function Initialize(init : CogInitializer)
-        {   
+        {
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
         this.PlayerCog = this.Space.FindObjectByName("Player");
         this.Owner.Collider.CollisionGroup.Name;
@@ -42,6 +42,10 @@ class SlingProjControler : ZilchComponent
         if (event.OtherObject.Name == "Player")
             {
             event.OtherObject.PlayerController.HasPickup=true;
+            if(event.OtherObject.PlayerController.TutorialHolder.TutorialController.CurrentText == event.OtherObject.PlayerController.TutorialHolder.TutorialController.PickupText)
+                {
+                event.OtherObject.PlayerController.TutorialHolder.TutorialController.HideTutorial();
+                }
             ++this.PlayerCog.PlayerController.MaxProjec;
             this.LevelCog.LevelController.DynamicDifficulty += 0.02;
             this.Owner.Destroy();
