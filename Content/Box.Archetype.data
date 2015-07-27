@@ -6,15 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "HP-BG",
-	},
-	Archetyped = 
-	{
-		string Name = "5517683e6ddeecf7:HudSprite",
+		string Name = "Box",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-9.4, -7.5, -1],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -24,24 +20,16 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 1, 1, 0.5],
+		Vec4 Color = [1, 1, 1, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "55175500f41278be:binding_dark",
+		string SpriteSource = "5275aa4d802dd6dc:Square",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
 		bool AnimationActive = true,
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
-	},
-	Area = 
-	{
-		Vec2 Size = [3.9, 1],
-		Location Origin = Center,
-	},
-	Hierarchy = 
-	{
 	},
 },

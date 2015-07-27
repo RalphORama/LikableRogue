@@ -25,13 +25,15 @@ class GameOverController : ZilchComponent
     {
         if(this.Gamepad.IsButtonPressed(0))
         {
-            this.Space.LoadLevel( Level.Find("MainGame") );
+            var levelSettings = this.Space.FindObjectByName( "LevelSettings" );
+            levelSettings.LevelChanger.ChangeLevelByName( "MainGame" );
         }
     }
     
     function OnMouseUp(event : ViewportMouseEvent)
     {
-        this.Space.LoadLevel( Level.Find("MainGame") );
+        var levelSettings = this.Space.FindObjectByName( "LevelSettings" );
+        levelSettings.LevelChanger.ChangeLevelByName( "MainGame" );
     }
 
     function OnMouseDown(event : ViewportMouseEvent)

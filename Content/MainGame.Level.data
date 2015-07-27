@@ -108,6 +108,11 @@ Level =
 			bool Glow = false,
 			float GlowThreshold = 1,
 		},
+		LevelChanger = 
+		{
+			float ChangeSpeed = 0.3,
+			Vec4 FadeColor = [0, 0, 0, 1],
+		},
 	},
 	Cog = 
 	{
@@ -121,7 +126,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.00339121, -2.66355, 28.394],
+			Vec3 Translation = [7.53092, -4.98219, 28.394],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278e-008, 0, 1],
 		},
@@ -133,7 +138,7 @@ Level =
 			float FieldOfView = 89,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 24.365,
+			float Size = 33.2872,
 		},
 		EditorCameraController = 
 		{
@@ -141,7 +146,7 @@ Level =
 			float LookDistance = 18.394,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0.00339121, -2.66355, 10],
+			Vec3 LookTarget = [7.53092, -4.98219, 10],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -231,7 +236,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [6.5, -5.15, 0],
+							Vec3 Translation = [-10.3, -7.6, 0],
 							Vec3 Scale = [1, 1, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -245,12 +250,17 @@ Level =
 							BlendMode BlendMode = Alpha,
 							SpriteGeometryMode GeometryMode = ZPlane,
 							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string FontName = "55176b72d4c99274:LuckiestGuy",
+							string FontName = "55123e60ac843019:Ponderosa",
 							uint FontSize = 54,
 							string Text = "HP:",
-							TextAlign Align = Right,
+							TextAlign Align = Left,
 							float PixelsPerUnit = 64,
 							bool Smoothing = true,
+						},
+						Area = 
+						{
+							Vec2 Size = [2.1, 1],
+							Location Origin = Center,
 						},
 					},
 					Cog = 
@@ -265,7 +275,7 @@ Level =
 						},
 						Transform = 
 						{
-							Vec3 Translation = [3.675, -6.05, 0],
+							Vec3 Translation = [11.4, -7.1, 0],
 							Vec3 Scale = [1, 1, 1],
 							Quat Rotation = [0, 0, 0, 1],
 						},
@@ -279,33 +289,15 @@ Level =
 							BlendMode BlendMode = Alpha,
 							SpriteGeometryMode GeometryMode = ZPlane,
 							string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-							string FontName = "55176b72d4c99274:LuckiestGuy",
+							string FontName = "55123e60ac843019:Ponderosa",
 							uint FontSize = 54,
 							string Text = "Ammo:",
-							TextAlign Align = Left,
+							TextAlign Align = Right,
 							float PixelsPerUnit = 64,
 							bool Smoothing = true,
 						},
 						Hierarchy = 
 						{
-						},
-					},
-					ArchetypeInstance = 
-					{
-						string Name = "5517683e6ddeecf7:HudSprite",
-						LinkId = 
-						{
-							uint Id = 7,
-						},
-						Transform = 
-						{
-							Vec3 Translation = [7, -6.1, -1],
-							Vec3 Scale = [5, 1.5, 1],
-							Quat Rotation = [0, 0, 0, 1],
-						},
-						Named = 
-						{
-							string Name = "HudBG",
 						},
 					},
 				},
@@ -316,7 +308,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 8,
+			uint Id = 7,
 		},
 		Named = 
 		{
@@ -347,7 +339,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 8,
 		},
 		Named = 
 		{
@@ -378,7 +370,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 10,
+					uint Id = 9,
 				},
 				Named = 
 				{
@@ -417,7 +409,7 @@ Level =
 			{
 				LinkId = 
 				{
-					uint Id = 11,
+					uint Id = 10,
 				},
 				Named = 
 				{

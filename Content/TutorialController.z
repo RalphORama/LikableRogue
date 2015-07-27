@@ -105,9 +105,14 @@ class TutorialController : ZilchComponent
         // to prevent bugs
         this.Setup();
         
+        // we should make this look nice
+        var seq = Action.Sequence( this.Owner.Actions );
+        Action.Property( seq, @this.TutorialText.SpriteText.Color, Real4( 0.0, 0.0, 0.0, 0.0 ), 0.05, Ease.Linear );
+        Action.Property( seq, @this.TutorialBackground.Sprite.Color, Real4( 1.0, 1.0, 1.0, 0.0 ), 0.3, Ease.Linear );
+        
         // hide the text being displayed
-        this.TutorialText.SpriteText.Color   = Real4( 1.0, 1.0, 1.0, 0.0 );
+        //this.TutorialText.SpriteText.Color   = Real4( 1.0, 1.0, 1.0, 0.0 );
         // hide the background for the text
-        this.TutorialBackground.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.0 );
+        //this.TutorialBackground.Sprite.Color = Real4( 1.0, 1.0, 1.0, 0.0 );
     }
 }

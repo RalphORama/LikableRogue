@@ -1,0 +1,61 @@
+/*#####################################################################################
+This is a script I wrote for a project, It may not be flawless
+IT MUST BE PLACED ON THE CAMERA
+then you must call it from elsewhere with something like this.Space.FindObjectByName("Camera").ScreenShake.Shake(); 
+#####################################################################################*/
+
+class ScreenShake : ZilchComponent
+{
+    [Property]
+    var NumberOfShakes : Integer = 5;
+    [Property]
+    var ShakeScale : Real = 0.2;
+    [Property]
+    var ShakeInterval : Real = 0.03;
+    [Property]
+    var F12TestShake : Boolean = false;
+    var OriginalShakeScale : Real = 0;
+    var OriginalPosition : Real3 = Real3();
+    
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.OriginalShakeScale = this.ShakeScale;
+    }
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(Zero.Keyboard.KeyIsPressed(Keys.F12) && this.F12TestShake)
+        {
+            this.Shake();
+        }
+    }
+    function Shake()
+    {
+        this.ShakeCustom(this.NumberOfShakes, this.OriginalShakeScale, this.ShakeInterval);
+    }
+    function ShakeCustom(numberOfShakes : Integer, shakeScale : Real, shakeInterval : Real)
+    {
+        this.OriginalPosition = this.Owner.Transform.Translation;
+        this.ShakeScale = shakeScale;
+        var seq = Action.Sequence(this.Owner.Actions);
+        for (var i = 0; i < numberOfShakes; i += 1)
+        {
+            Action.Delay(seq, shakeInterval);
+            Action.Call(seq, this.ShakeOnce);
+        }
+        Action.Delay(seq, shakeInterval);
+        Action.Call(seq, this.ResetPos);
+    }
+    function ShakeOnce()
+    {
+        var randGen = new Random();
+        var randR3 = Real3(randGen.Range(-1, 1),randGen.Range(-1, 1),0);
+        var newPos = (randR3 * this.ShakeScale) + this.OriginalPosition;
+        this.Owner.Transform.Translation = newPos;
+    }
+    function ResetPos()
+    {
+        this.Owner.Transform.Translation = this.OriginalPosition;
+    }
+}

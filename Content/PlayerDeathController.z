@@ -7,8 +7,10 @@ class PlayerDeathContoler : ZilchComponent
         Actions.Delay(seq, 2);
         Actions.Call(seq, this.OnGameOver);
     }
+    
     function OnGameOver()
-        {
-        this.Space.LoadLevel( Level.Find( "GameOverScreen" ) );//Calls game over
-        }
+    {
+        var levelSettings = this.Space.FindObjectByName( "LevelSettings" );
+        levelSettings.LevelChanger.ChangeLevelByName( "GameOverScreen" );
+    }
 }
