@@ -26,7 +26,7 @@ class DropControler : ZilchComponent
         else if (intRand > 12)//6
         {
             Zero.Connect(this.Owner, Events.CollisionStarted, this.OnHP_DropCollisionStarted);
-            this.Owner.Sprite.Color=Real4(0,1,0,1);
+            this.Owner.Sprite.Color=Real4(1,0,0,1);
         }
         //sets MoveSpe
         else if (intRand > 8)//4
@@ -50,7 +50,7 @@ class DropControler : ZilchComponent
         else if(intRand > 0)//Sets To MaxHP_Drop
         {
             Zero.Connect(this.Owner, Events.CollisionStarted, this.OnMaxHP_DropCollisionStarted);
-            this.Owner.Sprite.Color=Real4(1,0,0,1);
+            this.Owner.Sprite.Color=Real4(0,1,0,1);
         }
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
