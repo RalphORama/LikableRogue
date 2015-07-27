@@ -388,7 +388,7 @@ class EnemyController : ZilchComponent
         this.PigDamageBoxCog.PigSwordController.WillHurt = false;
         
         var seq = Action.Sequence(this.Owner.Actions);
-        Actions.Delay(seq, 1);
+        Actions.Delay(seq, 0.5);
         Actions.Call(seq, this.PigSlashHurt);
     }
         
