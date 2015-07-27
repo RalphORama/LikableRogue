@@ -1,22 +1,33 @@
 class PigSwordController : ZilchComponent
 {
-    
     var WillHurt : Boolean = false;
+    var EnemyCog : Cog = null;
     
     function Initialize(init : CogInitializer)
     {
+        this.EnemyCog = this.Space.FindObjectByName("Enemy");
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if (this.WillHurt == true)
+        if (this.WillHurt)
         {
             this.Owner.Sprite.Color = Real4(0,0,0,1);
+            var seq = Action.Sequence(this.Owner.Actions);
+            Actions.Delay(seq, 0.5);
+            Actions.Call(seq, this.PleaseKillMe);
         }
         else
         {
-            this.Owner.Sprite.Color = Real4(255,255,255,1);
+            this.Owner.Sprite.Color = Real4(1,0,0,1);
         }
     }
+    
+    function PleaseKillMe()
+    {
+        this.Owner.Destroy();
+        this.EnemyCog.EnemyController.PigAttacking = false;
+    }
+    
 }

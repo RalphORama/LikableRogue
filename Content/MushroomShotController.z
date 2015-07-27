@@ -29,8 +29,8 @@ class MushroomShotController : ZilchComponent
     function UpdateMovement()
     {
         this.MoveSpeed = 1.5 + (this.LevelCog.LevelController.LevelDifficulty/2 + this.LevelCog.LevelController.DynamicDifficulty);
-        this.MoveR3 = Real3(Math.Cos(Math.ToRadians(this.Angle)), Math.Sin(Math.ToRadians(this.Angle)), 0);
-        Console.WriteLine(Math.ToRadians(this.Angle));
+        this.MoveR3 = Real3(Math.Cos(this.Angle), Math.Sin(this.Angle), 0);
+        //Console.WriteLine(this.Angle);    //debug
     }
         
     function OnCollisionStarted(event : CollisionEvent)
