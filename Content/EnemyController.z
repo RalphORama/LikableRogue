@@ -2,7 +2,10 @@ class EnemyController : ZilchComponent
 {
     var Check : Boolean = false;
     
+    [Property]
+    var PigDamageBoxArch : Archetype = null;
     var PigAttacking : Boolean = false;
+    var PigSlashZone : Real3 = Real3(0,-1,0);
     
     [Property]
     var MushroomShotArch : Archetype = null;
@@ -37,7 +40,6 @@ class EnemyController : ZilchComponent
     
     var PlayerCog : Cog = null;
     var LevelCog : Cog = null;
-    var PigDamageBox : Cog = null;
 
     [Property]
     var DefaultHP : Real = 5;
@@ -58,7 +60,6 @@ class EnemyController : ZilchComponent
         this.MoveSpeed = this.StartingMoveSpeed;
         this.PlayerCog = this.Space.FindObjectByName("Player");
         this.LevelCog = this.Space.FindObjectByName("LevelManager");
-        this.PigDamageBox = this.Space.FindObjectByName("PigSlashDamageBox");
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
@@ -132,6 +133,7 @@ class EnemyController : ZilchComponent
             else if (this.TypeOfEnemy == "Pig")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
+                this.PigSlashZone = Real3(1,0,0);
             }
             else if (this.TypeOfEnemy == "Mushroom")
             {
@@ -151,6 +153,7 @@ class EnemyController : ZilchComponent
             else if (this.TypeOfEnemy == "Pig")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
+                this.PigSlashZone = Real3(1,1,0);
             }
             else if (this.TypeOfEnemy == "Mushroom")
             {
@@ -170,6 +173,7 @@ class EnemyController : ZilchComponent
             else if (this.TypeOfEnemy == "Pig")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigN");//Sets Sprite
+                this.PigSlashZone = Real3(0,1,0);
             }
             else if (this.TypeOfEnemy == "Mushroom")
             {
@@ -189,6 +193,7 @@ class EnemyController : ZilchComponent
             else if (this.TypeOfEnemy == "Pig")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
+                this.PigSlashZone = Real3(-1,1,0);
             }
             else if (this.TypeOfEnemy == "Mushroom")
             {
@@ -208,6 +213,7 @@ class EnemyController : ZilchComponent
             else if (this.TypeOfEnemy == "Pig")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
+                this.PigSlashZone = Real3(-1,0,0);
             }
             else if (this.TypeOfEnemy == "Mushroom")
             {
@@ -227,6 +233,7 @@ class EnemyController : ZilchComponent
             else if (this.TypeOfEnemy == "Pig")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
+                this.PigSlashZone = Real3(-1,-1,0);
             }
             else if (this.TypeOfEnemy == "Mushroom")
             {
@@ -246,6 +253,7 @@ class EnemyController : ZilchComponent
             else if (this.TypeOfEnemy == "Pig")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");//Sets Sprite
+                this.PigSlashZone = Real3(0,-1,0);
             }
             else if (this.TypeOfEnemy == "Mushroom")
             {
@@ -265,6 +273,7 @@ class EnemyController : ZilchComponent
             else if (this.TypeOfEnemy == "Pig")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
+                this.PigSlashZone = Real3(1,-1,0);
             }
             else if (this.TypeOfEnemy == "Mushroom")
             {
@@ -358,36 +367,44 @@ class EnemyController : ZilchComponent
             var x = this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X;
             var y = this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y;
             var dist = Math.Sqrt(x * x + y * y);
-            if (dist <= 1)
+            if (dist <= 2)
             {
-                //this.PigAttacking = true;
-                //this.PigSwordSlash();
+                this.PigAttacking = true;
+                this.PigSlashSword();
             }
-            //Console.WriteLine(dist);
+            //Console.WriteLine(dist);  //decoding
         }
     }
-        /*function PigSwordSlash()
-        {
-            this.PigDamageBox.Transform.Translation = this.AttackZone;
-            this.PigDamageBox.Sprite.Visible=true;
-            this.PigDamageBox.BoxCollider.SendsEvents=true;
-            var seq = Action.Sequence(this.Owner.Actions);
-            Actions.Delay(seq, 0.1);
-            Actions.Call(seq, this.DeSlash);
-        }
+    
+    function PigSlashSword()
+    {
+        //Console.WriteLine("Creating attack"); //decoding
         
-    function DeSlash()
-        {
-            this.PigDamageBox.Sprite.Visible=false;
-            this.PigDamageBox.BoxCollider.SendsEvents=false;
-        }*/ //come back to this please -Dylan
+        var createdPosition = Real3(this.PigSlashZone.X + this.Owner.Transform.Translation.X, this.PigSlashZone.Y + this.Owner.Transform.Translation.Y, 0);
+        this.Space.CreateAtPosition(this.PigDamageBoxArch, createdPosition);
+        
+        var damageBoxCog = this.Space.FindObjectByName("PigSlashDamagBox");
+        damageBoxCog.PigSwordController.WillHurt = false;
+        
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, 1);
+        Actions.Call(seq, this.PigSlashHurt);
+    }
+        
+    function PigSlashHurt()
+    {
+        //Console.WriteLine("Swung!"); //decoding
+        
+        var damageBoxCog = this.Space.FindObjectByName("PigSlashDamagBox");
+        damageBoxCog.PigSwordController.WillHurt = true;
+    }
     
     function MushroomShooting()
     {
         this.Space.CreateAtPosition(this.MushroomShotArch,
             Real3(this.Owner.Transform.Translation.X, this.Owner.Transform.Translation.Y, 0));
         var shotCog = this.Space.FindObjectByName("MushroomShot");
-        shotCog.MushroomShotController.Angle = this.MushroomShotAngle * 45;
+        shotCog.MushroomShotController.Angle = Math.ToRadians(this.MushroomShotAngle * 45);
 
         //recursion yo'
         var seq = Action.Sequence(this.Owner.Actions);
@@ -424,7 +441,7 @@ class EnemyController : ZilchComponent
         {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomS");
             var seq = Action.Sequence(this.Owner.Actions);
-            var time = 5 - 2 / (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty / 2);
+            var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4;
             Actions.Delay(seq, time);
             Actions.Call(seq, this.MushroomShooting);
             this.Check = true;
@@ -456,6 +473,11 @@ class EnemyController : ZilchComponent
             this.Space.CreateAtPosition(this.DeathParticleArche, this.Owner.Transform.Translation);//makes a partical efect on death
             this.Space.CreateAtPosition(this.Drop, this.Owner.Transform.Translation);
             this.LevelCog.LevelController.DynamicDifficulty += 0.01;
+            if (this.TypeOfEnemy == "Pig" && this.PigAttacking)
+            {
+                var damageBoxCog = this.Space.FindObjectByName("PigSlashDamagBox");
+                damageBoxCog.PigSwordController.PleaseKillMe();
+            }
             this.Owner.Destroy();
         }
     }
