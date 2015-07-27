@@ -62,6 +62,7 @@ Cog =
 	},
 	EnemyController = 
 	{
+		string PigDamageBoxArch = "5548d9352e8a70da:PigSlashDamagBox",
 		string MushroomShotArch = "55498398d1b5f35f:MushroomShot",
 		string ActTextArch = "55c3d3f2a7a4ce46:ActText",
 		float DefaultHP = 5,
@@ -75,5 +76,8 @@ Cog =
 		Vec4 DrawColor = [1, 1, 1, 1],
 		float HeadSize = 0.25,
 		bool OnTop = true,
+	},
+	Hierarchy = 
+	{
 	},
 },
