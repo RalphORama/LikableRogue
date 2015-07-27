@@ -6,6 +6,7 @@ class EnemyController : ZilchComponent
     var PigDamageBoxArch : Archetype = null;
     var PigAttacking : Boolean = false;
     var PigSlashZone : Real3 = Real3(0,-1,0);
+    var PigDamageBoxCog : Cog = null;
     
     [Property]
     var MushroomShotArch : Archetype = null;
@@ -383,8 +384,8 @@ class EnemyController : ZilchComponent
         var createdPosition = Real3(this.PigSlashZone.X + this.Owner.Transform.Translation.X, this.PigSlashZone.Y + this.Owner.Transform.Translation.Y, 0);
         this.Space.CreateAtPosition(this.PigDamageBoxArch, createdPosition);
         
-        var damageBoxCog = this.Space.FindObjectByName("PigSlashDamagBox");
-        damageBoxCog.PigSwordController.WillHurt = false;
+        this.PigDamageBoxCog = this.Space.FindObjectByName("PigSlashDamagBox");
+        this.PigDamageBoxCog.PigSwordController.WillHurt = false;
         
         var seq = Action.Sequence(this.Owner.Actions);
         Actions.Delay(seq, 1);
@@ -395,8 +396,16 @@ class EnemyController : ZilchComponent
     {
         //Console.WriteLine("Swung!"); //decoding
         
-        var damageBoxCog = this.Space.FindObjectByName("PigSlashDamagBox");
-        damageBoxCog.PigSwordController.WillHurt = true;
+        this.PigDamageBoxCog.PigSwordController.WillHurt = true;
+        var seq = Action.Sequence(this.Owner.Actions);
+        Actions.Delay(seq, 0.5);
+        Actions.Call(seq, this.PigDestroyAttackBox);
+    }
+    
+    function PigDestroyAttackBox()
+    {
+        this.PigDamageBoxCog.PigSwordController.PleaseKillMe = true;
+        this.PigAttacking = false;
     }
     
     function MushroomShooting()
@@ -475,8 +484,7 @@ class EnemyController : ZilchComponent
             this.LevelCog.LevelController.DynamicDifficulty += 0.01;
             if (this.TypeOfEnemy == "Pig" && this.PigAttacking)
             {
-                var damageBoxCog = this.Space.FindObjectByName("PigSlashDamagBox");
-                damageBoxCog.PigSwordController.PleaseKillMe();
+                this.PigDamageBoxCog.PigSwordController.PleaseKillMe = true;
             }
             this.Owner.Destroy();
         }

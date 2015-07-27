@@ -1,12 +1,13 @@
 class PigSwordController : ZilchComponent
 {
     var WillHurt : Boolean = false;
-    var EnemyCog : Cog = null;
+    var PleaseKillMe : Boolean = false;
+    var IHurtThePlayer : Boolean = false;
     
     function Initialize(init : CogInitializer)
     {
-        this.EnemyCog = this.Space.FindObjectByName("Enemy");
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionStarted);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -14,20 +15,31 @@ class PigSwordController : ZilchComponent
         if (this.WillHurt)
         {
             this.Owner.Sprite.Color = Real4(0,0,0,1);
-            var seq = Action.Sequence(this.Owner.Actions);
-            Actions.Delay(seq, 0.5);
-            Actions.Call(seq, this.PleaseKillMe);
+            this.Owner.BoxCollider.SendsEvents = true;
         }
         else
         {
             this.Owner.Sprite.Color = Real4(1,0,0,1);
         }
+        
+        if (this.PleaseKillMe)
+        {
+            this.Owner.Destroy();
+        }
     }
     
-    function PleaseKillMe()
+    function OnCollisionStarted(event : CollisionEvent)
     {
-        this.Owner.Destroy();
-        this.EnemyCog.EnemyController.PigAttacking = false;
+        if (event.OtherObject.Name == "Player" && !this.IHurtThePlayer)
+        {
+            this.IHurtThePlayer = true;
+            event.OtherObject.PlayerController.StunPlayer(0.1);
+            event.OtherObject.PlayerController.CurentHP -= 1;
+            
+            //update HUD
+            var hudParent : Cog = this.Space.FindObjectByName( "Camera" );
+            var hud : Cog = hudParent.FindChildByName( "HudContainer" );
+            hud.HUDController.UpdateHealth( event.OtherObject );
+        }
     }
-    
 }
