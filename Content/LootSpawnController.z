@@ -65,13 +65,49 @@ class LootSpawnController : ZilchComponent
         // first, initialize some variables
         var pickupLocations : Array[Real3] = Array[Real3]();
         
+        // used for checking if we should recalculate a spawnpoint
+        var recalculateSpawnPoint : Boolean = false;
+        
         // loop through every pickup we need to spawn
         for ( var pickupsSpawned : Integer = 0; pickupsSpawned < numPickupsToSpawn; ++pickupsSpawned )
         {
-            // create the spawnpoint
             var spawnPoint : Real3 = Real3( this.RandomGenerator.Range(minSpawnLocation.X, maxSpawnLocation.X) as Integer,
                                             this.RandomGenerator.Range(minSpawnLocation.Y, maxSpawnLocation.Y) as Integer,
                                             0 );
+            
+            if ( pickupLocations.Count > 0 )
+            {
+                foreach ( var location in pickupLocations )
+                {
+                    if ( location.X == spawnPoint.X && location.Y == spawnPoint.Y )
+                    {
+                        recalculateSpawnPoint = true;
+                    }
+                }
+            }
+            else 
+            {
+                pickupLocations.Add( spawnPoint );
+            }
+            
+            // this may be poorly implemented, but it works. fuck you.
+            while ( recalculateSpawnPoint == true )
+            {
+                foreach ( var location in pickupLocations )
+                {
+                    if ( location.X == spawnPoint.X && location.Y == spawnPoint.Y )
+                    {
+                        recalculateSpawnPoint = true;
+                        spawnPoint = Real3( this.RandomGenerator.Range(minSpawnLocation.X, maxSpawnLocation.X) as Integer,
+                                            this.RandomGenerator.Range(minSpawnLocation.Y, maxSpawnLocation.Y) as Integer,
+                                            0 );
+                    }
+                    else
+                    {
+                        recalculateSpawnPoint = false;
+                    }
+                }
+            }
             
             // the pickup itself will handle what type of thing it is
             var pickUpToSpawn : Archetype = this.ParentDrop;

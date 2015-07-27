@@ -1,0 +1,37 @@
+//##########################################################################################
+// IMPORTANT: TO USE THIS SCRIPT:
+// THIS SCRIPT INTERACTS WITH "LEVELCHANGER" SCRIPT
+//##########################################################################################
+
+class Splash : ZilchComponent
+{
+    [Property]
+    var Skippable : Boolean = false;
+    [Property]
+    var Delay : Real = 2;
+    [Property]
+    var LevelToLoadName : String = "";
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        var seq = Action.Sequence(this.Owner.Actions);
+        Action.Delay (seq, this.Delay);
+        Action.Call(seq, this.Change);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(Zero.Keyboard.KeyIsPressed(Keys.Space) && this.Skippable == true)
+        {
+            this.Change();
+        }
+    }
+    function Change()
+    {
+        if(this.LevelToLoadName != "")
+        {
+            this.LevelSettings.LevelChanger.ChangeLevelByName(this.LevelToLoadName);
+        }
+    }
+}

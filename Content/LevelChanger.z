@@ -1,0 +1,79 @@
+//##########################################################################################
+// IMPORTANT: TO USE THIS SCRIPT:
+// 1>
+// Use the createsprite command in the editor, and upload it as an archetype with archetypename "Box"
+// 2>
+// Add the script to every level (except hud) on the "LevelSettings" object
+// 3>
+// To change levels in your project, instead of doing the regular way, instead call this script, example:
+// this.Space.FindObjectByName("LevelSettings").LevelChanger.ChangeLevelByName("ExampleLevel");
+// 4>
+// GO TO LEVELSETTINGS / FORWARDRENDER AND CHANGE "CLEARCOLOR" TO BLACK
+//##########################################################################################
+
+class LevelChanger : ZilchComponent
+{
+    [Property]
+    var ChangeSpeed : Real  = 0.3;
+    [Property]
+    var FadeColor : Real4   = Real4( 0, 0, 0, 1);
+
+    var LevelString : String = "";
+    function Initialize(init : CogInitializer)
+    {
+        this.FadeIn();
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(Zero.Keyboard.KeyIsPressed(Keys.One))
+        {
+            this.ChangeLevelByName("Level");
+        }
+        if(Zero.Keyboard.KeyIsPressed(Keys.Two))
+        {
+            this.ChangeLevelByName("Level2");
+        }
+    }
+    
+    function FadeOut()
+    {
+        var myPos           = this.Space.FindObjectByName("Camera").Transform.Translation;
+        myPos.Z             = 0;
+        var box             = this.Space.CreateAtPosition(Archetype.Find("Box"), myPos);
+        this.FadeColor.W    = 0;
+        box.Sprite.Color    = this.FadeColor;
+        box.Transform.Scale = Real3(999,999,999);
+        var seq             = Action.Sequence(this.Owner.Actions);
+        this.FadeColor.W    = 1;
+        Action.Property(seq, @box.Sprite.Color, this.FadeColor, this.ChangeSpeed, Ease.Linear);
+    }
+    
+    function FadeIn()
+    {
+        var myPos           = this.Space.FindObjectByName("Camera").Transform.Translation;
+        myPos.Z             = 0;
+        var box             = this.Space.CreateAtPosition(Archetype.Find("Box"), myPos);
+        this.FadeColor.W    = 1;
+        box.Sprite.Color    = this.FadeColor;
+        box.Transform.Scale = Real3(999,999,999);
+        var seq             = Action.Sequence(this.Owner.Actions);
+        this.FadeColor.W    = 0;
+        Action.Property(seq, @box.Sprite.Color, this.FadeColor, this.ChangeSpeed, Ease.Linear);
+    }
+    
+    function ChangeLevelByName(name:String)
+    {
+        this.FadeOut();
+        this.LevelString = name;
+        var seq = Action.Sequence(this.Owner.Actions);
+        Action.Delay(seq, this.ChangeSpeed);
+        Action.Call(seq, this.Change);
+    }
+    
+    function Change()
+    {
+        this.Space.LoadLevel(Level.Find(this.LevelString));
+    }
+}

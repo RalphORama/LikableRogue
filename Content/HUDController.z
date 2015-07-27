@@ -36,8 +36,8 @@ class HUDController : ZilchComponent
         this.HPLabel    = this.Owner.FindChildByName( "HPLabel" );
         this.AmmoLabel  = this.Owner.FindChildByName( "AmmoLabel" );
         
-        this.HealthSpriteAnchor = Real3( this.HPLabel.Transform.Translation.X + 0.5, 
-                                         this.HPLabel.Transform.Translation.Y - 0.5, 
+        this.HealthSpriteAnchor = Real3( this.HPLabel.Transform.Translation.X + (this.HPLabel.Area.Size.X / 2) + 0.25, 
+                                         this.HPLabel.Transform.Translation.Y, 
                                          this.HPLabel.Transform.Translation.Z );
         
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -51,22 +51,6 @@ class HUDController : ZilchComponent
             // should we set up the HP?
             if ( this.HPSetupDone == false )
             {
-                /*
-                // we're setting yup health instead of updating it
-                for ( var hp : Integer = 1; hp <= (this.PlayerCog.PlayerController.MaxHP / 2); ++hp )
-                {
-                    // create the sprite, then parent it to the HUD controller
-                    var healthSprite = this.Space.CreateAtPosition( this.HeartArchetype, Real3( 0, 0, 0 ) );
-                    healthSprite.AttachTo( this.Owner );
-                    healthSprite.Sprite.SpriteSource = this.WholeHeartSprite;
-                    healthSprite.Sprite.Color = Real4( 1.0, 1.0, 1.0, 1.0 );
-                    
-                    // set the new position for the sprite
-                    healthSprite.Transform.Translation = this.HealthSpriteAnchor;
-                    // increment the X value of where we'll place the next sprite
-                    this.HealthSpriteAnchor.X += 0.75;
-                }
-                */
                 
                 this.AddHealth( this.PlayerCog.PlayerController.MaxHP );
                 Console.WriteLine( this.PlayerCog.PlayerController.CurentHP );
@@ -161,6 +145,6 @@ class HUDController : ZilchComponent
     
     function UpdateAmmo ( newAmmo : Integer )
     {
-        this.AmmoLabel.SpriteText.Text = "Ammo:  `newAmmo`";
+        this.AmmoLabel.SpriteText.Text = "Ammo:`newAmmo`";
     }
 }

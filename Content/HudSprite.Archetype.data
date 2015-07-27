@@ -6,7 +6,7 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "HudBG",
+		string Name = "HP-BG",
 	},
 	Archetyped = 
 	{
@@ -14,8 +14,8 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [7, -6.1, -1],
-		Vec3 Scale = [5, 1.5, 1],
+		Vec3 Translation = [-9.4, -7.5, -1],
+		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -35,6 +35,11 @@ Cog =
 		bool AnimationActive = true,
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
+	},
+	Area = 
+	{
+		Vec2 Size = [3.9, 1],
+		Location Origin = Center,
 	},
 	Hierarchy = 
 	{
