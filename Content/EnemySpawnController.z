@@ -58,7 +58,7 @@ class EnemySpawnController : ZilchComponent
                 // calculate the number of enemies to spawn
                 // min: difficulty of the floor (0 - 3)
                 // max: difficulty of the floor * dynamic difficulty
-                var numEnemiesToSpawn : Integer = ( this.RandomGenerator.Range(levelDifficulty, Real(levelDifficulty)/2 * dynamDifficulty) + 2 ) as Integer;
+                var numEnemiesToSpawn : Integer = ( this.RandomGenerator.Range(levelDifficulty, Real(levelDifficulty)/2 * dynamDifficulty) + 1 ) as Integer;
                 //Console.WriteLine( "Spawning `numEnemiesToSpawn` enemies." );
                 
                 // spawn the enemies
