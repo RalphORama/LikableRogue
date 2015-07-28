@@ -34,11 +34,11 @@ class LootSpawnController : ZilchComponent
                 var roomPosition : Real3 = event.OtherObject.Transform.WorldTranslation;
                 
                 // create min and max locations to spawn loot
-                var minLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) - 1, // x axis
-                                                        (roomPosition.Y as Integer) - 1, // y axis
+                var minLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) - 3, // x axis
+                                                        (roomPosition.Y as Integer) - 3, // y axis
                                                         0 );
-                var maxLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) + 1, // x axis
-                                                        (roomPosition.Y as Integer) + 1, // y axis
+                var maxLocationToSpawn : Real3 = Real3( (roomPosition.X as Integer) + 3, // x axis
+                                                        (roomPosition.Y as Integer) + 3, // y axis
                                                         0 );
                 
                 // access the current difficulties and assign them to local variables
