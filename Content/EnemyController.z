@@ -13,22 +13,11 @@ class EnemyController : ZilchComponent
     var MushroomAttacking : Boolean = false;
     var MushroomShotAngle : Integer;
     
-    var TypeOfEnemy : String; //Cat, Pig, Mushroom
-    /*if (this.TypeOfEnemy == "Cat")
-    {
+    var TypeOfEnemy : String; 
     
-    }
-    else if (this.TypeOfEnemy == "Pig")
-    {
-        
-    }
-    else if (this.TypeOfEnemy == "Mushroom")
-    {
-        
-    }*/
     [Property]
     var ActTextArch : Archetype = null;
-    var Active : Boolean = true; //Use this when programming when the Enemy is moving or not
+    var Active : Boolean = true;
     
     var IsEnemyStun : Boolean = false;
     
@@ -95,15 +84,11 @@ class EnemyController : ZilchComponent
                 }
             }
             event.OtherObject.RigidBody.ApplyLinearImpulse(Real3(playerPush.X,playerPush.Y,0));
-            //this.PlayerCog.RigidBody.ApplyLinearImpulse(Real3(1000,1000,0));
-            //this.PlayerCog.PlayerController.MoveVec=Real3(this.Owner.Transform.Translation.X+(this.PlayerPosition.X*2),this.Owner.Transform.Translation.Y+(this.PlayerPosition.Y*2),0);            
             this.PlayerCog.PlayerController.CurentHP -= 1;//int for taking damag, set to a var to costomize based on enemy
-            // here's some code for updating the HUD
-            // signed, Ralph
-            // thank you! - Dylan
-            var hudParent : Cog = this.Space.FindObjectByName( "Camera" );
-            var hud : Cog = hudParent.FindChildByName( "HudContainer" );
-            hud.HUDController.UpdateHealth( event.OtherObject );
+
+            var hudParent : Cog = this.Space.FindObjectByName( "Camera" );              //code for updating the HUD
+            var hud : Cog = hudParent.FindChildByName( "HudContainer" );                //code for updating the HUD
+            hud.HUDController.UpdateHealth( event.OtherObject );                        //code for updating the HUD
         }
         
         if (!this.IsEnemyStun){
@@ -125,7 +110,7 @@ class EnemyController : ZilchComponent
         this.Owner.Sprite.Visible = true;
         
         //East (Mushroom)
-        if (this.Ang > -0.5 && this.Ang < 0.5 && this.Ang != 0)
+        if (this.Ang > -0.4 && this.Ang < 0.4 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Mushroom")
             {
@@ -140,7 +125,7 @@ class EnemyController : ZilchComponent
         }
         
         //North East (Mushroom)
-        if (this.Ang < 1 && this.Ang > 0.5 && this.Ang != 0)
+        if (this.Ang < 1.2 && this.Ang > 0.4 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Mushroom")
             {
@@ -155,7 +140,7 @@ class EnemyController : ZilchComponent
         }
         
         //North (Mushroom)
-        if (this.Ang > 1 && this.Ang < 2 && this.Ang != 0)
+        if (this.Ang > 1.2 && this.Ang < 2 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Mushroom")
             {
@@ -170,7 +155,7 @@ class EnemyController : ZilchComponent
         }
         
         //North West (Mushroom)
-        if (this.Ang < 2.6 && this.Ang > 2 && this.Ang != 0)
+        if (this.Ang < 2.7 && this.Ang > 2 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Mushroom")
             {
@@ -185,7 +170,7 @@ class EnemyController : ZilchComponent
         }
         
         //West (Mushroom)
-        if (this.Ang < -2.6||this.Ang > 2.6 && this.Ang != 0)
+        if (this.Ang < -2.7 || this.Ang > 2.7 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Mushroom")
             {
@@ -200,7 +185,7 @@ class EnemyController : ZilchComponent
         }
         
         //South West (Mushroom)
-        if (this.Ang < -2 && this.Ang > -2.6 && this.Ang != 0)
+        if (this.Ang < -2 && this.Ang > -2.7 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Mushroom")
             {
@@ -215,7 +200,7 @@ class EnemyController : ZilchComponent
         }
         
         //South (Mushroom)
-        if (this.Ang < -1 && this.Ang > -2 && this.Ang != 0)
+        if (this.Ang < -1.2 && this.Ang > -2 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Mushroom")
             {
@@ -230,7 +215,7 @@ class EnemyController : ZilchComponent
         }
         
         //South East (Mushroom)
-        if (this.Ang < -0.5 && this.Ang > -1 && this.Ang != 0)
+        if (this.Ang < -0.4 && this.Ang > -1.2 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Mushroom")
             {
@@ -245,7 +230,7 @@ class EnemyController : ZilchComponent
         }
         
         //East (Cat and Pig)
-        if (this.Ang > -0.8 && this.Ang < 0.8 && this.Ang != 0)
+        if (this.Ang > -0.4 && this.Ang < 0.4 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Cat")
             {
@@ -260,7 +245,7 @@ class EnemyController : ZilchComponent
         }
         
         //North (Cat and Pig)
-        if (this.Ang > 0.8 && this.Ang < 2.4 && this.Ang != 0)
+        if (this.Ang > 1.2 && this.Ang < 2 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Cat")
             {
@@ -275,7 +260,7 @@ class EnemyController : ZilchComponent
         }
             
         //West (Cat and Pig)
-        if (this.Ang < -2.4 || this.Ang > 2.4 && this.Ang != 0)
+        if (this.Ang < -2.7 || this.Ang > 2.7 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Cat")
             {
@@ -290,7 +275,7 @@ class EnemyController : ZilchComponent
         }
             
         //South (Cat and Pig)
-        if (this.Ang < -0.8 && this.Ang > -2.6 && this.Ang != 0)
+        if (this.Ang < -1.2 && this.Ang > -2 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Cat")
             {
@@ -348,7 +333,7 @@ class EnemyController : ZilchComponent
             this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
             //Console.WriteLine(this.MoveSpeed);
         }
-        else if (this.TypeOfEnemy == "Pig")
+        else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
         {
             this.Owner.RigidBody.ApplyLinearImpulse(moveR3 * this.MoveSpeed);
             //Console.WriteLine(this.MoveSpeed);

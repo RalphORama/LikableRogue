@@ -64,7 +64,6 @@ Cog =
 	{
 		int PlayerNumber = 2,
 		string SlingShotProjectArch = "55d2e120dac3a62b:SlingShotProject",
-		int MaxHP = 2,
 		string PlayerDeathParticleEffectArche = "55db17a96075269b:PlayerDeathParticleEffect",
 	},
 	CameraPositionController = 
@@ -72,11 +71,9 @@ Cog =
 	},
 	EnemySpawnController = 
 	{
-		string Debugging_WhatSpawns = "Cat",
 		string Enemy01 = "555896ce3c0fb42c:Enemy",
 		string Enemy02 = "",
 		string Enemy03 = "",
-		int EnemySpawnRateMultiplier = 3,
 	},
 	LootSpawnController = 
 	{
@@ -108,7 +105,7 @@ Cog =
 			},
 			Named = 
 			{
-				string Name = "SwordDamagBox",
+				string Name = "SlashDamagBox",
 			},
 		},
 		Cog = 
