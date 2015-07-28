@@ -7,8 +7,6 @@ class CheatCodeController : ZilchComponent
     
     var CameraCog : Cog = null;
     
-    var OldHP : Integer = 0;
-    
     var GodMode : Boolean = false;
     
     function Initialize(init : CogInitializer)
@@ -21,6 +19,12 @@ class CheatCodeController : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        // keep the HP at max if GodMode is enabled
+        if ( this.GodMode == true )
+        {
+            this.PlayerCog.PlayerController.CurentHP = this.PlayerCog.PlayerController.MaxHP;
+        }
+        
         // godmode cheat
         // activated by pressing shift+G
         if ( Zero.Keyboard.KeyIsDown(Keys.Shift) && Zero.Keyboard.KeyIsPressed(Keys.G) )
@@ -28,16 +32,12 @@ class CheatCodeController : ZilchComponent
             if ( this.GodMode == false )
             {
                 this.GodMode = true;
-                this.OldHP = this.PlayerCog.PlayerController.CurentHP;
-                
-                this.PlayerCog.PlayerController.CurentHP = 9999;
                 this.DisplayCheatText( this.SpriteText, "God mode enabled..." );
                 //Console.WriteLine( "God mode enabled" );
             }
             else
             {
                 this.GodMode = false;
-                this.PlayerCog.PlayerController.CurentHP = this.OldHP;
                 this.DisplayCheatText( this.SpriteText, "God mode disabled..." );
                 //Console.WriteLine( "God mode disabled" );
             }
