@@ -250,12 +250,13 @@ class EnemyController : ZilchComponent
             if (this.TypeOfEnemy == "Cat")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
             }
             else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
             }
-            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
         }
         
         //North (Cat and Pig)
@@ -264,12 +265,13 @@ class EnemyController : ZilchComponent
             if (this.TypeOfEnemy == "Cat")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatN");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
             else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigN");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
         }
             
         //West (Cat and Pig)
@@ -278,12 +280,13 @@ class EnemyController : ZilchComponent
             if (this.TypeOfEnemy == "Cat")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
             else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
         }
             
         //South (Cat and Pig)
@@ -292,12 +295,13 @@ class EnemyController : ZilchComponent
             if (this.TypeOfEnemy == "Cat")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
             else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
         }
         
     }
