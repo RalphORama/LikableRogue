@@ -139,7 +139,7 @@ class PlayerController : ZilchComponent
         // initialize the camera object
         this.LevelCamera = this.Space.FindObjectByName("Camera");
         //Initalizes sword damage box
-        this.SwordDamageBox = this.Space.FindObjectByName("SwordDamagBox");
+        this.SwordDamageBox = this.Space.FindObjectByName("SlashDamagBox");
         //this.SlingShotProjectCogTemp = this.Space.FindObjectByName("SlingShotProject");
 
         //this changes camera size. larger == you can see more

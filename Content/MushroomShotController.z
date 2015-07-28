@@ -40,6 +40,17 @@ class MushroomShotController : ZilchComponent
             this.Owner.Destroy();
         }
         
+        if (event.OtherObject.Name == "SlashDamagBox")
+        {
+            this.Owner.Destroy();
+        }
+        
+        if (event.OtherObject.Name == "SlingShotProject" && !event.OtherObject.SlingProjControler.Pickup)
+        {
+            this.Owner.Destroy();
+            event.OtherObject.RigidBody.Velocity = Real3(0, 0, 0);
+        }
+        
         if (event.OtherObject.Name == "Player")
         {
             event.OtherObject.PlayerController.StunPlayer(0.4);
