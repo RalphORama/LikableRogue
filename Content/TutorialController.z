@@ -7,7 +7,7 @@ class TutorialController : ZilchComponent
     var SwordText : String  = "Use the LMB, Left Trigger, or Left Bumper to swing the sword.";
     var SlingshotText : String = "Shoot the slingshot with the RMB, Right Trigger, or Right Bumper.";
     var PickupText : String = "Pick up the rocks I shoot with my slingshot, or they get lost.";
-    var DoorText : String   = "Press Space or the A button to enter doors.";
+    var DoorText : String   = "Press Space or the A button to enter doors and go up ladders.";
     
     // for interacting with the player
     var PlayerCog : Cog = null;

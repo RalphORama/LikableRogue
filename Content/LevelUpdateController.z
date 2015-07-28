@@ -7,18 +7,22 @@ class LevelUpdateController : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         this.LevelManager = this.Space.FindObjectByName( "LevelManager" );
-        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
     }
 
-    function OnCollisionStarted(event : CollisionEvent)
+    function OnCollisionPersisted(event : CollisionEvent)
     {
-        if ( event.OtherObject.Name == "Player" )
+        if ( event.OtherObject.Name == "Player")
         {
-            this.Space.CreateAtPosition(this.LevelExitSoundArche, Real3(0,0,0));
-            // start routine to create new level
-            this.LevelManager.LevelController.SpawnNewLevel();
-            // destroy myself so there's not two exits
-            this.Owner.Destroy();
+            if (event.OtherObject.PlayerController.Gamepad.IsButtonPressed(7) || Zero.Keyboard.KeyIsPressed(Keys.Space) || event.OtherObject.PlayerController.Gamepad.IsButtonPressed(0))
+            {
+                this.Space.CreateAtPosition(this.LevelExitSoundArche, Real3(0,0,0));
+                // start routine to create new level
+                this.LevelManager.LevelController.SpawnNewLevel();
+                // destroy myself so there's not two exits
+                this.Owner.Destroy();
+            }
+
         }
     }
 }

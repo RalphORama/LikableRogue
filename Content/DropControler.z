@@ -115,7 +115,7 @@ class DropControler : ZilchComponent
             this.CreateActionText("Spe+1", event);
             this.SetParticle(event);
             event.OtherObject.SoundEmitter.Play();
-            event.OtherObject.PlayerController.MoveSpeed+=0.5;
+            event.OtherObject.PlayerController.MoveSpeed+=0.4;
             this.LevelCog.LevelController.DynamicDifficulty += 0.03;
             this.Owner.Destroy();
             }
