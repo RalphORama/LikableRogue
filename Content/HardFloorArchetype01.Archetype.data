@@ -1400,28 +1400,10 @@ Cog =
 		},
 		ArchetypeInstance = 
 		{
-			string Name = "552191204f7af9d5:Room00",
-			LinkId = 
-			{
-				uint Id = 78,
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-44, 32, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			Named = 
-			{
-				string Name = "Room00",
-			},
-		},
-		ArchetypeInstance = 
-		{
 			string Name = "551e3340fbaccf63:Room13",
 			LinkId = 
 			{
-				uint Id = 79,
+				uint Id = 78,
 			},
 			Transform = 
 			{
@@ -1439,7 +1421,7 @@ Cog =
 			string Name = "551e3e3ae7b50f9e:Room10",
 			LinkId = 
 			{
-				uint Id = 80,
+				uint Id = 79,
 			},
 			Transform = 
 			{
@@ -1457,7 +1439,7 @@ Cog =
 			string Name = "551e348ec3b1dda2:Room14",
 			LinkId = 
 			{
-				uint Id = 81,
+				uint Id = 80,
 			},
 			Transform = 
 			{
@@ -1475,7 +1457,7 @@ Cog =
 			string Name = "551e3e3ae7b50f9e:Room10",
 			LinkId = 
 			{
-				uint Id = 82,
+				uint Id = 81,
 			},
 			Transform = 
 			{
@@ -1493,7 +1475,7 @@ Cog =
 			string Name = "551e3e3ae7b50f9e:Room10",
 			LinkId = 
 			{
-				uint Id = 83,
+				uint Id = 82,
 			},
 			Transform = 
 			{
@@ -1511,7 +1493,7 @@ Cog =
 			string Name = "551e3da24e8194a5:Room04",
 			LinkId = 
 			{
-				uint Id = 84,
+				uint Id = 83,
 			},
 			Transform = 
 			{
@@ -1529,7 +1511,7 @@ Cog =
 			string Name = "551e348ec3b1dda2:Room14",
 			LinkId = 
 			{
-				uint Id = 85,
+				uint Id = 84,
 			},
 			Transform = 
 			{
@@ -1547,7 +1529,7 @@ Cog =
 			string Name = "551e33888eb018fe:Room12",
 			LinkId = 
 			{
-				uint Id = 86,
+				uint Id = 85,
 			},
 			Transform = 
 			{
@@ -1558,6 +1540,24 @@ Cog =
 			Named = 
 			{
 				string Name = "Room12",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3da24e8194a5:Room04",
+			LinkId = 
+			{
+				uint Id = 86,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-44, 32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room04",
 			},
 		},
 	},
