@@ -124,165 +124,186 @@ class EnemyController : ZilchComponent
     {
         this.Owner.Sprite.Visible = true;
         
-        //East
-        if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
+        //East (Mushroom)
+        if (this.Ang > -0.5 && this.Ang < 0.5 && this.Ang != 0)
+        {
+            if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomW");//Sets Sprite
+                this.MushroomShotAngle = 0;
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.PigSlashZone = Real3(1,0,0);
+            }
+        }
+        
+        //North East (Mushroom)
+        if (this.Ang < 1 && this.Ang > 0.5 && this.Ang != 0)
+        {
+            if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomNW");//Sets Sprite
+                this.MushroomShotAngle = 1;
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.PigSlashZone = Real3(1,1,0);
+            }
+        }
+        
+        //North (Mushroom)
+        if (this.Ang > 1 && this.Ang < 2 && this.Ang != 0)
+        {
+            if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomN");//Sets Sprite
+                this.MushroomShotAngle = 2;
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.PigSlashZone = Real3(0,1,0);
+            }
+        }
+        
+        //North West (Mushroom)
+        if (this.Ang < 2.6 && this.Ang > 2 && this.Ang != 0)
+        {
+            if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomNW");//Sets Sprite
+                this.MushroomShotAngle = 3;
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.PigSlashZone = Real3(-1,1,0);
+            }
+        }
+        
+        //West (Mushroom)
+        if (this.Ang < -2.6||this.Ang > 2.6 && this.Ang != 0)
+        {
+            if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomW");//Sets Sprite
+                this.MushroomShotAngle = 4;
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.PigSlashZone = Real3(-1,0,0);
+            }
+        }
+        
+        //South West (Mushroom)
+        if (this.Ang < -2 && this.Ang > -2.6 && this.Ang != 0)
+        {
+            if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomSW");//Sets Sprite
+                this.MushroomShotAngle = 5;
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.PigSlashZone = Real3(-1,-1,0);
+            }
+        }
+        
+        //South (Mushroom)
+        if (this.Ang < -1 && this.Ang > -2 && this.Ang != 0)
+        {
+            if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomS");//Sets Sprite
+                this.MushroomShotAngle = 6;
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.PigSlashZone = Real3(0,-1,0);
+            }
+        }
+        
+        //South East (Mushroom)
+        if (this.Ang < -0.5 && this.Ang > -1 && this.Ang != 0)
+        {
+            if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomSW");//Sets Sprite
+                this.MushroomShotAngle = 7;
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
+            else if (this.TypeOfEnemy == "Pig")
+            {
+                this.PigSlashZone = Real3(1,-1,0);
+            }
+        }
+        
+        //East (Cat and Pig)
+        if (this.Ang > -0.8 && this.Ang < 0.8 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Cat")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
             }
-            else if (this.TypeOfEnemy == "Pig")
+            else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
             {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
-                this.PigSlashZone = Real3(1,0,0);
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
             }
-            else if (this.TypeOfEnemy == "Mushroom")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomW");//Sets Sprite
-                this.MushroomShotAngle = 0;
-            }
-            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
         }
         
-        //North East
-        if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
-        {
-            if (this.TypeOfEnemy == "Cat")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
-            }
-            else if (this.TypeOfEnemy == "Pig")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
-                this.PigSlashZone = Real3(1,1,0);
-            }
-            else if (this.TypeOfEnemy == "Mushroom")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomNW");//Sets Sprite
-                this.MushroomShotAngle = 1;
-            }
-            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
-        }
-        
-        //North
-        if (this.Ang>1&&this.Ang<2&&this.Ang!=0)
+        //North (Cat and Pig)
+        if (this.Ang > 0.8 && this.Ang < 2.4 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Cat")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatN");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
-            else if (this.TypeOfEnemy == "Pig")
+            else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigN");//Sets Sprite
-                this.PigSlashZone = Real3(0,1,0);
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
-            else if (this.TypeOfEnemy == "Mushroom")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomN");//Sets Sprite
-                this.MushroomShotAngle = 2;
-            }
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
         }
-        
-        //North West
-        if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
-        {
-            if (this.TypeOfEnemy == "Cat")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatNW");//Sets Sprite
-            }
-            else if (this.TypeOfEnemy == "Pig")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");//Sets Sprite
-                this.PigSlashZone = Real3(-1,1,0);
-            }
-            else if (this.TypeOfEnemy == "Mushroom")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomNW");//Sets Sprite
-                this.MushroomShotAngle = 3;
-            }
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
-        }
-        
-        //West
-        if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
+            
+        //West (Cat and Pig)
+        if (this.Ang < -2.4 || this.Ang > 2.4 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Cat")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
-            else if (this.TypeOfEnemy == "Pig")
+            else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
-                this.PigSlashZone = Real3(-1,0,0);
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
-            else if (this.TypeOfEnemy == "Mushroom")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomW");//Sets Sprite
-                this.MushroomShotAngle = 4;
-            }
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
         }
-        
-        //South West
-        if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
-        {
-            if (this.TypeOfEnemy == "Cat")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
-            }
-            else if (this.TypeOfEnemy == "Pig")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
-                this.PigSlashZone = Real3(-1,-1,0);
-            }
-            else if (this.TypeOfEnemy == "Mushroom")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomSW");//Sets Sprite
-                this.MushroomShotAngle = 5;
-            }
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
-        }
-        
-        //South
-        if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
+            
+        //South (Cat and Pig)
+        if (this.Ang < -0.8 && this.Ang > -2.6 && this.Ang != 0)
         {
             if (this.TypeOfEnemy == "Cat")
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");//Sets Sprite
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
-            else if (this.TypeOfEnemy == "Pig")
+            else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
             {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");//Sets Sprite
-                this.PigSlashZone = Real3(0,-1,0);
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
             }
-            else if (this.TypeOfEnemy == "Mushroom")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomS");//Sets Sprite
-                this.MushroomShotAngle = 6;
-            }
-            this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
         }
         
-        //South East
-        if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
-        {
-            if (this.TypeOfEnemy == "Cat")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatSW");//Sets Sprite
-            }
-            else if (this.TypeOfEnemy == "Pig")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");//Sets Sprite
-                this.PigSlashZone = Real3(1,-1,0);
-            }
-            else if (this.TypeOfEnemy == "Mushroom")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomSW");//Sets Sprite
-                this.MushroomShotAngle = 7;
-            }
-            this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
-        }
     }
     
     function UpdateEnemyMovement()//Updates Ang based on Player location
@@ -368,7 +389,7 @@ class EnemyController : ZilchComponent
             var x = this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X;
             var y = this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y;
             var dist = Math.Sqrt(x * x + y * y);
-            if (dist <= 2)
+            if (dist <= 1.5)
             {
                 this.PigAttacking = true;
                 this.PigSlashSword();
@@ -380,6 +401,49 @@ class EnemyController : ZilchComponent
     function PigSlashSword()
     {
         //Console.WriteLine("Creating attack"); //decoding
+        
+        //this.PigSlashZone = Real3(1,0,0); //for reference (SlashZone is East)
+        
+        if (this.PigSlashZone == Real3(1, 0, 0))
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");
+            this.Owner.Sprite.FlipX=true;
+        }
+        else if (this.PigSlashZone == Real3(1, 1, 0))
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");
+            this.Owner.Sprite.FlipX=true;
+        }
+        else if (this.PigSlashZone == Real3(0, 1, 0))
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigN");
+            this.Owner.Sprite.FlipX=false;
+        }
+        else if (this.PigSlashZone == Real3(-1, 1, 0))
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigNW");
+            this.Owner.Sprite.FlipX=false;
+        }
+        else if (this.PigSlashZone == Real3(-1, 0, 0))
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");
+            this.Owner.Sprite.FlipX=false;
+        }
+        else if (this.PigSlashZone == Real3(-1, -1, 0))
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");
+            this.Owner.Sprite.FlipX=false;
+        }
+        else if (this.PigSlashZone == Real3(0, -1, 0))
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");
+            this.Owner.Sprite.FlipX=false;
+        }
+        else if (this.PigSlashZone == Real3(1, -1, 0))
+        {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigSW");
+            this.Owner.Sprite.FlipX=true;
+        }
         
         var createdPosition = Real3(this.PigSlashZone.X + this.Owner.Transform.Translation.X, this.PigSlashZone.Y + this.Owner.Transform.Translation.Y, 0);
         this.Space.CreateAtPosition(this.PigDamageBoxArch, createdPosition);
