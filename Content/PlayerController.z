@@ -182,6 +182,15 @@ class PlayerController : ZilchComponent
         }
     function ProjectileLaunch()
         {
+        if (((Zero.Mouse.IsButtonDown(MouseButtons.Right)||this.Gamepad.IsButtonPressed(9)||this.Gamepad.RightTrigger.X>0)&& this.SlingShotFiring==true)&&((this.MaxProjec-this.CurentProject)+1==0))
+            {
+            Console.WriteLine("Dud");
+            this.Owner.SoundEmitter.Cue = SoundCue.Find("NotFireingSFXCue");
+            this.Owner.SoundEmitter.Play();
+            this.Owner.SoundEmitter.Cue = SoundCue.Find("PikupSFX_Cue");
+            }
+            //.SoundEmitter.
+            
         if(((Zero.Mouse.IsButtonDown(MouseButtons.Right)||this.Gamepad.IsButtonPressed(9)||this.Gamepad.RightTrigger.X>0)&& this.SlingShotFiring==false)&&(this.MaxProjec>=this.CurentProject))
             {
             this.HasSlingshot=true;
@@ -211,6 +220,7 @@ class PlayerController : ZilchComponent
                 }
             this.MoveProjectile(this.ProjMoveVec.Get(this.SlinShoAmmCou));
             }
+
         if ((Zero.Mouse.IsButtonDown(MouseButtons.Right)==false&&(this.Gamepad.RightTrigger.X<=0))&&(this.MaxProjec>=this.CurentProject)) //(this.Gamepad.IsButtonReleased(8)||(Zero.Mouse.IsButtonDown(MouseButtons.Left)==false))
             {
             //Console.WriteLine(this.Gamepad.LeftTrigger.X);
