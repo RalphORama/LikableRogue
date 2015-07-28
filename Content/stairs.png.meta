@@ -1,19 +1,12 @@
 ImageContent = 
 {
-	ContentTags = 
-	{
-		Array Tags = 
-		[
-			"Environment",
-		],
-	},
 	SpriteSourceBuilder = 
 	{
-		string Name = "door",
-		uint64 ResourceId = 5511a334be534f67,
+		string Name = "stairs",
+		uint64 ResourceId = 55074ad59e58497c,
 		uint64 AtlasId = 5274cf95e4a661fd,
-		uint FrameSizeX = 64,
-		uint FrameSizeY = 64,
+		uint FrameSizeX = 0,
+		uint FrameSizeY = 0,
 		uint FrameCount = 1,
 		float FrameDelay = 0.0833333,
 		float OriginX = 32,
