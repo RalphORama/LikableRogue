@@ -2,17 +2,11 @@ class TutorialController : ZilchComponent
 {
     // TODO: Edit these later
     // the various tutorial lines
-    [Property]
     var MoveText : String   = "Move with WASD or the Left Joystick.";
-    [Property]
     var LookText : String   = "Use  Mouse or the Right Joystick to aim.";
-    [Property]
     var SwordText : String  = "Use the LMB, Left Trigger, or Left Bumper to swing the sword.";
-    [Property]
     var SlingshotText : String = "Shoot the slingshot with the RMB, Right Trigger, or Right Bumper.";
-    [Property]
     var PickupText : String = "Pick up the rocks I shoot with my slingshot, or they get lost.";
-    [Property]
     var DoorText : String   = "Press Space or the A button to enter doors.";
     
     // for interacting with the player
