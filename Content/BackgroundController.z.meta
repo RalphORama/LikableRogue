@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "BackgroundController",
+		uint64 ResourceId = 550613cfb8e078f5,
+	},
+},
