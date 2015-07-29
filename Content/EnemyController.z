@@ -229,66 +229,68 @@ class EnemyController : ZilchComponent
             }
         }
         
-        //East (Cat and Pig)
-        if (this.Ang > -0.4 && this.Ang < 0.4 && this.Ang != 0)
+        if (!this.IsEnemyStun)
         {
-            if (this.TypeOfEnemy == "Cat")
+            //East (Cat and Pig)
+            if (this.Ang > -0.4 && this.Ang < 0.4 && this.Ang != 0)
             {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
-                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+                if (this.TypeOfEnemy == "Cat" && !(this.Owner.Sprite.SpriteSource == SpriteSource.Find("Cat_Walk_Right_anim")))
+                {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Find("Cat_Walk_Right_anim");
+                    this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
+                else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
+                {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");
+                    this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+                }
             }
-            else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");
-                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
-            }
-        }
-        
-        //North (Cat and Pig)
-        if (this.Ang > 1.2 && this.Ang < 2 && this.Ang != 0)
-        {
-            if (this.TypeOfEnemy == "Cat")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatN");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-            }
-            else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigN");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-            }
-        }
             
-        //West (Cat and Pig)
-        if (this.Ang < -2.7 || this.Ang > 2.7 && this.Ang != 0)
-        {
-            if (this.TypeOfEnemy == "Cat")
+            //North (Cat and Pig)
+            if (this.Ang > 1.2 && this.Ang < 2 && this.Ang != 0)
             {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                if (this.TypeOfEnemy == "Cat")
+                {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatN");//Sets Sprite
+                    this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
+                else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
+                {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigN");//Sets Sprite
+                    this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
             }
-            else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
+                
+            //West (Cat and Pig)
+            if (this.Ang < -2.7 || this.Ang > 2.7 && this.Ang != 0)
             {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                if (this.TypeOfEnemy == "Cat" && !(this.Owner.Sprite.SpriteSource == SpriteSource.Find("Cat_Walk_Left_anim")))
+                {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Find("Cat_Walk_Left_anim");//Sets Sprite
+                    this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
+                else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
+                {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigW");//Sets Sprite
+                    this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
+            }
+                
+            //South (Cat and Pig)
+            if (this.Ang < -1.2 && this.Ang > -2 && this.Ang != 0)
+            {
+                if (this.TypeOfEnemy == "Cat")
+                {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");//Sets Sprite
+                    this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
+                else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
+                {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");//Sets Sprite
+                    this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+                }
             }
         }
-            
-        //South (Cat and Pig)
-        if (this.Ang < -1.2 && this.Ang > -2 && this.Ang != 0)
-        {
-            if (this.TypeOfEnemy == "Cat")
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-            }
-            else if (this.TypeOfEnemy == "Pig" && !this.PigAttacking)
-            {
-                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");//Sets Sprite
-                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
-            }
-        }
-        
     }
     
     function UpdateEnemyMovement()//Updates Ang based on Player location
@@ -352,11 +354,27 @@ class EnemyController : ZilchComponent
     {
         this.Owner.Sprite.Color=Real4(1,255,255,1);
         this.IsEnemyStun = true;
-        var seq = Action.Sequence(this.Owner.Actions);
+        
+        if (this.TypeOfEnemy == "Cat")
+        {
+            if (this.Owner.Sprite.SpriteSource == SpriteSource.Find("Cat_Walk_Right_anim"))
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
+                this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
+            }
+            else if (this.Owner.Sprite.SpriteSource == SpriteSource.Find("Cat_Walk_Left_anim"))
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatW");
+                this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
+            }
+        }
+        
         if (this.TypeOfEnemy == "Pig")
         {
             time /= 3;
         }
+        
+        var seq = Action.Sequence(this.Owner.Actions);
         Actions.Delay(seq, time);   //delays the program for a certain amount of seconds
         Actions.Call(seq, this.RemoveStun);
     }
@@ -367,6 +385,11 @@ class EnemyController : ZilchComponent
         this.IsEnemyStun = false;
     }
     
+    function CatIntialized()
+    {
+        this.Check = true;
+    }
+    
     function PigDistanceFromPlayer()
     {
         if (!this.PigAttacking)
@@ -374,7 +397,7 @@ class EnemyController : ZilchComponent
             var x = this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X;
             var y = this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y;
             var dist = Math.Sqrt(x * x + y * y);
-            if (dist <= 1.5)
+            if (dist <= 1.75)
             {
                 this.PigAttacking = true;
                 this.PigSlashSword();
@@ -459,7 +482,7 @@ class EnemyController : ZilchComponent
     
     function MushroomShooting()
     {
-        if (this.Active)
+        if (this.Active && !this.IsEnemyStun)
         {
             this.Space.CreateAtPosition(this.MushroomShotArch,
                 Real3(this.Owner.Transform.Translation.X, this.Owner.Transform.Translation.Y, 0));
@@ -485,45 +508,52 @@ class EnemyController : ZilchComponent
     
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.UpdateFacingInput();
-        this.UpdateEnemyMovement();
-        
-        //Cat check
-        if (this.TypeOfEnemy == "Cat"&& !this.Check)
+        if (this.Check)
         {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");
-            this.Check = true;
-        }
-        
-        //Pig check
-        if (this.TypeOfEnemy == "Pig" && !this.Check)
-        {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");
-            this.Check = true;
-        }
-        else if (this.TypeOfEnemy == "Pig")
-        {
-            this.PigDistanceFromPlayer();
-        }
-        
-        //Mushroom check
-        if (this.TypeOfEnemy == "Mushroom" && !this.Check)
-        {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomS");
-            var seq = Action.Sequence(this.Owner.Actions);
-            if (((this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4 ) <= 3.75)
-            { 
-                var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4;
-                Actions.Delay(seq, time);
-                Actions.Call(seq, this.MushroomShooting);
-            }
-            else
+            if (this.TypeOfEnemy == "Pig")
             {
-                var time = 0.25;
-                Actions.Delay(seq, time);
-                Actions.Call(seq, this.MushroomShooting);
+                this.PigDistanceFromPlayer();
             }
-            this.Check = true;
+            this.UpdateFacingInput();
+            this.UpdateEnemyMovement();
+        }
+        else
+        {
+            //Cat check
+            if (this.TypeOfEnemy == "Cat")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("CatS");
+                var seq = Action.Sequence(this.Owner.Actions);
+                Actions.Delay(seq, 0.3);
+                Actions.Call(seq, this.CatIntialized);
+            }
+            
+            //Pig check
+            if (this.TypeOfEnemy == "Pig")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("PigS");
+                this.Check = true;
+            }
+            
+            //Mushroom check
+            if (this.TypeOfEnemy == "Mushroom")
+            {
+                this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomS");
+                var seq = Action.Sequence(this.Owner.Actions);
+                if (((this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4 ) <= 3.75)
+                { 
+                    var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4;
+                    Actions.Delay(seq, time);
+                    Actions.Call(seq, this.MushroomShooting);
+                }
+                else
+                {
+                    var time = 0.25;
+                    Actions.Delay(seq, time);
+                    Actions.Call(seq, this.MushroomShooting);
+                }
+                this.Check = true;
+            }
         }
         
         //Health set

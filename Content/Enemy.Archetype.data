@@ -72,7 +72,7 @@ Cog =
 	},
 	EnemyRaycaster = 
 	{
-		float CastDistance = 100,
+		float CastDistance = 1000,
 		Vec4 DrawColor = [1, 1, 1, 1],
 		float HeadSize = 0.25,
 		bool OnTop = true,

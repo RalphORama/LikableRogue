@@ -88,6 +88,13 @@ Cog =
 		float Pitch = 1,
 		bool Positional = true,
 	},
+	PlayerRaycaster = 
+	{
+		float CastDistance = 1000,
+		Vec4 DrawColor = [1, 1, 1, 1],
+		float HeadSize = 0.25,
+		bool OnTop = true,
+	},
 	Hierarchy = 
 	{
 		ArchetypeInstance = 
