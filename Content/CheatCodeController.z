@@ -29,13 +29,6 @@ class CheatCodeController : ZilchComponent
             this.PlayerCog.PlayerController.CurentHP = this.PlayerCog.PlayerController.MaxHP;
         }
         
-        // if super speed is enabled, set speed to max
-        // when it's disabled, set it to like 10, fuck it
-        if ( this.SuperSpeed == true )
-        {
-            this.PlayerCog.PlayerController.MoveSpeed = 30;
-        }
-        
         /// begin keyboard shortcut detection ///
         
         // godmode cheat
@@ -62,6 +55,7 @@ class CheatCodeController : ZilchComponent
             {
                 this.SuperSpeed = true;
                 this.DisplayCheatText( this.SpriteText, "Super speed enabled..." );
+                this.PlayerCog.PlayerController.MoveSpeed = 20;
             }
             else
             {

@@ -30,19 +30,12 @@ Cog =
 	},
 	Hierarchy = 
 	{
-		Cog = 
+		ArchetypeInstance = 
 		{
+			string Name = "551e3de340a9b18d:Room02",
 			LinkId = 
 			{
 				uint Id = 2,
-			},
-			Named = 
-			{
-				string Name = "Room02",
-			},
-			Archetyped = 
-			{
-				string Name = "551e3de340a9b18d:Room02",
 			},
 			Transform = 
 			{
@@ -50,319 +43,17 @@ Cog =
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
-			RoomController = 
-			{
-				bool NorthExit = true,
-				bool EastExit = true,
-				bool SouthExit = false,
-				bool WestExit = true,
-				int NumberOfExits = 3,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 3,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						Cog = 
-						{
-							LinkId = 
-							{
-								uint Id = 4,
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-							Archetyped = 
-							{
-								string Name = "55dc2c2dde3c5912:FOW",
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Sprite = 
-							{
-								bool Visible = true,
-								bool VisibilityCulling = true,
-								bool VisibilityEvents = true,
-								bool CastShadows = false,
-								Vec4 Color = [0, 0, 0, 1],
-								BlendMode BlendMode = Alpha,
-								SpriteGeometryMode GeometryMode = ZPlane,
-								string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-								string SpriteSource = "5275aa4d802dd6dc:Square",
-								bool RenderMask = false,
-								bool FlipX = false,
-								bool FlipY = false,
-								bool AnimationActive = true,
-								float AnimationSpeed = 1,
-								uint StartFrame = 0,
-							},
-							BoxCollider = 
-							{
-								bool Ghost = false,
-								bool SendsMessages = true,
-								bool Seamless = true,
-								string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-								string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-								Vec3 Offset = [0, 0, -5],
-								Vec3 Size = [0.5, 0.5, 5],
-							},
-							FOW_Controler = 
-							{
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b4976d662d25:NorthDoor",
-					LinkId = 
-					{
-						uint Id = 5,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 15, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "NorthDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b42e5fb51784:WestDoor",
-					LinkId = 
-					{
-						uint Id = 6,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-1, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WestDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 7,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 8,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 9,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 10,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 11,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 12,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 13,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 14,
-			},
 			Named = 
 			{
-				string Name = "Room12",
+				string Name = "Room02",
 			},
-			Archetyped = 
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e33888eb018fe:Room12",
+			LinkId = 
 			{
-				string Name = "551e33888eb018fe:Room12",
+				uint Id = 3,
 			},
 			Transform = 
 			{
@@ -370,249 +61,17 @@ Cog =
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
-			RoomController = 
-			{
-				bool NorthExit = false,
-				bool EastExit = true,
-				bool SouthExit = false,
-				bool WestExit = false,
-				int NumberOfExits = 1,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 15,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 16,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 17,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 18,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 19,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 20,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 21,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 22,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 23,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 24,
-			},
 			Named = 
 			{
-				string Name = "Room01",
+				string Name = "Room12",
 			},
-			Archetyped = 
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3c7664dd6e23:Room01",
+			LinkId = 
 			{
-				string Name = "551e3c7664dd6e23:Room01",
+				uint Id = 4,
 			},
 			Transform = 
 			{
@@ -620,2806 +79,9 @@ Cog =
 				Vec3 Scale = [1, 1, 1],
 				Quat Rotation = [0, 0, 0, 1],
 			},
-			RoomController = 
-			{
-				bool NorthExit = false,
-				bool EastExit = true,
-				bool SouthExit = true,
-				bool WestExit = true,
-				int NumberOfExits = 3,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 25,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 26,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b42e5fb51784:WestDoor",
-					LinkId = 
-					{
-						uint Id = 27,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-1, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WestDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 28,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b5d5b28c9d96:SouthDoor",
-					LinkId = 
-					{
-						uint Id = 29,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, -1, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "SouthDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 30,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 31,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 32,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 33,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 34,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 35,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 36,
-			},
-			Named = 
-			{
-				string Name = "Room06",
-			},
-			Archetyped = 
-			{
-				string Name = "551e3d4fa6391787:Room06",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-88, 0, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			RoomController = 
-			{
-				bool NorthExit = false,
-				bool EastExit = true,
-				bool SouthExit = false,
-				bool WestExit = true,
-				int NumberOfExits = 2,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 37,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 38,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b42e5fb51784:WestDoor",
-					LinkId = 
-					{
-						uint Id = 39,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-1, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WestDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 40,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 41,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 42,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 43,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 44,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 45,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 46,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 47,
-			},
-			Named = 
-			{
-				string Name = "Room06",
-			},
-			Archetyped = 
-			{
-				string Name = "551e3d4fa6391787:Room06",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-44, 0, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			RoomController = 
-			{
-				bool NorthExit = false,
-				bool EastExit = true,
-				bool SouthExit = false,
-				bool WestExit = true,
-				int NumberOfExits = 2,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 48,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 49,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b42e5fb51784:WestDoor",
-					LinkId = 
-					{
-						uint Id = 50,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-1, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WestDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 51,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 52,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 53,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 54,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 55,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 56,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 57,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 58,
-			},
 			Named = 
 			{
 				string Name = "Room01",
-			},
-			Archetyped = 
-			{
-				string Name = "551e3c7664dd6e23:Room01",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-110, 0, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			RoomController = 
-			{
-				bool NorthExit = false,
-				bool EastExit = true,
-				bool SouthExit = true,
-				bool WestExit = true,
-				int NumberOfExits = 3,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 59,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 60,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b42e5fb51784:WestDoor",
-					LinkId = 
-					{
-						uint Id = 61,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-1, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WestDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 62,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b5d5b28c9d96:SouthDoor",
-					LinkId = 
-					{
-						uint Id = 63,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, -1, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "SouthDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 64,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 65,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 66,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 67,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 68,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 69,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 70,
-			},
-			Named = 
-			{
-				string Name = "Room01",
-			},
-			Archetyped = 
-			{
-				string Name = "551e3c7664dd6e23:Room01",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-66, 0, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			RoomController = 
-			{
-				bool NorthExit = false,
-				bool EastExit = true,
-				bool SouthExit = true,
-				bool WestExit = true,
-				int NumberOfExits = 3,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 71,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 72,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b42e5fb51784:WestDoor",
-					LinkId = 
-					{
-						uint Id = 73,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-1, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WestDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 74,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b5d5b28c9d96:SouthDoor",
-					LinkId = 
-					{
-						uint Id = 75,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, -1, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "SouthDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 76,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 77,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 78,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 79,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 80,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 81,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 82,
-			},
-			Named = 
-			{
-				string Name = "Room01",
-			},
-			Archetyped = 
-			{
-				string Name = "551e3c7664dd6e23:Room01",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [22, 0, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			RoomController = 
-			{
-				bool NorthExit = false,
-				bool EastExit = true,
-				bool SouthExit = true,
-				bool WestExit = true,
-				int NumberOfExits = 3,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 83,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 84,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b42e5fb51784:WestDoor",
-					LinkId = 
-					{
-						uint Id = 85,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-1, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WestDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 86,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b5d5b28c9d96:SouthDoor",
-					LinkId = 
-					{
-						uint Id = 87,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, -1, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "SouthDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 88,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 89,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 90,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 91,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 92,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 93,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 94,
-			},
-			Named = 
-			{
-				string Name = "Room00",
-			},
-			Archetyped = 
-			{
-				string Name = "552191204f7af9d5:Room00",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [0, 16, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			RoomController = 
-			{
-				bool NorthExit = true,
-				bool EastExit = true,
-				bool SouthExit = true,
-				bool WestExit = true,
-				int NumberOfExits = 4,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 95,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 96,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b4976d662d25:NorthDoor",
-					LinkId = 
-					{
-						uint Id = 97,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 15, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "NorthDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b42e5fb51784:WestDoor",
-					LinkId = 
-					{
-						uint Id = 98,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-1, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WestDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 99,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b5d5b28c9d96:SouthDoor",
-					LinkId = 
-					{
-						uint Id = 100,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, -1, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "SouthDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 101,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 102,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 103,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 104,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 105,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 106,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 107,
-			},
-			Named = 
-			{
-				string Name = "Room09",
-			},
-			Archetyped = 
-			{
-				string Name = "551e3e46faf1017f:Room09",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-44, 16, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			RoomController = 
-			{
-				bool NorthExit = true,
-				bool EastExit = true,
-				bool SouthExit = false,
-				bool WestExit = false,
-				int NumberOfExits = 2,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 108,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 109,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b4976d662d25:NorthDoor",
-					LinkId = 
-					{
-						uint Id = 110,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 15, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "NorthDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 111,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 112,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 113,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 114,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 115,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 116,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 117,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 118,
-			},
-			Named = 
-			{
-				string Name = "Room05",
-			},
-			Archetyped = 
-			{
-				string Name = "551e3d89b9507301:Room05",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-44, 32, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			RoomController = 
-			{
-				bool NorthExit = true,
-				bool EastExit = false,
-				bool SouthExit = true,
-				bool WestExit = false,
-				int NumberOfExits = 2,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 119,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						Cog = 
-						{
-							LinkId = 
-							{
-								uint Id = 120,
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-							Archetyped = 
-							{
-								string Name = "55dc2c2dde3c5912:FOW",
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Sprite = 
-							{
-								bool Visible = true,
-								bool VisibilityCulling = true,
-								bool VisibilityEvents = true,
-								bool CastShadows = false,
-								Vec4 Color = [0, 0, 0, 1],
-								BlendMode BlendMode = Alpha,
-								SpriteGeometryMode GeometryMode = ZPlane,
-								string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-								string SpriteSource = "5275aa4d802dd6dc:Square",
-								bool RenderMask = false,
-								bool FlipX = false,
-								bool FlipY = false,
-								bool AnimationActive = true,
-								float AnimationSpeed = 1,
-								uint StartFrame = 0,
-							},
-							BoxCollider = 
-							{
-								bool Ghost = false,
-								bool SendsMessages = true,
-								bool Seamless = true,
-								string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-								string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-								Vec3 Offset = [0, 0, -5],
-								Vec3 Size = [0.5, 0.5, 5],
-							},
-							FOW_Controler = 
-							{
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b4976d662d25:NorthDoor",
-					LinkId = 
-					{
-						uint Id = 121,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 15, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "NorthDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b5d5b28c9d96:SouthDoor",
-					LinkId = 
-					{
-						uint Id = 122,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, -1, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "SouthDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 123,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 124,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 125,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 126,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 127,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 128,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
-			},
-		},
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 129,
-			},
-			Named = 
-			{
-				string Name = "Room06",
-			},
-			Archetyped = 
-			{
-				string Name = "551e3d4fa6391787:Room06",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [-22, 16, 0],
-				Vec3 Scale = [1, 1, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			RoomController = 
-			{
-				bool NorthExit = false,
-				bool EastExit = true,
-				bool SouthExit = false,
-				bool WestExit = true,
-				int NumberOfExits = 2,
-				bool NorthRoomGenerated = false,
-				bool EastRoomGenerated = false,
-				bool SouthRoomGenerated = false,
-				bool WestRoomGenerated = false,
-				bool EnemiesDead = false,
-				bool EnemiesSpawned = false,
-				bool IsLootRoom = false,
-				bool LootSpawned = false,
-			},
-			Hierarchy = 
-			{
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 130,
-					},
-					Named = 
-					{
-						string Name = "Background",
-					},
-					Archetyped = 
-					{
-						string Name = "5522eaa630647362:Background",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [10, 7, -1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					BoxCollider = 
-					{
-						bool Ghost = true,
-						bool SendsMessages = true,
-						bool Seamless = true,
-						string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-						string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-						Vec3 Offset = [0, 0, 1],
-						Vec3 Size = [11, 7.5, 5],
-					},
-					Sprite = 
-					{
-						bool Visible = true,
-						bool VisibilityCulling = true,
-						bool VisibilityEvents = false,
-						bool CastShadows = false,
-						Vec4 Color = [1, 1, 1, 1],
-						BlendMode BlendMode = Alpha,
-						SpriteGeometryMode GeometryMode = ViewPlane,
-						string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-						string SpriteSource = "55dab2d0d710cfed:Dirt",
-						bool RenderMask = false,
-						bool FlipX = false,
-						bool FlipY = false,
-						bool AnimationActive = false,
-						float AnimationSpeed = 1,
-						uint StartFrame = 0,
-					},
-					RigidBody = 
-					{
-						bool Static = true,
-						bool Asleep = false,
-						bool Kinematic = false,
-						bool RotationLocked = true,
-						bool Mode2D = true,
-						bool AllowSleep = false,
-						bool Inherit2DMode = true,
-						Vec3 Velocity = [0, 0, 0],
-						Vec3 AngularVelocity = [0, 0, 0],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "55dc2c2dde3c5912:FOW",
-							LinkId = 
-							{
-								uint Id = 131,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [0, 0, 5],
-								Vec3 Scale = [22, 16, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "FOW",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b42e5fb51784:WestDoor",
-					LinkId = 
-					{
-						uint Id = 132,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [-1, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WestDoor",
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "5521b40542d13184:EastDoor",
-					LinkId = 
-					{
-						uint Id = 133,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [21, 7, 1],
-						Vec3 Scale = [1.1, 1.1, 1.1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "EastDoor",
-					},
-				},
-				Cog = 
-				{
-					LinkId = 
-					{
-						uint Id = 134,
-					},
-					Named = 
-					{
-						string Name = "WallHolder",
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Hierarchy = 
-					{
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 135,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, 15, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 136,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [21, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 137,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [10, -1, 0],
-								Vec3 Scale = [23, 1, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-						ArchetypeInstance = 
-						{
-							string Name = "5522c439f4af813c:BasicWall",
-							LinkId = 
-							{
-								uint Id = 138,
-							},
-							Transform = 
-							{
-								Vec3 Translation = [-1, 7, 0],
-								Vec3 Scale = [1, 15, 1],
-								Quat Rotation = [0, 0, 0, 1],
-							},
-							Named = 
-							{
-								string Name = "Wall",
-							},
-						},
-					},
-				},
-				ArchetypeInstance = 
-				{
-					string Name = "550f564be7bf92ff:WallSpriteHolder",
-					LinkId = 
-					{
-						uint Id = 139,
-					},
-					Transform = 
-					{
-						Vec3 Translation = [0, 0, 0.1],
-						Vec3 Scale = [1, 1, 1],
-						Quat Rotation = [0, 0, 0, 1],
-					},
-					Named = 
-					{
-						string Name = "WallSpriteHolder",
-					},
-				},
 			},
 		},
 		ArchetypeInstance = 
@@ -3427,7 +89,169 @@ Cog =
 			string Name = "551e3d4fa6391787:Room06",
 			LinkId = 
 			{
-				uint Id = 140,
+				uint Id = 5,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-88, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 6,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-44, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3c7664dd6e23:Room01",
+			LinkId = 
+			{
+				uint Id = 7,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-110, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room01",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3c7664dd6e23:Room01",
+			LinkId = 
+			{
+				uint Id = 8,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-66, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room01",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3c7664dd6e23:Room01",
+			LinkId = 
+			{
+				uint Id = 9,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [22, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room01",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "552191204f7af9d5:Room00",
+			LinkId = 
+			{
+				uint Id = 10,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room00",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e46faf1017f:Room09",
+			LinkId = 
+			{
+				uint Id = 11,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-44, 16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room09",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d89b9507301:Room05",
+			LinkId = 
+			{
+				uint Id = 12,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-44, 32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room05",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 13,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-22, 16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 14,
 			},
 			Transform = 
 			{
@@ -3445,7 +269,7 @@ Cog =
 			string Name = "551e3dcf4b414b1c:Room03",
 			LinkId = 
 			{
-				uint Id = 141,
+				uint Id = 15,
 			},
 			Transform = 
 			{
@@ -3463,7 +287,7 @@ Cog =
 			string Name = "552191204f7af9d5:Room00",
 			LinkId = 
 			{
-				uint Id = 142,
+				uint Id = 16,
 			},
 			Transform = 
 			{
@@ -3481,7 +305,7 @@ Cog =
 			string Name = "551e3340fbaccf63:Room13",
 			LinkId = 
 			{
-				uint Id = 143,
+				uint Id = 17,
 			},
 			Transform = 
 			{
@@ -3499,7 +323,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 144,
+				uint Id = 18,
 			},
 			Transform = 
 			{
@@ -3517,7 +341,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 145,
+				uint Id = 19,
 			},
 			Transform = 
 			{
@@ -3535,7 +359,7 @@ Cog =
 			string Name = "551e348ec3b1dda2:Room14",
 			LinkId = 
 			{
-				uint Id = 146,
+				uint Id = 20,
 			},
 			Transform = 
 			{
@@ -3553,7 +377,7 @@ Cog =
 			string Name = "551e3d4fa6391787:Room06",
 			LinkId = 
 			{
-				uint Id = 147,
+				uint Id = 21,
 			},
 			Transform = 
 			{
@@ -3571,7 +395,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 148,
+				uint Id = 22,
 			},
 			Transform = 
 			{
@@ -3589,7 +413,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 149,
+				uint Id = 23,
 			},
 			Transform = 
 			{
@@ -3607,7 +431,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 150,
+				uint Id = 24,
 			},
 			Transform = 
 			{
@@ -3625,7 +449,7 @@ Cog =
 			string Name = "551e3c7664dd6e23:Room01",
 			LinkId = 
 			{
-				uint Id = 151,
+				uint Id = 25,
 			},
 			Transform = 
 			{
@@ -3643,7 +467,7 @@ Cog =
 			string Name = "551e3c7664dd6e23:Room01",
 			LinkId = 
 			{
-				uint Id = 152,
+				uint Id = 26,
 			},
 			Transform = 
 			{
@@ -3661,7 +485,7 @@ Cog =
 			string Name = "551e3d4fa6391787:Room06",
 			LinkId = 
 			{
-				uint Id = 153,
+				uint Id = 27,
 			},
 			Transform = 
 			{
@@ -3679,7 +503,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 154,
+				uint Id = 28,
 			},
 			Transform = 
 			{
@@ -3697,7 +521,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 155,
+				uint Id = 29,
 			},
 			Transform = 
 			{
@@ -3715,7 +539,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 156,
+				uint Id = 30,
 			},
 			Transform = 
 			{
@@ -3733,7 +557,7 @@ Cog =
 			string Name = "551e3dcf4b414b1c:Room03",
 			LinkId = 
 			{
-				uint Id = 157,
+				uint Id = 31,
 			},
 			Transform = 
 			{
@@ -3751,7 +575,7 @@ Cog =
 			string Name = "552191204f7af9d5:Room00",
 			LinkId = 
 			{
-				uint Id = 158,
+				uint Id = 32,
 			},
 			Transform = 
 			{
@@ -3769,7 +593,7 @@ Cog =
 			string Name = "551e3e3ae7b50f9e:Room10",
 			LinkId = 
 			{
-				uint Id = 159,
+				uint Id = 33,
 			},
 			Transform = 
 			{
@@ -3787,7 +611,7 @@ Cog =
 			string Name = "551e3da24e8194a5:Room04",
 			LinkId = 
 			{
-				uint Id = 160,
+				uint Id = 34,
 			},
 			Transform = 
 			{
@@ -3805,7 +629,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 161,
+				uint Id = 35,
 			},
 			Transform = 
 			{
@@ -3823,7 +647,7 @@ Cog =
 			string Name = "551e348ec3b1dda2:Room14",
 			LinkId = 
 			{
-				uint Id = 162,
+				uint Id = 36,
 			},
 			Transform = 
 			{
@@ -3841,7 +665,7 @@ Cog =
 			string Name = "551e348ec3b1dda2:Room14",
 			LinkId = 
 			{
-				uint Id = 163,
+				uint Id = 37,
 			},
 			Transform = 
 			{
@@ -3859,7 +683,7 @@ Cog =
 			string Name = "551e3de340a9b18d:Room02",
 			LinkId = 
 			{
-				uint Id = 164,
+				uint Id = 38,
 			},
 			Transform = 
 			{
@@ -3877,7 +701,7 @@ Cog =
 			string Name = "551e3c7664dd6e23:Room01",
 			LinkId = 
 			{
-				uint Id = 165,
+				uint Id = 39,
 			},
 			Transform = 
 			{
@@ -3895,7 +719,7 @@ Cog =
 			string Name = "551e3d4fa6391787:Room06",
 			LinkId = 
 			{
-				uint Id = 166,
+				uint Id = 40,
 			},
 			Transform = 
 			{
@@ -3913,7 +737,7 @@ Cog =
 			string Name = "551e3d4fa6391787:Room06",
 			LinkId = 
 			{
-				uint Id = 167,
+				uint Id = 41,
 			},
 			Transform = 
 			{
@@ -3931,7 +755,7 @@ Cog =
 			string Name = "551e3d4fa6391787:Room06",
 			LinkId = 
 			{
-				uint Id = 168,
+				uint Id = 42,
 			},
 			Transform = 
 			{
@@ -3949,7 +773,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 169,
+				uint Id = 43,
 			},
 			Transform = 
 			{
@@ -3967,7 +791,7 @@ Cog =
 			string Name = "551e3c7664dd6e23:Room01",
 			LinkId = 
 			{
-				uint Id = 170,
+				uint Id = 44,
 			},
 			Transform = 
 			{
@@ -3985,7 +809,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 171,
+				uint Id = 45,
 			},
 			Transform = 
 			{
@@ -4003,7 +827,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 172,
+				uint Id = 46,
 			},
 			Transform = 
 			{
@@ -4021,7 +845,7 @@ Cog =
 			string Name = "551e3c7664dd6e23:Room01",
 			LinkId = 
 			{
-				uint Id = 173,
+				uint Id = 47,
 			},
 			Transform = 
 			{
@@ -4039,7 +863,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 174,
+				uint Id = 48,
 			},
 			Transform = 
 			{
@@ -4057,7 +881,7 @@ Cog =
 			string Name = "551e3c7664dd6e23:Room01",
 			LinkId = 
 			{
-				uint Id = 175,
+				uint Id = 49,
 			},
 			Transform = 
 			{
@@ -4075,7 +899,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 176,
+				uint Id = 50,
 			},
 			Transform = 
 			{
@@ -4093,7 +917,7 @@ Cog =
 			string Name = "551e3de340a9b18d:Room02",
 			LinkId = 
 			{
-				uint Id = 177,
+				uint Id = 51,
 			},
 			Transform = 
 			{
@@ -4111,7 +935,7 @@ Cog =
 			string Name = "551e3dcf4b414b1c:Room03",
 			LinkId = 
 			{
-				uint Id = 178,
+				uint Id = 52,
 			},
 			Transform = 
 			{
@@ -4129,7 +953,7 @@ Cog =
 			string Name = "551e3ef09ca57e6a:Room07",
 			LinkId = 
 			{
-				uint Id = 179,
+				uint Id = 53,
 			},
 			Transform = 
 			{
@@ -4147,7 +971,7 @@ Cog =
 			string Name = "551e33888eb018fe:Room12",
 			LinkId = 
 			{
-				uint Id = 180,
+				uint Id = 54,
 			},
 			Transform = 
 			{
@@ -4165,7 +989,7 @@ Cog =
 			string Name = "552191204f7af9d5:Room00",
 			LinkId = 
 			{
-				uint Id = 181,
+				uint Id = 55,
 			},
 			Transform = 
 			{
@@ -4183,7 +1007,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 182,
+				uint Id = 56,
 			},
 			Transform = 
 			{
@@ -4201,7 +1025,7 @@ Cog =
 			string Name = "551e3da24e8194a5:Room04",
 			LinkId = 
 			{
-				uint Id = 183,
+				uint Id = 57,
 			},
 			Transform = 
 			{
@@ -4219,7 +1043,7 @@ Cog =
 			string Name = "551e33888eb018fe:Room12",
 			LinkId = 
 			{
-				uint Id = 184,
+				uint Id = 58,
 			},
 			Transform = 
 			{
@@ -4237,7 +1061,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 185,
+				uint Id = 59,
 			},
 			Transform = 
 			{
@@ -4255,7 +1079,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 186,
+				uint Id = 60,
 			},
 			Transform = 
 			{
@@ -4273,7 +1097,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 187,
+				uint Id = 61,
 			},
 			Transform = 
 			{
@@ -4291,7 +1115,7 @@ Cog =
 			string Name = "551e328fbd625bb6:Room11",
 			LinkId = 
 			{
-				uint Id = 188,
+				uint Id = 62,
 			},
 			Transform = 
 			{
@@ -4309,7 +1133,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 189,
+				uint Id = 63,
 			},
 			Transform = 
 			{
@@ -4327,7 +1151,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 190,
+				uint Id = 64,
 			},
 			Transform = 
 			{
@@ -4345,7 +1169,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 191,
+				uint Id = 65,
 			},
 			Transform = 
 			{
@@ -4363,7 +1187,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 192,
+				uint Id = 66,
 			},
 			Transform = 
 			{
@@ -4381,7 +1205,7 @@ Cog =
 			string Name = "551e3340fbaccf63:Room13",
 			LinkId = 
 			{
-				uint Id = 193,
+				uint Id = 67,
 			},
 			Transform = 
 			{
@@ -4399,7 +1223,7 @@ Cog =
 			string Name = "551e3d89b9507301:Room05",
 			LinkId = 
 			{
-				uint Id = 194,
+				uint Id = 68,
 			},
 			Transform = 
 			{
@@ -4417,7 +1241,7 @@ Cog =
 			string Name = "551e3d4fa6391787:Room06",
 			LinkId = 
 			{
-				uint Id = 195,
+				uint Id = 69,
 			},
 			Transform = 
 			{
@@ -4435,7 +1259,7 @@ Cog =
 			string Name = "551e3eb68b1aeffe:Room08",
 			LinkId = 
 			{
-				uint Id = 196,
+				uint Id = 70,
 			},
 			Transform = 
 			{
@@ -4453,7 +1277,7 @@ Cog =
 			string Name = "551e3da24e8194a5:Room04",
 			LinkId = 
 			{
-				uint Id = 197,
+				uint Id = 71,
 			},
 			Transform = 
 			{
@@ -4471,7 +1295,7 @@ Cog =
 			string Name = "551e3340fbaccf63:Room13",
 			LinkId = 
 			{
-				uint Id = 198,
+				uint Id = 72,
 			},
 			Transform = 
 			{
@@ -4489,7 +1313,7 @@ Cog =
 			string Name = "551e3d4fa6391787:Room06",
 			LinkId = 
 			{
-				uint Id = 199,
+				uint Id = 73,
 			},
 			Transform = 
 			{
