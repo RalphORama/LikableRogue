@@ -13,6 +13,9 @@ class PlayerController : ZilchComponent
     //[Property]
     //var Location : Real3 = Real3(0, 0, 0);
     
+    
+    var StairArowCog : Cog = null;
+    
     //Initialize empty objects Object Variables
     var LevelCamera : Cog = null;    
     [Property]
@@ -131,7 +134,8 @@ class PlayerController : ZilchComponent
     
     function Initialize(init : CogInitializer)//initialize
         {
-        
+        this.StairArowCog = this.Space.FindObjectByName("StairArow");
+        this.StairArowCog.StairArowControler.StarsFound=true;
         this.AnimationSprite=SpriteSource.Find("Kyle_Walk_Right_Anim");
         //initialize torial
         this.TutorialHolder = this.Space.FindObjectByName( "TutorialHolder" );

@@ -82,7 +82,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.CreateActionText("Ammo+1", event);
+            this.CreateActionText("Shot+1", event);
             this.SetParticle( event);
             ++event.OtherObject.PlayerController.MaxProjec;
             this.LevelCog.LevelController.DynamicDifficulty += 0.01;
@@ -125,7 +125,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.CreateActionText("Shot Speed/Dmg +2", event);
+            this.CreateActionText("ShotDmg+2", event);
             this.SetParticle(event);
             event.OtherObject.SoundEmitter.Play();
             ++event.OtherObject.PlayerController.Pjtl_Damage;
@@ -139,7 +139,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.CreateActionText("Sword Dmg+1", event);
+            this.CreateActionText("SwordDmg+1", event);
             this.SetParticle(event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.SwordDamag+=1;
@@ -152,7 +152,7 @@ class DropControler : ZilchComponent
         {
         if (event.OtherObject.Name == "Player")
             {
-            this.CreateActionText("Max HP+2", event);
+            this.CreateActionText("MaxHP+2", event);
             this.SetParticle(event);
             event.OtherObject.SoundEmitter.Play();
             event.OtherObject.PlayerController.MaxHP += 2;

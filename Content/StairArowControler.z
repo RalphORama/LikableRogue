@@ -1,0 +1,25 @@
+class StairArowControler : ZilchComponent
+{
+    var StarsFound : Boolean = false;
+    var LevelExitCog : Cog = null;
+    var PlayerCog : Cog = null;
+    function Initialize(init : CogInitializer)
+    {
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(this.StarsFound)
+            {
+            this.PlayerCog= this.Space.FindObjectByName("Player");
+            this.LevelExitCog= this.Space.FindObjectByName("LevelExit");
+            var point = Real3(this.LevelExitCog.Transform.Translation.X, this.LevelExitCog.Transform.Translation.Y, this.Owner.Transform.Translation.Z);
+            var direction = point-this.PlayerCog.Transform.WorldTranslation;
+            direction = Math.Normalize(direction);
+            var target = Math.ToQuaternion(Real3(0,0,1), Math.Angle2D(direction));
+            this.Owner.Transform.Rotation=Math.RotateTowards(this.Owner.Transform.Rotation, target, 10);
+            }
+    }
+}
