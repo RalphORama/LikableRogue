@@ -1,5 +1,5 @@
 
-//this.StairArowCog.StairArowControler.StarsFound=true;
+//
 
 class PlayerController : ZilchComponent
     {

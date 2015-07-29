@@ -18,8 +18,10 @@ class PlayerRaycaster : ZilchComponent
     [Property]
     var OnTop : Boolean = true;
     
+    var StairArowCog : Cog = null;
     function Initialize(init : CogInitializer)
     {
+        this.StairArowCog = this.Space.FindObjectByName("StairArow");
         var seq = Action.Sequence(this.Owner.Actions);
         Actions.Delay(seq, 0.1);
         Actions.Call(seq, this.LogicIntialized);
@@ -27,12 +29,13 @@ class PlayerRaycaster : ZilchComponent
     
     function LogicIntialized()
     {
-        this.LevelExitCog = this.Space.FindObjectByName("LevelExit");
+       
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(updateEvent : UpdateEvent)
     {
+        this.LevelExitCog = this.Space.FindObjectByName("LevelExit");
         this.LocalVector = Real3(this.LevelExitCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
                 this.LevelExitCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
                 0); 
@@ -70,7 +73,8 @@ class PlayerRaycaster : ZilchComponent
         
         if (results.ObjectHit.Name == "LevelExit")
         {
-            this.Owner.PlayerController/*.PLACEEVENTHERE<3 Dylan */;
+            //this.Owner.PlayerController
+            this.StairArowCog.StairArowControler.StarsFound=true;
         }
     }
     
