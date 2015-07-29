@@ -4,6 +4,8 @@
 
 class LevelController : ZilchComponent
 {
+    
+    var StairArowCog : Cog = null;
     /// We gotta have a player, man!
     [Property]
     var PlayerCharacter : Archetype = null;
@@ -79,6 +81,7 @@ class LevelController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
+        this.StairArowCog = this.Space.FindObjectByName("StairArow");
         /// We'll need to add the various levels to arrays
         /// so that we can create them based off of how 
         /// difficult we want the player's experience to be.
@@ -154,6 +157,7 @@ class LevelController : ZilchComponent
         {
             this.CreateFlavorText( "You are now on level 03." );
         }
+        this.StairArowCog.StairArowControler.StarsFound=false;
     }
     
     // create the flavor text and display it

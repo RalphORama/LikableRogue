@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "PlayerRaycaster",
+		uint64 ResourceId = 554193857e2298e9,
+	},
+},

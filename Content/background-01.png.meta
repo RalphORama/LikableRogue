@@ -1,0 +1,28 @@
+ImageContent = 
+{
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Environment",
+			"background",
+		],
+	},
+	SpriteSourceBuilder = 
+	{
+		string Name = "background-01",
+		uint64 ResourceId = 550611040005a75d,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 256,
+		uint FrameSizeY = 183,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333,
+		float OriginX = 128,
+		float OriginY = 91,
+		float PixelsPerUnit = 12,
+		bool Smoothing = false,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+		SpriteFill Fill = NineSlice,
+	},
+},

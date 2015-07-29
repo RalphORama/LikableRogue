@@ -1,0 +1,23 @@
+class BackgroundController : ZilchComponent
+{
+    [Property]
+    var BG01 : SpriteSource = null;
+    [Property]
+    var BG02 : SpriteSource = null;
+    
+    var RandomGenerator : Random = Random();
+    
+    function Initialize(init : CogInitializer)
+    {
+        var whichBG : Integer = Math.Round( this.RandomGenerator.Range(1, 2), 0 ) as Integer;
+        Console.WriteLine( "Choosing BG `whichBG`" );
+        if ( whichBG == 1 )
+        {
+            this.Owner.Sprite.SpriteSource = this.BG01;
+        }
+        else if ( whichBG == 2 )
+        {
+            this.Owner.Sprite.SpriteSource = this.BG02;
+        }
+    }
+}

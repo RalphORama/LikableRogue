@@ -5,11 +5,12 @@ ImageContent =
 		Array Tags = 
 		[
 			"Environment",
+			"background",
 		],
 	},
 	SpriteSourceBuilder = 
 	{
-		string Name = "Dirt",
+		string Name = "backgroundOld",
 		uint64 ResourceId = 55dab2d0d710cfed,
 		uint64 AtlasId = 5274cf95e4a661fd,
 		uint FrameSizeX = 2100,

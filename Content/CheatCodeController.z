@@ -7,7 +7,11 @@ class CheatCodeController : ZilchComponent
     
     var CameraCog : Cog = null;
     
-    var GodMode : Boolean = false;
+    // bools for different cheats
+    var GodMode     : Boolean = false;
+    var SuperSpeed  : Boolean = false;
+    var Noclip      : Boolean = false;
+    var Berzerker   : Boolean = false;
     
     function Initialize(init : CogInitializer)
     {
@@ -25,6 +29,15 @@ class CheatCodeController : ZilchComponent
             this.PlayerCog.PlayerController.CurentHP = this.PlayerCog.PlayerController.MaxHP;
         }
         
+        // if super speed is enabled, set speed to max
+        // when it's disabled, set it to like 10, fuck it
+        if ( this.SuperSpeed == true )
+        {
+            this.PlayerCog.PlayerController.MoveSpeed = 30;
+        }
+        
+        /// begin keyboard shortcut detection ///
+        
         // godmode cheat
         // activated by pressing shift+G
         if ( Zero.Keyboard.KeyIsDown(Keys.Shift) && Zero.Keyboard.KeyIsPressed(Keys.G) )
@@ -33,13 +46,46 @@ class CheatCodeController : ZilchComponent
             {
                 this.GodMode = true;
                 this.DisplayCheatText( this.SpriteText, "God mode enabled..." );
-                //Console.WriteLine( "God mode enabled" );
             }
             else
             {
                 this.GodMode = false;
                 this.DisplayCheatText( this.SpriteText, "God mode disabled..." );
-                //Console.WriteLine( "God mode disabled" );
+            }
+        }
+        
+        // super speed cheat
+        // activated by pressing shift+F
+        if ( Zero.Keyboard.KeyIsDown(Keys.Shift) && Zero.Keyboard.KeyIsPressed(Keys.F) )
+        {
+            if ( this.SuperSpeed == false )
+            {
+                this.SuperSpeed = true;
+                this.DisplayCheatText( this.SpriteText, "Super speed enabled..." );
+            }
+            else
+            {
+                this.SuperSpeed = false;
+                this.DisplayCheatText( this.SpriteText, "Super speed disabled..." );
+                this.PlayerCog.PlayerController.MoveSpeed = 7;
+            }
+        }
+        
+        // noclip cheat
+        // activated by pressing shift+N
+        if ( Zero.Keyboard.KeyIsDown(Keys.Shift) && Zero.Keyboard.KeyIsPressed(Keys.N) )
+        {
+            if ( this.Noclip == false )
+            {
+                this.Noclip = true;
+                this.PlayerCog.CapsuleCollider.Ghost = true;
+                this.DisplayCheatText( this.SpriteText, "Noclip enabled..." );
+            }
+            else
+            {
+                this.Noclip = false;
+                this.PlayerCog.CapsuleCollider.Ghost = false;
+                this.DisplayCheatText( this.SpriteText, "Noclip disabled..." );
             }
         }
     }

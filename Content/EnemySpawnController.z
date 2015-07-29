@@ -31,9 +31,9 @@ class EnemySpawnController : ZilchComponent
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     }
 
-    function OnCollisionStarted(event : CollisionEvent) 
+    function OnCollisionStarted(event : CollisionEvent)
     {
-        if ( event.OtherObject.Name == "Background" ) 
+        if ( event.OtherObject.Name == "Background")
         {
             if ( event.OtherObject.Parent.RoomController.EnemiesDead == false && event.OtherObject.Parent.RoomController.EnemiesSpawned == false )
             {
