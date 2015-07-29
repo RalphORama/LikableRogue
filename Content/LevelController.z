@@ -178,12 +178,14 @@ class LevelController : ZilchComponent
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.MediumLevels.Count) as Integer;
                 this.CurrentLevel = this.Space.CreateAtPosition( this.MediumLevels.Get(randomIndex), Real3(0, 0, 0) );
+                this.CreateFlavorText( "Level 02" );
             }
             else if ( difficulty == 3 ) 
             {
                 var randomIndex : Integer = 
                     this.RandomGenerator.Range(0, this.HardLevels.Count) as Integer;
                 this.CurrentLevel = this.Space.CreateAtPosition( this.HardLevels.Get(randomIndex), Real3(0, 0, 0) );
+                this.CreateFlavorText( "Level 03" );
             }
         }
         
