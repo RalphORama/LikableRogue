@@ -69,8 +69,15 @@ class EnemyRaycaster : ZilchComponent
         }
         else
         {
-            this.Owner.EnemyController.Active = true;
+            var seq = Action.Sequence(this.Owner.Actions);
+            Actions.Delay(seq, 0.3);
+            Actions.Call(seq, this.BeActive);
         }
+    }
+    
+    function BeActive()
+    {
+        this.Owner.EnemyController.Active = true;
     }
     
     function DrawArrow(start : Real3, end : Real3)
