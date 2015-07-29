@@ -38,7 +38,7 @@ Cog =
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ViewPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "55dab2d0d710cfed:Dirt",
+		string SpriteSource = "550611040005a75d:background-01",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
@@ -58,6 +58,11 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
+	BackgroundController = 
+	{
+		string BG01 = "550611040005a75d:background-01",
+		string BG02 = "5506110902ac8cea:background-02",
+	},
 	Hierarchy = 
 	{
 		ArchetypeInstance = 
@@ -76,6 +81,11 @@ Cog =
 			Named = 
 			{
 				string Name = "FOW",
+			},
+			EditorFlags = 
+			{
+				bool Locked = false,
+				bool Hidden = true,
 			},
 		},
 	},
