@@ -1,0 +1,816 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "Transform",
+	},
+	Archetyped = 
+	{
+		string Name = "55d9447ee50267e9:HardFloor03",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [0, 0, 0],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	Hierarchy = 
+	{
+		ArchetypeInstance = 
+		{
+			string Name = "551e3eb68b1aeffe:Room08",
+			LinkId = 
+			{
+				uint Id = 2,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [88, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room08",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e348ec3b1dda2:Room14",
+			LinkId = 
+			{
+				uint Id = 3,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [308, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room14",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 4,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [330, -48, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e46faf1017f:Room09",
+			LinkId = 
+			{
+				uint Id = 5,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [308, -48, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room09",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 6,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [110, 16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e46faf1017f:Room09",
+			LinkId = 
+			{
+				uint Id = 7,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [264, -32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room09",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 8,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [110, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 9,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [22, -32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e3ae7b50f9e:Room10",
+			LinkId = 
+			{
+				uint Id = 10,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [264, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room10",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e3ae7b50f9e:Room10",
+			LinkId = 
+			{
+				uint Id = 11,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [88, 16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room10",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3ef09ca57e6a:Room07",
+			LinkId = 
+			{
+				uint Id = 12,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [154, 16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room07",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3de340a9b18d:Room02",
+			LinkId = 
+			{
+				uint Id = 13,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, -32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room02",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "552191204f7af9d5:Room00",
+			LinkId = 
+			{
+				uint Id = 14,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-22, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room00",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3c7664dd6e23:Room01",
+			LinkId = 
+			{
+				uint Id = 15,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [22, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room01",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3ef09ca57e6a:Room07",
+			LinkId = 
+			{
+				uint Id = 16,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [198, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room07",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 17,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [176, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 18,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [220, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 19,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [154, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3de340a9b18d:Room02",
+			LinkId = 
+			{
+				uint Id = 20,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [66, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room02",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e46faf1017f:Room09",
+			LinkId = 
+			{
+				uint Id = 21,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-22, -32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room09",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 22,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [286, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 23,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-44, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e3ae7b50f9e:Room10",
+			LinkId = 
+			{
+				uint Id = 24,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [66, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room10",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3da24e8194a5:Room04",
+			LinkId = 
+			{
+				uint Id = 25,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room04",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "552191204f7af9d5:Room00",
+			LinkId = 
+			{
+				uint Id = 26,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room00",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3340fbaccf63:Room13",
+			LinkId = 
+			{
+				uint Id = 27,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [0, 16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room13",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3de340a9b18d:Room02",
+			LinkId = 
+			{
+				uint Id = 28,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [44, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room02",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3de340a9b18d:Room02",
+			LinkId = 
+			{
+				uint Id = 29,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [132, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room02",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 30,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [286, -32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e3ae7b50f9e:Room10",
+			LinkId = 
+			{
+				uint Id = 31,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [132, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room10",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3ef09ca57e6a:Room07",
+			LinkId = 
+			{
+				uint Id = 32,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [44, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room07",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e348ec3b1dda2:Room14",
+			LinkId = 
+			{
+				uint Id = 33,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [352, -48, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room14",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e348ec3b1dda2:Room14",
+			LinkId = 
+			{
+				uint Id = 34,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [44, -32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room14",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3de340a9b18d:Room02",
+			LinkId = 
+			{
+				uint Id = 35,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [154, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room02",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 36,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [88, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3e3ae7b50f9e:Room10",
+			LinkId = 
+			{
+				uint Id = 37,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-22, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room10",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e33888eb018fe:Room12",
+			LinkId = 
+			{
+				uint Id = 38,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-66, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room12",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 39,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [242, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3de340a9b18d:Room02",
+			LinkId = 
+			{
+				uint Id = 40,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [22, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room02",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3de340a9b18d:Room02",
+			LinkId = 
+			{
+				uint Id = 41,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [198, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room02",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 42,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [176, 0, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3d4fa6391787:Room06",
+			LinkId = 
+			{
+				uint Id = 43,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [132, 16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room06",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3ef09ca57e6a:Room07",
+			LinkId = 
+			{
+				uint Id = 44,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [308, -32, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room07",
+			},
+		},
+		ArchetypeInstance = 
+		{
+			string Name = "551e3da24e8194a5:Room04",
+			LinkId = 
+			{
+				uint Id = 45,
+			},
+			Transform = 
+			{
+				Vec3 Translation = [264, -16, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			Named = 
+			{
+				string Name = "Room04",
+			},
+		},
+	},
+},
