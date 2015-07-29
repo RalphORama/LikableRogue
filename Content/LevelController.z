@@ -141,6 +141,19 @@ class LevelController : ZilchComponent
         this.SpawnPickupsAndExits();
         
         this.SpawnPlayer( this.CurrentLevel );
+        
+        if ( this.LevelDifficulty == 1 )
+        {
+            this.CreateFlavorText( "You are now on level 01." );
+        }
+        else if ( this.LevelDifficulty == 2 )
+        {
+            this.CreateFlavorText( "You are now on level 02." );
+        }
+        else if ( this.LevelDifficulty == 3 )
+        {
+            this.CreateFlavorText( "You are now on level 03." );
+        }
     }
     
     // create the flavor text and display it

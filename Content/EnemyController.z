@@ -459,16 +459,28 @@ class EnemyController : ZilchComponent
     
     function MushroomShooting()
     {
-        this.Space.CreateAtPosition(this.MushroomShotArch,
-            Real3(this.Owner.Transform.Translation.X, this.Owner.Transform.Translation.Y, 0));
-        var shotCog = this.Space.FindObjectByName("MushroomShot");
-        shotCog.MushroomShotController.Angle = Math.ToRadians(this.MushroomShotAngle * 45);
-
+        if (this.Active)
+        {
+            this.Space.CreateAtPosition(this.MushroomShotArch,
+                Real3(this.Owner.Transform.Translation.X, this.Owner.Transform.Translation.Y, 0));
+            var shotCog = this.Space.FindObjectByName("MushroomShot");
+            shotCog.MushroomShotController.Angle = Math.ToRadians(this.MushroomShotAngle * 45);
+        }
+        
         //recursion yo'
         var seq = Action.Sequence(this.Owner.Actions);
-        var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4;
-        Actions.Delay(seq, time);
-        Actions.Call(seq, this.MushroomShooting);
+        if (((this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4 ) <= 3.75)
+        { 
+            var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4;
+            Actions.Delay(seq, time);
+            Actions.Call(seq, this.MushroomShooting);
+        }
+        else
+        {
+            var time = 0.25;
+            Actions.Delay(seq, time);
+            Actions.Call(seq, this.MushroomShooting);
+        }
     }
     
     function OnLogicUpdate(event : UpdateEvent)
@@ -499,9 +511,18 @@ class EnemyController : ZilchComponent
         {
             this.Owner.Sprite.SpriteSource = SpriteSource.Find("MushroomS");
             var seq = Action.Sequence(this.Owner.Actions);
-            var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4;
-            Actions.Delay(seq, time);
-            Actions.Call(seq, this.MushroomShooting);
+            if (((this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4 ) <= 3.75)
+            { 
+                var time = 4 - (this.LevelCog.LevelController.LevelDifficulty + this.LevelCog.LevelController.DynamicDifficulty) / 4;
+                Actions.Delay(seq, time);
+                Actions.Call(seq, this.MushroomShooting);
+            }
+            else
+            {
+                var time = 0.25;
+                Actions.Delay(seq, time);
+                Actions.Call(seq, this.MushroomShooting);
+            }
             this.Check = true;
         }
         

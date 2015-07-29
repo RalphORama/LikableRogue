@@ -20,18 +20,24 @@ class TextCrawlController : ZilchComponent
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
     
+    var Timer : Real = 0;
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.Timer += event.Dt;
         
-        if ( this.GamePad.IsButtonPressed(0) || Zero.Keyboard.KeyIsPressed(Keys.Space) 
-             || Zero.Keyboard.KeyIsPressed(Keys.Enter) || Zero.Keyboard.KeyIsPressed(Keys.A) /* for idiots */ )
+        if ( this.Timer > 1 )
         {
-            var player = this.Space.FindObjectByName( "Player" );
-            player.PlayerController.TotorialDelay();
-            var seq = Action.Sequence( this.Owner.Actions );
-            Action.Property( seq, @player.PlayerController.IsPlayerInDialog, false, 0.0, Ease.Linear );
-            Action.Delay( seq, 0.15 );
-            Action.Call( seq, this.Owner.Parent.Destroy );
+            if ( this.GamePad.IsButtonPressed(0) || Zero.Keyboard.KeyIsPressed(Keys.Space) 
+                 || Zero.Keyboard.KeyIsPressed(Keys.Enter) || Zero.Keyboard.KeyIsPressed(Keys.A) /* for idiots */ )
+            {
+                var player = this.Space.FindObjectByName( "Player" );
+                player.PlayerController.TotorialDelay();
+                var seq = Action.Sequence( this.Owner.Actions );
+                Action.Property( seq, @player.PlayerController.IsPlayerInDialog, false, 0.0, Ease.Linear );
+                Action.Delay( seq, 0.15 );
+                Action.Call( seq, this.Owner.Parent.Destroy );
+            }
         }
     }
     
