@@ -129,4 +129,11 @@ Cog =
 		Vec3 Offset = [0.09, -0.09, 0],
 		float Radius = 0.15,
 	},
+	SlingProjRaycaster = 
+	{
+		float CastDistance = 10000,
+		Vec4 DrawColor = [1, 1, 1, 1],
+		float HeadSize = 0.25,
+		bool OnTop = true,
+	},
 },
