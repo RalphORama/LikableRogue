@@ -1,0 +1,86 @@
+class SlingProjRaycaster : ZilchComponent
+{
+    
+    var PlayerCog : Cog = null;
+    
+    // The local space vector that we use to raycast
+    var LocalVector : Real3 = Real3(0.0, 1.0, 0.0);
+    // The maximum distance the raycast will go
+    [Property]
+    var CastDistance : Real = 10.0;
+    // Color to draw the ray and arrow head
+    [Property]
+    var DrawColor : Real4 = Real4(1.0, 1.0, 1.0, 1.0);
+    // Size of the arrow head to draw
+    [Property]
+    var HeadSize : Real = 0.25;
+    // If the ray is always drawn on top of everything else
+    [Property]
+    var OnTop : Boolean = true;
+    
+    var StartRaycast : Boolean = true;
+    
+    function Initialize(init : CogInitializer)
+    {
+        this.PlayerCog = this.Space.FindObjectByName("Player");
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(updateEvent : UpdateEvent)
+    {
+        this.LocalVector = Real3(this.PlayerCog.Transform.Translation.X-this.Owner.Transform.Translation.X,//Get Player's X relative to the Enemy
+                this.PlayerCog.Transform.Translation.Y-this.Owner.Transform.Translation.Y, //Get Player's Y relative to the Enemy
+                0); 
+                
+        var transform = this.Owner.Transform;
+        // Get the ray start and direction`
+        
+        var ray = Ray();
+        ray.Start = transform.Translation;
+        ray.Direction = this.LocalVector;
+        ray.Direction = Math.Normalize(ray.Direction);
+        
+        //Create filter
+        var myFilter = CastFilter();
+
+        //Set filter properties
+        myFilter.IgnoreChildren = false;    //Ignore any child objects
+
+        //Set the filter to behave as being part of a Collision Group
+        myFilter.CollisionGroup = CollisionGroup.Find("EnemyRaycastCollision");
+
+        //Cast a filtered ray and store the first object found
+        var results = this.Space.PhysicsSpace.CastRayFirstFiltered(ray, myFilter);
+        
+        // Get how far away the object was that we hit
+        var distance = results.Distance;
+        
+        // Draw to the raycast point
+        var endPos = ray.Start + ray.Direction * distance;
+        
+        /*this.DrawArrow(ray.Start, endPos);
+        
+        Console.WriteLine(results.ObjectHit.Name); */ //for decoding
+        
+        if (results.ObjectHit.Name == "Wall" && this.Owner.SlingProjControler.Pickup && this.StartRaycast)
+        {
+            this.PlayerCog.PlayerController.MaxProjec += 1;//int for taking damag, set to a var to costomize based on enemy
+
+            var hudParent : Cog = this.Space.FindObjectByName( "Camera" );              //code for updating the HUD
+            var hud : Cog = hudParent.FindChildByName( "HudContainer" );                //code for updating the HUD
+            hud.HUDController.UpdateHealth(this.PlayerCog);                        //code for updating the HUD
+            this.Owner.Destroy();
+        }
+        else if (this.Owner.SlingProjControler.Pickup && this.StartRaycast)
+        {
+            this.StartRaycast = false;
+        }
+    }
+    
+    function DrawArrow(start : Real3, end : Real3)
+    {
+        var line = DebugLine();
+        line.Start(start).End(end).HeadSize(this.HeadSize).Float4Color(this.DrawColor).OnTop(this.OnTop);
+        line.Draw();
+    }
+}
