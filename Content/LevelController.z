@@ -157,6 +157,7 @@ class LevelController : ZilchComponent
         {
             this.CreateFlavorText( "You are now on level 03." );
         }
+        this.StairArowCog.Sprite.Visible=false;
         this.StairArowCog.StairArowControler.StarsFound=false;
     }
     
