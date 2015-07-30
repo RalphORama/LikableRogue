@@ -74,6 +74,7 @@ class PlayerRaycaster : ZilchComponent
         if (results.ObjectHit.Name == "LevelExit")
         {
             //this.Owner.PlayerController
+            this.StairArowCog.Sprite.Visible=true;
             this.StairArowCog.StairArowControler.StarsFound=true;
         }
     }
