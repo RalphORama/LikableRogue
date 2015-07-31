@@ -17,7 +17,7 @@ class PlayerController : ZilchComponent
     //[Property]
     //var Location : Real3 = Real3(0, 0, 0);
     
-    
+    var Slashing : Boolean= false;
 
     //Initialize empty objects Object Variables
     var LevelCamera : Cog = null;    
@@ -177,16 +177,19 @@ class PlayerController : ZilchComponent
             this.SwordDamageBox.Transform.Translation = this.SwordAttcackZone;
             this.SwordDamageBox.Sprite.Visible=true;
             this.SwordDamageBox.BoxCollider.SendsEvents=true;
+            this.Slashing=true;
             var seq = Action.Sequence(this.Owner.Actions);
-            Actions.Delay(seq, 0.1);
+            Actions.Delay(seq, 0.1);//slash delay
             Actions.Call(seq, this.DeSlash);
             }
     }
     function DeSlash()
         {
+            
             this.Owner.Sprite.SpriteSource=this.StandingSprite;
-        this.SwordDamageBox.Sprite.Visible=false;
+            this.SwordDamageBox.Sprite.Visible=false;
             this.SwordDamageBox.BoxCollider.SendsEvents=false;
+            this.Slashing=false;
         }
     function ProjectileLaunch()
         {
@@ -264,6 +267,10 @@ class PlayerController : ZilchComponent
         }
     function OnLogicUpdate(event : UpdateEvent)
         {
+        if(this.Slashing)
+        {
+        this.Owner.Sprite.SpriteSource=this.AttackingSprite;
+        }
         if(this.Owner.RigidBody.Velocity!=Real3(0,0,0) && this.IsWalking==false)
             {
             this.Owner.Sprite.SpriteSource=this.AnimationSprite;
@@ -344,7 +351,7 @@ class PlayerController : ZilchComponent
             if (this.Ang<1&&this.Ang>0.5&&this.Ang!=0)
                 {
                 //this.ProjectAngle = Real3(1,1,0);
-                this.AttackingSprite = SpriteSource.Find("KyleAttackNorthSheet");
+                this.AttackingSprite = SpriteSource.Find("KyleAttackNorthEastSheet");
                 this.AnimationSprite = SpriteSource.Find("KyleNW");
                 this.StandingSprite = SpriteSource.Find("KyleNW");//Sets Sprite
                 this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
@@ -353,7 +360,7 @@ class PlayerController : ZilchComponent
             //East
             if (this.Ang>-0.5&&this.Ang<0.5&&this.Ang!=0)
                 {
-                this.AttackingSprite = SpriteSource.Find("KyleAttackNorthSheet");
+                this.AttackingSprite = SpriteSource.Find("KyleAttackEastSheet");
                 this.StandingSprite=SpriteSource.Find("KyleW");
                 this.AnimationSprite = SpriteSource.Find("Kyle_Walk_Left_Anim");
                 this.Owner.Sprite.FlipX=true;
@@ -371,7 +378,7 @@ class PlayerController : ZilchComponent
             //South
             if (this.Ang<-1&&this.Ang>-2&&this.Ang!=0)
                 {
-                this.AttackingSprite = SpriteSource.Find("KyleAttackNorthSheet");
+                this.AttackingSprite = SpriteSource.Find("KyleAttackSouthSheet");
                 this.AnimationSprite = SpriteSource.Find("KyleS");
                 this.StandingSprite = SpriteSource.Find("KyleS");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to off
@@ -389,7 +396,7 @@ class PlayerController : ZilchComponent
             //West
             if (this.Ang<-2.6||this.Ang>2.6&&this.Ang!=0)
                 {
-                this.AttackingSprite = SpriteSource.Find("KyleAttackNorthSheet");
+                this.AttackingSprite = SpriteSource.Find("KyleAttackEastSheet");
                 this.StandingSprite = SpriteSource.Find("KyleW");
                 this.AnimationSprite = SpriteSource.Find("Kyle_Walk_Left_Anim");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
@@ -398,7 +405,7 @@ class PlayerController : ZilchComponent
             //North West
             if (this.Ang<2.6&&this.Ang>2&&this.Ang!=0)
                 {
-                this.AttackingSprite = SpriteSource.Find("KyleAttackNorthSheet");
+                this.AttackingSprite = SpriteSource.Find("KyleAttackNorthEastSheet");
                 this.AnimationSprite = SpriteSource.Find("KyleNW");
                 this.StandingSprite = SpriteSource.Find("KyleNW");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
