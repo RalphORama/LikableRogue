@@ -212,8 +212,8 @@ Level =
 		},
 		Splash = 
 		{
-			bool Skippable = false,
-			float Delay = 2,
+			bool Skippable = true,
+			float Delay = 5,
 			string LevelToLoadName = "MainGame",
 		},
 	},
