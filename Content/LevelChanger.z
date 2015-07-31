@@ -27,6 +27,7 @@ class LevelChanger : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        /*
         if(Zero.Keyboard.KeyIsPressed(Keys.One))
         {
             this.ChangeLevelByName("Level");
@@ -35,6 +36,7 @@ class LevelChanger : ZilchComponent
         {
             this.ChangeLevelByName("Level2");
         }
+        */
     }
     
     function FadeOut()

@@ -175,7 +175,7 @@ class PlayerController : ZilchComponent
                 }
             this.Owner.Sprite.SpriteSource=this.AttackingSprite;
             this.SwordDamageBox.Transform.Translation = this.SwordAttcackZone;
-            this.SwordDamageBox.Sprite.Visible=true;
+            //this.SwordDamageBox.Sprite.Visible = true;
             this.SwordDamageBox.BoxCollider.SendsEvents=true;
             this.Slashing=true;
             var seq = Action.Sequence(this.Owner.Actions);
