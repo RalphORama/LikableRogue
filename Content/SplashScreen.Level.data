@@ -214,7 +214,7 @@ Level =
 		{
 			bool Skippable = false,
 			float Delay = 2,
-			string LevelToLoadName = "MainGame",
+			string LevelToLoadName = "TeamSplash",
 		},
 	},
 },

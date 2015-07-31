@@ -94,7 +94,6 @@ Level =
 		{
 			float ChangeSpeed = 0.3,
 			Vec4 FadeColor = [0, 0, 0, 1],
-			string LevelToChangeTo = "554cea0f94af672f:MainGame",
 		},
 	},
 	Cog = 
@@ -205,6 +204,17 @@ Level =
 			bool AnimationActive = true,
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
+		},
+		Area = 
+		{
+			Vec2 Size = [15, 15],
+			Location Origin = Center,
+		},
+		Splash = 
+		{
+			bool Skippable = false,
+			float Delay = 2,
+			string LevelToLoadName = "MainGame",
 		},
 	},
 },
