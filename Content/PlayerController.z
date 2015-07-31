@@ -369,7 +369,7 @@ class PlayerController : ZilchComponent
             //South East
             if (this.Ang<-0.5&&this.Ang>-1&&this.Ang!=0)
                 {
-                this.AttackingSprite = SpriteSource.Find("KyleAttackNorthSheet");
+                this.AttackingSprite = SpriteSource.Find("KyleAttackEastSouthSheet");
                 this.AnimationSprite = SpriteSource.Find("KyleSW");
                 this.StandingSprite = SpriteSource.Find("KyleSW");//Sets Sprite
                 this.Owner.Sprite.FlipX=true;//Resets mirror flip to off
@@ -387,7 +387,7 @@ class PlayerController : ZilchComponent
             //South West
             if (this.Ang<-2&&this.Ang>-2.6&&this.Ang!=0)
                 {
-                this.AttackingSprite = SpriteSource.Find("KyleAttackNorthSheet");
+                this.AttackingSprite = SpriteSource.Find("KyleAttackEastSouthSheet");
                 this.AnimationSprite = SpriteSource.Find("KyleSW");
                 this.StandingSprite = SpriteSource.Find("KyleSW");//Sets Sprite
                 this.Owner.Sprite.FlipX=false;//Resets mirror flip to on
