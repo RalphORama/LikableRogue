@@ -94,6 +94,7 @@ Level =
 		{
 			float ChangeSpeed = 0.3,
 			Vec4 FadeColor = [0, 0, 0, 1],
+			string LevelToChangeTo = "554cea0f94af672f:MainGame",
 		},
 	},
 	Cog = 
@@ -120,7 +121,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 18.2684,
+			float Size = 20,
 		},
 		EditorCameraController = 
 		{
@@ -164,7 +165,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 200,
-			float Size = 10,
+			float Size = 20,
 		},
 		Microphone = 
 		{
@@ -179,12 +180,12 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Background",
+			string Name = "Sprite",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, -10],
-			Vec3 Scale = [100, 100, 1],
+			Vec3 Translation = [0, 0, 0],
+			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -193,96 +194,17 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [0, 0, 0, 1],
+			Vec4 Color = [1, 1, 1, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
+			string SpriteSource = "5505f2ee2e766388:TeamSplash",
 			bool RenderMask = false,
 			bool FlipX = false,
 			bool FlipY = false,
 			bool AnimationActive = true,
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 5,
-		},
-		Named = 
-		{
-			string Name = "GameOverText",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 2, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		SpriteText = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "55123e60ac843019:Ponderosa",
-			uint FontSize = 72,
-			string Text = "You died!",
-			TextAlign Align = Center,
-			float PixelsPerUnit = 64,
-			bool Smoothing = true,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 6,
-		},
-		Named = 
-		{
-			string Name = "RestartGameText",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 0.3, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		SpriteText = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string FontName = "55123e60ac843019:Ponderosa",
-			uint FontSize = 30,
-			string Text = "Play Again?",
-			TextAlign Align = Center,
-			float PixelsPerUnit = 64,
-			bool Smoothing = true,
-		},
-		Reactive = 
-		{
-			bool Active = true,
-			bool CaptureMouse = false,
-		},
-		GameOverController = 
-		{
-		},
-		Hierarchy = 
-		{
 		},
 	},
 },
