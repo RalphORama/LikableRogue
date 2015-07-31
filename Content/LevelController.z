@@ -73,6 +73,8 @@ class LevelController : ZilchComponent
     // we'll use this after we set up the board
     var CurrentLevel : Cog = null;
     
+    var LevelsBeaten : Integer = 1;
+    
     // so we can destroy him on level change
     var PlayerCog : Cog = null;
     
@@ -110,7 +112,7 @@ class LevelController : ZilchComponent
         /// relative distance to the player's starting location
         this.SpawnPickupsAndExits();
         
-        this.CreateFlavorText( "Level 01 - The Deep, Dark Depths.   \n\nI remember...\nThere was this stray cat in our neighborhood. He was old and very thin, and he looked like he was about to die." );
+        this.CreateFlavorText( "You are now on floor 1." );
         
         // connect to physicsupdate (we only use this to cap dynamicdifficulty)
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -119,6 +121,7 @@ class LevelController : ZilchComponent
     /// SpawnNewLevel
     /// Does the same thing as the Init function, but for level changes
     function SpawnNewLevel () {
+        
         /// take care of existing stuff - delete objects
         // first, get rid of every enemy
         var enemyList : CogNameRange = this.Space.FindAllObjectsByName( "Enemy" );
@@ -145,20 +148,19 @@ class LevelController : ZilchComponent
         
         this.SpawnPlayer( this.CurrentLevel );
         
-        if ( this.LevelDifficulty == 1 )
+        if ( this.LevelsBeaten != 2 )
         {
-            this.CreateFlavorText( "You are now on level 01." );
+            this.CreateFlavorText( "You are now on floor `this.LevelsBeaten + 1`." );
         }
-        else if ( this.LevelDifficulty == 2 )
+        else
         {
-            this.CreateFlavorText( "You are now on level 02." );
+            this.CreateFlavorText( "You are now on floor `this.LevelsBeaten + 1`.    \n\nThere would have been an endgame condition here or something, but we ran out of time lol." );
         }
-        else if ( this.LevelDifficulty == 3 )
-        {
-            this.CreateFlavorText( "You are now on level 03." );
-        }
+        
         this.StairArowCog.Sprite.Visible=false;
         this.StairArowCog.StairArowControler.StarsFound=false;
+        
+        ++this.LevelsBeaten;
     }
     
     // create the flavor text and display it
